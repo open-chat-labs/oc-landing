@@ -18,7 +18,6 @@
 
     function onScroll() {
         scrollTop = mainEl?.scrollTop ?? 0;
-        console.log("Scrolltop: ", scrollTop);
     }
 </script>
 
