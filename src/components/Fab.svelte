@@ -8,8 +8,8 @@
     .fab {
         @include z-index("fab");
         transition: background-color ease-in-out 200ms;
-        width: 60px;
-        height: 60px;
+        width: toRem(50);
+        height: toRem(50);
         border-radius: 50%;
         display: flex;
         justify-content: center;

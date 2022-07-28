@@ -64,7 +64,7 @@
     }
     .fab {
         position: absolute;
-        bottom: toRem(50);
-        right: toRem(50);
+        bottom: toRem(40);
+        right: toRem(40);
     }
 </style>
