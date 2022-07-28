@@ -4,7 +4,7 @@
 
     let inView = false;
     let options = {
-        rootMargin: "250px",
+        rootMargin: "50px",
         unobserveOnEnter: true,
     };
 
@@ -21,7 +21,7 @@
     <div
         class:left={zoom === "left"}
         class:right={zoom === "right"}
-        class:visible={inView}
+        class:visible={inView || zoom === "none"}
         in:fade
         class="box">
         <slot />
@@ -32,7 +32,11 @@
     $speed: 400ms;
 
     section {
-        margin-bottom: 50px;
+        margin-bottom: toRem(40);
+
+        @include mobile() {
+            margin-bottom: toRem(20);
+        }
     }
 
     .box {

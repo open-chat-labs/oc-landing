@@ -17,7 +17,7 @@
         background-color: $color;
         cursor: pointer;
         &:hover {
-            background-color: darken(#22a7f2, 10%);
+            background-color: var(--primary-darker);
         }
     }
 </style>

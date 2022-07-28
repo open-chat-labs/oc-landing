@@ -1,12 +1,17 @@
 <script lang="ts">
     import Section from "./Section.svelte";
+    import { dimensions } from "../stores/screenDimensions";
+
+    const ratio = 315 / 560;
+    $: width = Math.min(600, $dimensions.width - 50);
+    $: height = width * ratio;
 </script>
 
 <Section zoom={"left"} id={"video"}>
     <h2>Demo video</h2>
     <iframe
-        width="560"
-        height="315"
+        {width}
+        {height}
         src="https://www.youtube.com/embed/brdHgU6DxcQ"
         title="YouTube video player"
         frameborder="0"

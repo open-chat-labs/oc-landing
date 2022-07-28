@@ -1,15 +1,16 @@
 <script lang="ts">
-    import App from "App.svelte";
     import Section from "./Section.svelte";
+    import { mobileWidth } from "../stores/screenDimensions";
+    import Separator from "./Separator.svelte";
 </script>
 
 <Section zoom="none" id={"intro"}>
     <h2>Welcome to OpenChat</h2>
 
     <div class="grid">
-        <div class="left">
-            <img src="../screenshots/chatlist.png" />
-        </div>
+        {#if !$mobileWidth}
+            <img class="img" alt="Open chat list" src="../screenshots/chatlist.png" />
+        {/if}
 
         <div class="right">
             <p>
@@ -19,8 +20,12 @@
                 responsive, progressive web application (PWA) and as such scales to take advantage
                 of any screen size and integrates with devices in a similar way to native apps, with
                 notifications on desktop and Android devices, and on iOS from next year. You can
-                find the <a href="#roadmap">full development roadmap here.</a>
+                find the full development roadmap below.
             </p>
+
+            {#if $mobileWidth}
+                <img class="img desktop" alt="Open chat desktop" src="../screenshots/chatbot.png" />
+            {/if}
 
             <p>
                 The IC is a decentralized global compute platform which uses novel block-chain
@@ -30,6 +35,8 @@
                 guarantees.
             </p>
 
+            <Separator />
+
             <p>
                 The app is open source, uses repeatable builds, and runs as a collection of
                 canisters. It is possible for anyone to see the version of the source code that is
@@ -37,8 +44,10 @@
                 on github, and for them to prove this is true. Each user is given their own canister
                 which holds their direct chat data, links to the groups they are members of, and
                 also serves as a wallet allowing OC users to hold and manage tokens. For details of
-                the architecture <a href="#architecture">please see here.</a>
+                the architecture <a href="/architecture">please see here.</a>
             </p>
+
+            <Separator />
 
             <p>
                 OC users can send messages to each other containing tokens such as ICP and BTC and
@@ -60,10 +69,18 @@
     .grid {
         display: grid;
         grid-template-columns: 1fr 2fr;
-        gap: $sp4;
+        gap: $sp5;
+
+        @include mobile() {
+            grid-template-columns: 1fr;
+        }
     }
 
-    .left img {
+    .img {
         width: 100%;
+    }
+
+    .desktop {
+        margin-bottom: $sp5;
     }
 </style>

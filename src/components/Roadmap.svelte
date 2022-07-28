@@ -86,24 +86,37 @@
 <style type="text/scss">
     .list {
         text-align: left;
-    }
-
-    .done {
         list-style: none;
-        &:before {
-            content: "✓";
-            margin-left: -16px;
-            margin-right: 3px;
-            color: var(--accent);
+        margin: 0 0 0 toRem(22);
+        padding: 0;
+        position: relative;
+
+        > li.done {
+            &:before {
+                position: absolute;
+                content: "✓";
+                left: toRem(-22);
+                color: var(--accent);
+            }
+        }
+
+        > li:not(.done) {
+            &:before {
+                position: absolute;
+                content: "x";
+                left: toRem(-22);
+                color: var(--accent);
+            }
         }
     }
+
     .grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: $sp4;
-    }
-    .blurb {
-        column-count: 2;
-        text-align: left;
+
+        @include mobile() {
+            grid-template-columns: 1fr;
+        }
     }
 </style>

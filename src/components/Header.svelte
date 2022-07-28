@@ -1,60 +1,105 @@
 <script lang="ts">
+    import { mobileWidth } from "../stores/screenDimensions";
+    import Home from "svelte-material-icons/Home.svelte";
+    import LaunchIcon from "svelte-material-icons/Launch.svelte";
+    import Launch from "./Launch.svelte";
+
+    export let route = "home";
+
+    // TODO - this needs to collapse down into a popout menu on mobile
 </script>
 
 <div class="menu">
-    <div class="menu-item">
-        <a href="#features">Features</a>
+    {#if !$mobileWidth}
+        <a class="home" href="/">
+            <div class="logo" />
+        </a>
+    {/if}
+    <div class="menu-items">
+        <div class="menu-item" class:selected={route === "home"}>
+            <a href="/">
+                {#if $mobileWidth}
+                    <Home size={"1.6em"} color={"#fff"} />
+                {:else}
+                    Home
+                {/if}
+            </a>
+        </div>
+        <div class="menu-item" class:selected={route === "features"}>
+            <a href="/features">Features</a>
+        </div>
+        <div class="menu-item" class:selected={route === "tokenomics"}>
+            <a href="/tokenomics">Tokenomics</a>
+        </div>
+        <div class="menu-item" class:selected={route === "architecture"}>
+            <a href="/architecture">Architecture</a>
+        </div>
     </div>
-    <div class="menu-item">
-        <a href="#tokenomics">Tokenomics</a>
+    <div title="Launch" class="launch">
+        {#if $mobileWidth}
+            <LaunchIcon size={"1.6em"} color={"#fff"} />
+        {:else}
+            <Launch size="small" />
+        {/if}
     </div>
-    <div class="menu-item">
-        <a href="#architecture">Architecture</a>
-    </div>
-    <div class="menu-item">
-        <a href="#roadmap">Roadmap</a>
-    </div>
-    <div class="menu-item">
-        <a href="#video">Video</a>
-    </div>
-    <div class="menu-item">
-        <a href="#team">Team</a>
-    </div>
-    <a class="home" href="#intro">
-        <div class="logo" />
-    </a>
 </div>
 
 <style type="text/scss">
     .logo {
         background-image: url("../spinner.svg");
-        width: 50px;
-        height: 50px;
+        width: toRem(45);
+        height: toRem(45);
     }
     .menu {
-        flex: 0 0 70px;
+        flex: 0 0 toRem(60);
         @include z-index("menu");
         padding: $sp4;
         background-color: var(--primary);
         color: #fff;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+        gap: $sp5;
+        @include box-shadow(1);
+        @include constrain();
+        position: sticky;
+        top: 0;
+    }
+
+    .launch {
+        flex: 0 0 150px;
+
+        @include mobile() {
+            flex: 0 0 40px;
+            text-align: right;
+        }
+    }
+
+    .menu-items {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
         gap: $sp5;
     }
 
     .home {
-        position: absolute;
-        top: 10px;
-        left: 10px;
+        flex: 0 0 toRem(70);
     }
 
     .menu-item {
         a {
-            font-family: "Yantramanav", sans-serif;
-            font-size: toRem(20);
+            // font-family: "Yantramanav", sans-serif;
+            font-size: toRem(16);
             font-weight: bold;
             color: #fff;
+        }
+
+        &.selected a {
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: $sp1;
+            text-decoration-thickness: 2px;
         }
     }
 </style>

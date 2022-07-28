@@ -96,23 +96,22 @@ $font-sizes: (
 // SPACING
 // =========================================================
 
-$sp1: 2px;
-$sp2: 4px;
-$sp3: 8px;
-$sp4: 16px;
-$sp5: 24px;
-$sp6: 32px;
-$sp7: 48px;
-$sp8: 64px;
-$sp9: 96px;
-$sp10: 144px;
-$sp11: 192px;
+$sp1: toRem(2);
+$sp2: toRem(4);
+$sp3: toRem(8);
+$sp4: toRem(16);
+$sp5: toRem(24);
+$sp6: toRem(32);
+$sp7: toRem(48);
+$sp8: toRem(64);
+$sp9: toRem(96);
+$sp10: toRem(144);
+$sp11: toRem(192);
 
-@mixin fullScreenImg($img) {
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url($img);
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
+@mixin fullScreenImg() {
+    background-position: bottom !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
 
 @mixin ellipsis($width: auto) {
@@ -377,4 +376,10 @@ $shadow-level-3: 2px 6px 12px 0 rgba(25, 25, 25, 0.55);
     min-width: $sp5;
     padding: 0 $sp2;
     height: $sp5;
+}
+
+@mixin constrain() {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
 }

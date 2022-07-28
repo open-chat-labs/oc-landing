@@ -6,28 +6,34 @@ import { terser } from "rollup-plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
 import css from "rollup-plugin-css-only";
+import dev from "rollup-plugin-dev";
 
 const production = !process.env.ROLLUP_WATCH;
 
 function serve() {
-    let server;
+    return dev({
+        dirs: ["./build", "./public"],
+        spa: "./index.html",
+        port: 8080,
+    });
+    // let server;
 
-    function toExit() {
-        if (server) server.kill(0);
-    }
+    // function toExit() {
+    //     if (server) server.kill(0);
+    // }
 
-    return {
-        writeBundle() {
-            if (server) return;
-            server = require("child_process").spawn("npm", ["run", "start", "--", "--dev"], {
-                stdio: ["ignore", "inherit", "inherit"],
-                shell: true,
-            });
+    // return {
+    //     writeBundle() {
+    //         if (server) return;
+    //         server = require("child_process").spawn("npm", ["run", "start", "--", "--dev"], {
+    //             stdio: ["ignore", "inherit", "inherit"],
+    //             shell: true,
+    //         });
 
-            process.on("SIGTERM", toExit);
-            process.on("exit", toExit);
-        },
-    };
+    //         process.on("SIGTERM", toExit);
+    //         process.on("exit", toExit);
+    //     },
+    // };
 }
 
 export default {
