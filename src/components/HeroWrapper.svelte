@@ -22,7 +22,7 @@
         gap: toRem(20);
 
         @include mobile() {
-            height: toRem(380);
+            height: toRem(400);
         }
     }
 </style>

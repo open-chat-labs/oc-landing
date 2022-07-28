@@ -20,11 +20,11 @@ resetRootFontForScreenWidth(window.innerWidth);
 
 function resetRootFontForScreenWidth(width: number) {
     if (width < 354) {
-        setRootFontSize(12);
-    } else if (width < 576) {
-        setRootFontSize(12);
-    } else if (width < 768) {
         setRootFontSize(13);
+    } else if (width < 576) {
+        setRootFontSize(13);
+    } else if (width < 768) {
+        setRootFontSize(14);
     } else if (width < 992) {
         setRootFontSize(14);
     } else if (width < 1200) {

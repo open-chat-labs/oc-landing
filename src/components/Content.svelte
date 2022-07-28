@@ -22,7 +22,7 @@
         top: toRem(40);
 
         &.offset {
-            top: toRem(-70);
+            margin-top: toRem(-120);
         }
 
         @include mobile() {

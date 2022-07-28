@@ -52,15 +52,17 @@
     function goToPage(event: MouseEvent) {
         if (event.target) {
             const anchor = event.target as HTMLAnchorElement;
-            event.preventDefault(); // stop the browser from navigating to the destination URL.
             const url = anchor.getAttribute("href") || "/";
-            console.log("Url: ", url);
             if (url) {
+                if (url.indexOf("oc.app") >= 0) {
+                    return;
+                }
                 const path = url.slice(1); // remove the leading slash
                 const [c, r] = pathToComponent(path);
                 selected = c;
                 route = r;
                 window.history.pushState({}, "", url); // Update URL as well as browser history.
+                event.preventDefault(); // stop the browser from navigating to the destination URL.
             }
         }
     }
