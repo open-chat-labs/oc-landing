@@ -15,7 +15,7 @@
             t-bone tenderloin shankle pork chop. Chuck landjaeger biltong drumstick doner alcatra.
             Shoulder salami boudin brisket.`} />
         <TeamCard
-            imageUrl={"../hamish.png"}
+            imageUrl={"../hamish2.png"}
             name={"Hamish"}
             blurb={`Bacon ipsum dolor amet sausage flank cupim kevin, kielbasa brisket strip steak meatball
             tenderloin ribeye spare ribs bresaola rump capicola hamburger. Burgdoggen turkey biltong
