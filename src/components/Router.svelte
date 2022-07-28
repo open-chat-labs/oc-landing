@@ -4,8 +4,6 @@
     import ArchitecturePage from "./ArchitecturePage.svelte";
     import TokenomicsPage from "./TokenomicsPage.svelte";
     import FeaturesPage from "./FeaturesPage.svelte";
-    import Fab from "./Fab.svelte";
-    import ArrowUp from "svelte-material-icons/ArrowUp.svelte";
 
     onMount(() => {
         parseLocation();
@@ -21,19 +19,11 @@
     export let route = "home";
 
     let selected = HomePage;
-    let bodyEl: HTMLDivElement | undefined;
-    let scrollTop = 0;
-
-    $: backToTop = scrollTop > 400;
 
     function parseLocation() {
         const [c, r] = pathToComponent(window.location.pathname.slice(1));
         selected = c;
         route = r;
-    }
-
-    function onScroll() {
-        scrollTop = bodyEl?.scrollTop ?? 0;
     }
 
     function pathToComponent(path: string): [any, string] {
@@ -70,35 +60,15 @@
     // Enable client-side routing for all links on the page
 </script>
 
-<div bind:this={bodyEl} class="body" on:scroll={onScroll}>
+<div class="body">
     <svelte:component this={selected} />
-    {#if backToTop}
-        <div
-            class="fab"
-            on:click={() =>
-                bodyEl?.scrollTo({
-                    behavior: "smooth",
-                    top: 0,
-                })}>
-            <Fab>
-                <ArrowUp size={"1.5em"} color={"#fff"} />
-            </Fab>
-        </div>
-    {/if}
 </div>
 
 <style type="text/scss">
     .body {
         flex: auto;
-        overflow: auto;
-        scroll-behavior: smooth;
         position: relative;
         background: var(--gradient);
         @include constrain();
-    }
-    .fab {
-        position: fixed;
-        bottom: 60px;
-        right: 60px;
     }
 </style>

@@ -96,7 +96,7 @@
                 position: absolute;
                 content: "✓";
                 left: toRem(-22);
-                color: var(--accent);
+                color: darkseagreen;
             }
         }
 
@@ -105,7 +105,7 @@
                 position: absolute;
                 content: "x";
                 left: toRem(-22);
-                color: var(--accent);
+                color: var(--secondary);
             }
         }
     }

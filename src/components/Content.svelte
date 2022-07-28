@@ -19,10 +19,11 @@
         position: relative;
         margin: 0 toRem(40);
         background-color: #fff;
-        top: toRem(40);
+        margin-top: toRem(40);
+        margin-bottom: toRem(40);
 
         &.offset {
-            margin-top: toRem(-120);
+            margin-top: toRem(-80);
         }
 
         @include mobile() {

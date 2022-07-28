@@ -29,6 +29,8 @@
 </HeroWrapper>
 
 <style type="text/scss">
+    $speed: 500ms;
+
     .text {
         position: relative;
         width: 100%;
@@ -57,9 +59,10 @@
         line-height: 80%;
         color: #fff;
         text-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
-        transition: left ease-in 600ms, right ease-in 600ms;
+        transition: left ease-in $speed, right ease-in $speed, opacity ease-in $speed;
         // position: absolute;
         position: relative;
+        opacity: 0;
 
         @include mobile() {
             font-size: toRem(100);
@@ -71,6 +74,7 @@
         left: -1000px;
         &.loaded {
             left: -100px;
+            opacity: 1;
         }
     }
 
@@ -78,6 +82,7 @@
         right: -1000px;
         &.loaded {
             right: 0px;
+            opacity: 1;
         }
     }
 </style>
