@@ -4,37 +4,77 @@
     import MessageLockOutline from "svelte-material-icons/MessageLockOutline.svelte";
     import EmoticonHappyOutline from "svelte-material-icons/EmoticonHappyOutline.svelte";
     import { mobileWidth } from "../stores/screenDimensions";
+    import FlipBox from "./FlipBox.svelte";
 
     let iconColor = "rgba(0,0,0,0.4)";
-    $: iconSize = $mobileWidth ? "4em" : "6em";
+    let blurb =
+        "Boudin hamburger shoulder, t-bone short loin frankfurter ball tip buffalo burgdoggen doner flank shank ground round venison. Porchetta kevin pork belly, filet mignon burgdoggen.";
+
+    $: iconSize = $mobileWidth ? "1.7em" : "2.5em";
 </script>
 
 <Section zoom={"fade"} id={"usp"}>
     <div class="grid">
-        <div class="item">
-            <span class="big">100%</span>
-            <span>on chain</span>
-        </div>
-        <div class="item">
-            <span class="big">sns</span>
-            <span>controlled</span>
-        </div>
-        <div class="item">
-            <span class="big">open</span>
-            <span>source</span>
-        </div>
-        <div class="item">
-            <span class="big medium">scalable</span>
-            <ChartLine size={iconSize} color={iconColor} />
-        </div>
-        <div class="item">
-            <span class="big medium">secure</span>
-            <MessageLockOutline size={iconSize} color={iconColor} />
-        </div>
-        <div class="item">
-            <span class="big medium">reliable</span>
-            <EmoticonHappyOutline size={iconSize} color={iconColor} />
-        </div>
+        <FlipBox>
+            <div slot="front" class="item">
+                <span class="big ">100%</span>
+                <span>on chain</span>
+            </div>
+            <div slot="back" class="item back">
+                <span class="head">100% on chain</span>
+                <span class="txt">{blurb}</span>
+            </div>
+        </FlipBox>
+        <FlipBox>
+            <div slot="front" class="item">
+                <span class="big ">sns</span>
+                <span>controlled</span>
+            </div>
+            <div slot="back" class="item back">
+                <span class="head">sns controlled</span>
+                <span class="txt">{blurb}</span>
+            </div>
+        </FlipBox>
+        <FlipBox>
+            <div slot="front" class="item">
+                <span class="big ">open</span>
+                <span>source</span>
+            </div>
+            <div slot="back" class="item back">
+                <span class="head">open source</span>
+                <span class="txt">{blurb}</span>
+            </div>
+        </FlipBox>
+        <FlipBox>
+            <div slot="front" class="item">
+                <span class="big medium">scalable</span>
+                <ChartLine size={iconSize} color={iconColor} />
+            </div>
+            <div slot="back" class="item back">
+                <span class="head">scalable</span>
+                <span class="txt">{blurb}</span>
+            </div>
+        </FlipBox>
+        <FlipBox>
+            <div slot="front" class="item">
+                <span class="big medium">secure</span>
+                <MessageLockOutline size={iconSize} color={iconColor} />
+            </div>
+            <div slot="back" class="item back">
+                <span class="head">secure</span>
+                <span class="txt">{blurb}</span>
+            </div>
+        </FlipBox>
+        <FlipBox>
+            <div slot="front" class="item">
+                <span class="big medium">reliable</span>
+                <EmoticonHappyOutline size={iconSize} color={iconColor} />
+            </div>
+            <div slot="back" class="item back">
+                <span class="head">reliable</span>
+                <span class="txt">{blurb}</span>
+            </div>
+        </FlipBox>
     </div>
 
     <div class="footnote">
@@ -62,10 +102,15 @@
         justify-content: center;
         align-items: center;
         padding: toRem(15);
-        min-height: toRem(150);
+        min-height: toRem(200);
         background-color: var(--secondary);
         transition: transform ease-in-out 200ms;
         @include box-shadow(1);
+        font-size: toRem(40);
+        @include mobile() {
+            font-size: toRem(30);
+            min-hight: toRem(150);
+        }
 
         &:hover {
             transform: scale(1.03);
@@ -95,10 +140,25 @@
             }
         }
 
-        span {
-            font-size: toRem(40);
-            @include mobile() {
-                font-size: toRem(30);
+        &.back {
+            background-color: var(--accent);
+            color: #fff;
+            .head {
+                font-family: "Yantramanav", sans-serif;
+                font-size: toRem(35);
+                line-height: 90%;
+                text-transform: uppercase;
+                margin-bottom: $sp3;
+                @include mobile() {
+                    font-size: toRem(22);
+                }
+            }
+
+            .txt {
+                font-size: toRem(15);
+                @include mobile() {
+                    font-size: toRem(12);
+                }
             }
         }
     }
