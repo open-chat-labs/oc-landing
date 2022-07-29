@@ -10,7 +10,7 @@
     let blurb =
         "Boudin hamburger shoulder, t-bone short loin frankfurter ball tip buffalo burgdoggen doner flank shank ground round venison. Porchetta kevin pork belly, filet mignon burgdoggen.";
 
-    $: iconSize = $mobileWidth ? "1.7em" : "2.5em";
+    $: iconSize = $mobileWidth ? "2em" : "2.5em";
 </script>
 
 <Section zoom={"fade"} id={"usp"}>
@@ -87,7 +87,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: $sp4;
-        margin-bottom: $sp4;
+        margin-bottom: $sp5;
 
         @include mobile() {
             grid-template-columns: repeat(2, 1fr);
@@ -132,7 +132,7 @@
         .medium {
             font-size: toRem(60);
             line-height: 100%;
-            margin-bottom: $sp3;
+            margin-bottom: $sp4;
 
             @include mobile() {
                 font-size: toRem(35);
@@ -141,7 +141,7 @@
         }
 
         &.back {
-            background-color: var(--accent);
+            background: var(--gradient);
             color: #fff;
             .head {
                 font-family: "Yantramanav", sans-serif;
