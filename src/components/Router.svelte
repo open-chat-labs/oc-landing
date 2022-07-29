@@ -4,6 +4,9 @@
     import ArchitecturePage from "./ArchitecturePage.svelte";
     import TokenomicsPage from "./TokenomicsPage.svelte";
     import FeaturesPage from "./FeaturesPage.svelte";
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
 
     onMount(() => {
         parseLocation();
@@ -53,6 +56,7 @@
                 route = r;
                 window.history.pushState({}, "", url); // Update URL as well as browser history.
                 event.preventDefault(); // stop the browser from navigating to the destination URL.
+                tick().then(() => dispatch("scrollToTop"));
             }
         }
     }

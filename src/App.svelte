@@ -19,12 +19,19 @@
     function onScroll() {
         scrollTop = mainEl?.scrollTop ?? 0;
     }
+
+    function scrollToTop() {
+        mainEl?.scrollTo({
+            behavior: "smooth",
+            top: 0,
+        });
+    }
 </script>
 
 <main class="main" bind:this={mainEl} on:scroll={onScroll}>
     <Header {route} />
 
-    <Router bind:route />
+    <Router bind:route on:scrollToTop={scrollToTop} />
 
     {#if show}
         <BackgroundLogo
@@ -37,14 +44,7 @@
     {/if}
 
     {#if backToTop}
-        <div
-            transition:fade|local
-            class="fab"
-            on:click={() =>
-                mainEl?.scrollTo({
-                    behavior: "smooth",
-                    top: 0,
-                })}>
+        <div transition:fade|local class="fab" on:click={scrollToTop}>
             <Fab>
                 <ArrowUp size={"1.4em"} color={"#fff"} />
             </Fab>
