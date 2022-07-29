@@ -63,6 +63,12 @@
         padding: toRem(15);
         min-height: toRem(150);
         background-color: var(--secondary);
+        transition: transform ease-in-out 200ms;
+        @include box-shadow(1);
+
+        &:hover {
+            transform: scale(1.03);
+        }
 
         .big {
             font-family: "Yantramanav", sans-serif;
