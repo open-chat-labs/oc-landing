@@ -9,7 +9,7 @@
     };
 
     export let id: string;
-    export let zoom: "left" | "right" | "none";
+    export let zoom: "left" | "right" | "none" | "fade";
 </script>
 
 <section

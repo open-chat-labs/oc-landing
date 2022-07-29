@@ -5,12 +5,15 @@
     import Intro from "./Intro.svelte";
     import Video from "./Video.svelte";
     import Team from "./Team.svelte";
+    import SellingPoints from "./SellingPoints.svelte";
 </script>
 
 <Hero />
 
 <Content offset={true}>
     <Intro />
+
+    <SellingPoints />
 
     <Roadmap />
 

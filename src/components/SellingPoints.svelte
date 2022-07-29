@@ -1,0 +1,102 @@
+<script lang="ts">
+    import Section from "./Section.svelte";
+    import ChartLine from "svelte-material-icons/ChartLine.svelte";
+    import MessageLockOutline from "svelte-material-icons/MessageLockOutline.svelte";
+    import EmoticonHappyOutline from "svelte-material-icons/EmoticonHappyOutline.svelte";
+    import { mobileWidth } from "../stores/screenDimensions";
+
+    let iconColor = "rgba(0,0,0,0.4)";
+    let iconSize = $mobileWidth ? "4.5em" : "6em";
+</script>
+
+<Section zoom={"fade"} id={"usp"}>
+    <div class="grid">
+        <div class="item">
+            <span class="big">100%</span>
+            <span>on chain</span>
+        </div>
+        <div class="item">
+            <span class="big">sns</span>
+            <span>controlled</span>
+        </div>
+        <div class="item">
+            <span class="big">open</span>
+            <span>source</span>
+        </div>
+        <div class="item">
+            <span class="big medium">scalable</span>
+            <ChartLine size={iconSize} color={iconColor} />
+        </div>
+        <div class="item">
+            <span class="big medium">secure</span>
+            <MessageLockOutline size={iconSize} color={iconColor} />
+        </div>
+        <div class="item">
+            <span class="big medium">reliable</span>
+            <EmoticonHappyOutline size={iconSize} color={iconColor} />
+        </div>
+    </div>
+
+    <div class="footnote">
+        <a href="/features">Click here for a full description of the product features.</a>
+    </div>
+</Section>
+
+<style type="text/scss">
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $sp4;
+        margin-bottom: $sp4;
+
+        @include mobile() {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .item {
+        color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: toRem(15);
+        min-height: toRem(150);
+        background-color: var(--secondary);
+
+        .big {
+            font-family: "Yantramanav", sans-serif;
+            font-size: toRem(110);
+            color: #fff;
+            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.4);
+            line-height: 90%;
+            text-transform: uppercase;
+
+            @include mobile() {
+                font-size: toRem(70);
+            }
+        }
+
+        .medium {
+            font-size: toRem(60);
+            line-height: 100%;
+
+            @include mobile() {
+                font-size: toRem(40);
+                line-height: 80%;
+            }
+        }
+
+        span {
+            font-size: toRem(40);
+            @include mobile() {
+                font-size: toRem(30);
+            }
+        }
+    }
+
+    .footnote {
+        font-style: italic;
+        font-size: toRem(15);
+    }
+</style>
