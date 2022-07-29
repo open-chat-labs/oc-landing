@@ -6,7 +6,7 @@
     import { mobileWidth } from "../stores/screenDimensions";
 
     let iconColor = "rgba(0,0,0,0.4)";
-    let iconSize = $mobileWidth ? "4em" : "6em";
+    $: iconSize = $mobileWidth ? "4em" : "6em";
 </script>
 
 <Section zoom={"fade"} id={"usp"}>
@@ -55,6 +55,7 @@
     }
 
     .item {
+        // border-radius: toRem(10);
         color: rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: column;
@@ -89,7 +90,7 @@
             margin-bottom: $sp3;
 
             @include mobile() {
-                font-size: toRem(40);
+                font-size: toRem(35);
                 line-height: 80%;
             }
         }

@@ -8,27 +8,22 @@
     <div class="grid">
         <div class="left">
             <ul class="list">
-                <li class="done"><del>Remove SMS or payment requirement for registration</del></li>
+                <li class="done">Remove SMS or payment requirement for registration</li>
+                <li class="done">Support multiple languages (with help from the community)</li>
+                <li class="done">Pinned messages</li>
+                <li class="done">Create polls</li>
+                <li class="done">Group permissions including read-only groups</li>
+                <li class="done">Double-click to show images full-screen</li>
                 <li class="done">
-                    <del>Support multiple languages (with help from the community)</del>
+                    Deposit ICP into your OpenChat account, send ICP as messages, withdraw ICP
                 </li>
-                <li class="done"><del>Pinned messages</del></li>
-                <li class="done"><del>Create polls</del></li>
-                <li class="done"><del>Group permissions including read-only groups</del></li>
-                <li class="done"><del>Double-click to show images full-screen</del></li>
+                <li class="done">Share messages and receive shares from other apps</li>
+                <li class="done">Edit sent messages</li>
+                <li class="done">Message forwarding</li>
+                <li class="done">Pin chats</li>
+                <li class="done">Threaded replies</li>
                 <li class="done">
-                    <del
-                        >Deposit ICP into your OpenChat account, send ICP as messages, withdraw ICP</del>
-                </li>
-                <li class="done"><del>Share messages and receive shares from other apps</del></li>
-                <li class="done"><del>Edit sent messages</del></li>
-                <li class="done"><del>Message forwarding</del></li>
-                <li class="done"><del>Pin chats</del></li>
-                <li class="done"><del>Threaded replies</del></li>
-                <li class="done">
-                    <del>
-                        Special groups for viewing/discussing/voting on NNS and SNS proposals
-                    </del>
+                    Special groups for viewing/discussing/voting on NNS and SNS proposals
                 </li>
                 <li>Send additional tokens as messages, such as BTC, ETH, Cycles, etc</li>
                 <li>Tag messages (eg star) and search/filter by tag</li>
@@ -92,6 +87,7 @@
         position: relative;
 
         > li.done {
+            font-style: italic;
             &:before {
                 position: absolute;
                 content: "✓";
