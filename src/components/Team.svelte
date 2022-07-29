@@ -10,24 +10,15 @@
         <TeamCard
             imageUrl={"../matt.png"}
             name={"Matt"}
-            blurb={`Bacon ipsum dolor amet sausage flank cupim kevin, kielbasa brisket strip steak meatball
-            tenderloin ribeye spare ribs bresaola rump capicola hamburger. Burgdoggen turkey biltong
-            t-bone tenderloin shankle pork chop. Chuck landjaeger biltong drumstick doner alcatra.
-            Shoulder salami boudin brisket.`} />
+            blurb={`Matthew is a Software Engineer with 25 years experience across a wide range of domains generally involving web technologies. Recently he has focused on building microservice backends supporting a multi-tenant platform for running online travel agencies. Matt values reliable and maintainable software. He holds a Masters Degree in Engineering and Computer Science from the University of Oxford.`} />
         <TeamCard
-            imageUrl={"../hamish2.png"}
+            imageUrl={"../hamish.png"}
             name={"Hamish"}
-            blurb={`Bacon ipsum dolor amet sausage flank cupim kevin, kielbasa brisket strip steak meatball
-            tenderloin ribeye spare ribs bresaola rump capicola hamburger. Burgdoggen turkey biltong
-            t-bone tenderloin shankle pork chop. Chuck landjaeger biltong drumstick doner alcatra.
-            Shoulder salami boudin brisket.`} />
+            blurb={`After graduating with a degree in mathematics from Cambridge University, Hamish transitioned into the world of software engineering where he focused primarily on high throughput, low latency cloud based systems. Prior to joining DFINITY, he worked at Emirates where he quickly rose through the ranks, eventually leading the design of their new B2B hotel search engine.`} />
         <TeamCard
             imageUrl={"../julian.png"}
             name={"Julian"}
-            blurb={`Bacon ipsum dolor amet sausage flank cupim kevin, kielbasa brisket strip steak meatball
-            tenderloin ribeye spare ribs bresaola rump capicola hamburger. Burgdoggen turkey biltong
-            t-bone tenderloin shankle pork chop. Chuck landjaeger biltong drumstick doner alcatra.
-            Shoulder salami boudin brisket.`} />
+            blurb={`Julian has been dabbling in software engineering for the last 25 years or so. He has a varied industry background from defence to risk management, from e-commerce to education technology and from travel to chat. He has developed a penchant for functional front ends. He holds a masters degree in Politics, Philosophy & Economics from the University of Oxford and likes things to be just so.`} />
     </div>
 </Section>
 
