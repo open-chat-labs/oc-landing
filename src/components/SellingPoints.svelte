@@ -6,7 +6,7 @@
     import { mobileWidth } from "../stores/screenDimensions";
 
     let iconColor = "rgba(0,0,0,0.4)";
-    let iconSize = $mobileWidth ? "4.5em" : "6em";
+    let iconSize = $mobileWidth ? "4em" : "6em";
 </script>
 
 <Section zoom={"fade"} id={"usp"}>
@@ -86,6 +86,7 @@
         .medium {
             font-size: toRem(60);
             line-height: 100%;
+            margin-bottom: $sp3;
 
             @include mobile() {
                 font-size: toRem(40);
