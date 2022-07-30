@@ -1,15 +1,14 @@
 <script lang="ts">
-    import Carousel from "./Carousel.svelte";
     import Content from "./Content.svelte";
     import Separator from "./Separator.svelte";
     import { mobileWidth } from "../stores/screenDimensions";
 </script>
 
 <Content offset={false}>
-    <div class="feature ltr">
-        <img class="col_1" src="../screenshots/mobilefirst.png" alt="mobile first" />
-        <div class="blurb col_2">
-            <h2 class="title">Mobile first</h2>
+    <div class="feature">
+        <img class="screenshot" src="../screenshots/mobilefirst.png" alt="mobile first" />
+        <h2 class="title">Mobile first</h2>
+        <div class="blurb">
             <p>
                 A chat app should be used on the go and so OpenChat was designed from the beginning
                 to work well first and foremost on your mobile device.
@@ -34,10 +33,10 @@
 
     <Separator />
 
-    <div class="feature rtl">
-        <img class="col_1" src="../screenshots/creategroup1.png" alt="create a group" />
-        <div class="blurb col_2">
-            <h2 class="title">Groups</h2>
+    <div class="feature" class:rtl={!$mobileWidth}>
+        <img class="screenshot" src="../screenshots/creategroup1.png" alt="create a group" />
+        <h2 class="title">Groups</h2>
+        <div class="blurb">
             <p>
                 Of course it is possible to chat directly one-to-one with another person but it is
                 also possible to create group chats.
@@ -60,9 +59,9 @@
     <Separator />
 
     <div class="feature">
-        <img class="col_1" src="../screenshots/permissions.png" alt="set group permissions" />
-        <div class="blurb col_2">
-            <h2 class="title">Permissions</h2>
+        <img class="screenshot" src="../screenshots/permissions.png" alt="set group permissions" />
+        <h2 class="title">Permissions</h2>
+        <div class="blurb">
             <p>
                 Whether you are creating a public or a private group you will be given a sensible
                 set of default permissions for your group.
@@ -82,10 +81,10 @@
 
     <Separator />
 
-    <div class="feature rtl">
-        <img class="col_1" src="../screenshots/whatshot.gif" alt="find groups to join" />
-        <div class="blurb col_2">
-            <h2 class="title">Finding groups</h2>
+    <div class="feature" class:rtl={!$mobileWidth}>
+        <img class="screenshot" src="../screenshots/whatshot.gif" alt="find groups to join" />
+        <h2 class="title">Finding groups</h2>
+        <div class="blurb">
             <p>When you first join OpenChat it might be a little unclear how to get started.</p>
             <p>
                 By selecting the "What's hot" menu option you can find list of popular groups. In
@@ -107,51 +106,44 @@
 
     <Separator />
 
-    <div class="blurb">
+    <div class="feature">
+        <img class="screenshot" src="../screenshots/userprofile.gif" alt="user profile" />
         <h2 class="title">User profile</h2>
-        <p>
-            It's a really good idea to get familiar with your user profile section as a lot of
-            important features are included in here.
-        </p>
-        <p>
-            Firstly you can select / change your user avatar so people know who they are talking to.
-            You can also change your username and set a bio to tell people a little bit about
-            yourself. This forms the basis for the user card that people will see when they click on
-            your username.
-        </p>
-        <p>
-            You can also change various aspects of the app appearance. Choose a language to
-            translate the UI into (if you speak a language that is not yet supported, perhaps you
-            can help us with some translations!). We support a light or a dark theme or you can
-            choose to follow the theme specified by the system you are running on. And finally you
-            can make adjustments to the font size if you prefer things more roomy or more compact
-            than the default.
-        </p>
+        <div class="blurb">
+            <p>
+                It's a really good idea to get familiar with your user profile section as a lot of
+                important features are included in here.
+            </p>
+            <p>
+                Firstly you can select / change your user avatar so people know who they are talking
+                to. You can also change your username and set a bio to tell people a little bit
+                about yourself. This forms the basis for the user card that people will see when
+                they click on your username.
+            </p>
+            <p>
+                You can also change various aspects of the app appearance. Choose a language to
+                translate the UI into (if you speak a language that is not yet supported, perhaps
+                you can help us with some translations!). We support a light or a dark theme or you
+                can choose to follow the theme specified by the system you are running on. And
+                finally you can make adjustments to the font size if you prefer things more roomy or
+                more compact than the default.
+            </p>
 
-        <p>You can share the url to a chat to make it easier for friends and family to join.</p>
+            <p>You can share the url to a chat to make it easier for friends and family to join.</p>
 
-        <p>
-            You can configure various aspects of how chats behave. Play with these settings to find
-            a combination that work for you.
-        </p>
+            <p>
+                You can configure various aspects of how chats behave. Play with these settings to
+                find a combination that work for you.
+            </p>
 
-        <p>
-            You can manage and see the balances of various crypto accounts. These accounts are
-            important for paying for various premium features and for sending crypto to other users
-            as chat messages. This will be explained in more detail when we talk about sending
-            messages.
-        </p>
-        <p>Finally, you can see your own personal stats. Get messaging!</p>
-    </div>
-
-    <div class="carousel">
-        <Carousel perPage={$mobileWidth ? 1 : 3} items={5}>
-            <img src="../screenshots/userdetails.png" alt="user details" />
-            <img src="../screenshots/changetheme.gif" alt="app appearance" />
-            <img src="../screenshots/configchats.png" alt="configure chats" />
-            <img src="../screenshots/accounts.png" alt="accounts and storage" />
-            <img src="../screenshots/stats.png" alt="user stats" />
-        </Carousel>
+            <p>
+                You can manage and see the balances of various crypto accounts. These accounts are
+                important for paying for various premium features and for sending crypto to other
+                users as chat messages. This will be explained in more detail when we talk about
+                sending messages.
+            </p>
+            <p>Finally, you can see your own personal stats. Get messaging!</p>
+        </div>
     </div>
 
     <h2>Proposal chats</h2>
@@ -192,34 +184,59 @@
         margin-bottom: $sp4;
     }
     .blurb {
-        // padding-top: toRem(40);
         font-size: toRem(20);
     }
     .feature {
         display: grid;
         grid-template-columns: 1fr 2fr;
-        gap: $sp7;
+        grid-template-rows: auto 1fr;
+        grid-column-gap: $sp7;
         margin-bottom: $sp6;
 
-        &.rtl {
-            grid-template-columns: 2fr 1fr;
-            flex-direction: column-reverse;
+        .screenshot {
+            grid-area: 1 / 1 / 3 / 2;
+        }
+        .title {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+        .blurb {
+            grid-area: 2 / 2 / 3 / 3;
+        }
 
-            .col_1 {
-                order: 1;
+        &.rtl {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            .screenshot {
+                grid-area: 1 / 2 / 3 / 3;
+            }
+            .title {
+                grid-area: 1 / 1 / 2 / 2;
+            }
+            .blurb {
+                grid-area: 2 / 1 / 3 / 2;
+            }
+        }
+
+        @include mobile() {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto repeat(2, auto);
+
+            .title {
+                grid-area: 1 / 1 / 2 / 2;
+                text-align: center;
+            }
+            .screenshot {
+                grid-area: 2 / 1 / 3 / 2;
+                margin-bottom: $sp6;
+            }
+            .blurb {
+                grid-area: 3 / 1 / 4 / 2;
             }
         }
     }
-    img,
-    video {
+    img {
         width: 100%;
         @include box-shadow(3);
-    }
-    .carousel {
-        margin-bottom: $sp6;
-
-        img {
-            box-shadow: none;
-        }
     }
 </style>
