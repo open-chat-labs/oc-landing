@@ -141,24 +141,31 @@
         <p>Finally, you can see your own personal stats. Get messaging!</p>
     </Feature>
 
-    <h2>Proposal chats</h2>
-
     <Separator />
 
-    <h3>Sending messages</h3>
-    <ul>
-        <li>text messages</li>
-        <li>attach images, video, audio or files</li>
-        <li>inline youtube</li>
-        <li>send giphy messages</li>
-        <li>Send crypto</li>
-        <li>Create polls</li>
-        <li>Edit or delete messages</li>
-        <li>Translate messages</li>
-        <li>Replies (quote or thread)</li>
-        <li>Pin messages</li>
-    </ul>
-    <Separator />
+    <Feature
+        screenshotUrl={"../screenshots/messages.gif"}
+        screenshotAlt={"sending messages"}
+        title={"Sending messages"}
+        rtl={true}>
+        <p class="blurb">
+            Sending messages is the heart of any chat app. OpenChat provides all of the features
+            that you would expect and adds a few unique capabilities of its own.
+        </p>
+
+        <ul class="blurb list">
+            <li>Send, edit or delete text messages</li>
+            <li>Use inline markdown to format messages</li>
+            <li>Attach images, video, audio clips or files to your messages</li>
+            <li>React to messages</li>
+            <li>Send giphy messages</li>
+            <li>Create and send polls</li>
+            <li>Send crypto via message to other users</li>
+            <li>Translate messages into your chosen language</li>
+            <li>Reply to messages either inline or as part of a threaded conversation</li>
+            <li>Pin important messages within a group</li>
+        </ul>
+    </Feature>
 
     <h3>Search</h3>
 
@@ -167,4 +174,25 @@
 </Content>
 
 <style type="text/scss">
+    .blurb {
+        font-size: toRem(20);
+    }
+
+    .list {
+        text-align: left;
+        list-style: none;
+        margin: 0 0 0 toRem(22);
+        padding: 0;
+        position: relative;
+
+        li {
+            font-style: italic;
+            &:before {
+                position: absolute;
+                content: "✓";
+                left: toRem(-22);
+                color: darkseagreen;
+            }
+        }
+    }
 </style>

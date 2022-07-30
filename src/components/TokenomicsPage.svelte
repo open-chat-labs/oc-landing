@@ -6,7 +6,7 @@
 <Content offset={false}>
     <h2>Tokenomics</h2>
 
-    <img class="moon" src="../moon.jpeg" />
+    <img loading="lazy" class="moon" src="../moon.jpeg" alt="tokenomics diagram" />
 
     <p class="blurb">
         Bacon ipsum dolor amet sausage flank cupim kevin, kielbasa brisket strip steak meatball

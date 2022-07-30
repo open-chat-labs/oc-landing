@@ -1,5 +1,6 @@
 <script lang="ts">
     import { mobileWidth } from "../stores/screenDimensions";
+    import Section from "./Section.svelte";
 
     export let screenshotUrl: string;
     export let screenshotAlt: string;
@@ -7,13 +8,15 @@
     export let rtl = false;
 </script>
 
-<div class="feature" class:rtl={rtl && !$mobileWidth}>
-    <img class="screenshot" src={screenshotUrl} alt={screenshotAlt} />
-    <h2 class="title">{title}</h2>
-    <div class="blurb">
-        <slot />
+<Section id={title} zoom="fade">
+    <div class="feature" class:rtl={rtl && !$mobileWidth}>
+        <img loading="lazy" class="screenshot" src={screenshotUrl} alt={screenshotAlt} />
+        <h2 class="title">{title}</h2>
+        <div class="blurb">
+            <slot />
+        </div>
     </div>
-</div>
+</Section>
 
 <style type="text/scss">
     h2 {

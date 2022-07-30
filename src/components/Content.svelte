@@ -13,6 +13,10 @@
         padding: toRem(30);
         max-width: 1000px;
         margin: 0 auto;
+
+        @include mobile() {
+            padding: toRem(20);
+        }
     }
 
     .outer {

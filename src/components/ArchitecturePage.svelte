@@ -6,7 +6,11 @@
 <Content offset={false}>
     <h2>Architecture</h2>
 
-    <img class="arch" src="../architecture.png" />
+    <img
+        class="arch"
+        src="../architecture.png"
+        alt="open chat architecture diagram"
+        loading="lazy" />
 
     <p class="blurb">
         Bacon ipsum dolor amet sausage flank cupim kevin, kielbasa brisket strip steak meatball
