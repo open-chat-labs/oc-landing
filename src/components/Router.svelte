@@ -72,7 +72,7 @@
     .body {
         flex: auto;
         position: relative;
-        background: var(--gradient);
+        background: var(--bg-gradient);
         @include constrain();
     }
 </style>

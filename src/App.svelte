@@ -63,6 +63,7 @@
         // flex-direction: column;
 
         background: var(--bg-gradient);
+        background: var(--gradient);
         overflow-y: auto;
         overflow-x: hidden;
         height: 100%;
