@@ -45,7 +45,7 @@
         position: absolute;
         bottom: 5px;
         right: 10px;
-        font-family: "Yantramanav", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-style: italic;
         // @include font(bold, italic, fs-260);
         font-size: toRem(30);

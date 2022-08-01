@@ -186,7 +186,6 @@
         position: relative;
 
         li {
-            font-style: italic;
             &:before {
                 position: absolute;
                 content: "✓";

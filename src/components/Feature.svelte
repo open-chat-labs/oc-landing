@@ -25,7 +25,7 @@
     }
     h3 {
         margin: 0;
-        font-family: "Yantramanav", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-size: 1.5rem;
         text-align: left;
         margin-bottom: $sp4;

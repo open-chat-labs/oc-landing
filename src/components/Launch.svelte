@@ -11,12 +11,14 @@
 
 <style type="text/scss">
     .launch {
+        font-family: "Roboto", sans-serif;
         transition: background-color ease-in-out 200ms;
-        color: #fff;
+        color: rgba(255, 255, 255, 0.8);
         background-color: var(--primary);
         border: none;
         cursor: pointer;
         text-decoration: none;
+        font-weight: 500;
         &:hover {
             background-color: var(--primary-darker);
         }

@@ -52,13 +52,14 @@
 
     .open,
     .chat {
-        font-family: "Yantramanav", sans-serif;
+        font-family: "Roboto", sans-serif;
+        font-weight: 900;
         font-style: italic;
-        // @include font(bold, italic, fs-260);
         font-size: toRem(140);
         line-height: 80%;
         color: #fff;
         text-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+        text-shadow: 8px 8px 0 var(--tertiary), 16px 16px 16px rgba(0, 0, 0, 0.5);
         transition: left ease-in $speed, right ease-in $speed, opacity ease-in $speed;
         // position: absolute;
         position: relative;

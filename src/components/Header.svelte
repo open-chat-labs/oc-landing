@@ -51,6 +51,8 @@
         height: toRem(45);
     }
     .menu {
+        font-family: "Roboto", sans-serif;
+        font-weight: 300;
         flex: 0 0 toRem(60);
         @include z-index("menu");
         padding: $sp4;
@@ -89,10 +91,9 @@
 
     .menu-item {
         a {
-            // font-family: "Yantramanav", sans-serif;
             font-size: toRem(16);
-            font-weight: bold;
-            color: #fff;
+            // font-weight: bold;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         &.selected a {

@@ -96,6 +96,8 @@
 
     .item {
         // border-radius: toRem(10);
+        font-family: "Roboto", sans-serif;
+        font-weight: 300;
         color: rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: column;
@@ -117,8 +119,9 @@
         }
 
         .big {
-            font-family: "Yantramanav", sans-serif;
-            font-size: toRem(110);
+            font-family: "Roboto", sans-serif;
+            font-weight: 900;
+            font-size: toRem(100);
             color: #fff;
             text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.4);
             line-height: 90%;
@@ -130,7 +133,7 @@
         }
 
         .medium {
-            font-size: toRem(60);
+            font-size: toRem(50);
             line-height: 100%;
             margin-bottom: $sp4;
 
@@ -144,7 +147,7 @@
             background: var(--gradient);
             color: #fff;
             .head {
-                font-family: "Yantramanav", sans-serif;
+                font-family: "Roboto", sans-serif;
                 font-size: toRem(35);
                 line-height: 90%;
                 text-transform: uppercase;

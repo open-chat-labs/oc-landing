@@ -19,7 +19,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        gap: toRem(20);
+        gap: toRem(30);
 
         @include mobile() {
             height: toRem(400);

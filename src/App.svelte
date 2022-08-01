@@ -46,7 +46,7 @@
     {#if backToTop}
         <div transition:fade|local class="fab" on:click={scrollToTop}>
             <Fab>
-                <ArrowUp size={"1.4em"} color={"#fff"} />
+                <ArrowUp size={"1.4em"} color={"rgba(255,255,255,0.8)"} />
             </Fab>
         </div>
     {/if}
@@ -54,9 +54,14 @@
 
 <style type="text/scss">
     .main {
+        display: grid;
+        grid-template-columns: 1f;
+        grid-template-rows: repeat(2, auto);
         text-align: center;
-        display: flex;
-        flex-direction: column;
+
+        // display: flex;
+        // flex-direction: column;
+
         background: var(--bg-gradient);
         overflow-y: auto;
         overflow-x: hidden;
