@@ -6,7 +6,10 @@
 
 <div class="team-card">
     <div class="img" style={`background-image: url("${imageUrl}")`}>
-        <div class="name">{name}</div>
+        <div class="overlay" />
+        <div class="name">
+            {name}
+        </div>
     </div>
     <div class="blurb">
         {blurb}
@@ -21,6 +24,19 @@
         margin-bottom: $sp4;
     }
 
+    .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        transition: backdrop-filter ease-in-out 0.5s;
+
+        &:hover {
+            backdrop-filter: invert(1);
+        }
+    }
+
     .img {
         height: toRem(200);
         // background-color: var(--secondary);
@@ -30,7 +46,7 @@
         background-color: $bg;
         position: relative;
         margin-bottom: $sp4;
-        opacity: 0.7;
+        position: relative;
 
         &:hover {
             .name {
@@ -54,7 +70,7 @@
         // @include font(bold, italic, fs-260);
         font-size: toRem(30);
         color: #fff;
-        text-shadow: 3px 3px var(--tertiary);
+        text-shadow: 3px 3px 2px var(--tertiary);
     }
 
     .blurb {
