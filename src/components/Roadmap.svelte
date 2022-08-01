@@ -2,7 +2,7 @@
     import Section from "./Section.svelte";
 </script>
 
-<Section zoom={"right"} id={"roadmap"}>
+<Section id={"roadmap"}>
     <h2>Roadmap</h2>
 
     <div class="grid">

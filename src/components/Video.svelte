@@ -7,7 +7,7 @@
     $: height = width * ratio;
 </script>
 
-<Section zoom={"left"} id={"video"}>
+<Section id={"video"}>
     <h2>Demo video</h2>
     <iframe
         {width}

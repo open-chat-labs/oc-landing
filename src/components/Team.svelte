@@ -3,7 +3,7 @@
     import TeamCard from "./TeamCard.svelte";
 </script>
 
-<Section zoom={"right"} id={"team"}>
+<Section id={"team"}>
     <h2>Meet the team</h2>
 
     <div class="team">

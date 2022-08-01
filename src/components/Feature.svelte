@@ -8,7 +8,7 @@
     export let rtl = false;
 </script>
 
-<Section id={title} zoom="fade">
+<Section id={title}>
     <div class="feature" class:rtl={rtl && !$mobileWidth} class:full={screenshotUrl === undefined}>
         {#if screenshotUrl !== undefined}
             <div class="screenshot">

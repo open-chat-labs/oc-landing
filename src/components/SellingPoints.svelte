@@ -11,7 +11,7 @@
     $: iconSize = $mobileWidth ? "2em" : "2.5em";
 </script>
 
-<Section zoom={"fade"} id={"usp"}>
+<Section id={"usp"}>
     <div class="grid">
         <FlipBox>
             <div slot="front" class="item">
