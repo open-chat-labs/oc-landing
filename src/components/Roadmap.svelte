@@ -86,8 +86,13 @@
         padding: 0;
         position: relative;
 
+        > li {
+            margin-bottom: $sp2;
+        }
+
         > li.done {
             font-style: italic;
+            font-weight: 600;
             &:before {
                 position: absolute;
                 content: "✓";
