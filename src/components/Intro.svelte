@@ -9,11 +9,7 @@
 
     <div class="grid">
         {#if !$mobileWidth}
-            <img
-                loading="lazy"
-                class="img"
-                alt="Open chat list"
-                src="../screenshots/chatlist.png" />
+            <img class="img" alt="Open chat list" src="../screenshots/chatlist.png" />
         {/if}
 
         <div class="right">
