@@ -191,16 +191,29 @@
 
     <Separator />
 
-    <Feature
-        screenshotUrl={"../screenshots/search.gif"}
-        screenshotAlt={"Communities"}
-        title={"Communities"}
-        rtl={true}>
+    <Feature title={"Communities"} rtl={true}>
         <p class="blurb">
-            Let's say something about communities since it's a big and important feature.
+            Currently OpenChat is open to all. Any user or public group can be found by simply
+            searching. For many scenarios this is perfectly fine. But in the near future we will
+            deliver a new feature which will expand our options.
         </p>
 
-        <p>Do we want to call out any other future features?</p>
+        <p>
+            There are a couple of limitations to the current model. Sometimes it would be nice to
+            collect a number of groups together where they have something in common. That
+            commonality or <em>community</em> could be anything: perhaps they all use the same
+            language, or they all relate to a particular area of interest, or they all relate to a
+            particular <em>project</em>. In this sense, communities are a bit like Discord servers.
+        </p>
+
+        <p>
+            Furthermore, a community may wish to restict and control its membership creating <em
+                >private</em>
+            communities. We see this as an important step for the future monetization of OpenChat as
+            it enables us to easily support its use as an internal communication tool
+            <em>within a corporate setting.</em> In that sense, communities can also be thought of like
+            Slack workspaces.
+        </p>
     </Feature>
 </Content>
 

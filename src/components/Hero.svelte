@@ -21,9 +21,9 @@
         <span class:loaded class="chat">Chat</span>
     </div>
 
-    <!-- <div class="plane">
+    <div class="plane">
         <Plane />
-    </div> -->
+    </div>
 
     <Launch size="large" />
 </HeroWrapper>

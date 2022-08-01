@@ -2,15 +2,19 @@
     import { mobileWidth } from "../stores/screenDimensions";
     import Section from "./Section.svelte";
 
-    export let screenshotUrl: string;
-    export let screenshotAlt: string;
+    export let screenshotUrl: string | undefined = undefined;
+    export let screenshotAlt: string | undefined = undefined;
     export let title: string;
     export let rtl = false;
 </script>
 
 <Section id={title} zoom="fade">
-    <div class="feature" class:rtl={rtl && !$mobileWidth}>
-        <img loading="lazy" class="screenshot" src={screenshotUrl} alt={screenshotAlt} />
+    <div class="feature" class:rtl={rtl && !$mobileWidth} class:full={screenshotUrl === undefined}>
+        {#if screenshotUrl !== undefined}
+            <div class="screenshot">
+                <img loading="lazy" src={screenshotUrl} alt={screenshotAlt} />
+            </div>
+        {/if}
         <h2 class="title">{title}</h2>
         <div class="blurb">
             <slot />
@@ -20,13 +24,6 @@
 
 <style type="text/scss">
     h2 {
-        text-align: left;
-        margin-bottom: $sp4;
-    }
-    h3 {
-        margin: 0;
-        font-family: "Roboto", sans-serif;
-        font-size: 1.5rem;
         text-align: left;
         margin-bottom: $sp4;
     }
@@ -65,6 +62,11 @@
             }
         }
 
+        &.full {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, auto);
+        }
+
         @include mobile() {
             grid-template-columns: 1fr;
             grid-template-rows: auto repeat(2, auto);
@@ -76,6 +78,8 @@
             .screenshot {
                 grid-area: 2 / 1 / 3 / 2;
                 margin-bottom: $sp6;
+                text-align: center;
+                padding: 0 toRem(40);
             }
             .blurb {
                 grid-area: 3 / 1 / 4 / 2;
