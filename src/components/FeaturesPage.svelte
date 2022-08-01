@@ -167,10 +167,41 @@
         </ul>
     </Feature>
 
-    <h3>Search</h3>
+    <Separator />
+
+    <Feature screenshotUrl={"../screenshots/search.gif"} screenshotAlt={"Search"} title={"Search"}>
+        <p class="blurb">
+            There a several ways to search within OpenChat. To search globally for users, publich
+            groups or messages, just use the universal search box directly under the user panel and
+            above the chat list.
+        </p>
+
+        <p>
+            Then simply click on any result. For users, this will initiate a direct chat; for groups
+            that you are not currently a member of you will enter preview mode and from there you
+            can decide whether to join or not; for messages you will be taken directly to the
+            relevant chat with the correct message selected.
+        </p>
+
+        <p>
+            You can also search <em>within</em> a chat by selecting search from the chat's menu. This
+            allows you to find a specific message within that particular chat only.
+        </p>
+    </Feature>
 
     <Separator />
-    <h3>Communities</h3>
+
+    <Feature
+        screenshotUrl={"../screenshots/search.gif"}
+        screenshotAlt={"Communities"}
+        title={"Communities"}
+        rtl={true}>
+        <p class="blurb">
+            Let's say something about communities since it's a big and important feature.
+        </p>
+
+        <p>Do we want to call out any other future features?</p>
+    </Feature>
 </Content>
 
 <style type="text/scss">
