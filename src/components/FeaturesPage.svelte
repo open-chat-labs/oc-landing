@@ -154,12 +154,12 @@
         screenshotAlt={"sending messages"}
         title={"Sending messages"}
         rtl={true}>
-        <p class="blurb">
+        <p>
             Sending messages is the heart of any chat app. OpenChat provides all of the features
             that you would expect and adds a few unique capabilities of its own.
         </p>
 
-        <ul class="blurb list">
+        <ul class="list">
             <li>Send, edit or delete text messages</li>
             <li>Use inline markdown to format messages</li>
             <li>Attach images, video, audio clips or files to your messages</li>
@@ -176,7 +176,7 @@
     <Separator />
 
     <Feature screenshotUrl={"../screenshots/search.gif"} screenshotAlt={"Search"} title={"Search"}>
-        <p class="blurb">
+        <p>
             There a several ways to search within OpenChat. To search globally for users, publich
             groups or messages, just use the universal search box directly under the user panel and
             above the chat list.
@@ -197,8 +197,28 @@
 
     <Separator />
 
-    <Feature title={"Communities"} rtl={true}>
-        <p class="blurb">
+    <Feature
+        screenshotUrl={"../screenshots/voting.png"}
+        screenshotAlt={"Voting"}
+        title={"Proposal voting"}
+        rtl={true}>
+        <p>
+            A unique feature of OpenChat is that it allows you to vote directly on NNS and (soon)
+            SNS proposals.
+        </p>
+
+        <p>
+            Simply register your OpenChat account as a hotkey for the neuron that you wish to vote
+            with and join the relevant public group.
+        </p>
+
+        <p>You can then discuss and vote on proposals from right inside your favourite chat app.</p>
+    </Feature>
+
+    <Separator />
+
+    <Feature title={"Communities"}>
+        <p>
             Currently OpenChat is open to all. Any user or public group can be found by simply
             searching. For many scenarios this is perfectly fine. But in the near future we will
             deliver a new feature which will expand our options.
@@ -224,10 +244,6 @@
 </Content>
 
 <style type="text/scss">
-    .blurb {
-        font-size: toRem(20);
-    }
-
     .list {
         text-align: left;
         list-style: none;

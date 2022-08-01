@@ -13,7 +13,7 @@
     .launch {
         font-family: "Roboto", sans-serif;
         transition: background-color ease-in-out 200ms;
-        color: rgba(255, 255, 255, 0.8);
+        color: #fff;
         background-color: var(--primary);
         border: none;
         cursor: pointer;

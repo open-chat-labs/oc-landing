@@ -8,6 +8,7 @@ body {
 :root {
     --font-size: 16px;
     --primary: #22a7f2;
+    --primary-shadow: #053d5c;
     --primary-darker: #0d8cd5;
     --secondary: #ff9505;
     --tertiary: #5f2583;

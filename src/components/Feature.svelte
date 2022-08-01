@@ -65,6 +65,7 @@
         &.full {
             grid-template-columns: 1fr;
             grid-template-rows: repeat(2, auto);
+            grid-column-gap: 0;
         }
 
         @include mobile() {

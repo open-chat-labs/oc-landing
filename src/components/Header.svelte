@@ -93,7 +93,7 @@
         a {
             font-size: toRem(16);
             // font-weight: bold;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         &.selected a {
