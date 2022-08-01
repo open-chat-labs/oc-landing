@@ -7,8 +7,6 @@
     import FlipBox from "./FlipBox.svelte";
 
     let iconColor = "rgba(0,0,0,0.4)";
-    let blurb =
-        "Boudin hamburger shoulder, t-bone short loin frankfurter ball tip buffalo burgdoggen doner flank shank ground round venison. Porchetta kevin pork belly, filet mignon burgdoggen.";
 
     $: iconSize = $mobileWidth ? "2em" : "2.5em";
 </script>
@@ -22,7 +20,10 @@
             </div>
             <div slot="back" class="item back">
                 <span class="head">100% on chain</span>
-                <span class="txt">{blurb}</span>
+                <span class="txt">
+                    All of your data is stored 100% on chain in your own canister. Each group chat
+                    also has its own canister.
+                </span>
             </div>
         </FlipBox>
         <FlipBox>
@@ -32,7 +33,10 @@
             </div>
             <div slot="back" class="item back">
                 <span class="head">sns controlled</span>
-                <span class="txt">{blurb}</span>
+                <span class="txt">
+                    The product roadmap can <em>only</em> be decided, approved and enacted by the community.
+                    For us, by us.
+                </span>
             </div>
         </FlipBox>
         <FlipBox>
@@ -42,7 +46,10 @@
             </div>
             <div slot="back" class="item back">
                 <span class="head">open source</span>
-                <span class="txt">{blurb}</span>
+                <span class="txt">
+                    All of the source code is available to inspect. We use repeatable builds so you
+                    can confirm that what <em>you</em> approved is what's actually running.
+                </span>
             </div>
         </FlipBox>
         <FlipBox>
@@ -52,7 +59,10 @@
             </div>
             <div slot="back" class="item back">
                 <span class="head">scalable</span>
-                <span class="txt">{blurb}</span>
+                <span class="txt">
+                    Our canister architecture combined with the power of the Internet Computer allow
+                    us to scale indefinitely.
+                </span>
             </div>
         </FlipBox>
         <FlipBox>
@@ -62,7 +72,10 @@
             </div>
             <div slot="back" class="item back">
                 <span class="head">secure</span>
-                <span class="txt">{blurb}</span>
+                <span class="txt">
+                    Relax in the knowledge that your messages are secured using advanced blockchain
+                    cryptography thanks to the Internet Computer protocol.
+                </span>
             </div>
         </FlipBox>
         <FlipBox>
@@ -72,7 +85,10 @@
             </div>
             <div slot="back" class="item back">
                 <span class="head">reliable</span>
-                <span class="txt">{blurb}</span>
+                <span class="txt">
+                    With each canister replicated by the Internet Computer you never have to worry
+                    about losing your data.
+                </span>
             </div>
         </FlipBox>
     </div>
