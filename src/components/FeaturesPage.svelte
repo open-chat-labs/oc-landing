@@ -27,6 +27,12 @@
             platforms without the costly duplication of effort required to build fully native apps
             for each target platform.
         </p>
+
+        <p>
+            In the near future we intend to create native app shells for iOS and Android so that we
+            can exploit any native apis that are not yet supported via standard web apis (most
+            notably Push Notifications on iOS).
+        </p>
     </Feature>
 
     <Separator />
