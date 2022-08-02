@@ -33,7 +33,7 @@
                 <li>2-way voice calls</li>
                 <li>2-way video calls</li>
                 <li>E2E encryption of messages</li>
-                <li>Native iOS app</li>
+                <li>Develop a robust moderation system</li>
                 <li>Disappearing messages</li>
             </ul>
         </div>
@@ -46,9 +46,8 @@
                 <li>Send "red-letters" containing tokens</li>
                 <li>Link previews</li>
                 <li>Organise events with calendar</li>
-                <li>Report inappropriate content</li>
                 <li>Incorporate token swap to allow other tokens to be sent</li>
-                <li>Native Android app</li>
+                <li>Native mobile apps</li>
                 <li>Group video calls (up to some limited number of participants)</li>
                 <li>
                     Broadcast groups
@@ -66,8 +65,8 @@
                         >SNS</a>
                     <ul>
                         <li>Open source</li>
-                        <li>Establish an OpenChat token</li>
-                        <li>Auction OpenChat tokens</li>
+                        <li>Establish the CHAT token</li>
+                        <li>Auction CHAT tokens</li>
                         <li>Airdrop tokens on active users, early adopters, and for referrals</li>
                         <li>Cede control of OpenChat to the SNS</li>
                         <li><strong>Future roadmap now determined by the community!</strong></li>
