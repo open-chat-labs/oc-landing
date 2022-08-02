@@ -1,12 +1,15 @@
 <script lang="ts">
-    import { fade } from "svelte/transition";
+    import { fade, fly } from "svelte/transition";
     import { inview } from "svelte-inview";
 
-    export let lazyLoad = true;
+    export let lazy = true;
+
+    let visible = false;
 
     let options = {
         rootMargin: "50px",
         unobserveOnEnter: true,
+        threshold: [0.5],
     };
 
     export let id: string;
@@ -16,10 +19,14 @@
     {id}
     use:inview={options}
     on:change={({ detail }) => {
-        lazyLoad = !detail.inView;
+        visible = detail.inView;
     }}>
-    {#if !lazyLoad}
-        <div in:fade={{ duration: 500 }} class="container">
+    {#if !lazy}
+        <div class="container">
+            <slot />
+        </div>
+    {:else if visible}
+        <div transition:fly={{ y: 200, duration: 500 }} class="container">
             <slot />
         </div>
     {/if}

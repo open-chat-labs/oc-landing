@@ -6,9 +6,10 @@
     export let screenshotAlt: string | undefined = undefined;
     export let title: string;
     export let rtl = false;
+    export let lazy = true;
 </script>
 
-<Section id={title}>
+<Section {lazy} id={title}>
     <div class="feature" class:rtl={rtl && !$mobileWidth} class:full={screenshotUrl === undefined}>
         {#if screenshotUrl !== undefined}
             <div class="screenshot">

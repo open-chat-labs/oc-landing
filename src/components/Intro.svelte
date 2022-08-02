@@ -4,7 +4,7 @@
     import Separator from "./Separator.svelte";
 </script>
 
-<Section lazyLoad={false} id={"intro"}>
+<Section lazy={false} id={"intro"}>
     <h2>Welcome to OpenChat</h2>
 
     <div class="grid">

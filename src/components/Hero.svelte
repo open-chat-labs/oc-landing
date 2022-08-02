@@ -76,6 +76,10 @@
         &.loaded {
             left: -100px;
             opacity: 1;
+
+            @include mobile() {
+                left: -70px;
+            }
         }
     }
 
