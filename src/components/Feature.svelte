@@ -13,7 +13,7 @@
     <div class="feature" class:rtl={rtl && !$mobileWidth} class:full={screenshotUrl === undefined}>
         {#if screenshotUrl !== undefined}
             <div class="screenshot">
-                <img loading="lazy" src={screenshotUrl} alt={screenshotAlt} />
+                <img src={screenshotUrl} alt={screenshotAlt} />
             </div>
         {/if}
         <h2 class="title">{title}</h2>
