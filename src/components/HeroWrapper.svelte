@@ -14,7 +14,6 @@
         height: toRem(500);
         padding-top: toRem(25);
         position: relative;
-        margin-bottom: toRem(20);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;

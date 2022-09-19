@@ -26,6 +26,11 @@ export function darkTheme(defaultTheme: Theme): Theme {
         txt: txtHigh,
         accent: "#e87fb4",
 
+        header: {
+            bg: dark10,
+            txt: txtMed,
+        },
+
         content: {
             bg: dark10,
         },

@@ -63,8 +63,8 @@
         flex: 0 0 toRem(60);
         @include z-index("menu");
         padding: $sp4;
-        background-color: var(--primary);
-        color: #fff;
+        background-color: var(--header-bg);
+        color: var(--header-txt);
         display: flex;
         justify-content: space-between;
         align-items: center;

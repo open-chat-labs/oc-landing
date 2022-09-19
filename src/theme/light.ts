@@ -12,6 +12,11 @@ export function lightTheme(): Theme {
         txt: "#191919",
         accent: "hotpink",
 
+        header: {
+            bg: "#22a7f2",
+            txt: "#ffffff",
+        },
+
         content: {
             bg: "#ffffff",
         },

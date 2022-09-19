@@ -13,6 +13,11 @@ export interface Theme {
     gradient: string;
     accent: string;
 
+    header: {
+        bg: string;
+        txt: string;
+    };
+
     content: {
         bg: string;
     };
