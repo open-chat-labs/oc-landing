@@ -26,7 +26,7 @@ self.addEventListener("activate", async () => {
 });
 
 const cacheName = "openchat_asset_cache";
-const assetRegex = /main-.*[css|js]$/gi;
+const assetRegexes = [/main-.*[css|js]$/gi, /spinner.svg$/gi];
 
 type CacheStrategy = "cache_first" | "network_first" | "no_cache";
 
@@ -38,7 +38,7 @@ type CacheStrategy = "cache_first" | "network_first" | "no_cache";
  * Yes that makes offline usage harder but that is a secondary goal behind performance improvements
  */
 function getCacheStrategy(request: Request): CacheStrategy {
-    if (assetRegex.test(request.url)) {
+    if (assetRegexes.some((re) => re.test(request.url))) {
         return "cache_first";
     } else if (["document"].includes(request.destination)) {
         return "network_first";

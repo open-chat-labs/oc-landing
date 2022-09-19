@@ -23,11 +23,11 @@
         position: relative;
         background-color: var(--content-bg);
 
-        // &.offset {
-        //     margin: 0 toRem(40);
-        //     margin-top: toRem(-80);
-        //     margin-bottom: toRem(40);
-        // }
+        &.offset {
+            // margin: 0 toRem(40);
+            margin-top: toRem(-80);
+            // margin-bottom: toRem(40);
+        }
 
         @include mobile() {
             margin: 0;
