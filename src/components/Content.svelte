@@ -22,7 +22,7 @@
     .outer {
         position: relative;
         margin: 0 toRem(40);
-        background-color: #fff;
+        background-color: var(--content-bg);
         margin-top: toRem(40);
         margin-bottom: toRem(40);
 

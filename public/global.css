@@ -6,6 +6,7 @@ body {
 }
 
 :root {
+    --txt: #191919;
     --font-size: 16px;
     --primary: #22a7f2;
     --primary-shadow: #053d5c;
@@ -30,7 +31,7 @@ html {
 }
 
 body {
-    color: #333;
+    color: var(--txt);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -40,7 +41,7 @@ body {
 }
 
 a {
-    color: rgb(0, 100, 200);
+    color: var(--accent);
     text-decoration: none;
 }
 
@@ -49,7 +50,7 @@ a:hover {
 }
 
 a:visited {
-    color: rgb(0, 80, 160);
+    color: var(--accent);
 }
 
 label {

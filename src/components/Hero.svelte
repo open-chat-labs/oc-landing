@@ -61,8 +61,7 @@
         font-size: toRem(140);
         line-height: 80%;
         color: #fff;
-        text-shadow: toRem(5) toRem(5) toRem(3) var(--primary-shadow),
-            toRem(16) toRem(16) toRem(16) rgba(0, 0, 0, 0.5);
+        text-shadow: toRem(16) toRem(16) toRem(16) rgba(0, 0, 0, 0.5);
         transition: left ease-in $speed, right ease-in $speed, opacity ease-in $speed;
         // position: absolute;
         position: relative;

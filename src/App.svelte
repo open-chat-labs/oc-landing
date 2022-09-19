@@ -11,6 +11,7 @@
     import type { Identity } from "@dfinity/agent";
     import { AuthProvider } from "./authProvider";
     import { selectedAuthProviderStore } from "./stores/authProviders";
+    import "./theme/themes";
 
     let route = "home";
     let mainEl: HTMLElement | undefined;
@@ -126,8 +127,6 @@
 
         // display: flex;
         // flex-direction: column;
-
-        background: var(--bg-gradient);
         background: var(--gradient);
         overflow-y: auto;
         overflow-x: hidden;
