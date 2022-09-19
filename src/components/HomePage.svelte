@@ -8,7 +8,7 @@
     import SellingPoints from "./SellingPoints.svelte";
 </script>
 
-<Hero />
+<Hero on:login />
 
 <Content offset={true}>
     <Intro />

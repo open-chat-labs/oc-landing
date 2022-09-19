@@ -4,14 +4,21 @@
     "include": ["src/**/*", "svelte.config.js"],
     "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
     "compilerOptions": {
-        "resolveJsonModule": true,
-        "experimentalDecorators": true,
+        "importsNotUsedAsValues": "remove",
+        "esModuleInterop": true,
+        "isolatedModules": false,
+        "lib": [
+            "dom",
+            "es2015",
+            "es2017",
+            "es2020",
+            "DOM",
+            "ScriptHost",
+            "DOM.Iterable",
+            "WebWorker"
+        ],
         "module": "es2020",
-        "strict": true,
-        "types": ["svelte", "jest", "node"],
-        "paths": {
-            "*": ["./src/*"]
-        },
-        "lib": ["es2020", "webworker", "DOM", "DOM.Iterable"]
+        "rootDir": ".",
+        "types": ["svelte", "node"]
     }
 }

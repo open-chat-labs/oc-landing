@@ -65,7 +65,7 @@
 </script>
 
 <div class="body">
-    <svelte:component this={selected} />
+    <svelte:component this={selected} on:login />
 </div>
 
 <style type="text/scss">

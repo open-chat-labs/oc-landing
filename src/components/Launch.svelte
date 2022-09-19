@@ -2,12 +2,9 @@
     export let size: "small" | "large";
 </script>
 
-<a
-    target="_blank"
-    href="https://oc.app"
-    class="launch"
-    class:small={size === "small"}
-    class:large={size === "large"}>Launch ...</a>
+<div class="launch" class:small={size === "small"} class:large={size === "large"}>
+    Sign in or Register
+</div>
 
 <style type="text/scss">
     .launch {

@@ -1,11 +1,12 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+    import { onMount, createEventDispatcher } from "svelte";
     import HeroWrapper from "./HeroWrapper.svelte";
     import Launch from "./Launch.svelte";
 
     import Plane from "./Plane.svelte";
 
     let loaded = false;
+    const dispatch = createEventDispatcher();
 
     onMount(() => {
         setTimeout(() => (loaded = true), 100);
@@ -25,7 +26,9 @@
         <Plane />
     </div>
 
-    <Launch size="large" />
+    <div on:click={() => dispatch("login")}>
+        <Launch size="large" />
+    </div>
 </HeroWrapper>
 
 <style type="text/scss">

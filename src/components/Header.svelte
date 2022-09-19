@@ -3,8 +3,15 @@
     import Home from "svelte-material-icons/Home.svelte";
     import LaunchIcon from "svelte-material-icons/Launch.svelte";
     import Launch from "./Launch.svelte";
+    import { createEventDispatcher } from "svelte";
 
     export let route = "home";
+
+    const dispatch = createEventDispatcher();
+
+    function login() {
+        dispatch("login");
+    }
 
     // TODO - this needs to collapse down into a popout menu on mobile
 </script>
@@ -35,11 +42,11 @@
             <a href="/architecture">Architecture</a>
         </div>
     </div>
-    <div title="Launch" class="launch">
+    <div title="Launch" class="launch" on:click={login}>
         {#if $mobileWidth}
             <LaunchIcon size={"1.6em"} color={"#fff"} />
         {:else}
-            <Launch size="small" />
+            <Launch on:login size="small" />
         {/if}
     </div>
 </div>
@@ -69,7 +76,7 @@
     }
 
     .launch {
-        flex: 0 0 150px;
+        flex: 0 0 200px;
 
         @include mobile() {
             flex: 0 0 40px;

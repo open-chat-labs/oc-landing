@@ -6,10 +6,20 @@
     import { dimensions } from "./stores/screenDimensions";
     import Fab from "./components/Fab.svelte";
     import ArrowUp from "svelte-material-icons/ArrowUp.svelte";
+    import { onMount } from "svelte";
+    import { AuthClient, IdbStorage } from "@dfinity/auth-client";
+    import type { Identity } from "@dfinity/agent";
+    import { AuthProvider } from "./authProvider";
+    import { selectedAuthProviderStore } from "./stores/authProviders";
 
     let route = "home";
     let mainEl: HTMLElement | undefined;
     let scrollTop = 0;
+    let authClient = AuthClient.create({
+        idleOptions: { disableIdle: true },
+        storage: new IdbStorage(),
+    });
+    const SESSION_TIMEOUT_NANOS = BigInt(30 * 24 * 60 * 60 * 1000 * 1000 * 1000); // 30 days
 
     $: bigLogo = $dimensions.width / 3;
     $: smallLogo = $dimensions.width / 5;
@@ -26,12 +36,67 @@
             top: 0,
         });
     }
+
+    onMount(() => {
+        authClient.then((c) => {
+            const id = c.getIdentity();
+            const principal = id.getPrincipal();
+            const anon = principal.isAnonymous();
+            if (!anon) {
+                console.log(
+                    "App.svelte: we are signed in so ... we should not be here? ",
+                    principal.toString()
+                );
+            } else {
+                // so we are not logged in
+                console.log("not logged in so we will stay put");
+            }
+        });
+    });
+
+    function doLogin(authProvider: AuthProvider): Promise<Identity> {
+        return authClient.then((c) => {
+            return new Promise((resolve, reject) => {
+                c.login({
+                    identityProvider: buildAuthProviderUrl(authProvider),
+                    maxTimeToLive: SESSION_TIMEOUT_NANOS,
+                    derivationOrigin: process.env.II_DERIVATION_ORIGIN,
+                    onSuccess: () => resolve(c.getIdentity()),
+                    onError: (err) => reject(err),
+                });
+            });
+        });
+    }
+    function login(): void {
+        doLogin($selectedAuthProviderStore)
+            .then((id) => {
+                console.log("App.svelte - successfully logged in we should ideally reload now");
+                window.location.reload();
+            })
+            .catch((err) => {
+                console.log("error logging in: ", err);
+            });
+    }
+
+    function buildAuthProviderUrl(authProvider: AuthProvider): string | undefined {
+        return process.env.INTERNET_IDENTITY_URL;
+        // if (authProvider === AuthProvider.II) {
+        //     return process.env.INTERNET_IDENTITY_URL;
+        // } else {
+        //     return (
+        //         process.env.NFID_URL +
+        //         "&applicationLogo=" +
+        //         encodeURIComponent("https://oc.app/apple-touch-icon.png") +
+        //         "#authorize"
+        //     );
+        // }
+    }
 </script>
 
 <main class="main" bind:this={mainEl} on:scroll={onScroll}>
-    <Header {route} />
+    <Header on:login={login} {route} />
 
-    <Router bind:route on:scrollToTop={scrollToTop} />
+    <Router on:login={login} bind:route on:scrollToTop={scrollToTop} />
 
     {#if show}
         <BackgroundLogo
