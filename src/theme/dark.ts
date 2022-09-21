@@ -34,5 +34,10 @@ export function darkTheme(defaultTheme: Theme): Theme {
         content: {
             bg: dark10,
         },
+
+        auth: {
+            bg: "rgba(0,0,0,0.6)",
+            txt: txtMed,
+        },
     };
 }

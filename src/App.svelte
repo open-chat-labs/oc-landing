@@ -38,7 +38,7 @@
         });
     }
 
-    onMount(() => {
+    onMount(async () => {
         authClient.then((c) => {
             const id = c.getIdentity();
             const principal = id.getPrincipal();
@@ -48,9 +48,6 @@
                     "App.svelte: we are signed in so ... we should not be here? ",
                     principal.toString()
                 );
-            } else {
-                // so we are not logged in
-                console.log("not logged in so we will stay put");
             }
         });
     });
@@ -80,17 +77,16 @@
     }
 
     function buildAuthProviderUrl(authProvider: AuthProvider): string | undefined {
-        return process.env.INTERNET_IDENTITY_URL;
-        // if (authProvider === AuthProvider.II) {
-        //     return process.env.INTERNET_IDENTITY_URL;
-        // } else {
-        //     return (
-        //         process.env.NFID_URL +
-        //         "&applicationLogo=" +
-        //         encodeURIComponent("https://oc.app/apple-touch-icon.png") +
-        //         "#authorize"
-        //     );
-        // }
+        if (authProvider === AuthProvider.II) {
+            return process.env.INTERNET_IDENTITY_URL;
+        } else {
+            return (
+                process.env.NFID_URL +
+                "&applicationLogo=" +
+                encodeURIComponent("https://oc.app/apple-touch-icon.png") +
+                "#authorize"
+            );
+        }
     }
 </script>
 

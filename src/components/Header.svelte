@@ -42,13 +42,6 @@
             <a href="/architecture">Architecture</a>
         </div>
     </div>
-    <div title="Launch" class="launch" on:click={login}>
-        {#if $mobileWidth}
-            <LaunchIcon size={"1.6em"} color={"#fff"} />
-        {:else}
-            <Launch on:login size="small" />
-        {/if}
-    </div>
 </div>
 
 <style type="text/scss">
@@ -73,15 +66,6 @@
         @include constrain();
         position: sticky;
         top: 0;
-    }
-
-    .launch {
-        flex: 0 0 200px;
-
-        @include mobile() {
-            flex: 0 0 40px;
-            text-align: right;
-        }
     }
 
     .menu-items {

@@ -24,6 +24,7 @@ function serve() {
 
 console.log("Production: ", production);
 console.log("INTERNET_IDENTITY_URL", process.env.INTERNET_IDENTITY_URL);
+console.log("NFID_URL", process.env.NFID_URL);
 
 export default {
     input: "./src/main.ts",

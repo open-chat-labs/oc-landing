@@ -21,6 +21,11 @@ export interface Theme {
     content: {
         bg: string;
     };
+
+    auth: {
+        bg: string;
+        txt: string;
+    };
 }
 
 export type Themes = {

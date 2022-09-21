@@ -1,4 +1,5 @@
-import { writable } from "svelte/store";
+import { IdbStorage, LocalStorage } from "@dfinity/auth-client";
+import { readable, writable } from "svelte/store";
 import { AuthProvider } from "../authProvider";
 
 export const selectedAuthProviderStore = createStore();
@@ -36,3 +37,20 @@ function createStore() {
         set: (authProvider: AuthProvider): void => _set(authProvider),
     };
 }
+
+const userCreated = localStorage.getItem("openchat_user_created") === "true";
+
+export const idbAuthClientStore = new IdbStorage();
+export const lsAuthClientStore = new LocalStorage();
+
+export const showAuthProviders = readable(false, (set) => {
+    const KEY_STORAGE_DELEGATION = "delegation";
+    Promise.all([
+        lsAuthClientStore.get(KEY_STORAGE_DELEGATION),
+        idbAuthClientStore.get(KEY_STORAGE_DELEGATION),
+    ]).then(([ls, idb]) => {
+        console.log("Delegations: ", ls, idb);
+        const noDelegation = ls == null && idb == null;
+        set(!userCreated && noDelegation);
+    });
+});

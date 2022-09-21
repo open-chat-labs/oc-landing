@@ -7,7 +7,7 @@
 <Content offset={false}>
     <Feature
         lazy={false}
-        screenshotUrl={"../screenshots/mobileFirst.png"}
+        screenshotUrl={"../screenshots/mobilefirst.png"}
         screenshotAlt={"mobile first"}
         title={"Mobile first"}>
         <p>
