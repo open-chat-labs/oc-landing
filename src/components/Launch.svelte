@@ -5,7 +5,7 @@
 
 <div class="wrapper">
     <div class="launch">Sign in or Register</div>
-    {#if showAuthProviders}
+    {#if $showAuthProviders}
         <div class="auth-providers">
             <div
                 class="provider"

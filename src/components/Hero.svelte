@@ -27,7 +27,7 @@
     </div>
 
     <div on:click={() => dispatch("login")}>
-        <Launch size="large" />
+        <Launch />
     </div>
 </HeroWrapper>
 

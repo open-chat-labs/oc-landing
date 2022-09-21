@@ -49,7 +49,6 @@ export const showAuthProviders = readable(false, (set) => {
         lsAuthClientStore.get(KEY_STORAGE_DELEGATION),
         idbAuthClientStore.get(KEY_STORAGE_DELEGATION),
     ]).then(([ls, idb]) => {
-        console.log("Delegations: ", ls, idb);
         const noDelegation = ls == null && idb == null;
         set(!userCreated && noDelegation);
     });
