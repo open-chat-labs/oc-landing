@@ -24,7 +24,7 @@ function toRequest(input) {
 
 export class IcHandler extends StrategyHandler {
     async fetch(input: RequestInfo): Promise<Response> {
-        console.log(
+        console.debug(
             "SW: cache miss (or revalidation), falling back to default ic service worker ",
             input
         );
@@ -43,13 +43,13 @@ function createIcHandler(strategy: Strategy, handler: StrategyHandler): IcHandle
 export class StaleWhileRevalidateIfSignedIn extends StaleWhileRevalidate {
     async _handle(request: Request, handler: StrategyHandler) {
         if (await isAnonymous()) {
-            console.log(
+            console.debug(
                 "SW: StaleWhileRevalidate - not signed in, use network handler if not in cache ",
                 request.url
             );
             return handler.fetch(request);
         }
-        console.log(
+        console.debug(
             "SW: StaleWhileRevalidate signed in: use ic handler if not in cache",
             request.url
         );
@@ -60,13 +60,13 @@ export class StaleWhileRevalidateIfSignedIn extends StaleWhileRevalidate {
 export class CacheFirstIfSignedIn extends CacheFirst {
     async _handle(request: Request, handler: StrategyHandler) {
         if (await isAnonymous()) {
-            console.log(
+            console.debug(
                 "SW: CacheFirst - not signed in, use network handler if not in cache ",
                 request.url
             );
             return handler.fetch(request);
         }
-        console.log("SW: CacheFirst signed in: use ic handler if not in cache", request.url);
+        console.debug("SW: CacheFirst signed in: use ic handler if not in cache", request.url);
         return super._handle(request, createIcHandler(this, handler));
     }
 }
@@ -74,13 +74,13 @@ export class CacheFirstIfSignedIn extends CacheFirst {
 export class NetworkFirstIfSignedIn extends NetworkFirst {
     async _handle(request: Request, handler: StrategyHandler) {
         if (await isAnonymous()) {
-            console.log(
+            console.debug(
                 "SW: NetworkFirst - not signed, use network handler if not in cache ",
                 request.url
             );
             return handler.fetch(request);
         }
-        console.log("SW: NetworkFirst signed in: use ic handler if not in cache", request.url);
+        console.debug("SW: NetworkFirst signed in: use ic handler if not in cache", request.url);
         return super._handle(request, createIcHandler(this, handler));
     }
 }

@@ -59,6 +59,8 @@
         "sirv-cli": "^2.0.0",
         "svelte-inview": "^3.0.1",
         "svelte-material-icons": "^2.0.4",
+        "workbox-cacheable-response": "^6.5.4",
+        "workbox-expiration": "^6.5.4",
         "workbox-routing": "^6.5.4",
         "workbox-strategies": "^6.5.4"
     }

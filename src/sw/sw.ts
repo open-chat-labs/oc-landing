@@ -1,11 +1,7 @@
 import { handleRequest } from "./http_request";
-
-declare const self: ServiceWorkerGlobalScope;
-
-const DEBUG = true;
-
-//workbox config
-import { registerRoute, setDefaultHandler } from "workbox-routing";
+import { registerRoute, setCatchHandler, setDefaultHandler } from "workbox-routing";
+import { CacheableResponsePlugin } from "workbox-cacheable-response";
+import { ExpirationPlugin } from "workbox-expiration";
 import {
     CacheFirstIfSignedIn,
     isAnonymous,
@@ -13,24 +9,75 @@ import {
     StaleWhileRevalidateIfSignedIn,
 } from "./strategies";
 
-const assetRegexes = [/main-.*[css|js]$/gi];
-const unversionedAssets = [/assets\/.*\.svg$/gi];
+declare const self: ServiceWorkerGlobalScope;
+
+const DEBUG = true;
+
+//workbox config
 
 // TODO make use of expiry and cacheable response plugins
 
-registerRoute((route) => {
-    return assetRegexes.some((re) => re.test(route.url.pathname));
-}, new CacheFirstIfSignedIn());
+registerRoute(
+    (route) => {
+        return [/main-.*[css|js]$/].some((re) => re.test(route.request.url));
+    },
+    new CacheFirstIfSignedIn({
+        cacheName: "openchat_cache_first",
+        plugins: [
+            new CacheableResponsePlugin({
+                statuses: [200],
+            }),
+            new ExpirationPlugin({
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+            }),
+        ],
+    })
+);
 
-registerRoute((route) => {
-    return unversionedAssets.some((re) => re.test(route.url.pathname));
-}, new StaleWhileRevalidateIfSignedIn());
+registerRoute(
+    (route) => {
+        return [
+            /assets\/.*\.svg$/,
+            /openchat.webmanifest/,
+            /icon.png/,
+            /apple-touch-icon.png/,
+        ].some((re) => re.test(route.request.url));
+    },
+    new StaleWhileRevalidateIfSignedIn({
+        cacheName: "openchat_stale_while_revalidate",
+        plugins: [
+            new CacheableResponsePlugin({
+                statuses: [200],
+            }),
+            new ExpirationPlugin({
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+            }),
+        ],
+    })
+);
 
-registerRoute((route) => {
-    return route.request.destination === "document";
-}, new NetworkFirstIfSignedIn());
+registerRoute(
+    (route) => {
+        return route.request.destination === "document";
+    },
+    new NetworkFirstIfSignedIn({
+        cacheName: "openchat_network_first",
+        plugins: [
+            new CacheableResponsePlugin({
+                statuses: [200],
+            }),
+            new ExpirationPlugin({
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+            }),
+        ],
+    })
+);
 
 setDefaultHandler(({ request }) => {
+    return defaultHandler(request);
+});
+
+setCatchHandler(({ request }) => {
     return defaultHandler(request);
 });
 
@@ -49,11 +96,11 @@ self.addEventListener("activate", async () => {
 
 async function defaultHandler(request: Request): Promise<Response> {
     if (await isAnonymous()) {
-        console.log("SW: default handler - not signed in falling back to network: ", request.url);
+        console.debug("SW: default handler - not signed in falling back to network: ", request.url);
         return fetch(request);
     } else {
         try {
-            console.log(
+            console.debug(
                 "SW: default handler - signed in falling back to default ic service worker ",
                 request.url
             );
