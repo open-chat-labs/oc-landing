@@ -50,14 +50,16 @@
     },
     "dependencies": {
         "@dfinity/agent": "^0.13.3",
+        "@dfinity/auth-client": "^0.13.3",
         "@dfinity/candid": "^0.13.3",
         "@dfinity/principal": "^0.13.3",
-        "@dfinity/auth-client": "^0.13.3",
         "base64-arraybuffer": "^1.0.2",
         "pako": "^2.0.3",
         "siema": "^1.5.1",
         "sirv-cli": "^2.0.0",
         "svelte-inview": "^3.0.1",
-        "svelte-material-icons": "^2.0.4"
+        "svelte-material-icons": "^2.0.4",
+        "workbox-routing": "^6.5.4",
+        "workbox-strategies": "^6.5.4"
     }
 }
