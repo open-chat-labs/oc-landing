@@ -14,12 +14,26 @@ declare const self: ServiceWorkerGlobalScope;
 const DEBUG = true;
 
 //workbox config
-
-// TODO make use of expiry and cacheable response plugins
+registerRoute(
+    (route) => {
+        return /avatar\/\d+/.test(route.request.url);
+    },
+    new CacheFirstIfSignedIn({
+        cacheName: "openchat_avatars",
+        plugins: [
+            new CacheableResponsePlugin({
+                statuses: [0, 200], // need to include opaque responses here
+            }),
+            new ExpirationPlugin({
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+            }),
+        ],
+    })
+);
 
 registerRoute(
     (route) => {
-        return [/main-.*[css|js]$/].some((re) => re.test(route.request.url));
+        return [/main-.*[css|js]$/, /assets\/underwater/].some((re) => re.test(route.request.url));
     },
     new CacheFirstIfSignedIn({
         cacheName: "openchat_cache_first",
@@ -95,7 +109,7 @@ self.addEventListener("activate", async () => {
 });
 
 async function defaultHandler(request: Request): Promise<Response> {
-    if (await isAnonymous()) {
+    if (process.env.LANDING_PAGE_MODE && (await isAnonymous())) {
         console.debug("SW: default handler - not signed in falling back to network: ", request.url);
         return fetch(request);
     } else {

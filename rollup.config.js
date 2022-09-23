@@ -26,8 +26,10 @@ console.log("Production: ", production);
 console.log("INTERNET_IDENTITY_URL", process.env.INTERNET_IDENTITY_URL);
 console.log("NFID_URL", process.env.NFID_URL);
 
+const landingPageMode = false;
+
 export default {
-    input: "./src/main.ts",
+    input: landingPageMode ? "./src/main.ts" : "./src/main-temp.ts",
     output: {
         sourcemap: true,
         format: "es",
@@ -93,6 +95,7 @@ export default {
             "process.env.INTERNET_IDENTITY_URL": JSON.stringify(process.env.INTERNET_IDENTITY_URL),
             "process.env.II_DERIVATION_ORIGIN": maybeStringify(process.env.II_DERIVATION_ORIGIN),
             "process.env.NFID_URL": JSON.stringify(process.env.NFID_URL),
+            "process.env.LANDING_PAGE_MODE": landingPageMode,
         }),
     ],
     watch: {

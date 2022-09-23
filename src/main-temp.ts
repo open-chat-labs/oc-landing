@@ -1,7 +1,7 @@
-import App from "./App.svelte";
+import ServiceWorkerLoading from "./ServiceWorkerLoading.svelte";
 import { registerServiceWorker } from "./registerServiceWorker";
 
-const app = new App({
+const app = new ServiceWorkerLoading({
     target: document.body,
 });
 
