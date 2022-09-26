@@ -12,6 +12,7 @@
 </script>
 
 <Section id={"usp"}>
+    <h2>Welcome to OpenChat</h2>
     <div class="grid">
         <FlipBox>
             <div slot="front" class="item">
@@ -127,7 +128,7 @@
         font-size: toRem(40);
         @include mobile() {
             font-size: toRem(30);
-            min-hight: toRem(150);
+            min-hight: toRem(120);
         }
 
         &:hover {

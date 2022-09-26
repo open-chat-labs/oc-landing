@@ -46,7 +46,7 @@ module.exports = {
         new webpack.EnvironmentPlugin({
             FORCE_FETCH_ROOT_KEY: false,
             VERSION: package.version,
-            LANDING_PAGE_MODE: false,
+            LANDING_PAGE_MODE: true,
         }),
     ],
 };

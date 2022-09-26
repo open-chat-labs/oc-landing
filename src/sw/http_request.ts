@@ -18,6 +18,7 @@ const hostnameCanisterIdMap: Record<string, [string, string]> = {
     "dscvr.ic0.app": ["h5aet-waaaa-aaaab-qaamq-cai", "ic0.app"],
     "personhood.ic0.app": ["g3wsl-eqaaa-aaaan-aaaaa-cai", "ic0.app"],
     "test.oc.app": ["pfs7b-iqaaa-aaaaf-abs7q-cai", "ic0.app"],
+    "webtest.oc.app": ["xp7uu-xyaaa-aaaaf-aoa6a-cai", "ic0.app"],
     "oc.app": ["6hsbt-vqaaa-aaaaf-aaafq-cai", "ic0.app"],
     // NOTE: for this to work you need to deploy the website to your local replica and use the canister ID of the website here
     localhost: ["tmxop-wyaaa-aaaaa-aaapa-cai", "localhost:8080"],

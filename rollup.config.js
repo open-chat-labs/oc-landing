@@ -26,7 +26,7 @@ console.log("Production: ", production);
 console.log("INTERNET_IDENTITY_URL", process.env.INTERNET_IDENTITY_URL);
 console.log("NFID_URL", process.env.NFID_URL);
 
-const landingPageMode = false;
+const landingPageMode = true;
 
 export default {
     input: landingPageMode ? "./src/main.ts" : "./src/main-temp.ts",

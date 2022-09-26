@@ -15,16 +15,12 @@
 
 <HeroWrapper imageUrl={"../hero.jpg"}>
     <div class="text">
-        <span class:loaded class="open">Open</span>
+        <span class:loaded class="name">OpenChat</span>
     </div>
 
-    <div class="text">
-        <span class:loaded class="chat">Chat</span>
-    </div>
-
-    <div class="plane">
+    <!-- <div class="plane">
         <Plane />
-    </div>
+    </div> -->
 
     <div on:click={() => dispatch("login")}>
         <Launch />
@@ -37,6 +33,7 @@
     .text {
         position: relative;
         width: 100%;
+        margin-bottom: toRem(20);
     }
 
     .plane {
@@ -53,8 +50,7 @@
         }
     }
 
-    .open,
-    .chat {
+    .name {
         font-family: "Roboto", sans-serif;
         font-weight: 900;
         font-style: italic;
@@ -68,27 +64,15 @@
         opacity: 0;
 
         @include mobile() {
-            font-size: toRem(100);
+            font-size: toRem(80);
             line-height: 70%;
         }
     }
 
-    .open {
+    .name {
         left: -1000px;
         &.loaded {
-            left: -100px;
-            opacity: 1;
-
-            @include mobile() {
-                left: -70px;
-            }
-        }
-    }
-
-    .chat {
-        right: -1000px;
-        &.loaded {
-            right: 0px;
+            left: 0;
             opacity: 1;
         }
     }

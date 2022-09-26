@@ -11,13 +11,13 @@
 <Hero on:login />
 
 <Content offset={true}>
-    <Intro />
-
     <SellingPoints />
+
+    <Intro />
 
     <Roadmap />
 
-    <Video />
-
     <Team />
+
+    <Video />
 </Content>

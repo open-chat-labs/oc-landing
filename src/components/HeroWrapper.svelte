@@ -11,7 +11,7 @@
 <style type="text/scss">
     .hero {
         @include fullScreenImg();
-        height: toRem(540);
+        height: toRem(440);
         padding-top: toRem(25);
         position: relative;
         display: flex;
@@ -21,7 +21,7 @@
         gap: toRem(30);
 
         @include mobile() {
-            height: toRem(440);
+            height: toRem(340);
         }
     }
 </style>

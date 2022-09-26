@@ -8,7 +8,7 @@
 </script>
 
 <Section id={"video"}>
-    <h2>Demo video</h2>
+    <h2>Watch a demo</h2>
     <iframe
         {width}
         {height}
