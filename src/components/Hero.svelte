@@ -3,8 +3,6 @@
     import HeroWrapper from "./HeroWrapper.svelte";
     import Launch from "./Launch.svelte";
 
-    import Plane from "./Plane.svelte";
-
     let loaded = false;
     const dispatch = createEventDispatcher();
 
@@ -13,14 +11,10 @@
     });
 </script>
 
-<HeroWrapper imageUrl={"../hero.jpg"}>
+<HeroWrapper imageUrl={"../underwater.jpg"}>
     <div class="text">
         <span class:loaded class="name">OpenChat</span>
     </div>
-
-    <!-- <div class="plane">
-        <Plane />
-    </div> -->
 
     <div on:click={() => dispatch("login")}>
         <Launch />
@@ -34,20 +28,6 @@
         position: relative;
         width: 100%;
         margin-bottom: toRem(20);
-    }
-
-    .plane {
-        position: absolute;
-        bottom: toRem(158);
-        width: toRem(400);
-        height: auto;
-        right: 0;
-
-        @include mobile() {
-            width: toRem(300);
-            top: toRem(30);
-            bottom: unset;
-        }
     }
 
     .name {

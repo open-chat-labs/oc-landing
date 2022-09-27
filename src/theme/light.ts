@@ -1,5 +1,7 @@
 import type { Theme } from "./themes";
 
+const gradient = "linear-gradient(#22a7f2, #5f2583)";
+
 export function lightTheme(): Theme {
     return {
         name: "light",
@@ -8,7 +10,7 @@ export function lightTheme(): Theme {
         primary: "#22a7f2",
         secondary: "#ff9505",
         hgradient: "linear-gradient(0.25turn, #22a7f2, hotpink)",
-        gradient: "linear-gradient(#22a7f2, #5f2583)",
+        gradient,
         txt: "#191919",
         accent: "hotpink",
 
@@ -24,6 +26,17 @@ export function lightTheme(): Theme {
         auth: {
             bg: "rgba(255,255,255,0.9)",
             txt: "#191919",
+        },
+
+        roadmap: {
+            status: {
+                txt: "#fff",
+                bg: "#ff9505",
+            },
+            desc: {
+                txt: "#191919",
+                bg: "#efefef",
+            },
         },
     };
 }

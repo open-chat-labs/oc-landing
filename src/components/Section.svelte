@@ -26,7 +26,7 @@
             <slot />
         </div>
     {:else if visible}
-        <div transition:fly={{ y: 200, duration: 500 }} class="container">
+        <div transition:fly|local={{ y: 200, duration: 500 }} class="container">
             <slot />
         </div>
     {/if}
@@ -34,7 +34,6 @@
 
 <style type="text/scss">
     section {
-        min-height: 300px;
         margin-bottom: toRem(40);
 
         @include mobile() {

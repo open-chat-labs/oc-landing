@@ -26,6 +26,17 @@ export interface Theme {
         bg: string;
         txt: string;
     };
+
+    roadmap: {
+        status: {
+            txt: string;
+            bg: string;
+        };
+        desc: {
+            txt: string;
+            bg: string;
+        };
+    };
 }
 
 export type Themes = {

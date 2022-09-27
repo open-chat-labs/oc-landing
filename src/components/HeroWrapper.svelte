@@ -10,18 +10,13 @@
 
 <style type="text/scss">
     .hero {
+        padding: $sp6;
         @include fullScreenImg();
-        height: toRem(440);
-        padding-top: toRem(25);
         position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: space-around;
         align-items: center;
         gap: toRem(30);
-
-        @include mobile() {
-            height: toRem(340);
-        }
     }
 </style>

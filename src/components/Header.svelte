@@ -1,8 +1,6 @@
 <script lang="ts">
     import { mobileWidth } from "../stores/screenDimensions";
     import Home from "svelte-material-icons/Home.svelte";
-    import LaunchIcon from "svelte-material-icons/Launch.svelte";
-    import Launch from "./Launch.svelte";
     import { createEventDispatcher } from "svelte";
 
     export let route = "home";
@@ -35,6 +33,9 @@
         <div class="menu-item" class:selected={route === "features"}>
             <a href="/features">Features</a>
         </div>
+        <div class="menu-item" class:selected={route === "roadmap"}>
+            <a href="/roadmap">Roadmap</a>
+        </div>
         <div class="menu-item" class:selected={route === "tokenomics"}>
             <a href="/tokenomics">Tokenomics</a>
         </div>
@@ -66,6 +67,7 @@
         @include constrain();
         position: sticky;
         top: 0;
+        height: toRem(60);
     }
 
     .menu-items {

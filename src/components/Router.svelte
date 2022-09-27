@@ -4,6 +4,7 @@
     import ArchitecturePage from "./ArchitecturePage.svelte";
     import TokenomicsPage from "./TokenomicsPage.svelte";
     import FeaturesPage from "./FeaturesPage.svelte";
+    import RoadmapPage from "./RoadmapPage.svelte";
     import { createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
@@ -38,6 +39,9 @@
         }
         if (path === "features") {
             return [FeaturesPage, "features"];
+        }
+        if (path === "roadmap") {
+            return [RoadmapPage, "roadmap"];
         }
         return [HomePage, "home"];
     }

@@ -118,7 +118,8 @@
     .main {
         display: grid;
         grid-template-columns: 1f;
-        grid-template-rows: repeat(2, auto);
+        // grid-template-rows: repeat(2, auto);
+        grid-template-rows: toRem(60) auto;
         text-align: center;
 
         // display: flex;

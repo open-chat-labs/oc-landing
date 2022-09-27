@@ -4,10 +4,13 @@
     import Separator from "./Separator.svelte";
 </script>
 
-<Section lazy={false} id={"intro"}>
+<Section id={"intro"}>
+    <h2>Welcome to OpenChat</h2>
     <div class="grid">
         {#if !$mobileWidth}
-            <img class="img" alt="Open chat list" src="../screenshots/chatlist.png" />
+            <div class="image-wrapper">
+                <img class="img" alt="Open chat list" src="../screenshots/chatlist.png" />
+            </div>
         {/if}
 
         <div class="right">
@@ -68,6 +71,14 @@
 
     .img {
         width: 100%;
+    }
+
+    .image-wrapper {
+        perspective: 1000px;
+
+        .img {
+            transform: skewX(6deg) rotateY(20deg);
+        }
     }
 
     .desktop {

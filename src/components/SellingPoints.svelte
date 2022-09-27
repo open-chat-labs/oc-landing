@@ -11,8 +11,7 @@
     $: iconSize = $mobileWidth ? "2em" : "2.5em";
 </script>
 
-<Section id={"usp"}>
-    <h2>Welcome to OpenChat</h2>
+<Section lazy={false} id={"usp"}>
     <div class="grid">
         <FlipBox>
             <div slot="front" class="item">

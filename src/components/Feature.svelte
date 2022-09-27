@@ -40,6 +40,14 @@
 
         .screenshot {
             grid-area: 1 / 1 / 3 / 2;
+
+            @include size-above(sm) {
+                perspective: 1000px;
+
+                img {
+                    transform: skewX(2deg) rotateY(25deg);
+                }
+            }
         }
         .title {
             grid-area: 1 / 2 / 2 / 3;
@@ -54,6 +62,12 @@
 
             .screenshot {
                 grid-area: 1 / 2 / 3 / 3;
+
+                @include size-above(sm) {
+                    img {
+                        transform: skewX(-2deg) rotateY(-25deg);
+                    }
+                }
             }
             .title {
                 grid-area: 1 / 1 / 2 / 2;

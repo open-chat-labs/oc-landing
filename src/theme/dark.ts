@@ -15,13 +15,16 @@ const txtHigh = "rgba(255,255,255,0.8)";
 const txtMed = "rgba(255,255,255,0.6)";
 const txtLow = "rgba(255,255,255,0.38)";
 
+const primary = "#085d8c";
+const secondary = "#df783f";
+
 export function darkTheme(defaultTheme: Theme): Theme {
     return {
         ...defaultTheme,
         name: "dark",
         label: "Dark",
-        primary: "#085d8c",
-        secondary: "#df783f",
+        primary,
+        secondary,
         gradient: darkBase,
         txt: txtHigh,
         accent: "#e87fb4",
@@ -38,6 +41,17 @@ export function darkTheme(defaultTheme: Theme): Theme {
         auth: {
             bg: "rgba(0,0,0,0.6)",
             txt: txtMed,
+        },
+
+        roadmap: {
+            status: {
+                txt: "#fff",
+                bg: secondary,
+            },
+            desc: {
+                txt: txtHigh,
+                bg: primary,
+            },
         },
     };
 }

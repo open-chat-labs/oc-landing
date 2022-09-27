@@ -1,6 +1,6 @@
 <script lang="ts">
     import Content from "./Content.svelte";
-    import Roadmap from "./Roadmap.svelte";
+    import Roadmap from "./RoadmapOverview.svelte";
     import Hero from "./Hero.svelte";
     import Intro from "./Intro.svelte";
     import Video from "./Video.svelte";
@@ -10,7 +10,7 @@
 
 <Hero on:login />
 
-<Content offset={true}>
+<Content offset={false}>
     <SellingPoints />
 
     <Intro />
