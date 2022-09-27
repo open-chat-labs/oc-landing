@@ -7,26 +7,25 @@
     <h2 class="title">SNS launch</h2>
     <div class="blurb">
         <p>
-            Currently OpenChat is open to all. Any user or public group can be found by simply
-            searching. For many scenarios this is perfectly fine. But in the near future we will
-            deliver a new feature which will remove a couple of limitations with this model.
+            Launching of a Service Nervous System (SNS) and handing over control of OpenChat to the
+            control of that SNS. From this point forward the system will be democratically
+            controlled by the holders of the CHAT utility token.
         </p>
 
         <p>
-            Sometimes it would be nice to collect a number of groups together where they have
-            something in common. That commonality or <em>community</em> could be anything: perhaps
-            they all use the same language, or they all relate to a particular area of interest, or
-            they all relate to a particular <em>project</em>. In this sense, communities are a bit
-            like Discord servers.
+            This is a crucial step in the decentralisation journey. With this in place the system
+            will not be under any centralised control. We, the developement team, will be here to
+            provide direction and to implement the roadmap but we will only be able to make changes
+            to the system via an approved SNS proposal voted upon by those who have demonstrated
+            their commitment to the long term future of OpenChat by investing in the initial SNS
+            token sale.
         </p>
 
         <p>
-            Furthermore, a community may wish to restict and control its membership creating <em
-                >private</em>
-            communities. We see this as an important step for the future monetization of OpenChat as
-            it enables us to easily support its use as an internal communication tool
-            <em>within a corporate setting.</em> In that sense, communities can also be thought of like
-            Slack workspaces.
+            Those users will be invested in the future of the system through the voting rewards they
+            receive. This way, we enlist an army of powerful advocates and we can be confident that
+            the proposals the community approves will be in the long term interest of OpenChat as a
+            whole.
         </p>
     </div>
 </Section>
