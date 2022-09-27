@@ -3,13 +3,13 @@
     import Separator from "./Separator.svelte";
 </script>
 
-<Section lazy={false} id={"communities"}>
-    <h2 class="title">Communities</h2>
+<Section lazy={false} id={"sns"}>
+    <h2 class="title">SNS launch</h2>
     <div class="blurb">
         <p>
             Currently OpenChat is open to all. Any user or public group can be found by simply
             searching. For many scenarios this is perfectly fine. But in the near future we will
-            deliver a new feature which will remove a couple of limitations with the current model.
+            deliver a new feature which will remove a couple of limitations with this model.
         </p>
 
         <p>
@@ -33,19 +33,55 @@
 
 <Separator />
 
-<Section lazy={true} id={"moderation"}>
-    <h2 class="title">Community building</h2>
+<Section lazy={true} id={"communities"}>
+    <h2 class="title">Communities</h2>
     <div class="blurb">
         <p>
-            When communities are available it will become more important to empower leaders to
-            build, promote and maintain their communities. This will require community rules,
-            enhanced access controls (including NFT gated communities), and powerful community based
-            moderation systems. It will also be possible to search for share and even promote
-            communities easily from within OpenChat.
+            Currently OpenChat is open to all. Any user or public group can be found by simply
+            searching. For many scenarios this is perfectly fine. But in the near future we will
+            deliver a new feature which will remove a couple of limitations with this model.
         </p>
+
         <p>
-            Community leaders should also be able to reward constructive community members via
-            creative tokenisation strategies.
+            Sometimes it would be nice to collect a number of groups together where they have
+            something in common. That commonality or <em>community</em> could be anything: perhaps
+            they all use the same language, or they all relate to a particular area of interest, or
+            they all relate to a particular <em>project</em>. In this sense, communities are a bit
+            like Discord servers.
+        </p>
+
+        <p>
+            Furthermore, a community may wish to restict and control its membership creating <em
+                >private</em>
+            communities. We see this as an important step for the future monetization of OpenChat as
+            it enables us to easily support its use as an internal communication tool
+            <em>within a corporate setting.</em> In that sense, communities can also be thought of like
+            Slack workspaces.
+        </p>
+    </div>
+</Section>
+
+<Separator />
+
+<Section lazy={true} id={"user-rewards"}>
+    <h2 class="title">User rewards</h2>
+    <div class="blurb">
+        <p>
+            The SNS launch will unlock the potential to reward users with CHAT tokens. This will
+            allow community leaders to shape the character of the system, to help build <em
+                >great</em> communities and to supercharge adoption.
+        </p>
+
+        <p>
+            It will become really important to empower community leaders to build, promote and
+            maintain their communities through tokenisation. User rewards can facilitate the
+            building of powerful community based moderation systems; adoption can be driven by
+            rewarding users for creating great content and sharing it with friends and family.
+        </p>
+
+        <p>
+            Rewards can and will be used in all sorts of creative ways only made possible by the
+            unique way that OpenChat is governed.
         </p>
     </div>
 </Section>
@@ -63,12 +99,12 @@
         <p>
             We are currently consulting with many builders in the community to find out how they
             would like to integrate OpenChat functionality in the future. The appetite is certainly
-            there! Whether it is a simple direct chat feature that is integrated or full blown
-            access to the dApp's community remains to be seen.
+            there! Whether it is the simplest direct chat functionality that is integrated or full
+            blown access to the dApp's community remains to be seen.
         </p>
         <p>
-            The OpenChat team will build the apis, libraries and UI components required to make
-            integration of chat into your dApp as seamless as possible.
+            The OpenChat team will build the apis, libraries and UI components required to make chat
+            integration as seamless as possible.
         </p>
     </div>
 </Section>
@@ -83,7 +119,7 @@
             There are certainly challenges in doing this in a way that is both reliable and
             meaningfully decentralised. This is why this function is so often delegated to a
             centralised web2 partner. It is likely to require an incremental approach and a fair
-            degree of R&D.
+            amount of R&D.
         </p>
     </div>
 </Section>
@@ -94,17 +130,17 @@
     <h2 class="title">Native apps</h2>
     <div class="blurb">
         <p>
-            Currently OpenChat is delivered as a responive progressive web app. This means that it
+            Currently OpenChat is delivered as a responsive progressive web app. This means that it
             performs well on <em>any</em> device via the platform's browser. It can also be saved or
-            "installed" to your device's home screen for an even more app like experience. There are
+            "installed" to your device's home screen for an even more app-like experience. There are
             great advantages to this approach. We can deliver for all platforms using a single codebase
-            which allows us to deliver features faster and without preference to any particular platform.
+            which allows us to deliver features faster and without preference to any one particular platform.
         </p>
         <p>
             However, the native web apis available to us are a work in progress and not all
-            platforms develop at the same speed. For example we are currently unable to provide push
-            notifications to users of iOS. Some people also simply prefer to get their apps in the
-            chosen app store.
+            platforms develop at the same speed. For example, we are currently unable to provide
+            push notifications to users of iOS. Some people also simply prefer to get their apps in
+            the chosen app store.
         </p>
         <p>
             In the medium term, the team will explore options to preserve the single codebase
@@ -124,8 +160,13 @@
     <h2 class="title">End to end encryption</h2>
     <div class="blurb">
         <p>
-            Something about the current security and why E2E security cannot be easily done right
-            now
+            Currently, while the Internet Computer does provide very strong security guarantees,
+            there is still a hypothetical risk that a rogue node provider could gain access to
+            ingress messages and node memory.
+        </p>
+        <p>
+            As such we will develop opt-in end-to-end encryption which will of course come with some
+            restrictions such as not being able to search your message history.
         </p>
     </div>
 </Section>
@@ -136,15 +177,14 @@
     <h2 class="title">Other features</h2>
     <div class="blurb">
         <p>
-            As we will be governed by the SNS, we will of course be obliged to listen to our users
-            along the way as we develop these larger features and so our roadmap will always be
+            As we will be governed by the SNS, we will be obliged to listen to our users along the
+            way as we develop the larger features described above and so our roadmap will always be
             fluid.
         </p>
 
         <p>
-            There are many other smaller features that we would like to work on, and we will always
-            dedicate ourselves to performance and usability and listen carefully to the feedback of
-            our users.
+            We will continuously dedicate ourselves to performance and usability and there are many
+            other smaller features that we would like to work on.
         </p>
 
         <p>Some smaller feature ideas:</p>
@@ -156,6 +196,7 @@
             <li>Link previews</li>
             <li>Organise events with calendar</li>
             <li>Incorporate token swap to allow other tokens to be sent</li>
+            <li>NFT gated groups and communities</li>
             <li>
                 Broadcast groups
                 <ul>

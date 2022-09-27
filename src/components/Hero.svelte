@@ -13,7 +13,8 @@
 
 <HeroWrapper imageUrl={"../underwater.jpg"}>
     <div class="text">
-        <span class:loaded class="name">OpenChat</span>
+        <span class:loaded class="open">Open</span>
+        <span class:loaded class="chat">Chat</span>
     </div>
 
     <div on:click={() => dispatch("login")}>
@@ -22,7 +23,7 @@
 </HeroWrapper>
 
 <style type="text/scss">
-    $speed: 500ms;
+    $speed: 400ms;
 
     .text {
         position: relative;
@@ -30,14 +31,15 @@
         margin-bottom: toRem(20);
     }
 
-    .name {
+    .open,
+    .chat {
         font-family: "Roboto", sans-serif;
         font-weight: 900;
         font-style: italic;
         font-size: toRem(140);
         line-height: 80%;
-        color: #fff;
-        text-shadow: toRem(16) toRem(16) toRem(16) rgba(0, 0, 0, 0.5);
+        color: rgba(255, 255, 255, 0.9);
+        text-shadow: toRem(10) toRem(10) toRem(10) rgba(0, 0, 0, 0.5);
         transition: left ease-in $speed, right ease-in $speed, opacity ease-in $speed;
         // position: absolute;
         position: relative;
@@ -49,10 +51,17 @@
         }
     }
 
-    .name {
+    .open {
         left: -1000px;
         &.loaded {
             left: 0;
+            opacity: 1;
+        }
+    }
+    .chat {
+        right: -1000px;
+        &.loaded {
+            right: 0;
             opacity: 1;
         }
     }
