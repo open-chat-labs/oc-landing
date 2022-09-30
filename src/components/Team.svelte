@@ -1,10 +1,11 @@
 <script lang="ts">
+    import Headline from "./Headline.svelte";
     import Section from "./Section.svelte";
     import TeamCard from "./TeamCard.svelte";
 </script>
 
-<Section id={"team"}>
-    <h2>Meet the team</h2>
+<Section lazy={true} id={"team"}>
+    <Headline>Meet the team</Headline>
 
     <div class="team">
         <TeamCard

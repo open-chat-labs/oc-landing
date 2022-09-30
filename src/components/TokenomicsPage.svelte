@@ -1,10 +1,11 @@
 <script lang="ts">
     import Content from "./Content.svelte";
+    import Headline from "./Headline.svelte";
     import Separator from "./Separator.svelte";
 </script>
 
 <Content offset={false}>
-    <h2>Tokenomics</h2>
+    <Headline>Tokenomics</Headline>
 
     <img loading="lazy" class="moon" src="../moon.jpeg" alt="tokenomics diagram" />
 

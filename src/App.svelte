@@ -13,7 +13,6 @@
     import { selectedAuthProviderStore } from "./stores/authProviders";
     import "./theme/themes";
 
-    let route = "home";
     let mainEl: HTMLElement | undefined;
     let scrollTop = 0;
     let authClient = AuthClient.create({
@@ -33,7 +32,7 @@
 
     function scrollToTop() {
         mainEl?.scrollTo({
-            behavior: "smooth",
+            behavior: "auto",
             top: 0,
         });
     }
@@ -91,9 +90,9 @@
 </script>
 
 <main class="main" bind:this={mainEl} on:scroll={onScroll}>
-    <Header on:login={login} {route} />
+    <Header on:login={login} />
 
-    <Router on:login={login} bind:route on:scrollToTop={scrollToTop} />
+    <Router on:login={login} on:scrollToTop={scrollToTop} />
 
     {#if show}
         <BackgroundLogo

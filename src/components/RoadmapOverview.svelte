@@ -3,17 +3,21 @@
     import CheckBold from "svelte-material-icons/CheckBold.svelte";
     import RocketLaunch from "svelte-material-icons/RocketLaunch.svelte";
     import { mobileWidth } from "../stores/screenDimensions";
+    import Headline from "./Headline.svelte";
+    import Link from "./Link.svelte";
+    import { currentPath } from "../stores/route";
 
+    let visible = false;
     let iconColor = "var(--roadmap-status-txt)";
     $: iconSize = $mobileWidth ? "4em" : "5.5em";
 </script>
 
-<Section id={"roadmap"}>
-    <a class="wrapper" href="/roadmap">
-        <h2>Roadmap Overview</h2>
+<Section bind:visible lazy={true} id={"roadmap"}>
+    <div on:click={() => currentPath.set("roadmap")}>
+        <Headline>Roadmap Overview</Headline>
 
         <div class="grid">
-            <div class="status complete">
+            <div class="status complete" class:visible>
                 <CheckBold size={iconSize} color={iconColor} />
                 <div class="status-text">done</div>
             </div>
@@ -23,7 +27,7 @@
                     All of the basic features that you expect from a chat app: direct chats, public
                     and private groups; attach files, images, giphs, emojis; translate, pin, edit
                     and delete messages; send ICP; create polls; customise appearance; use on
-                    desktop or mobile - <a href="/features">and much more!</a>
+                    desktop or mobile - <Link path="features">and much more!</Link>
                 </div>
             </div>
 
@@ -35,12 +39,12 @@
                     democratically controlled by the holders of the CHAT utility token.
                 </div>
             </div>
-            <div class="status">
+            <div class="status" class:visible>
                 <div class="when">Q4</div>
                 <div class="status-text">2022</div>
             </div>
 
-            <div class="status">
+            <div class="status" class:visible>
                 <div class="when">Q1</div>
                 <div class="status-text">2023</div>
             </div>
@@ -62,12 +66,12 @@
                     supercharge adoption.
                 </div>
             </div>
-            <div class="status">
+            <div class="status" class:visible>
                 <div class="when">Q2</div>
                 <div class="status-text">2023</div>
             </div>
 
-            <div class="status">
+            <div class="status" class:visible>
                 <RocketLaunch size={iconSize} color={iconColor} />
             </div>
             <div class="txt">
@@ -80,10 +84,8 @@
             </div>
         </div>
 
-        <div class="footnote">
-            <a href="/roadmap">Click here for a more detailed product roadmap.</a>
-        </div>
-    </a>
+        <Link path="roadmap">Click here for a more detailed product roadmap.</Link>
+    </div>
 </Section>
 
 <style type="text/scss">
@@ -129,6 +131,31 @@
             align-items: center;
             color: var(--roadmap-status-txt);
             background-color: var(--roadmap-status-bg);
+            transition: transform ease-in-out 100ms;
+
+            @include size-above(sm) {
+                &.visible {
+                    &:nth-child(1) {
+                        @include pop(1000ms);
+                    }
+
+                    &:nth-child(4) {
+                        @include pop(1100ms);
+                    }
+
+                    &:nth-child(5) {
+                        @include pop(1200ms);
+                    }
+
+                    &:nth-child(8) {
+                        @include pop(1300ms);
+                    }
+
+                    &:nth-child(9) {
+                        @include pop(1400ms);
+                    }
+                }
+            }
 
             &.complete {
                 background-color: #2a9a2a;
@@ -148,14 +175,5 @@
                 }
             }
         }
-    }
-
-    .footnote {
-        font-style: italic;
-        font-size: toRem(15);
-    }
-
-    .wrapper {
-        text-decoration: none;
     }
 </style>

@@ -5,6 +5,7 @@
     import EmoticonHappyOutline from "svelte-material-icons/EmoticonHappyOutline.svelte";
     import { mobileWidth } from "../stores/screenDimensions";
     import FlipBox from "./FlipBox.svelte";
+    import Link from "./Link.svelte";
 
     let iconColor = "rgba(0,0,0,0.4)";
 
@@ -93,9 +94,7 @@
         </FlipBox>
     </div>
 
-    <div class="footnote">
-        <a href="/features">Click here for a full description of the product features.</a>
-    </div>
+    <Link path="features">Click here for a full description of the product features.</Link>
 </Section>
 
 <style type="text/scss">
@@ -180,10 +179,5 @@
                 }
             }
         }
-    }
-
-    .footnote {
-        font-style: italic;
-        font-size: toRem(15);
     }
 </style>

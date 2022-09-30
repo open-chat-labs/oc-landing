@@ -36,6 +36,9 @@ export interface Theme {
             txt: string;
             bg: string;
         };
+        date: {
+            bg: string;
+        };
     };
 }
 
@@ -94,4 +97,9 @@ export function getCurrentThemeName(): string {
 export function saveSeletedTheme(themeName: string): void {
     themeNameStore.set(themeName);
     localStorage.setItem("openchat_theme", themeName);
+}
+
+export function toggleTheme(): void {
+    const theme = getCurrentThemeName();
+    saveSeletedTheme(theme === "light" ? "dark" : "light");
 }

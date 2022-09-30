@@ -1,10 +1,20 @@
 <script lang="ts">
+    import Headline from "./Headline.svelte";
     import Section from "./Section.svelte";
     import Separator from "./Separator.svelte";
 </script>
 
 <Section lazy={false} id={"sns"}>
-    <h2 class="title">SNS launch</h2>
+    <div class="roadmap-header">
+        <div class="date">
+            <div class="quarter">Q4</div>
+            <div class="year">2022</div>
+        </div>
+
+        <Headline>
+            <div class="title">SNS launch</div>
+        </Headline>
+    </div>
     <div class="blurb">
         <p>
             Launching of a Service Nervous System (SNS) and handing over control of OpenChat to the
@@ -33,7 +43,16 @@
 <Separator />
 
 <Section lazy={true} id={"communities"}>
-    <h2 class="title">Communities</h2>
+    <div class="roadmap-header">
+        <div class="date">
+            <div class="quarter">Q1</div>
+            <div class="year">2023</div>
+        </div>
+
+        <Headline>
+            <div class="title">Communities</div>
+        </Headline>
+    </div>
     <div class="blurb">
         <p>
             Currently OpenChat is open to all. Any user or public group can be found by simply
@@ -63,7 +82,16 @@
 <Separator />
 
 <Section lazy={true} id={"user-rewards"}>
-    <h2 class="title">User rewards</h2>
+    <div class="roadmap-header">
+        <div class="date">
+            <div class="quarter">Q2</div>
+            <div class="year">2023</div>
+        </div>
+
+        <Headline>
+            <div class="title">User rewards</div>
+        </Headline>
+    </div>
     <div class="blurb">
         <p>
             The SNS launch will unlock the potential to reward users with CHAT tokens. This will
@@ -88,7 +116,16 @@
 <Separator />
 
 <Section lazy={true} id={"integrations"}>
-    <h2 class="title">Integrations</h2>
+    <div class="roadmap-header">
+        <div class="date">
+            <div class="quarter">Q3</div>
+            <div class="year">2023</div>
+        </div>
+
+        <Headline>
+            <div class="title">Integrations</div>
+        </Headline>
+    </div>
     <div class="blurb">
         <p>
             With communities we can also unlock the potential of third party integrations. One
@@ -111,7 +148,9 @@
 <Separator />
 
 <Section lazy={true} id={"video"}>
-    <h2 class="title">Voice & video</h2>
+    <Headline>
+        <div class="title">Voice & video</div>
+    </Headline>
     <div class="blurb">
         <p>
             Many (web2) apps in this space offer voice and video calling and we aim to do the same.
@@ -126,7 +165,9 @@
 <Separator />
 
 <Section lazy={true} id={"apps"}>
-    <h2 class="title">Native apps</h2>
+    <Headline>
+        <div class="title">Native apps</div>
+    </Headline>
     <div class="blurb">
         <p>
             Currently OpenChat is delivered as a responsive progressive web app. This means that it
@@ -156,7 +197,9 @@
 <Separator />
 
 <Section lazy={true} id={"e2e"}>
-    <h2 class="title">End to end encryption</h2>
+    <Headline>
+        <div class="title">End to end encryption</div>
+    </Headline>
     <div class="blurb">
         <p>
             Currently, while the Internet Computer does provide very strong security guarantees,
@@ -173,7 +216,9 @@
 <Separator />
 
 <Section lazy={true} id={"other"}>
-    <h2 class="title">Other features</h2>
+    <Headline>
+        <div class="title">Other features</div>
+    </Headline>
     <div class="blurb">
         <p>
             As we will be governed by the SNS, we will be obliged to listen to our users along the
@@ -209,9 +254,12 @@
 </Section>
 
 <style type="text/scss">
-    h2 {
+    :global(.roadmap-header h2) {
+        margin-bottom: 0 !important;
+    }
+
+    .title {
         text-align: left;
-        margin-bottom: $sp4;
     }
     .blurb {
         font-size: toRem(20);
@@ -234,6 +282,35 @@
                 left: toRem(-25);
                 color: darkseagreen;
             }
+        }
+    }
+
+    .roadmap-header {
+        display: flex;
+        align-items: center;
+        gap: $sp4;
+        margin-bottom: $sp4;
+    }
+
+    .date {
+        padding: $sp2 $sp4;
+        font-family: "Roboto", sans-serif;
+        font-weight: 900;
+        color: var(--roadmap-status-txt);
+        background-color: var(--roadmap-date-bg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .quarter {
+            font-size: toRem(30);
+            text-transform: uppercase;
+        }
+
+        .year {
+            font-size: toRem(15);
+            text-transform: uppercase;
         }
     }
 </style>

@@ -15,7 +15,7 @@
         margin: 0 auto;
 
         @include mobile() {
-            padding: toRem(20);
+            padding: toRem(16);
         }
     }
 
@@ -24,9 +24,7 @@
         background-color: var(--content-bg);
 
         &.offset {
-            // margin: 0 toRem(40);
             margin-top: toRem(-80);
-            // margin-bottom: toRem(40);
         }
 
         @include mobile() {

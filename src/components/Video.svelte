@@ -1,14 +1,15 @@
 <script lang="ts">
     import Section from "./Section.svelte";
     import { dimensions } from "../stores/screenDimensions";
+    import Headline from "./Headline.svelte";
 
     const ratio = 315 / 560;
     $: width = Math.min(600, $dimensions.width - 50);
     $: height = width * ratio;
 </script>
 
-<Section id={"video"}>
-    <h2>Watch a demo</h2>
+<Section lazy={true} id={"video"}>
+    <Headline>Watch a demo</Headline>
     <iframe
         {width}
         {height}

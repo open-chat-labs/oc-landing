@@ -2,6 +2,7 @@
     import Content from "./Content.svelte";
     import Separator from "./Separator.svelte";
     import Feature from "./Feature.svelte";
+    import Link from "./Link.svelte";
 </script>
 
 <Content offset={false}>
@@ -216,9 +217,7 @@
         <p>You can then discuss and vote on proposals from right inside your favourite chat app.</p>
     </Feature>
 
-    <div class="footnote">
-        <a href="/roadmap">Click here for details of our future roadmap.</a>
-    </div>
+    <Link path={"roadmap"}>Click here for details of our future roadmap.</Link>
 </Content>
 
 <style type="text/scss">
@@ -237,9 +236,5 @@
                 color: darkseagreen;
             }
         }
-    }
-    .footnote {
-        font-style: italic;
-        font-size: toRem(15);
     }
 </style>

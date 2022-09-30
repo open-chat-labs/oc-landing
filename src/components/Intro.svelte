@@ -2,10 +2,12 @@
     import Section from "./Section.svelte";
     import { mobileWidth } from "../stores/screenDimensions";
     import Separator from "./Separator.svelte";
+    import Headline from "./Headline.svelte";
+    import Link from "./Link.svelte";
 </script>
 
-<Section id={"intro"}>
-    <h2>Welcome to OpenChat</h2>
+<Section lazy={false} id={"intro"}>
+    <Headline>Welcome to OpenChat</Headline>
     <div class="grid">
         {#if !$mobileWidth}
             <div class="image-wrapper">
@@ -42,8 +44,8 @@
                 canisters. Anyone can see the guaranteed source code commit that is running on any
                 canister at any time. Each user is given their own canister which holds their direct
                 chat data, links to the groups they are members of, and also serves as a wallet
-                allowing OC users to hold and manage tokens. For details of the architecture <a
-                    href="/architecture">please see here.</a>
+                allowing OC users to hold and manage tokens. For details of the architecture <Link
+                    path="architecture">please see here.</Link>
             </p>
 
             <Separator />

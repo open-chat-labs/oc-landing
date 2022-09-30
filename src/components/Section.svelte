@@ -1,15 +1,13 @@
 <script lang="ts">
-    import { fade, fly } from "svelte/transition";
     import { inview } from "svelte-inview";
 
     export let lazy = true;
-
-    let visible = false;
+    export let visible = false;
 
     let options = {
         rootMargin: "50px",
         unobserveOnEnter: true,
-        threshold: [0.5],
+        threshold: [0.2],
     };
 
     export let id: string;
@@ -25,8 +23,8 @@
         <div class="container">
             <slot />
         </div>
-    {:else if visible}
-        <div transition:fly|local={{ y: 200, duration: 500 }} class="container">
+    {:else}
+        <div class="container lazy" class:visible>
             <slot />
         </div>
     {/if}
@@ -43,5 +41,16 @@
 
     .container {
         position: relative;
+
+        &.lazy {
+            transition: top ease-in-out 300ms;
+            visibility: hidden;
+            top: 200px;
+
+            &.visible {
+                visibility: visible;
+                top: 0;
+            }
+        }
     }
 </style>

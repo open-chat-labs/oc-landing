@@ -52,6 +52,9 @@ export function darkTheme(defaultTheme: Theme): Theme {
                 txt: txtHigh,
                 bg: primary,
             },
+            date: {
+                bg: primary,
+            },
         },
     };
 }

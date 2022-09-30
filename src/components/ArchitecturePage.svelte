@@ -1,10 +1,11 @@
 <script lang="ts">
     import Content from "./Content.svelte";
+    import Headline from "./Headline.svelte";
     import Separator from "./Separator.svelte";
 </script>
 
 <Content offset={false}>
-    <h2>Architecture</h2>
+    <Headline>Architecture</Headline>
 
     <img
         class="arch"

@@ -1,5 +1,6 @@
 <script lang="ts">
     import { mobileWidth } from "../stores/screenDimensions";
+    import Headline from "./Headline.svelte";
     import Section from "./Section.svelte";
 
     export let screenshotUrl: string | undefined = undefined;
@@ -16,7 +17,9 @@
                 <img src={screenshotUrl} alt={screenshotAlt} />
             </div>
         {/if}
-        <h2 class="title">{title}</h2>
+        <div class="title">
+            <Headline>{title}</Headline>
+        </div>
         <div class="blurb">
             <slot />
         </div>
