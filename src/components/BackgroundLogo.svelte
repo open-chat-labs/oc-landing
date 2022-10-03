@@ -25,5 +25,6 @@
     .logo {
         position: absolute;
         z-index: 0;
+        pointer-events: none;
     }
 </style>
