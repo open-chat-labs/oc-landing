@@ -26,8 +26,8 @@
                     src="../screenshots/chatbot.png" />
             {/if}
             <p>
-                Each user is given a canister holding their data, serving as a wallet so
-                they can send tokens as chat messages, and allowing OpenChat to scale to the 
+                Each user is given a canister which holds their data, serves as a wallet so
+                they can send tokens as chat messages, and allows OpenChat to scale to the 
                 whole planet!
             </p>            
             <Separator />            
@@ -41,7 +41,7 @@
             <p>
                 Soon OpenChat will be governed by its community as a DAO with its own CHAT token. 
                 A large proportion of CHAT will be given as rewards to users for positive 
-                contributions and to turbo-charge growth, making them part of a team of millions, 
+                contributions and to turbo-charge growth, making a team of millions of advocates, 
                 and allowing OpenChat to become a viable challenger to centralized big tech competitors!            
             </p>
         </div>
