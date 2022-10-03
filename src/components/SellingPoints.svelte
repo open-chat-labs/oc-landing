@@ -48,7 +48,7 @@
             <div slot="back" class="item back">
                 <span class="head">open source</span>
                 <span class="txt">
-                    All of the source code is available to inspect. We use repeatable builds so you
+                    All of the source code is available to inspect. We use repeatable, verifiable builds so you
                     can confirm that what <em>you</em> approved is what's actually running.
                 </span>
             </div>

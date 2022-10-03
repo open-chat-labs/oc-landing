@@ -78,7 +78,7 @@
                 <div class="txt-header">The future</div>
                 <div class="txt-desc">
                     We see great potential and have many ideas for the future, but what makes
-                    OpenChat unique is that it is the community that will decide the directions we
+                    OpenChat unique is that the community will decide the directions we
                     take and the priorities we pursue. We are excited to see what you come up with!
                 </div>
             </div>
