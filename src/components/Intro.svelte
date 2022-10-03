@@ -27,7 +27,7 @@
             {/if}
             <p>
                 Each user is given a canister holding their data, serving as a wallet so
-                users can send tokens as chat messages, and allowing OpenChat to scale to the 
+                they can send tokens as chat messages, and allowing OpenChat to scale to the 
                 whole planet!
             </p>            
             <Separator />            
@@ -41,7 +41,7 @@
             <p>
                 Soon OpenChat will be governed by its community as a DAO with its own CHAT token. 
                 A large proportion of CHAT will be given as rewards to users for positive 
-                contributions and to turbo-charge growth, making the users part of a team of millions, 
+                contributions and to turbo-charge growth, making them part of a team of millions, 
                 and allowing OpenChat to become a viable challenger to centralized big tech competitors!            
             </p>
         </div>
