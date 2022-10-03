@@ -133,7 +133,14 @@
             than the default.
         </p>
 
-        <p>You can share the url to a chat to make it easier for friends and family to join.</p>
+        <p>
+            You can share a registration url to make it easier for friends and family to join. This 
+            contains a code unique to you and means the system is able to link any users to your account 
+            who have joined using your url. In the near future referrals of genuine users will 
+            be rewarded with CHAT tokens. Note that any referrals made now will count towards CHAT rewards 
+            later and that early adopters stand to earn higher rewards. So start inviting now and help 
+            OpenChat grow!
+        </p>
 
         <p>
             You can configure various aspects of how chats behave. Play with these settings to find
@@ -179,7 +186,7 @@
 
     <Feature screenshotUrl={"../screenshots/search.gif"} screenshotAlt={"Search"} title={"Search"}>
         <p>
-            There a several ways to search within OpenChat. To search globally for users, publich
+            There a several ways to search within OpenChat. To search globally for users, public
             groups or messages, just use the universal search box directly under the user panel and
             above the chat list.
         </p>
