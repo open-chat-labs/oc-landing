@@ -84,7 +84,7 @@
         color: var(--txt);
         padding: $sp4;
         align-items: flex-end;
-        right: -12%;
+        right: -13%;
         flex-direction: column;
 
         @include mobile() {
