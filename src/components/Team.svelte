@@ -17,7 +17,7 @@
             imageUrl={"../hamish2.png"}
             hoverImageUrl={"../hamish.jpeg"}
             name={"Hamish"}
-            blurb={`After graduating with a degree in mathematics from Cambridge University, Hamish transitioned into the world of software engineering where he focused primarily on high throughput, low latency cloud based systems. Prior to joining DFINITY, he worked at Emirates where he quickly rose through the ranks, eventually leading the design of their new B2B hotel search engine.`} />
+            blurb={`After graduating with a degree in mathematics from Cambridge University, Hamish transitioned into the world of software engineering where he focused primarily on high throughput, low latency cloud based systems. Before building OpenChat, he worked at Emirates where he quickly rose through the ranks, eventually leading the design of their new B2B hotel search engine.`} />
         <TeamCard
             imageUrl={"../julian2.png"}
             hoverImageUrl={"../julian.jpg"}

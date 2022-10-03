@@ -3,7 +3,6 @@
     import { mobileWidth } from "../stores/screenDimensions";
     import Separator from "./Separator.svelte";
     import Headline from "./Headline.svelte";
-    import Link from "./Link.svelte";
 </script>
 
 <Section lazy={false} id={"intro"}>
@@ -14,15 +13,11 @@
                 <img class="img" alt="Open chat list" src="../screenshots/chatlist.png" />
             </div>
         {/if}
-
         <div class="right">
             <p>
-                OpenChat (OC) is a fully featured chat application running on the Internet Computer
-                (IC). It is a responsive, progressive web application (PWA) taking advantage of any
-                screen size and integrating with devices just like a native app, with notifications
-                on desktop and Android, and on iOS from next year.
+                OpenChat is a fully featured chat application running end-to-end on the 
+                Internet Computer blockchain.
             </p>
-
             {#if $mobileWidth}
                 <img
                     loading="lazy"
@@ -30,31 +25,24 @@
                     alt="Open chat desktop"
                     src="../screenshots/chatbot.png" />
             {/if}
-
             <p>
-                The IC is a decentralized global compute platform using novel block-chain technology
-                to achieve consensus within subnets. It is tamperproof, globally distributed, and
-                unstoppable.
+                Each user is given a canister holding their data, serving as a wallet so
+                they can send tokens as chat messages, and allowing OpenChat to scale to the 
+                whole planet!
+            </p>            
+            <Separator />            
+            <p>
+                OpenChat will bring chat to the wider Internet Computer ecosystem through 
+                integrations with other projects and will seek to play a role in the metaverse.
+                The planned communities capability will allow OpenChat to become a decentralized 
+                alternative to Slack in the workplace.
             </p>
-
-            <Separator />
-
+            <Separator />            
             <p>
-                The app is open source, uses repeatable builds, and runs as a collection of
-                canisters. Anyone can see the guaranteed source code commit that is running on any
-                canister at any time. Each user is given their own canister which holds their direct
-                chat data, links to the groups they are members of, and also serves as a wallet
-                allowing OC users to hold and manage tokens. For details of the architecture <Link
-                    path="architecture">please see here.</Link>
-            </p>
-
-            <Separator />
-
-            <p>
-                What <em>really</em> differentiates OpenChat, is that it will soon become a decentralized
-                app (dapp), itself governed as a DAO. It will have its own governance token called CHAT,
-                analogous to ICP, and will be controlled by a system called the SNS (Service Nervous
-                System) which is similar to the NNS (Network Nervous System) on the IC.
+                Soon OpenChat will be governed by its community as a DAO with its own CHAT token. 
+                A large proportion of CHAT will be given as rewards to users for positive 
+                contributions and to turbo-charge growth, making them part of a team of millions, 
+                and allowing OpenChat to become a viable challenger to centralized big tech competitors!            
             </p>
         </div>
     </div>
