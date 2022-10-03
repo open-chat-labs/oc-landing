@@ -10,7 +10,7 @@
     import { AuthClient, IdbStorage } from "@dfinity/auth-client";
     import type { Identity } from "@dfinity/agent";
     import { AuthProvider } from "./authProvider";
-    import { selectedAuthProviderStore } from "./stores/authProviders";
+    import { selectedAuthProviderStore, loggingIn } from "./stores/authProviders";
     import "./theme/themes";
 
     let mainEl: HTMLElement | undefined;
@@ -52,6 +52,7 @@
     });
 
     function doLogin(authProvider: AuthProvider): Promise<Identity> {
+        loggingIn.set(true);
         return authClient.then((c) => {
             return new Promise((resolve, reject) => {
                 c.login({
@@ -65,12 +66,14 @@
         });
     }
     function login(): void {
+        if ($loggingIn) return;
         doLogin($selectedAuthProviderStore)
-            .then((id) => {
+            .then((_id) => {
                 console.log("App.svelte - successfully logged in we should ideally reload now");
                 window.location.reload();
             })
             .catch((err) => {
+                loggingIn.set(false);
                 console.log("error logging in: ", err);
             });
     }
@@ -88,6 +91,12 @@
         }
     }
 </script>
+
+{#if $loggingIn}
+    <div class="block">
+        <img alt="logo" src="../spinner.svg" />
+    </div>
+{/if}
 
 <main class="main" bind:this={mainEl} on:scroll={onScroll}>
     <Header on:login={login} />
@@ -114,6 +123,25 @@
 </main>
 
 <style type="text/scss">
+    .block {
+        top: 0;
+        left: 0;
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        pointer-events: all;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+
+        img {
+            width: toRem(150);
+            height: toRem(150);
+            @include spin();
+        }
+    }
     .main {
         display: grid;
         grid-template-columns: 1f;
