@@ -14,11 +14,11 @@
         <TableOfContents />
 
         <div class="body">
-            <h2 id="product-service-overview">1) Product / Service Overview</h2>
+            <h2 id="1">1) Product / Service Overview</h2>
 
             <p class="blurb">
                 OpenChat is a fully featured chat application running on the <WhitepaperInternalLink
-                    id={"internet-computer-overview"}>Internet Computer</WhitepaperInternalLink>
+                    id={"2"}>Internet Computer</WhitepaperInternalLink>
                 blockchain similar to WhatsApp, Signal and Telegram, and will soon be getting a major
                 new capability called “communities” which are like Slack workspaces or Discord servers.
             </p>
@@ -35,8 +35,7 @@
                 The app is <a href="https://github.com/dfinity-lab/open-chat" target="_blank"
                     >open source</a>
                 and runs as a collection of
-                <WhitepaperInternalLink id={"canister-smart-contracts"}
-                    >canister smart-contracts</WhitepaperInternalLink
+                <WhitepaperInternalLink id={"2-1"}>canister smart-contracts</WhitepaperInternalLink
                 >. It is possible to see the code running on any canister at any time with a link
                 back to the particular version in source control and to independently verify this is
                 true.
@@ -60,9 +59,8 @@
                 ICP. The DAO will be realized by a system called the <a
                     href="https://internetcomputer.org/docs/current/tokenomics/"
                     target="_blank">SNS</a>
-                (Service Nervous System) analogous to the <WhitepaperInternalLink
-                    id="network-nervous-system">NNS</WhitepaperInternalLink> (Network Nervous System)
-                on the Internet Computer.
+                (Service Nervous System) analogous to the <WhitepaperInternalLink id="2-2"
+                    >NNS</WhitepaperInternalLink> (Network Nervous System) on the Internet Computer.
             </p>
             <p class="blurb">
                 The focus of the founding dev team has been first and foremost on building a rich,
@@ -75,7 +73,7 @@
                 <Separator />
             </div>
 
-            <h2 id="internet-computer-overview">2) Internet Computer Overview</h2>
+            <h2 id="2">2) Internet Computer Overview</h2>
 
             <p class="blurb">
                 The <a
@@ -93,7 +91,7 @@
                 users.
             </p>
 
-            <h3 id="canister-smart-contracts">Canister smart-contracts</h3>
+            <h3 id="2-1">Canister smart-contracts</h3>
 
             <p class="blurb">
                 Applications on the IC are composed of canister smart-contracts organized into
@@ -125,7 +123,7 @@
                 the IC is simplified compared to traditional IT stacks.
             </p>
 
-            <h3 id="network-nervous-system">Network Nervous System (NNS)</h3>
+            <h3 id="2-2">Network Nervous System (NNS)</h3>
 
             <p class="blurb">
                 A key feature of the Internet Computer blockchain is the Network Nervous System
@@ -152,6 +150,64 @@
             <div class="sep">
                 <Separator />
             </div>
+
+            <h2 id="3">3) OpenChat DAO</h2>
+
+            <h3 id="3-1">Summary</h3>
+
+            <ul class="burb">
+                <li>
+                    The OpenChat DAO is being formed to operate and steer the direction of OpenChat
+                    which should be considered a public good, thus owned by no-one.
+                </li>
+                <li>
+                    The OpenChat DAO and the OpenChat service are fully on-chain with no direct
+                    dependencies on off-chain services.
+                </li>
+                <li>
+                    The OpenChat DAO is operated using NNS blessed SNS canisters and SNS subnet.
+                </li>
+                <li>
+                    A proposal to the NNS will be made to ask for the approval necessary to create
+                    this DAO and associated public good.
+                </li>
+            </ul>
+
+            <h3 id="3-2">Creation of the DAO</h3>
+
+            <p class="blurb">
+                The OpenChat SNS will be created from the latest NNS blessed SNS canisters by the
+                founding dev team. Its <WhitepaperInternalLink id="5-2"
+                    >initial configuration</WhitepaperInternalLink> will be held permanently by the SNS
+                and be publicly inspectable. At this point control of the existing OpenChat operating
+                canisters will be transferred from the founding dev team to the SNS, such that, henceforth,
+                only the SNS may change OpenChat.
+            </p>
+
+            <p class="blurb">
+                To initiate creation of the OpenChat DAO an NNS proposal will be submitted
+                specifying the parameters of the decentralization sale and an initial token
+                allocation. If the proposal is accepted the NNS will immediately start a
+                decentralization sale of CHAT tokens based on this proposal, to decentralize
+                governance control to the public and raise an endowment for ongoing development and
+                growth.
+            </p>
+
+            <p class="blurb">
+                Anyone can take part in the sale by depositing ICP into the SNS using the NNS
+                launchpad. Once the sale has completed each investor will receive the same
+                proportion of CHAT tokens as their share of the ICP deposited and the proceeds of
+                the sale will be held in an ICP ledger account owned by the SNS governance canister.
+            </p>
+
+            <p class="blurb">
+                At this point the DAO creation is completed and the running OpenChat service should
+                be considered a public good.
+            </p>
+
+            <div class="sep">
+                <Separator />
+            </div>
         </div>
     </div>
 </Content>
@@ -162,13 +218,16 @@
     }
 
     h2,
-    h3,
-    h4 {
+    h3 {
         font-family: "Roboto", sans-serif;
     }
 
     h3 {
         margin-top: $sp6;
+    }
+
+    .blurb {
+        font-size: toRem(16);
     }
 
     :global(.whitepaper .body .whitepaper-link) {
@@ -196,6 +255,7 @@
     }
 
     .sep {
+        margin-top: $sp6;
         text-align: center;
     }
 </style>
