@@ -1,7 +1,7 @@
 <script lang="ts">
     import HomePage from "./HomePage.svelte";
     import ArchitecturePage from "./ArchitecturePage.svelte";
-    import TokenomicsPage from "./TokenomicsPage.svelte";
+    import WhitepaperPage from "./WhitepaperPage.svelte";
     import FeaturesPage from "./FeaturesPage.svelte";
     import RoadmapPage from "./RoadmapPage.svelte";
     import { createEventDispatcher, onMount, tick } from "svelte";
@@ -29,8 +29,8 @@
         if (path === "architecture") {
             return [ArchitecturePage, "architecture"];
         }
-        if (path === "tokenomics") {
-            return [TokenomicsPage, "tokenomics"];
+        if (path === "whitepaper") {
+            return [WhitepaperPage, "whitepaper"];
         }
         if (path === "features") {
             return [FeaturesPage, "features"];

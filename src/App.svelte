@@ -98,7 +98,7 @@
     </div>
 {/if}
 
-<main class="main" bind:this={mainEl} on:scroll={onScroll}>
+<main id="main" class="main" bind:this={mainEl} on:scroll={onScroll}>
     <Header on:login={login} />
 
     <Router on:login={login} on:scrollToTop={scrollToTop} />

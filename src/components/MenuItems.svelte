@@ -23,8 +23,8 @@
         <div class="menu-item" class:selected={$currentPath === "roadmap"}>
             <Link on:linkClicked={close} mode={"menu"} path="roadmap">Roadmap</Link>
         </div>
-        <div class="menu-item" class:selected={$currentPath === "tokenomics"}>
-            <Link on:linkClicked={close} mode={"menu"} path="tokenomics">Tokenomics</Link>
+        <div class="menu-item" class:selected={$currentPath === "whitepaper"}>
+            <Link on:linkClicked={close} mode={"menu"} path="whitepaper">Whitepaper</Link>
         </div>
         <div class="menu-item" class:selected={$currentPath === "architecture"}>
             <Link on:linkClicked={close} mode={"menu"} path="architecture">Architecture</Link>
