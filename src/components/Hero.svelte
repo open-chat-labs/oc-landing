@@ -18,11 +18,9 @@
 <HeroWrapper imageUrl={`../network${idx}.jpg`}>
     <div class="text">
         <span class:loaded class="open">
-            {#if !$mobileWidth}
-                <div class="logo" class:loaded>
-                    <img alt="logo" src="../spinner.svg" />
-                </div>
-            {/if}
+            <div class="logo" class:loaded>
+                <img alt="logo" src="../spinner.svg" />
+            </div>
             <span>Open</span>
         </span>
         <span class:loaded class="chat">Chat</span>
@@ -54,7 +52,7 @@
 {/if}
 
 <style type="text/scss">
-    $speed: 400ms;
+    $speed: 500ms;
 
     .images {
         display: flex;
@@ -76,7 +74,6 @@
     .text {
         position: relative;
         width: 100%;
-        margin-bottom: toRem(20);
         display: flex;
         justify-content: center;
     }
@@ -87,7 +84,6 @@
         font-weight: 900;
         display: inline-flex;
         align-items: center;
-        height: toRem(150);
         // font-style: italic;
         font-size: toRem(120);
         line-height: 80%;
@@ -98,7 +94,7 @@
         opacity: 0;
 
         @include mobile() {
-            font-size: toRem(80);
+            font-size: toRem(70);
             line-height: 70%;
         }
     }
@@ -114,6 +110,11 @@
 
         &.loaded {
             transform: rotate(0);
+        }
+
+        @include mobile() {
+            width: toRem(70);
+            height: toRem(70);
         }
     }
 

@@ -16,11 +16,12 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
+        gap: $sp7;
 
-        @include size-above(sm) {
-            gap: toRem(30);
+        @include mobile() {
+            gap: $sp6;
         }
     }
 </style>

@@ -15,6 +15,7 @@
 </script>
 
 <a
+    class="link"
     class:menu={mode === "menu"}
     href={`/${path}`}
     class:selected={$currentPath === path}
