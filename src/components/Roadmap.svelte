@@ -17,9 +17,11 @@
     </div>
     <div class="blurb">
         <p>
-            Launching of a Service Nervous System (SNS) and handing over control of OpenChat to the
-            control of that SNS. From this point forward the system will be democratically
-            controlled by the holders of the CHAT utility token.
+            When the OpenChat SNS is created control of OpenChat will be handed from the 
+            core dev team to the SNS. A <em>decentralization sale</em> will be initiated by 
+            NNS proposal which will decentralize the governance of OpenChat by distributing the
+            CHAT utility token to the wider community. It will also raise an endowment to fund 
+            the ongoing development and growth of OpenChat.
         </p>
 
         <p>
@@ -27,8 +29,7 @@
             will not be under any centralised control. We, the developement team, will be here to
             provide direction and to implement the roadmap but we will only be able to make changes
             to the system via an approved SNS proposal voted upon by those who have demonstrated
-            their commitment to the long term future of OpenChat by investing in the initial SNS
-            token sale.
+            their commitment to the long term future of OpenChat by staking their CHAT tokens.
         </p>
 
         <p>
@@ -56,8 +57,8 @@
     <div class="blurb">
         <p>
             Currently OpenChat is open to all. Any user or public group can be found by simply
-            searching. For many scenarios this is perfectly fine. But in the near future we will
-            deliver a new feature which will remove a couple of limitations with this model.
+            searching. For many scenarios this is perfectly fine. But in the near term we will
+            deliver a new feature which will remove some limitations of this model.
         </p>
 
         <p>
