@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { showAuthProviders } from "../stores/authProviders";
+    import { showAuthProviders, loggingIn } from "../stores/authProviders";
 
-    $: txt = $showAuthProviders ? "Sign in or register" : "Sign in";
+    $: txt = $loggingIn ? "Signing in ..." : $showAuthProviders ? "Sign in or register" : "Sign in";
 </script>
 
 <div class="launch">{txt}</div>

@@ -53,3 +53,5 @@ export const showAuthProviders = readable(false, (set) => {
         set(!userCreated && noDelegation);
     });
 });
+
+export const loggingIn = writable(false);
