@@ -837,6 +837,172 @@
             </div>
 
             <h2 id="7">Tokenomics</h2>
+
+            <h3 id="7-1">Total supply levers</h3>
+
+            <p class="blurb">
+                At genesis the total supply of CHAT tokens will be 1B. The supply will increase if
+                more tokens are minted and decrease if tokens are burned.
+            </p>
+
+            <p class="blurb">
+                The SNS is configured to mint 5% of the total supply annually to pay voting rewards
+                to participating neurons. This value of 5% could be subsequently changed by
+                proposal. It is also possible for the SNS to mint tokens by proposal although it is
+                unlikely the OpenChat DAO will elect to do this.
+            </p>
+
+            <p class="blurb">The only way the SNS can burn tokens is by proposal.</p>
+
+            <h3 id="7-2">Income and outgoings</h3>
+
+            <p class="blurb">
+                At genesis the SNS will have a treasury of ICP from the decentralization sale and
+                530M CHAT tokens.
+            </p>
+
+            <p class="blurb">
+                The SNS will receive an income in CHAT tokens from premium features, transaction
+                fees, 3rd party integrations etc. The SNS will also receive an income in ICP from
+                the NNS voting rewards of its large ICP neuron.
+            </p>
+
+            <p class="blurb">
+                The SNS will have various outgoings. It will use ICP to pay the OpenChat dapp
+                hosting costs (cycles), 3rd parties for services, and potentially in the future, the
+                core dev team. It will use CHAT to pay user rewards and community bounties.
+            </p>
+
+            <p class="blurb">
+                In the early years, outgoings will outstrip income and the treasury will largely be
+                used to fund user rewards and community bounties. The expectation is that as income
+                grows over time it will eventually balance outgoings. A higher income would also
+                allow a higher rate of user rewards and bounties to encourage higher growth in users
+                and usage.
+            </p>
+
+            <p class="blurb">
+                As the OpenChat DAO sees fit it can choose to burn CHAT tokens to reduce the total
+                supply. The expectation is that over several years the SNS will be able to afford to
+                burn CHAT at an increasing rate until the burn rate matches the minting rate from
+                voting rewards and the total supply becomes constant.
+            </p>
+
+            <p class="blurb">
+                The following diagram depicts a projection of the total supply of CHAT over time.
+                For the purposes of this projection it is assumed that the reward rate will remain
+                at a constant 5% and that the burn rate will start at 0.125%, increasing by a factor
+                of 1.5 each year, until it balances the reward rate.
+            </p>
+
+            <p class="blurb todo">Insert diagram here</p>
+
+            <h3 id="7-3">Token price</h3>
+
+            <p class="blurb">
+                There are various factors that will influence the price of CHAT tokens such as
+            </p>
+            <ul class="blurb">
+                <li>Total supply</li>
+                <li>Market sentiment</li>
+                <li>Income</li>
+                <li>Costs</li>
+                <li>Liquid supply</li>
+            </ul>
+            <p class="blurb">
+                We have discussed total supply but arguably liquid supply is a bigger factor when
+                considering the token price.
+            </p>
+
+            <p class="blurb">
+                After the decentralization sale, participants will receive a basket of neurons of
+                varying dissolve delays with only 1/13 being immediately liquid. The voting reward
+                rate, initialized to 5%, is expected to encourage token holders to lock up a certain
+                proportion of tokens thus, at least temporarily, removing them from the liquid
+                supply. In the case of the seed funders, every neuron has a 1 year vesting period
+                before it can even start dissolving. In the case of the founding dev team, every
+                neuron has a 3 year vesting period.
+            </p>
+
+            <p class="blurb">
+                There are various tokenomics parameters which can affect the proportion of CHAT that
+                is locked up. These include the max dissolve delay, the dissolve delay bonus, min
+                dissolve delay to vote, max age, max age bonus, and voting reward rate. We have
+                carefully chosen <WhitepaperInternalLink id="5-2"
+                    >initial values</WhitepaperInternalLink> for these parameters which we believe provide
+                a good balance of incentives but these are all levers available to the DAO to allow it
+                to influence the total and liquid supply and therefore the price if so desired.
+            </p>
+
+            <p class="blurb">
+                Consider the SNS treasury of CHAT tokens. These tokens are liquid but are only being
+                trickled out (in percentage terms) to the community as user rewards and bounties,
+                and then only some proportion will find their way onto the market (DEXes). It is a
+                similar story for the portion of CHAT held in the NNS reserve - it is liquid but
+                will not enter the market unless the DAO decides to conduct a future sale.
+            </p>
+
+            <p class="blurb">
+                As a general rule the DAO will want the price of the token to rise over time but
+                this has to be balanced against other factors such as the growth of the app. For
+                instance it might be desirable in some circumstances to turn the user reward taps up
+                higher to encourage more user growth but in the short term that could negatively
+                impact price by increasing the liquid supply.
+            </p>
+
+            <h3 id="7-4">Voting power over time</h3>
+
+            <p class="blurb">
+                The following diagram depicts a projection of the voting power over time segmented
+                by founding dev team & seed funders and the rest of the token holder community. This
+                projection is derived on the basis of the <WhitepaperInternalLink id="5-2"
+                    >initial SNS parameter values</WhitepaperInternalLink
+                >, the <WhitepaperInternalLink id="5-1"
+                    >initial token distribution</WhitepaperInternalLink
+                >, intrinsic properties of founder/funder neurons and some assumptions:
+            </p>
+
+            <ul class="blurb">
+                <li>The SNS will distribute 20% of its treasury annually</li>
+                <li>
+                    The dev team and seed funders will keep 92% of their neurons staked for the
+                    period
+                </li>
+                <li>Other CHAT holders will stake 50% of their neurons going forwards</li>
+                <li>The average dissolve delay for a neuron will be 6.5 months</li>
+                <li>
+                    20% CHAT sold in decentralization sale and remaining 9% allocated for sale
+                    remains unsold. The
+                </li>
+                <li>
+                    founding dev team and seed funders have their voting power reduced as a
+                    proportion of CHAT sold out of total allocation for sale = 20/29 = 69%
+                </li>
+            </ul>
+
+            <p class="blurb">
+                The full model used to plot this graph can be found in <a
+                    href="https://docs.google.com/spreadsheets/d/1-LuBsCXxXdpia0-CDEY5eFveczp3eQdM3BponEX3Tq0/edit#gid=1167954061"
+                    target="_blank">this spreadsheet</a
+                >.
+            </p>
+
+            <p class="blurb todo">Insert voting power over time chart here</p>
+
+            <p class="blurb">
+                In the first year the share of voting power held by the community is expected to
+                decrease as it is assumed they will only stake 50% of their tokens going forwards
+                whereas the founding dev team and seed funders expect to keep 92% staked. However,
+                thereafter it is expected that voting power will shift further and further towards
+                the community as more tokens are distributed. Importantly the balance of voting
+                power should always remain in the hands of the wider community.
+            </p>
+
+            <div class="sep">
+                <Separator />
+            </div>
+
+            <h2 id="8">Current user growth and activity</h2>
         </div>
     </div>
 </Content>
