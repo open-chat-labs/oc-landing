@@ -15,8 +15,8 @@
         {/if}
         <div class="right">
             <p>
-                OpenChat is a fully featured chat application running end-to-end on the 
-                Internet Computer blockchain.
+                OpenChat is a fully featured chat application running end-to-end on the Internet
+                Computer blockchain.
             </p>
             {#if $mobileWidth}
                 <img
@@ -26,23 +26,23 @@
                     src="../screenshots/chatbot.png" />
             {/if}
             <p>
-                Each user is given a canister which holds their data, serves as a wallet so
-                they can send tokens as chat messages, and allows OpenChat to scale to the 
-                whole planet!
-            </p>            
-            <Separator />            
+                Each user is given a canister which holds their data, serves as a wallet so they can
+                send tokens as chat messages, and allows OpenChat to scale to the whole planet!
+            </p>
+            <Separator />
             <p>
-                OpenChat will bring chat to the wider Internet Computer ecosystem through 
-                integrations with other projects and will seek to play a role in the metaverse.
-                The planned communities capability will allow OpenChat to become a decentralized 
+                OpenChat will bring chat to the wider Internet Computer ecosystem through
+                integrations with other projects and will seek to play a role in the metaverse. The
+                planned communities capability will allow OpenChat to become a decentralized
                 alternative to Slack in the workplace.
             </p>
-            <Separator />            
+            <Separator />
             <p>
-                Soon OpenChat will be governed by its community as a DAO with its own CHAT token. 
-                A large proportion of CHAT will be given as rewards to users for positive 
-                contributions and to turbo-charge growth, making a team of millions of advocates, 
-                and allowing OpenChat to become a viable challenger to centralized big tech competitors!            
+                Soon OpenChat will be governed by its community as a DAO with its own CHAT token. A
+                large proportion of CHAT will be given as rewards to users for positive
+                contributions and to turbo-charge growth, making a team of millions of advocates,
+                and allowing OpenChat to become a viable challenger to centralized big tech
+                competitors!
             </p>
         </div>
     </div>
