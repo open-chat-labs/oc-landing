@@ -733,6 +733,110 @@
             </div>
 
             <h2 id="6">OpenChat SNS treasury</h2>
+
+            <p class="blurb">The SNS will hold a treasury of ICP tokens and CHAT tokens.</p>
+
+            <p class="blurb">
+                Immediately after the decentralization sale the SNS will have an ICP ledger account
+                with the ICP raised in the sale and a CHAT ledger account with 530M tokens. The plan
+                for these CHAT tokens is <WhitepaperInternalLink id="5-1-3"
+                    >described above</WhitepaperInternalLink> but the treasury is available to be used
+                by the DAO through proposals as it sees fit.
+            </p>
+
+            <p class="blurb">
+                Soon after the decentralization sale, as and when DEXes are available, proposals
+                will be made to transfer CHAT from the 20M reserve into a handful of AMM liquidity
+                pools alongside proposals to transfer the corresponding value of ICP from the
+                treasury to the AMM liquidity pools. This will enable the trading of CHAT.
+            </p>
+
+            <p class="blurb">
+                There will be a proposal to stake a large portion of ICP, say 80%, as an 8 year
+                neuron. This neuron would participate in NNS voting by following an OpenChat beacon
+                neuron which would seek to influence the ICs agenda to suit the long term interests
+                of the OpenChat DAO. It would also earn voting rewards for the DAO which could be
+                used to cover ongoing costs or build up a reserve.
+            </p>
+
+            <p class="blurb">
+                Any liquid ICP in the reserve could be used directly, or the DAO could swap CHAT
+                from the CHAT reserve for ICP at a DEX, and use it to fund expenses such as <WhitepaperInternalLink
+                    id="6-1">
+                    cycles for hosting
+                </WhitepaperInternalLink>, <WhitepaperInternalLink id="6-2"
+                    >3rd party services</WhitepaperInternalLink
+                >, and potentially later for <WhitepaperInternalLink id="6-3">
+                    paying the development team
+                </WhitepaperInternalLink>.
+            </p>
+
+            <h3 id="6-1">ICP for cycles to fund hosting</h3>
+
+            <p class="blurb">
+                Initially, proposals will be created to transfer ICP as needed to the account of a
+                designated developer who will use it to buy cycles and top-up the root OpenChat
+                canister. Going forwards, the root OpenChat canister can be programmed to
+                automatically create a proposal when it is below a threshold of cycles to transfer
+                ICP to itself and burn it for cycles to run the dapp.
+            </p>
+
+            <h3 id="6-2">3rd party services</h3>
+
+            <p class="blurb">
+                The intention is for OpenChat to have no off-chain dependencies so that it is not
+                necessary to trust any human agent, for example to transact in FIAT currencies. At
+                the moment we have the following off-chain dependencies:
+            </p>
+
+            <ul class="blurb">
+                <li>
+                    Phone number verification (which we use as evidence of unique humanity and
+                    reward verified users with some premium features). At the time of writing this
+                    is implemented using a small executable on AWS which polls an OpenChat canister
+                    and sends queued text messages, each containing a verification code, using an
+                    AWS service. We plan to integrate with NFID (from Identity Labs) and use their
+                    service to verify user phone numbers. We can then use an SNS proposal to send
+                    ICP to Identity Labs on an ongoing basis as payment.
+                </li>
+                <li>
+                    Sending push notifications to browsers (and later native devices). In a similar
+                    vein we use an executable on AWS to query an OpenChat canister and push any
+                    queued notifications. This will be replaced by an upcoming capability to make
+                    fire and forget HTTP calls directly from IC canisters
+                </li>
+                <li>
+                    Serving the dapp on oc.app (hosted on AWS). Eventually this capability will be
+                    built into the boundary nodes - <a
+                        href="https://forum.dfinity.org/t/boundary-node-roadmap/15562"
+                        target="_blank">see here</a>
+                </li>
+            </ul>
+
+            <h3 id="6-3">Pay the development team</h3>
+
+            <p class="blurb">
+                Initially at least DFINITY will continue to fund the OpenChat development team and
+                thus a core contributor to the OpenChat open source project. DFINITY is expecting to
+                migrate its day to day business from existing web2 chat solutions (i.e. Slack) to
+                using IC based web3 solutions for its needs, and by funding the OpenChat open source
+                project is able to influence the roadmap of the project to help ensure the
+                enterprise features it requires are prioritized. This does not mean that DFINITY is
+                the only contributor, and OpenChat welcomes community contributions.
+            </p>
+
+            <p class="blurb">
+                At some point it is likely this funding will stop and the OpenChat DAO will need to
+                fund its own development. In this case the development team(s) can make proposals to
+                the SNS to receive ICP for ongoing funding. For example the team could make a
+                proposal each quarter with a development plan and a request for funds.
+            </p>
+
+            <div class="sep">
+                <Separator />
+            </div>
+
+            <h2 id="7">Tokenomics</h2>
         </div>
     </div>
 </Content>
@@ -774,6 +878,7 @@
         display: grid;
         grid-template-columns: 4fr 1fr;
         background-color: rgba(255, 255, 255, 0.1);
+        margin-bottom: $sp4;
 
         > div {
             padding: toRem(12);
