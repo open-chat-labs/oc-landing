@@ -558,6 +558,181 @@
                 exchange, or buy premium features. Using the SNS UI users will also be able to stake
                 their CHAT as neurons, take part in OpenChat governance and earn voting rewards.
             </p>
+
+            <div class="sep">
+                <Separator />
+            </div>
+
+            <h2 id="5">Token allocation at SNS genesis</h2>
+
+            <h3 id="5-1">Initial token allocation</h3>
+
+            <p class="blurb">
+                The SNS will be initialized with 1 billion CHAT tokens allocated in the following
+                proportions.
+            </p>
+
+            <p class="blurb todo">Allocation chart goes here - come back to this</p>
+
+            <h4 id="5-1-1">NNS controlled (yellow)</h4>
+
+            <p class="blurb">
+                The NNS will initially be allocated 29% of the total supply of CHAT tokens. 20% will
+                be immediately put up for sale to decentralize the governance and raise funds. The
+                remaining 9% will be held in reserve until some future time when there would be a
+                subsequent NNS proposal to either sell the reserve or burn it.
+            </p>
+
+            <p class="blurb">
+                Investors in the decentralization sale will deposit ICP into the SNS and once the
+                sale has completed they will receive the same proportion of CHAT tokens as their
+                share of the ICP deposited. Each investor will receive their CHAT as a basket of 13
+                equal value neurons. The first neuron will have a zero dissolve delay and so be
+                immediately disbursable to liquid CHAT tokens. Each subsequent neuron will have a
+                dissolve delay one month greater than the previous, so from 1-12 months.
+            </p>
+
+            <h4 id="5-1-2">Founders and funders (pink)</h4>
+
+            <p class="blurb">
+                OpenChat has been built by a team of 3 developers since January 2021 and has
+                received seed funding from the <a href="https://dfinity.org/" target="_blank"
+                    >DFINITY foundation</a
+                >. Each of the 3 founding developers will be allocated a share of 4% of the CHAT
+                tokens and the DFINITY foundation will be allocated a share of 6%. As above each
+                party will receive their share as a basket of 13 equal value neurons, the first
+                liquid and the rest with dissolve delays increasing from 1-12 months. However there
+                are two special properties unique to these “founding dev team and seed funder”
+                neurons.
+            </p>
+
+            <p class="blurb">
+                Firstly, they are configured so that their voting power is reduced as a proportion
+                of the CHAT sold out of the total reserve for sale. In the case of OpenChat we are
+                selling 20% out of a total sale reserve of 29% so each founding dev team & seed
+                funder neuron will have its voting power reduced by a factor of 20/29 (about 69%).
+                If there was a future sale for a further 5% of the reserve then the voting power of
+                these neurons would increase to 25/29 of the standard value. This is so that the
+                <strong>
+                    voting power of the founding dev team and seed funders is less than the voting
+                    power held by the rest of the community
+                </strong>. It also means the voting rewards of these neurons are reduced in the same
+                proportion, and furthermore, if they are disbursed before all of the reserve has
+                been sold, only that same proportion of liquid CHAT will be given.
+            </p>
+
+            <p class="blurb todo">Voting power at genesis chart goes here</p>
+
+            <p class="blurb">
+                Secondly, these neurons will have an additional lockup (or vesting) period before
+                they can even start to dissolve (this doesn’t affect the 1st neuron because it is
+                already dissolved). The DFINITY foundation neurons will have a vesting period of 1
+                year and the dev team neurons will have a vesting period of 3 years. This is to
+                ensure that the founding team remains committed to the project in the long term and
+                cannot “rug-pull” investors.
+            </p>
+
+            <h4 id="5-1-3">SNS treasury (blue)</h4>
+
+            <p class="blurb">
+                After the decentralization sale the SNS will be left with a treasury of the
+                remaining 53% of CHAT tokens.
+            </p>
+
+            <p class="blurb">
+                The bulk, 38% percent, will be used over time to automatically <WhitepaperInternalLink
+                    id="4-2">reward users</WhitepaperInternalLink> who positively contribute and help
+                OpenChat grow.
+            </p>
+
+            <p class="blurb">
+                13% will be reserved to pay community bounties, by SNS proposal, to compensate
+                people who contribute to OpenChat more generally. This could be used for instance to
+                reward 3rd party developers for code contributions.
+            </p>
+
+            <p class="blurb">
+                The remaining 2% will be used to provide initial liquidity pools for DEXes
+                (decentralized exchanges). In order for CHAT tokens to be traded it is necessary to
+                list CHAT on one or more exchanges. The intention is to trade on IC based DEXes. To
+                list CHAT on a DEX implementing an <a
+                    href="https://academy.binance.com/en/articles/what-is-an-automated-market-maker-amm"
+                    target="_blank">AMM</a> it is necessary to provide a liquidity pool of CHAT backed
+                by another token, in our case ICP raised from the decentralization sale. We plan to make
+                CHAT available on several DEXes as and when they are available. For each DEX it will
+                be necessary to create a proposal to transfer some CHAT from the SNS to the DEX, and
+                another proposal to transfer an equal value of ICP from the SNS to the DEX. The plan
+                is to “seed” these DEXes with the 2% of CHAT tokens set aside for this purpose although
+                this might not all happen at once.
+            </p>
+
+            <h3 id="5-2">Initial SNS configuration</h3>
+
+            <p class="blurb">
+                The SNS will initially be configured with the values shown in the tables below which
+                can all subsequently be changed by proposal.
+            </p>
+
+            <div class="tab blurb">
+                <div>Transaction fee in CHAT tokens that must be paid for ledger transfers</div>
+                <div>0.01</div>
+                <div>Number of CHAT tokens that a rejected proposal costs the proposer</div>
+                <div>100</div>
+                <div>Minimum number of CHAT tokens that can be staked in a neuron</div>
+                <div>100</div>
+                <div>Maximum voting period for a proposal</div>
+                <div>4 days</div>
+                <div>Proportion of voting power needed for a proposal to be accepted</div>
+                <div>3%</div>
+                <div>Minimum neuron dissolve delay to vote</div>
+                <div>1 month</div>
+                <div>Maximum neuron dissolve delay</div>
+                <div>1 year</div>
+                <div>Maximum dissolve delay bonus</div>
+                <div>2x</div>
+                <div>Maximum age for age bonus</div>
+                <div>6 months</div>
+                <div>Maximum age bonus</div>
+                <div>1.25x</div>
+                <div>Percentage of total supply that will be minted annually for rewards</div>
+                <div>5%</div>
+            </div>
+
+            <h3 id="5-3">SNS decentralization sale configuration</h3>
+
+            <p class="blurb">
+                The decentralization sale will be configured with the values shown below.
+            </p>
+
+            <div class="tab blurb">
+                <div>The total number of CHAT tokens to be sold</div>
+                <div>200,000,000 (20%)</div>
+                <div>The maximum ICP to be raised</div>
+                <div>1,000,000</div>
+                <div>The minimum ICP to be raised (otherwise sale fails and ICP returned)</div>
+                <div>500,000</div>
+                <div>Start date of sale</div>
+                <div>05-10-2022 at 15:00 GMT</div>
+                <div>End date of sale (unless maximum ICP raised sooner)</div>
+                <div>19-10-2022 at 15:00 GMT</div>
+                <div>Minimum number of buyers</div>
+                <div>100</div>
+                <div>Minimum ICP per buyer</div>
+                <div>1</div>
+            </div>
+
+            <p class="blurb">
+                The reason to impose a maximum target is to give investors a minimum bound on the
+                number of CHAT tokens they will receive for their ICP investment. The lower bound of
+                0.5M ICP and the upper bound of 1M ICP for 20% of the tokens gives the OpenChat DAO
+                an initial total valuation between 2.5M ICP and 5M ICP.
+            </p>
+
+            <div class="sep">
+                <Separator />
+            </div>
+
+            <h2 id="6">OpenChat SNS treasury</h2>
         </div>
     </div>
 </Content>
@@ -586,6 +761,35 @@
 
         li {
             margin-bottom: $sp3;
+        }
+
+        &.todo {
+            font-weight: 900;
+            color: var(--secondary);
+        }
+    }
+
+    .tab {
+        font-size: toRem(14);
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+        background-color: rgba(255, 255, 255, 0.1);
+
+        > div {
+            padding: toRem(12);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+            &:nth-child(odd) {
+                border-right: 1px solid rgba(255, 255, 255, 0.3);
+            }
+
+            &:nth-child(even) {
+                text-align: right;
+            }
+
+            &:last-child() {
+                border-bottom: none;
+            }
         }
     }
 
