@@ -3,8 +3,9 @@
     import { AuthProvider } from "../authProvider";
     import ChevronDown from "svelte-material-icons/ChevronDown.svelte";
     import ChevronUp from "svelte-material-icons/ChevronUp.svelte";
-    import { showAuthProviders, selectedAuthProviderStore } from "../stores/authProviders";
+    import { loggingIn, showAuthProviders, selectedAuthProviderStore } from "../stores/authProviders";
     import { createEventDispatcher } from "svelte";
+    import Link from "./Link.svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -20,8 +21,10 @@
     }
 </script>
 
-{#if $showAuthProviders}
-    <div class="wrapper link">
+<div class="wrapper link">
+    {#if $loggingIn}
+        {"signing in ..."}
+    {:else if $showAuthProviders}
         {#if !context}
             <div class="select" on:click={() => (showMenu = !showMenu)}>
                 <div class="value">{"Authentication"}</div>
@@ -57,8 +60,10 @@
                 </div>
             </div>
         {/if}
-    </div>
-{/if}
+    {:else}  
+        <Link on:linkClicked={() => dispatch("login")} mode={"menu"} path="home">sign-in</Link>
+    {/if}
+</div>
 
 <style type="text/scss">
     .select {

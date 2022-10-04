@@ -34,7 +34,7 @@
         {/if}
     </div>
     <div class="menu-item end">
-        <AuthSelector on:authSelected={close} {context} />
+        <AuthSelector on:authSelected={close} on:login {context} />
     </div>
 </div>
 
