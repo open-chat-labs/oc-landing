@@ -5,6 +5,7 @@
     import Separator from "./Separator.svelte";
     import Link from "./Link.svelte";
     import WhitepaperInternalLink from "./WhitepaperInternalLink.svelte";
+    import WhitepaperExternalLink from "./WhitepaperExternalLink.svelte";
 </script>
 
 <Content offset={false}>
@@ -26,14 +27,14 @@
             <p class="blurb">
                 It is a responsive, progressive web application (PWA) and as such scales to take
                 advantage of any screen size and integrates with devices in a similar way to native
-                apps, with notifications on desktop and Android devices, and on <a
+                apps, with notifications on desktop and Android devices, and on <WhitepaperExternalLink
                     href="https://www.apple.com/ios/ios-16/features/"
-                    target="_blank">iOS from next year</a
+                    >iOS from next year</WhitepaperExternalLink
                 >. You can find the full development roadmap <Link path={"roadmap"}>here</Link> .
             </p>
             <p class="blurb">
-                The app is <a href="https://github.com/dfinity-lab/open-chat" target="_blank"
-                    >open source</a>
+                The app is <WhitepaperExternalLink href="https://github.com/dfinity-lab/open-chat"
+                    >open source</WhitepaperExternalLink>
                 and runs as a collection of
                 <WhitepaperInternalLink id={"2-1"}>canister smart-contracts</WhitepaperInternalLink
                 >. It is possible to see the code running on any canister at any time with a link
@@ -56,9 +57,9 @@
             <p class="blurb">
                 However, the ground-breaking difference between OpenChat and other similar apps, is
                 that it will soon be governed as a DAO with its own token called CHAT, analogous to
-                ICP. The DAO will be realized by a system called the <a
+                ICP. The DAO will be realized by a system called the <WhitepaperExternalLink
                     href="https://internetcomputer.org/docs/current/tokenomics/"
-                    target="_blank">SNS</a>
+                    >SNS</WhitepaperExternalLink>
                 (Service Nervous System) analogous to the <WhitepaperInternalLink id="2-2"
                     >NNS</WhitepaperInternalLink> (Network Nervous System) on the Internet Computer.
             </p>
@@ -76,12 +77,12 @@
             <h2 id="2">2) Internet Computer Overview</h2>
 
             <p class="blurb">
-                The <a
+                The <WhitepaperExternalLink
                     href="https://medium.com/dfinity/the-internet-computer-for-geeks-a-new-dfinity-white-paper-ecb075b2d525"
-                    target="_blank">Internet Computer</a> (IC) is a decentralized global compute platform
-                which uses ground-breaking blockchain technology to achieve consensus within subnets.
-                It is globally distributed in numerous independent data centers, is tamper proof and
-                unstoppable.
+                    >Internet Computer</WhitepaperExternalLink> (IC) is a decentralized global compute
+                platform which uses ground-breaking blockchain technology to achieve consensus within
+                subnets. It is globally distributed in numerous independent data centers, is tamper proof
+                and unstoppable.
             </p>
             <p class="blurb">
                 It can serve applications fully on-chain without needing any centralized frontend
@@ -115,12 +116,12 @@
                 blockchain comes into play but is beyond the scope of this document.
             </p>
             <p class="blurb">
-                Canisters have the property of <a
+                Canisters have the property of <WhitepaperExternalLink
                     href="https://en.wikipedia.org/wiki/Persistence_(computer_science)"
-                    target="_blank">orthogonal persistence</a> which means as a programmer you just write
-                data objects to memory and they are automatically persisted by the system. This removes
-                the need for a database and is one of the reasons writing and running applications on
-                the IC is simplified compared to traditional IT stacks.
+                    >orthogonal persistence</WhitepaperExternalLink> which means as a programmer you
+                just write data objects to memory and they are automatically persisted by the system.
+                This removes the need for a database and is one of the reasons writing and running applications
+                on the IC is simplified compared to traditional IT stacks.
             </p>
 
             <h3 id="2-2">Network Nervous System (NNS)</h3>
@@ -139,12 +140,12 @@
             </p>
 
             <p class="blurb">
-                <a
+                <WhitepaperExternalLink
                     href="https://medium.com/dfinity/the-network-nervous-system-governing-the-internet-computer-1d176605d66a"
-                    target="_blank">Read here</a>
+                    >Read here</WhitepaperExternalLink>
                 and
-                <a href="https://internetcomputer.org/docs/current/tokenomics/" target="_blank"
-                    >here</a> for more information on the NNS.
+                <WhitepaperExternalLink href="https://internetcomputer.org/docs/current/tokenomics/"
+                    >here</WhitepaperExternalLink> for more information on the NNS.
             </p>
 
             <div class="sep">
@@ -286,9 +287,9 @@
 
             <ul class="blurb">
                 <li>
-                    One or more proposals to transfer some ICP and CHAT to one or more <a
+                    One or more proposals to transfer some ICP and CHAT to one or more <WhitepaperExternalLink
                         href="https://docs.google.com/document/d/1V4CLsujL9HeZt3eP-LSr3hBS5iGcmNfa17d7ZaVKmLc/edit#heading=h.bn2twif6p6wt"
-                        target="_blank">DEXes</a> to create initial liquidity pools to enable trading
+                        >DEXes</WhitepaperExternalLink> to create initial liquidity pools to enable trading
                     of CHAT
                 </li>
                 <li>
@@ -367,9 +368,10 @@
             </p>
 
             <p class="blurb">
-                Please refer to <a
+                Please refer to <WhitepaperExternalLink
                     href="https://docs.google.com/document/d/1Ty25xNbXKIs8YiXlmpT8vuPApVzjp1aTJL1WXySOUto/edit#heading=h.rrc8s7i3mbk6"
-                    target="_blank">this document</a> for a full description of SNS voting and rewards.
+                    >this document</WhitepaperExternalLink> for a full description of SNS voting and
+                rewards.
             </p>
 
             <h3 id="3-5">The power of the DAO</h3>
@@ -430,8 +432,8 @@
                 There are many ways OpenChat could evolve to allow users to spend their CHAT tokens
                 to pay for premium features within the dapp. It is likely the underlying price for
                 premium features will be in CYCLES because these have a stable value (relative to
-                <a href="https://en.wikipedia.org/wiki/Special_drawing_rights" target="_blank"
-                    >XDR</a
+                <WhitepaperExternalLink href="https://en.wikipedia.org/wiki/Special_drawing_rights"
+                    >XDR</WhitepaperExternalLink
                 >) and then based on the exchange rate of CHAT->ICP (which we can request from
                 DEXes) and the exchange rate of ICP->CYCLES (obtained by calling the cycles minting
                 canister on the NNS subnet) we will provide a dynamic price for features in CHAT
@@ -596,8 +598,8 @@
 
             <p class="blurb">
                 OpenChat has been built by a team of 3 developers since January 2021 and has
-                received seed funding from the <a href="https://dfinity.org/" target="_blank"
-                    >DFINITY foundation</a
+                received seed funding from the <WhitepaperExternalLink href="https://dfinity.org/"
+                    >DFINITY foundation</WhitepaperExternalLink
                 >. Each of the 3 founding developers will be allocated a share of 4% of the CHAT
                 tokens and the DFINITY foundation will be allocated a share of 6%. As above each
                 party will receive their share as a basket of 13 equal value neurons, the first
@@ -655,13 +657,13 @@
                 The remaining 2% will be used to provide initial liquidity pools for DEXes
                 (decentralized exchanges). In order for CHAT tokens to be traded it is necessary to
                 list CHAT on one or more exchanges. The intention is to trade on IC based DEXes. To
-                list CHAT on a DEX implementing an <a
+                list CHAT on a DEX implementing an <WhitepaperExternalLink
                     href="https://academy.binance.com/en/articles/what-is-an-automated-market-maker-amm"
-                    target="_blank">AMM</a> it is necessary to provide a liquidity pool of CHAT backed
-                by another token, in our case ICP raised from the decentralization sale. We plan to make
-                CHAT available on several DEXes as and when they are available. For each DEX it will
-                be necessary to create a proposal to transfer some CHAT from the SNS to the DEX, and
-                another proposal to transfer an equal value of ICP from the SNS to the DEX. The plan
+                    >AMM</WhitepaperExternalLink> it is necessary to provide a liquidity pool of CHAT
+                backed by another token, in our case ICP raised from the decentralization sale. We plan
+                to make CHAT available on several DEXes as and when they are available. For each DEX
+                it will be necessary to create a proposal to transfer some CHAT from the SNS to the DEX,
+                and another proposal to transfer an equal value of ICP from the SNS to the DEX. The plan
                 is to “seed” these DEXes with the 2% of CHAT tokens set aside for this purpose although
                 this might not all happen at once.
             </p>
@@ -807,9 +809,9 @@
                 </li>
                 <li>
                     Serving the dapp on oc.app (hosted on AWS). Eventually this capability will be
-                    built into the boundary nodes - <a
+                    built into the boundary nodes - <WhitepaperExternalLink
                         href="https://forum.dfinity.org/t/boundary-node-roadmap/15562"
-                        target="_blank">see here</a>
+                        >see here</WhitepaperExternalLink>
                 </li>
             </ul>
 
@@ -981,9 +983,9 @@
             </ul>
 
             <p class="blurb">
-                The full model used to plot this graph can be found in <a
+                The full model used to plot this graph can be found in <WhitepaperExternalLink
                     href="https://docs.google.com/spreadsheets/d/1-LuBsCXxXdpia0-CDEY5eFveczp3eQdM3BponEX3Tq0/edit#gid=1167954061"
-                    target="_blank">this spreadsheet</a
+                    >this spreadsheet</WhitepaperExternalLink
                 >.
             </p>
 
