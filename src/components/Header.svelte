@@ -44,7 +44,6 @@
     }
 
     .menu {
-        font-family: "Roboto", sans-serif;
         font-weight: 300;
         flex: 0 0 toRem(60);
         @include z-index("menu");
@@ -61,5 +60,6 @@
         top: 0;
         height: toRem(60);
         backdrop-filter: blur(20px);
+        border-bottom: var(--header-bd);
     }
 </style>

@@ -78,8 +78,8 @@
                 <div class="txt-header">The future</div>
                 <div class="txt-desc">
                     We see great potential and have many ideas for the future, but what makes
-                    OpenChat unique is that the community will decide the directions we
-                    take and the priorities we pursue. We are excited to see what you come up with!
+                    OpenChat unique is that the community will decide the directions we take and the
+                    priorities we pursue. We are excited to see what you come up with!
                 </div>
             </div>
         </div>
@@ -90,7 +90,6 @@
 
 <style type="text/scss">
     .grid {
-        font-family: "Roboto", sans-serif;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: $sp4;
@@ -113,13 +112,13 @@
 
             .txt-header {
                 font-size: toRem(30);
+                font-weight: 500;
                 margin-bottom: $sp3;
             }
 
             .txt-desc {
-                font-family: "Lora", serif;
                 font-size: toRem(20);
-                font-weight: 400;
+                font-weight: 300;
             }
         }
 
@@ -162,6 +161,7 @@
             }
 
             .when {
+                font-weight: 900;
                 font-size: toRem(50);
                 text-transform: uppercase;
             }

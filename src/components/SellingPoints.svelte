@@ -48,8 +48,8 @@
             <div slot="back" class="item back">
                 <span class="head">open source</span>
                 <span class="txt">
-                    All of the source code is available to inspect. We use repeatable, verifiable builds so you
-                    can confirm that what <em>you</em> approved is what's actually running.
+                    All of the source code is available to inspect. We use repeatable, verifiable
+                    builds so you can confirm that what <em>you</em> approved is what's actually running.
                 </span>
             </div>
         </FlipBox>
@@ -111,8 +111,6 @@
 
     .item {
         // border-radius: toRem(10);
-        font-family: "Roboto", sans-serif;
-        font-weight: 300;
         color: rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: column;
@@ -134,7 +132,6 @@
         }
 
         .big {
-            font-family: "Roboto", sans-serif;
             font-weight: 900;
             font-size: toRem(100);
             color: #fff;
@@ -162,7 +159,6 @@
             background: var(--gradient);
             color: #fff;
             .head {
-                font-family: "Roboto", sans-serif;
                 font-size: toRem(35);
                 line-height: 90%;
                 text-transform: uppercase;

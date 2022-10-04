@@ -32,6 +32,7 @@ export function darkTheme(defaultTheme: Theme): Theme {
         header: {
             bg: dark10,
             txt: txtMed,
+            bd: "1px solid rgba(255,255,255,0.2)",
         },
 
         content: {

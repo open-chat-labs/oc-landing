@@ -16,6 +16,7 @@ export interface Theme {
     header: {
         bg: string;
         txt: string;
+        bd: string;
     };
 
     content: {

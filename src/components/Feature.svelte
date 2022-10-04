@@ -27,10 +27,6 @@
 </Section>
 
 <style type="text/scss">
-    h2 {
-        text-align: left;
-        margin-bottom: $sp4;
-    }
     .blurb {
         font-size: toRem(20);
     }

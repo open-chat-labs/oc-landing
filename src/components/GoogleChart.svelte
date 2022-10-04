@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { toPixel } from "../stores/screenDimensions";
+
     export let originalWidth: number;
     export let originalHeight: number;
     export let src: string;
@@ -6,7 +8,7 @@
     export let totalWidth: number;
 
     let windowWidth = 0;
-    $: scale = Math.min(windowWidth - 32, totalWidth) / originalWidth;
+    $: scale = Math.min(windowWidth - toPixel(2), totalWidth) / originalWidth;
 
     $: wrapperStyle = `height: ${originalHeight * scale}px; width: ${originalWidth * scale}px;`;
     $: iframeStyle = `transform: scale(${scale})`;

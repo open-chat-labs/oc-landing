@@ -17,11 +17,11 @@
     </div>
     <div class="blurb">
         <p>
-            When the OpenChat SNS is created control of OpenChat will be handed from the 
-            core dev team to the SNS. A <em>decentralization sale</em> will be initiated by 
-            NNS proposal which will decentralize the governance of OpenChat by distributing the
-            CHAT utility token to the wider community. It will also raise an endowment to fund 
-            the ongoing development and growth of OpenChat.
+            When the OpenChat SNS is created control of OpenChat will be handed from the core dev
+            team to the SNS. A <em>decentralization sale</em> will be initiated by NNS proposal which
+            will decentralize the governance of OpenChat by distributing the CHAT utility token to the
+            wider community. It will also raise an endowment to fund the ongoing development and growth
+            of OpenChat.
         </p>
 
         <p>
@@ -295,7 +295,6 @@
 
     .date {
         padding: $sp2 $sp4;
-        font-family: "Roboto", sans-serif;
         font-weight: 900;
         color: var(--roadmap-status-txt);
         background-color: var(--roadmap-date-bg);

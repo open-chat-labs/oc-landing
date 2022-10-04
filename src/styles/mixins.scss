@@ -14,84 +14,6 @@ $breakpoints: (
     xxl: 2000px,
 );
 
-$font-weights: (
-    light: 200,
-    book: 400,
-    medium: 500,
-    mediumBold: 600,
-    bold: 700,
-);
-
-// =============================================
-// FONT-SIZES
-// =============================================
-
-// Usage: @include font-size(fs-100);
-// The purpose of the key-numbers is to have them ordered relative to their font-size.
-// The key-numbers are not related in any other way to the font-size or line-height.
-$font-sizes: (
-    fs-50: (
-        font-size: toRem(11),
-        line-height: 130%,
-    ),
-    fs-60: (
-        font-size: toRem(12),
-        line-height: 135%,
-    ),
-    fs-70: (
-        font-size: toRem(13),
-        line-height: 140%,
-    ),
-    fs-80: (
-        font-size: toRem(14),
-        line-height: 140%,
-    ),
-    fs-90: (
-        font-size: toRem(15),
-        line-height: 145%,
-    ),
-    fs-100: (
-        font-size: toRem(16),
-        line-height: 150%,
-    ),
-    fs-110: (
-        font-size: toRem(18),
-        line-height: 130%,
-    ),
-    fs-120: (
-        font-size: toRem(20),
-        line-height: 120%,
-    ),
-    fs-140: (
-        font-size: toRem(24),
-        line-height: 120%,
-    ),
-    fs-160: (
-        font-size: toRem(28),
-        line-height: 120%,
-    ),
-    fs-180: (
-        font-size: toRem(32),
-        line-height: 120%,
-    ),
-    fs-220: (
-        font-size: toRem(40),
-        line-height: 120%,
-    ),
-    fs-230: (
-        font-size: toRem(48),
-        line-height: 120%,
-    ),
-    fs-240: (
-        font-size: toRem(60),
-        line-height: 120%,
-    ),
-    fs-260: (
-        font-size: toRem(80),
-        line-height: 120%,
-    ),
-);
-
 // =========================================================
 // SPACING
 // =========================================================
@@ -293,50 +215,6 @@ $shadow-level-3: 2px 6px 12px 0 rgba(25, 25, 25, 0.55);
         box-shadow: $shadow-level-3;
     } @else {
         @error ('box-shadow $level does not exist!');
-    }
-}
-
-@mixin font-size($type: fs-100) {
-    // Generating mixins below: Do not change
-    $type: map-get($font-sizes, $type);
-
-    // LINE-HEIGHTS
-    @if map-has-key($type, line-height) {
-        line-height: map-get($type, line-height);
-        @include mobile() {
-            line-height: calc(#{map-get($type, line-height)} * 0.95);
-        }
-        @include size-below(xs) {
-            line-height: calc(#{map-get($type, line-height)} * 0.9);
-        }
-    }
-
-    // FONT-SIZES
-    @if map-has-key($type, font-size) {
-        font-size: map-get($type, font-size);
-        @include mobile() {
-            font-size: calc(#{map-get($type, font-size)} * 0.95);
-        }
-        @include size-below(xs) {
-            font-size: calc(#{map-get($type, font-size)} * 0.9);
-        }
-    }
-}
-
-@mixin font($weight: book, $style: null, $size: null) {
-    // Error handling
-    @if map-has-key($font-weights, $weight) {
-        font-weight: map-get($font-weights, $weight);
-    } @else {
-        @error ('@include font() expects $weight to be found in map font, given `#{$weight}`');
-    }
-
-    @if $style {
-        font-style: $style;
-    }
-
-    @if $size {
-        @include font-size($size);
     }
 }
 

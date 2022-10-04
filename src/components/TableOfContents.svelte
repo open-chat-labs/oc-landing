@@ -170,11 +170,14 @@
     }
 
     .toc {
-        font-family: "Roboto", sans-serif;
         text-align: left;
         font-style: normal;
         padding: 0 0 0 1rem;
         margin: 0;
+
+        > li {
+            font-weight: 500;
+        }
 
         ul {
             padding-left: $sp5;
@@ -182,6 +185,7 @@
 
             li {
                 list-style: none;
+                font-weight: 300;
             }
         }
 

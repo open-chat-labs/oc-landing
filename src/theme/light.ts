@@ -22,8 +22,10 @@ export function lightTheme(): Theme {
 
         header: {
             // bg: "#22a7f2",
-            bg: "rgba(0,0,0,0.2)",
+            // bg: "rgba(0,0,0,0.2)",
+            bg: "rgba(102,139,203,0.8)",
             txt: "#ffffff",
+            bd: "none",
         },
 
         content: {

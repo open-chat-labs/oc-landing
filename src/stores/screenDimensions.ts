@@ -1,4 +1,4 @@
-import { readable, derived } from "svelte/store";
+import { readable, derived, get } from "svelte/store";
 
 export const dimensions = readable(
     { width: window.innerWidth, height: window.innerHeight },
@@ -52,6 +52,26 @@ export const enum ScreenHeight {
 function setRootFontSize(n: number): void {
     console.log("Setting root font size to: ", n);
     document.documentElement.style.setProperty("--font-size", `${n}px`);
+}
+
+export function toPixel(rem: number): number {
+    const dim = get(dimensions);
+
+    if (dim.width < 354) {
+        return rem * 13;
+    } else if (dim.width < 576) {
+        return rem * 14;
+    } else if (dim.width < 768) {
+        return rem * 14;
+    } else if (dim.width < 992) {
+        return rem * 15;
+    } else if (dim.width < 1200) {
+        return rem * 15;
+    } else if (dim.width < 1792) {
+        return rem * 16;
+    } else {
+        return rem * 16;
+    }
 }
 
 export const screenWidth = derived(dimensions, ($dimensions) => {

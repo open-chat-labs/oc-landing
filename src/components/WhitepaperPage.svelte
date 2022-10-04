@@ -407,7 +407,7 @@
                 <Separator />
             </div>
 
-            <h2 id="4">Purpose of the CHAT utility token</h2>
+            <h2 id="4">4) Purpose of the CHAT utility token</h2>
 
             <ul class="blurb">
                 <li>
@@ -568,7 +568,7 @@
                 <Separator />
             </div>
 
-            <h2 id="5">Token allocation at SNS genesis</h2>
+            <h2 id="5">5) Token allocation at SNS genesis</h2>
 
             <h3 id="5-1">Initial token allocation</h3>
 
@@ -747,7 +747,7 @@
                 <Separator />
             </div>
 
-            <h2 id="6">OpenChat SNS treasury</h2>
+            <h2 id="6">6) OpenChat SNS treasury</h2>
 
             <p class="blurb">The SNS will hold a treasury of ICP tokens and CHAT tokens.</p>
 
@@ -851,7 +851,7 @@
                 <Separator />
             </div>
 
-            <h2 id="7">Tokenomics</h2>
+            <h2 id="7">7) Tokenomics</h2>
 
             <h3 id="7-1">Total supply levers</h3>
 
@@ -1027,7 +1027,7 @@
                 <Separator />
             </div>
 
-            <h2 id="8">Current user growth and activity</h2>
+            <h2 id="8">8) Current user growth and activity</h2>
 
             <p class="blurb">
                 The following chart shows cumulative and %age user growth over the most recent 30
@@ -1048,13 +1048,11 @@
 <style type="text/scss">
     .whitepaper .body {
         text-align: left;
-        font-family: "Roboto", sans-serif;
     }
 
     h2,
     h3,
     h4 {
-        font-family: "Roboto", sans-serif;
         margin-bottom: $sp3;
     }
 
@@ -1103,18 +1101,6 @@
     }
 
     :global(.whitepaper .body .whitepaper-link) {
-        text-decoration: underline;
-        text-underline-offset: 2px;
-        color: inherit;
-        cursor: pointer;
-        font-style: italic;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-
-    a {
         text-decoration: underline;
         text-underline-offset: 2px;
         color: inherit;

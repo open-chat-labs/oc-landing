@@ -76,10 +76,9 @@
         position: absolute;
         bottom: 5px;
         right: 10px;
-        font-family: "Roboto", sans-serif;
         font-style: italic;
-        // @include font(bold, italic, fs-260);
         font-size: toRem(30);
+        font-weight: 500;
         color: #fff;
         text-shadow: 3px 3px 2px var(--tertiary);
     }

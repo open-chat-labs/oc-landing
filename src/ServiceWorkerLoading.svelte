@@ -11,8 +11,7 @@
         justify-content: center;
         align-items: center;
         color: rgba(255, 255, 255, 0.8);
-        font-family: "Roboto", sans-serif;
-        font-weight: bold;
+        font-weight: 900;
         background-color: #121212;
         overflow-y: auto;
         overflow-x: hidden;

@@ -80,7 +80,6 @@
 
     .open,
     .chat {
-        font-family: "Roboto", sans-serif;
         font-weight: 900;
         display: inline-flex;
         align-items: center;

@@ -7,7 +7,6 @@
 <style type="text/scss">
     h2 {
         margin: 0;
-        font-family: "Roboto", sans-serif;
         font-weight: 900;
         font-size: 2.5rem;
         margin-bottom: 1.5rem;
