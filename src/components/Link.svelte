@@ -2,7 +2,7 @@
     import { createEventDispatcher } from "svelte";
     import { currentPath } from "../stores/route";
 
-    export let path;
+    export let path: string | undefined = undefined;
     export let mode: "menu" | "link" = "link";
 
     const dispatch = createEventDispatcher();
@@ -17,7 +17,7 @@
 <a
     class="link"
     class:menu={mode === "menu"}
-    href={`/${path}`}
+    href={path === undefined ? "#" : `/${path}`}
     class:selected={$currentPath === path}
     on:click={clickLink}><slot /></a>
 

@@ -17,7 +17,7 @@
     {/if}
 
     {#if !$mobileWidth}
-        <MenuItems />
+        <MenuItems on:login />
     {:else}
         <Link path="home">
             <Home size={"1.6em"} color={"#fff"} />
@@ -31,7 +31,7 @@
         </div>
 
         {#if showMenu}
-            <MenuItems bind:context={showMenu} />
+            <MenuItems bind:context={showMenu} on:login />
         {/if}
     {/if}
 </div>
