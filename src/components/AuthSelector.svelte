@@ -61,7 +61,7 @@
             </div>
         {/if}
     {:else}  
-        <Link on:linkClicked={() => dispatch("login")} mode={"menu"} path="home">sign-in</Link>
+        <Link on:linkClicked={() => dispatch("login")} mode={"menu"}>sign-in</Link>
     {/if}
 </div>
 
