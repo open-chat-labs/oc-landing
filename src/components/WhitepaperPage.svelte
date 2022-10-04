@@ -6,10 +6,13 @@
     import Link from "./Link.svelte";
     import WhitepaperInternalLink from "./WhitepaperInternalLink.svelte";
     import WhitepaperExternalLink from "./WhitepaperExternalLink.svelte";
+    import GoogleChart from "./GoogleChart.svelte";
+
+    let width = 0;
 </script>
 
 <Content offset={false}>
-    <div class="whitepaper">
+    <div class="whitepaper" bind:clientWidth={width}>
         <Headline>OpenChat SNS Whitepaper</Headline>
 
         <TableOfContents />
@@ -574,7 +577,12 @@
                 proportions.
             </p>
 
-            <p class="blurb todo">Allocation chart goes here - come back to this</p>
+            <GoogleChart
+                totalWidth={width}
+                title="Initial token allocation"
+                originalWidth={767}
+                originalHeight={395}
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTR-Snm-_Eq_UcQ5ClcdjGTLg4UOyvUl04rZXpY1W0n_yLuKJkANs-umrNS4F469qZoI17w1Nci08Sf/pubchart?oid=368502713&amp;format=interactive&amp;w=1000px" />
 
             <h4 id="5-1-1">NNS controlled (yellow)</h4>
 
@@ -623,7 +631,12 @@
                 been sold, only that same proportion of liquid CHAT will be given.
             </p>
 
-            <p class="blurb todo">Voting power at genesis chart goes here</p>
+            <GoogleChart
+                totalWidth={width}
+                title="Voting power at genesis"
+                originalWidth={684}
+                originalHeight={380}
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTR-Snm-_Eq_UcQ5ClcdjGTLg4UOyvUl04rZXpY1W0n_yLuKJkANs-umrNS4F469qZoI17w1Nci08Sf/pubchart?oid=479343896&amp;format=interactive" />
 
             <p class="blurb">
                 Secondly, these neurons will have an additional lockup (or vesting) period before
@@ -897,7 +910,12 @@
                 of 1.5 each year, until it balances the reward rate.
             </p>
 
-            <p class="blurb todo">Insert diagram here</p>
+            <GoogleChart
+                totalWidth={width}
+                title="CHAT supply over time"
+                originalWidth={943}
+                originalHeight={582}
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTR-Snm-_Eq_UcQ5ClcdjGTLg4UOyvUl04rZXpY1W0n_yLuKJkANs-umrNS4F469qZoI17w1Nci08Sf/pubchart?oid=285935273&amp;format=interactive" />
 
             <h3 id="7-3">Token price</h3>
 
@@ -989,7 +1007,12 @@
                 >.
             </p>
 
-            <p class="blurb todo">Insert voting power over time chart here</p>
+            <GoogleChart
+                totalWidth={width}
+                title="Voting power over time"
+                originalWidth={813}
+                originalHeight={503}
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTR-Snm-_Eq_UcQ5ClcdjGTLg4UOyvUl04rZXpY1W0n_yLuKJkANs-umrNS4F469qZoI17w1Nci08Sf/pubchart?oid=1816967829&amp;format=interactive" />
 
             <p class="blurb">
                 In the first year the share of voting power held by the community is expected to
