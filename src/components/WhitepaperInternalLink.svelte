@@ -1,20 +1,17 @@
 <script lang="ts">
-    import { onMount } from "svelte";
     import { WhitepaperLinkId } from "../whitepaperLinks";
 
     const offset = 70;
     export let id: WhitepaperLinkId;
 
-    let main: HTMLElement;
-    onMount(() => {
-        main = document.getElementById("main");
-    });
-
     function scrollToElement(selector: string) {
         const el = document.getElementById(selector);
+        const main = document.getElementById("main");
+        const rect = el.getBoundingClientRect();
+        const top = rect.top + main.scrollTop - offset;
         main.scrollTo({
             behavior: "smooth",
-            top: el.getBoundingClientRect().top - offset,
+            top,
         });
         el.classList.add("highlight");
         window.setTimeout(() => {
