@@ -1022,24 +1022,6 @@
                 the community as more tokens are distributed. Importantly the balance of voting
                 power should always remain in the hands of the wider community.
             </p>
-
-            <div class="sep">
-                <Separator />
-            </div>
-
-            <h2 id="8">8) Current user growth and activity</h2>
-
-            <p class="blurb">
-                The following chart shows cumulative and %age user growth.
-            </p>
-
-            <p class="todo blurb">New users graph</p>
-
-            <p class="blurb">
-                The following chart shows monthly active users.
-            </p>
-
-            <p class="todo blurb">Monthly active users graph</p>
         </div>
     </div>
 </Content>
