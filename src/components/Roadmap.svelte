@@ -234,14 +234,17 @@
 
         <p>Some smaller feature ideas:</p>
         <ul class="list">
+            <li>Send additional tokens as messages, such as BTC, ETH, etc</li>
             <li>Tag groups and search/filter by tag</li>
             <li>Optionally sync with phone contacts and invite contacts</li>
-            <li>Custom emojis, stickers</li>
-            <li>Send "red-letters" containing tokens</li>
             <li>Link previews</li>
-            <li>Organise events with calendar</li>
-            <li>Incorporate token swap to allow other tokens to be sent</li>
+            <li>Profile badges for reputation and achievements</li>
+            <li>Tag messages (eg star) and search/filter by tag</li>
+            <li>Verified NFT avatars</li>
             <li>NFT gated groups and communities</li>
+            <li>Disappearing messages</li>
+            <li>Organise events with calendar</li>
+            <li>Custom emojis, stickers</li>
             <li>
                 Broadcast groups
                 <ul>
