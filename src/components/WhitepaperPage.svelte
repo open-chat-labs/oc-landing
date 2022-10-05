@@ -61,10 +61,11 @@
                 However, the ground-breaking difference between OpenChat and other similar apps, is
                 that it will soon be governed as a DAO with its own token called CHAT, analogous to
                 ICP. The DAO will be realized by a system called the <WhitepaperExternalLink
-                    href="https://internetcomputer.org/docs/current/tokenomics/"
+                    href="https://internetcomputer.org/docs/current/tokenomics/sns/sns-intro-tokens"
                     >SNS</WhitepaperExternalLink>
-                (Service Nervous System) analogous to the <WhitepaperInternalLink id="2-2"
-                    >NNS</WhitepaperInternalLink> (Network Nervous System) on the Internet Computer.
+                (Service Nervous System) analogous to the <WhitepaperExternalLink 
+                    href="https://internetcomputer.org/docs/current/tokenomics/nns/nns-intro"
+                    >NNS</WhitepaperExternalLink> (Network Nervous System) on the Internet Computer.
             </p>
             <p class="blurb">
                 The focus of the founding dev team has been first and foremost on building a rich,
@@ -144,10 +145,10 @@
 
             <p class="blurb">
                 <WhitepaperExternalLink
-                    href="https://medium.com/dfinity/the-network-nervous-system-governing-the-internet-computer-1d176605d66a"
+                    href="https://internetcomputer.org/docs/current/tokenomics/nns/nns-intro"
                     >Read here</WhitepaperExternalLink>
                 and
-                <WhitepaperExternalLink href="https://internetcomputer.org/docs/current/tokenomics/"
+                <WhitepaperExternalLink href="https://wiki.internetcomputer.org/wiki/Network_Nervous_System"
                     >here</WhitepaperExternalLink> for more information on the NNS.
             </p>
 
@@ -225,7 +226,7 @@
             <p class="blurb">
                 In exceptional circumstances an NNS proposal could theoretically be used to sanction
                 an SNS by stopping an SNS canister(s). One example could be if an IC app were to
-                copy the open source code of another IC app, breaking its licensing terms.
+                copy the source code of another IC app, breaking its licensing terms.
             </p>
 
             <h3 id="3-4">Governance of the DAO</h3>
@@ -358,8 +359,9 @@
 
             <p class="blurb">
                 Voting rewards are minted by the SNS ledger and accumulate in neurons that have
-                participated in voting. Voting rewards can either be compounded back into the neuron
-                or disbursed into liquid CHAT tokens. For a given proposal vote, the voting reward
+                participated in voting as <WhitepaperExternalLink 
+                    href="https://wiki.internetcomputer.org/wiki/Maturity_modulation"
+                    >maturity</WhitepaperExternalLink>. For a given proposal vote, the voting reward
                 earned by a given neuron is in proportion to its voting power compared to the
                 overall voting power of participating neurons. The voting rewards are distributed
                 daily and take into account all of the votes that ended on that day. If there are no
