@@ -8,7 +8,9 @@
     const dispatch = createEventDispatcher();
 
     function clickLink(e: MouseEvent) {
-        currentPath.set(path);
+        if (path !== undefined) {
+            currentPath.set(path);
+        }
         e.preventDefault();
         dispatch("linkClicked");
     }

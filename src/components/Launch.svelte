@@ -1,10 +1,27 @@
 <script lang="ts">
-    import { showAuthProviders, loggingIn } from "../stores/authProviders";
+    import { createEventDispatcher } from "svelte";
+    import { showAuthProviders, loggingIn, loggedIn } from "../stores/authProviders";
 
-    $: txt = $loggingIn ? "Signing in ..." : $showAuthProviders ? "Sign in or register" : "Sign in";
+    const dispatch = createEventDispatcher();
+
+    $: txt = $loggingIn
+        ? "Signing in ..."
+        : $loggedIn
+        ? "Launch app"
+        : $showAuthProviders
+        ? "Sign in or register"
+        : "Sign in";
+
+    function launch() {
+        if ($loggedIn) {
+            window.location.href = "/";
+        } else {
+            dispatch("login");
+        }
+    }
 </script>
 
-<div class="launch">{txt}</div>
+<div on:click={launch} class="launch">{txt}</div>
 
 <style type="text/scss">
     .launch {

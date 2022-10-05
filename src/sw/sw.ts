@@ -5,6 +5,7 @@ import { ExpirationPlugin } from "workbox-expiration";
 import {
     CacheFirstIfSignedIn,
     isAnonymous,
+    landingPageRoutes,
     NetworkFirstIfSignedIn,
     StaleWhileRevalidateIfSignedIn,
 } from "./strategies";
@@ -16,7 +17,9 @@ const DEBUG = true;
 //workbox config
 registerRoute(
     (route) => {
-        return /avatar\/\d+/.test(route.request.url);
+        return [/avatar\/\d+/, /screenshots\//, /network12.*jpg/, /matt|hamish|julian/].some((re) =>
+            re.test(route.request.url)
+        );
     },
     new CacheFirstIfSignedIn({
         cacheName: "openchat_avatars",
@@ -109,14 +112,23 @@ self.addEventListener("activate", async () => {
 });
 
 async function defaultHandler(request: Request): Promise<Response> {
-    if (process.env.LANDING_PAGE_MODE && (await isAnonymous())) {
-        console.debug("SW: default handler - not signed in falling back to network: ", request.url);
+    const referrer = new URL(request.referrer);
+    const anon = await isAnonymous();
+    const passthrough = anon || landingPageRoutes.includes(referrer.pathname);
+
+    if (process.env.LANDING_PAGE_MODE && (anon || passthrough)) {
+        console.debug(
+            "SW: default handler - not signed in falling back to network: ",
+            request.url,
+            referrer.pathname
+        );
         return fetch(request);
     } else {
         try {
             console.debug(
                 "SW: default handler - signed in falling back to default ic service worker ",
-                request.url
+                request.url,
+                referrer.pathname
             );
             return handleRequest(request);
         } catch (e) {

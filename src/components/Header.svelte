@@ -12,7 +12,7 @@
 <div class="menu">
     {#if !$mobileWidth}
         <Link path="home">
-            <div class="logo" />
+            <img class="logo" src="../spinner.svg" alt="Logo" />
         </Link>
     {/if}
 
@@ -38,7 +38,6 @@
 
 <style type="text/scss">
     .logo {
-        background-image: url("../spinner.svg");
         width: toRem(45);
         height: toRem(45);
     }

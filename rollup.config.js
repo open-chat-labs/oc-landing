@@ -6,11 +6,15 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
-import css from "rollup-plugin-css-only";
 import dev from "rollup-plugin-dev";
 import replace from "@rollup/plugin-replace";
 import json from "@rollup/plugin-json";
 import inject from "rollup-plugin-inject";
+import html from "@rollup/plugin-html";
+import postcss from "rollup-plugin-postcss";
+import * as fs from "fs";
+import * as path from "path";
+import * as rimraf from "rimraf";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -21,6 +25,9 @@ function serve() {
         port: 8080,
     });
 }
+
+rimraf.sync(path.join(__dirname, "build"));
+fs.mkdirSync("build");
 
 console.log("Production: ", production);
 console.log("INTERNET_IDENTITY_URL", process.env.INTERNET_IDENTITY_URL);
@@ -34,7 +41,8 @@ export default {
         sourcemap: true,
         format: "es",
         name: "app",
-        file: "public/bundle.js",
+        dir: "build",
+        entryFileNames: "[name]-[hash].js",
     },
     plugins: [
         svelte({
@@ -49,9 +57,7 @@ export default {
                 dev: !production,
             },
         }),
-        // we'll extract any component CSS out into
-        // a separate file - better for performance
-        css({ output: "bundle.css" }),
+        postcss({ extract: true }),
 
         // If you have external dependencies installed from
         // npm, you'll most likely need these plugins. In
@@ -96,6 +102,39 @@ export default {
             "process.env.II_DERIVATION_ORIGIN": maybeStringify(process.env.II_DERIVATION_ORIGIN),
             "process.env.NFID_URL": JSON.stringify(process.env.NFID_URL),
             "process.env.LANDING_PAGE_MODE": landingPageMode,
+        }),
+
+        html({
+            template: ({ files }) => {
+                const jsEntryFile = files.js.find((f) => f.isEntry).fileName;
+                const cssFile = files.css[0].fileName;
+
+                return `
+                    <!DOCTYPE html>
+                    <html lang="en">
+                        <head>
+                            <meta charset="utf-8" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1" />
+                            <meta name="apple-mobile-web-app-title" content="OpenChat" />
+                            <title>OpenChat</title>
+                            <link rel="manifest" href="/openchat.webmanifest" />
+                            <link rel="apple-touch-startup-image" href="/apple-touch-icon.png" />
+                            <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+                            <link rel="icon" type="image/png" href="/icon.png" />
+                            <link rel="stylesheet" href="/${cssFile}" />
+                            <link rel="preconnect" href="https://fonts.googleapis.com" />
+                            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                            <link
+                                href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;900&display=swap"
+                                rel="stylesheet"
+                            />
+
+                            <script type="module" defer src="/${jsEntryFile}"></script>
+                        </head>
+                        <body></body>
+                    </html>
+                    `;
+            },
         }),
     ],
     watch: {

@@ -47,7 +47,7 @@ export class StaleWhileRevalidateIfSignedIn extends StaleWhileRevalidate {
                 "SW: StaleWhileRevalidate - not signed in, use network handler if not in cache ",
                 request.url
             );
-            return handler.fetch(request);
+            return super._handle(request, handler);
         }
         console.debug(
             "SW: StaleWhileRevalidate signed in: use ic handler if not in cache",
@@ -59,28 +59,42 @@ export class StaleWhileRevalidateIfSignedIn extends StaleWhileRevalidate {
 
 export class CacheFirstIfSignedIn extends CacheFirst {
     async _handle(request: Request, handler: StrategyHandler) {
-        if (process.env.LANDING_PAGE_MODE && (await isAnonymous())) {
+        const referrer = new URL(request.referrer);
+        const anon = await isAnonymous();
+        const passthrough = anon || landingPageRoutes.includes(referrer.pathname);
+        if (process.env.LANDING_PAGE_MODE && passthrough) {
             console.debug(
                 "SW: CacheFirst - not signed in, use network handler if not in cache ",
-                request.url
+                request.url,
+                referrer.pathname
             );
-            return handler.fetch(request);
+            return super._handle(request, handler);
         }
-        console.debug("SW: CacheFirst signed in: use ic handler if not in cache", request.url);
+        console.debug(
+            "SW: CacheFirst signed in: use ic handler if not in cache",
+            request.url,
+            referrer.pathname
+        );
         return super._handle(request, createIcHandler(this, handler));
     }
 }
 
+export const landingPageRoutes = ["/home", "/features", "/roadmap", "/whitepaper", "/architecture"];
+
 export class NetworkFirstIfSignedIn extends NetworkFirst {
     async _handle(request: Request, handler: StrategyHandler) {
-        if (process.env.LANDING_PAGE_MODE && (await isAnonymous())) {
+        // For some routes we want to load the landing page regardless of whether we are signed in
+        const url = new URL(request.url);
+        const anon = await isAnonymous();
+        const passthrough = anon || landingPageRoutes.includes(url.pathname);
+        if (process.env.LANDING_PAGE_MODE && passthrough) {
             console.debug(
                 "SW: NetworkFirst - not signed, use network handler if not in cache ",
-                request.url
+                url.pathname
             );
-            return handler.fetch(request);
+            return super._handle(request, handler);
         }
-        console.debug("SW: NetworkFirst signed in: use ic handler if not in cache", request.url);
+        console.debug("SW: NetworkFirst signed in: use ic handler if not in cache", url.pathname);
         return super._handle(request, createIcHandler(this, handler));
     }
 }

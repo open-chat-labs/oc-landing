@@ -3,7 +3,12 @@
     import { AuthProvider } from "../authProvider";
     import ChevronDown from "svelte-material-icons/ChevronDown.svelte";
     import ChevronUp from "svelte-material-icons/ChevronUp.svelte";
-    import { loggingIn, showAuthProviders, selectedAuthProviderStore } from "../stores/authProviders";
+    import {
+        loggingIn,
+        showAuthProviders,
+        selectedAuthProviderStore,
+        loggedIn,
+    } from "../stores/authProviders";
     import { createEventDispatcher } from "svelte";
     import Link from "./Link.svelte";
 
@@ -18,6 +23,14 @@
         selectedAuthProviderStore.set(provider);
         showMenu = false;
         dispatch("authSelected");
+    }
+
+    function login() {
+        if ($loggedIn) {
+            window.location.href = "/";
+        } else {
+            dispatch("login");
+        }
     }
 </script>
 
@@ -60,8 +73,8 @@
                 </div>
             </div>
         {/if}
-    {:else}  
-        <Link on:linkClicked={() => dispatch("login")} mode={"menu"}>sign-in</Link>
+    {:else}
+        <Link on:linkClicked={login} mode={"menu"}>{$loggedIn ? "launch app" : "sign-in"}</Link>
     {/if}
 </div>
 

@@ -46,7 +46,8 @@
         selected = c;
         currentPath.set(r);
         if (!popping) {
-            window.history.pushState({}, "", `/${path === "home" ? "" : path}`); // Update URL as well as browser history.
+            console.log("Setting path to ", path);
+            window.history.pushState({}, "", path); // Update URL as well as browser history.
         }
         dispatch("scrollToTop");
     }

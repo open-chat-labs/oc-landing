@@ -10,7 +10,7 @@ module.exports = {
     target: "web",
     devtool: "source-map",
     output: {
-        path: path.join(__dirname, "public"),
+        path: path.join(__dirname, "build"),
         filename: "[name].js",
         publicPath: "/",
     },

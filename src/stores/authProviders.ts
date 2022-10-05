@@ -55,3 +55,5 @@ export const showAuthProviders = readable(false, (set) => {
 });
 
 export const loggingIn = writable(false);
+
+export const loggedIn = writable(false);

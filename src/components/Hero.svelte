@@ -26,9 +26,7 @@
         <span class:loaded class="chat">Chat</span>
     </div>
 
-    <div on:click={() => dispatch("login")}>
-        <Launch />
-    </div>
+    <Launch on:login />
 </HeroWrapper>
 
 {#if debug}
