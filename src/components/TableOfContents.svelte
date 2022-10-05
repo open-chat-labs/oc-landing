@@ -155,10 +155,10 @@
                 </li>
             </ul>
         </li>
-        <li>
+        <!-- <li>
             <WhitepaperInternalLink id={"8"}
                 >Current user growth and activity</WhitepaperInternalLink>
-        </li>
+        </li> -->
     </ol>
 </div>
 
