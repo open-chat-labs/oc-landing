@@ -1030,14 +1030,13 @@
             <h2 id="8">8) Current user growth and activity</h2>
 
             <p class="blurb">
-                The following chart shows cumulative and %age user growth over the most recent 30
-                days.
+                The following chart shows cumulative and %age user growth.
             </p>
 
             <p class="todo blurb">New users graph</p>
 
             <p class="blurb">
-                The following chart shows monthly active users over the most recent 30 days.
+                The following chart shows monthly active users.
             </p>
 
             <p class="todo blurb">Monthly active users graph</p>
