@@ -728,7 +728,7 @@
                 <div>The maximum ICP to be raised</div>
                 <div>1,000,000</div>
                 <div>The minimum ICP to be raised (otherwise sale fails and ICP returned)</div>
-                <div>500,000</div>
+                <div>100,000</div>
                 <div>Start date of sale</div>
                 <div>05-10-2022 at 15:00 GMT</div>
                 <div>End date of sale (unless maximum ICP raised sooner)</div>
@@ -742,8 +742,8 @@
             <p class="blurb">
                 The reason to impose a maximum target is to give investors a minimum bound on the
                 number of CHAT tokens they will receive for their ICP investment. The lower bound of
-                0.5M ICP and the upper bound of 1M ICP for 20% of the tokens gives the OpenChat DAO
-                an initial total valuation between 2.5M ICP and 5M ICP.
+                0.1M ICP and the upper bound of 1M ICP for 20% of the tokens gives the OpenChat DAO
+                an initial total valuation between 0.5M ICP and 5M ICP.
             </p>
 
             <div class="sep">
