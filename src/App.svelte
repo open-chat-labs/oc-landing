@@ -221,6 +221,14 @@
             margin-bottom: 1.5rem;
             text-align: left;
         }
+
+        a {
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            color: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+        }
     }
 
     .block {

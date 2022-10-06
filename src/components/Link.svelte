@@ -25,12 +25,7 @@
 
 <style type="text/scss">
     a {
-        text-decoration: underline;
-        text-underline-offset: 2px;
-        color: inherit;
-        cursor: pointer;
         font-style: italic;
-        white-space: nowrap;
 
         &:hover {
             text-decoration: underline;
