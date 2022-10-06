@@ -25,18 +25,14 @@
         dispatch("authSelected");
     }
 
-    function login() {
-        if ($loggedIn) {
-            window.location.href = "/";
-        } else {
-            dispatch("login");
-        }
+    function logout() {
+        dispatch("logout");
     }
 </script>
 
 <div class="wrapper link">
     {#if $loggingIn}
-        {"signing in ..."}
+        {"logging in ..."}
     {:else if $showAuthProviders}
         {#if !context}
             <div class="select" on:click={() => (showMenu = !showMenu)}>
@@ -73,8 +69,8 @@
                 </div>
             </div>
         {/if}
-    {:else}
-        <Link on:linkClicked={login} mode={"menu"}>{$loggedIn ? "launch app" : "sign-in"}</Link>
+    {:else if $loggedIn}
+        <Link on:linkClicked={logout} mode={"menu"}>Log out</Link>
     {/if}
 </div>
 
@@ -89,6 +85,7 @@
         text-transform: lowercase;
         font-weight: 300;
         cursor: pointer;
+        color: rgba(255, 255, 255, 0.9);
     }
     .list {
         display: flex;
@@ -96,7 +93,7 @@
         position: absolute;
         text-align: right;
         top: toRem(45);
-        font-size: toRem(20);
+        // font-size: toRem(20);
         min-width: toRem(300);
         background-color: var(--header-bg);
         color: var(--txt);

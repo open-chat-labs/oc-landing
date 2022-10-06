@@ -1,16 +1,10 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
-    import { showAuthProviders, loggingIn, loggedIn } from "../stores/authProviders";
+    import { loggingIn, loggedIn } from "../stores/authProviders";
 
     const dispatch = createEventDispatcher();
 
-    $: txt = $loggingIn
-        ? "Signing in ..."
-        : $loggedIn
-        ? "Launch app"
-        : $showAuthProviders
-        ? "Sign in or register"
-        : "Sign in";
+    $: txt = $loggingIn ? "Logging in..." : "Go to chat";
 
     function launch() {
         if ($loggedIn) {

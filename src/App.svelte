@@ -62,6 +62,16 @@
             });
         });
     }
+
+    function logout() {
+        authClient.then((c) =>
+            c.logout().then(() => {
+                loggingIn.set(false);
+                loggedIn.set(false);
+            })
+        );
+    }
+
     function login(): void {
         if ($loggingIn) return;
         doLogin($selectedAuthProviderStore)
@@ -96,7 +106,7 @@
 {/if}
 
 <main id="main" class="main" bind:this={mainEl} on:scroll={onScroll}>
-    <Header on:login={login} />
+    <Header on:login={login} on:logout={logout} />
 
     <Router on:login={login} on:scrollToTop={scrollToTop} />
 

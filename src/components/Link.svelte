@@ -30,6 +30,7 @@
         color: inherit;
         cursor: pointer;
         font-style: italic;
+        white-space: nowrap;
 
         &:hover {
             text-decoration: underline;

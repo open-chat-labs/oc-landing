@@ -5,8 +5,20 @@
     import Close from "svelte-material-icons/Close.svelte";
     import MenuItems from "./MenuItems.svelte";
     import Link from "./Link.svelte";
+    import { loggedIn } from "../stores/authProviders";
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
 
     let showMenu = false;
+
+    function launch() {
+        if ($loggedIn) {
+            window.location.href = "/";
+        } else {
+            dispatch("login");
+        }
+    }
 </script>
 
 <div class="menu">
@@ -17,11 +29,13 @@
     {/if}
 
     {#if !$mobileWidth}
-        <MenuItems on:login />
+        <Link on:linkClicked={launch} mode={"menu"}>Go to chat</Link>
+        <MenuItems on:login on:logout />
     {:else}
         <Link path="home">
             <Home size={"1.6em"} color={"#fff"} />
         </Link>
+        <Link on:linkClicked={launch} mode={"menu"}>Go to chat</Link>
         <div on:click={() => (showMenu = !showMenu)}>
             {#if showMenu}
                 <Close size={"1.6em"} color={"#fff"} />
@@ -31,7 +45,7 @@
         </div>
 
         {#if showMenu}
-            <MenuItems bind:context={showMenu} on:login />
+            <MenuItems bind:context={showMenu} on:logout />
         {/if}
     {/if}
 </div>

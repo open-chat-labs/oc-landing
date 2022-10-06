@@ -3,7 +3,6 @@
     import AuthSelector from "./AuthSelector.svelte";
     import { currentPath } from "../stores/route";
     import Link from "./Link.svelte";
-    import { loggedIn } from "../stores/authProviders";
 
     export let context = false;
     let debug = true;
@@ -11,19 +10,10 @@
     function close() {
         context = false;
     }
-
-    function launch() {
-        window.location.href = "/";
-    }
 </script>
 
 <div class="menu-items" class:context>
     <div class="nav">
-        {#if $loggedIn}
-            <div class="menu-item" class:selected={false}>
-                <Link on:linkClicked={launch} mode={"menu"}>App</Link>
-            </div>
-        {/if}
         <div class="menu-item" class:selected={$currentPath === "home" || $currentPath === ""}>
             <Link on:linkClicked={close} mode={"menu"} path="home">About</Link>
         </div>
@@ -44,7 +34,7 @@
         {/if}
     </div>
     <div class="menu-item end">
-        <AuthSelector on:authSelected={close} on:login {context} />
+        <AuthSelector on:authSelected={close} on:logout {context} />
     </div>
 </div>
 
