@@ -63,7 +63,7 @@
                 ICP. The DAO will be realized by a system called the <WhitepaperExternalLink
                     href="https://internetcomputer.org/docs/current/tokenomics/sns/sns-intro-tokens"
                     >SNS</WhitepaperExternalLink>
-                (Service Nervous System) analogous to the <WhitepaperExternalLink 
+                (Service Nervous System) analogous to the <WhitepaperExternalLink
                     href="https://internetcomputer.org/docs/current/tokenomics/nns/nns-intro"
                     >NNS</WhitepaperExternalLink> (Network Nervous System) on the Internet Computer.
             </p>
@@ -148,7 +148,8 @@
                     href="https://internetcomputer.org/docs/current/tokenomics/nns/nns-intro"
                     >Read here</WhitepaperExternalLink>
                 and
-                <WhitepaperExternalLink href="https://wiki.internetcomputer.org/wiki/Network_Nervous_System"
+                <WhitepaperExternalLink
+                    href="https://wiki.internetcomputer.org/wiki/Network_Nervous_System"
                     >here</WhitepaperExternalLink> for more information on the NNS.
             </p>
 
@@ -359,17 +360,17 @@
 
             <p class="blurb">
                 Voting rewards are minted by the SNS ledger and accumulate in neurons that have
-                participated in voting as <WhitepaperExternalLink 
+                participated in voting as <WhitepaperExternalLink
                     href="https://wiki.internetcomputer.org/wiki/Maturity_modulation"
-                    >maturity</WhitepaperExternalLink>. For a given proposal vote, the voting reward
-                earned by a given neuron is in proportion to its voting power compared to the
-                overall voting power of participating neurons. The voting rewards are distributed
-                daily and take into account all of the votes that ended on that day. If there are no
-                proposals on a given day the rewards are carried over to the next day. The
-                proportion of total token supply that is minted annually for voting rewards is 5%.
-                In practice, given that much of the supply will not be in voting neurons, a neuron
-                with a 1 year dissolve delay would expect a voting reward significantly higher than
-                this figure.
+                    >maturity</WhitepaperExternalLink
+                >. For a given proposal vote, the voting reward earned by a given neuron is in
+                proportion to its voting power compared to the overall voting power of participating
+                neurons. The voting rewards are distributed daily and take into account all of the
+                votes that ended on that day. If there are no proposals on a given day the rewards
+                are carried over to the next day. The proportion of total token supply that is
+                minted annually for voting rewards is 5%. In practice, given that much of the supply
+                will not be in voting neurons, a neuron with a 1 year dissolve delay would expect a
+                voting reward significantly higher than this figure.
             </p>
 
             <p class="blurb">
@@ -582,8 +583,8 @@
             <GoogleChart
                 totalWidth={width}
                 title="Initial token allocation"
-                originalWidth={767}
-                originalHeight={395}
+                originalWidth={730}
+                originalHeight={380}
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTR-Snm-_Eq_UcQ5ClcdjGTLg4UOyvUl04rZXpY1W0n_yLuKJkANs-umrNS4F469qZoI17w1Nci08Sf/pubchart?oid=368502713&amp;format=interactive&amp;w=1000px" />
 
             <h4 id="5-1-1">NNS controlled (yellow)</h4>
