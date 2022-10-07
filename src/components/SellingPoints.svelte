@@ -29,11 +29,11 @@
         </FlipBox>
         <FlipBox>
             <div slot="front" class="item">
-                <span class="big ">sns</span>
+                <span class="big ">dao</span>
                 <span>controlled</span>
             </div>
             <div slot="back" class="item back">
-                <span class="head">sns controlled</span>
+                <span class="head">dao controlled</span>
                 <span class="txt">
                     The product roadmap can <em>only</em> be decided, approved and enacted by the community.
                     For us, by us.
