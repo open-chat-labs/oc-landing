@@ -27,6 +27,9 @@
     </div>
 
     <Launch on:login />
+    <div class="powered-by">
+        <img src="../ic-badge-powered-by_label-stripe-white-text.svg" alt="powered by the IC" />
+    </div>
 </HeroWrapper>
 
 {#if debug}
@@ -128,5 +131,13 @@
             right: 0;
             opacity: 1;
         }
+    }
+
+    .powered-by {
+        bottom: 0;
+        position: absolute;
+        height: toRem(30);
+        left: 0;
+        right: 0;
     }
 </style>

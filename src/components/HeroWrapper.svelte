@@ -10,7 +10,7 @@
 
 <style type="text/scss">
     .hero {
-        padding: $sp6;
+        padding: $sp6 $sp6 toRem(56) $sp6;
         @include fullScreenImg();
         background-position: center !important;
         position: relative;

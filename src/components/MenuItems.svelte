@@ -5,7 +5,7 @@
     import Link from "./Link.svelte";
 
     export let context = false;
-    let debug = true;
+    let debug = false;
 
     function close() {
         context = false;
