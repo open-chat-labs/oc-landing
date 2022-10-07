@@ -45,3 +45,9 @@ npm run build:sw-dev
 
 Good question. You probably can but I just couldn't get it to work. To save time I therefore just picked up the webpack
 config from the ic project to build the service worker and that seems to work fine.
+
+## License
+
+Copyright 2022 Computism LTD
+
+Licensed under the AGPLv3: https://www.gnu.org/licenses/agpl-3.0.html
