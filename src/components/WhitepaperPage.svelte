@@ -408,8 +408,8 @@
                 runs on the Internet Computer, a decentralized, unstoppable software platform with decentralized 
                 governance using the NNS. OpenChat will itself be controlled by a DAO which is aligned to its 
                 long-term success. Even the process of creating the DAO, with a <em>decentralization sale</em> 
-                proposed to the NNS and then run automatically, ensures there is no foul play. All this means that 
-                token holders can trust their investment is secure.
+                proposed to the NNS and then started automatically by the NNS, ensures there is no foul play. 
+                All this means that token holders can trust their investment is secure.
             </p>
             
             <div class="sep">
@@ -776,11 +776,12 @@
             </p>
 
             <p class="blurb">
-                There will be a proposal to stake a large portion of ICP, say 80%, as an 8 year
+                We plan to create a proposal to stake a large portion of ICP, say 80%, as an 8 year
                 neuron. This neuron would participate in NNS voting by following an OpenChat beacon
                 neuron which would seek to influence the ICs agenda to suit the long term interests
                 of the OpenChat DAO. It would also earn voting rewards for the DAO which could be
-                used to cover ongoing costs or build up a reserve.
+                used to cover ongoing costs or build up a reserve. This all depends on whether a 
+                small but significant change is made to the IC to allow canisters to control neurons.
             </p>
 
             <p class="blurb">
@@ -892,7 +893,7 @@
             <p class="blurb">
                 The SNS will receive an income in CHAT tokens from premium features, transaction
                 fees, 3rd party integrations etc. The SNS will also receive an income in ICP from
-                the NNS voting rewards of its large ICP neuron.
+                the NNS voting rewards of its large ICP neuron if that goes ahead.
             </p>
 
             <p class="blurb">
