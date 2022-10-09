@@ -17,7 +17,7 @@ const DEBUG = true;
 //workbox config
 registerRoute(
     (route) => {
-        return [/avatar\/\d+/, /screenshots\//, /network12.*jpg/, /matt|hamish|julian/].some((re) =>
+        return [/screenshots\//, /network12.*jpg/, /matt|hamish|julian/].some((re) =>
             re.test(route.request.url)
         );
     },
@@ -98,29 +98,41 @@ setCatchHandler(({ request }) => {
     return defaultHandler(request);
 });
 
+addEventListener("message", (event) => {
+    if (event.data && event.data.type === "SKIP_WAITING") {
+        console.log("SW: skipping waiting in response to message");
+        self.skipWaiting();
+    }
+});
+
 // Always install updated SW immediately
-self.addEventListener("install", () => {
-    self.skipWaiting();
+self.addEventListener("install", (ev) => {
+    ev.waitUntil(self.skipWaiting().then(() => console.log("SW: skipWaiting promise resolved")));
 });
 
 self.addEventListener("activate", async () => {
     // upon activation take control of all clients (tabs & windows)
     await self.clients.claim();
-    // reload all clients
-    const clients = (await self.clients.matchAll()) as WindowClient[];
-    clients.forEach((client) => client.navigate(client.url));
+    console.log("SW: actived");
 });
 
 async function defaultHandler(request: Request): Promise<Response> {
-    const referrer = new URL(request.referrer);
+    let referrer: URL | undefined;
+    try {
+        if (request.referrer) {
+            referrer = new URL(request.referrer);
+        }
+    } catch {}
     const anon = await isAnonymous();
-    const passthrough = anon || landingPageRoutes.includes(referrer.pathname);
+    const passthrough = anon || landingPageRoutes.includes(referrer?.pathname);
+
+    console.log("SW: version 14");
 
     if (process.env.LANDING_PAGE_MODE && (anon || passthrough)) {
         console.debug(
             "SW: default handler - not signed in falling back to network: ",
             request.url,
-            referrer.pathname
+            referrer?.pathname
         );
         return fetch(request);
     } else {
@@ -128,7 +140,7 @@ async function defaultHandler(request: Request): Promise<Response> {
             console.debug(
                 "SW: default handler - signed in falling back to default ic service worker ",
                 request.url,
-                referrer.pathname
+                referrer?.pathname
             );
             return handleRequest(request);
         } catch (e) {
