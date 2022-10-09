@@ -383,29 +383,35 @@
             <h3 id="3-5">The power of the DAO</h3>
 
             <p class="blurb">
-                The Internet Computer has been building towards this moment. It provides an
-                unstoppable, tamperproof decentralized computing platform with trustless governance
-                using the NNS. It now supports decentralized apps with trustless governance using an
-                SNS. Even the process of decentralizing an app is achieved trustlessly, with a
-                decentralization sale automatically configured and started by an executable NNS
-                proposal so there is no danger of the dev team rug-pulling.
+                There are many factors which will influence the success of OpenChat. It must have a great 
+                development team building an app with a great user experience. It must have the standard 
+                features expected of a chat app and new capabilities and properties which set it apart 
+                from the competition. But even when getting all this right it is hard to break into a market 
+                with such established players. A crucial ingredient available to OpenChat to help it succeed 
+                is <em>tokenization</em>.
             </p>
 
+            <h4 id="3-5-1">Growth</h4>
+            
             <p class="blurb">
-                Only once all these conditions are in place is it really possible to unleash the
-                power of tokenization into dapps. If there is a single weak link in the chain then
-                tokenization is vulnerable.
+                The OpenChat system will automatically reward users with CHAT tokens for using the app positively 
+                and for inviting friends and family to join if they also go on to use the app positively. This 
+                improves the user experience by encouraging positive behavior and also builds an exponential viral 
+                growth loop. Users rewarded with CHAT tokens are invested in the future success of OpenChat and so 
+                a powerful team of 100,000s of advocates is created helping drive growth further.
             </p>
 
+            <h4 id="3-5-2">Trust</h4>
+            
             <p class="blurb">
-                A major problem in today’s tech landscape is that centralized big tech companies
-                monopolize services and can use their position of power to exploit users and their
-                data. It is very hard for new services to compete with these powerful incumbents but
-                tokenization holds that promise. By using tokens to reward positive behavior, apps
-                like OpenChat can take advantage of powerful virtuous cycles to help improve user
-                experience and drive growth.
+                An essential condition for tokenization to be viable in the first place is <em>trust</em>. OpenChat 
+                runs on the Internet Computer, a decentralized, unstoppable software platform with decentralized 
+                governance using the NNS. OpenChat will itself be controlled by a DAO which is aligned to its 
+                long-term success. Even the process of creating the DAO, with a <em>decentralization sale</em> 
+                proposed to the NNS and then started automatically by the NNS, ensures there is no foul play. 
+                All this means that token holders can trust their investment is secure.
             </p>
-
+            
             <div class="sep">
                 <Separator />
             </div>
@@ -770,11 +776,12 @@
             </p>
 
             <p class="blurb">
-                There will be a proposal to stake a large portion of ICP, say 80%, as an 8 year
+                We plan to create a proposal to stake a large portion of ICP, say 80%, as an 8 year
                 neuron. This neuron would participate in NNS voting by following an OpenChat beacon
                 neuron which would seek to influence the ICs agenda to suit the long term interests
                 of the OpenChat DAO. It would also earn voting rewards for the DAO which could be
-                used to cover ongoing costs or build up a reserve.
+                used to cover ongoing costs or build up a reserve. This all depends on whether a 
+                small but significant change is made to the IC to allow canisters to control neurons.
             </p>
 
             <p class="blurb">
@@ -886,7 +893,7 @@
             <p class="blurb">
                 The SNS will receive an income in CHAT tokens from premium features, transaction
                 fees, 3rd party integrations etc. The SNS will also receive an income in ICP from
-                the NNS voting rewards of its large ICP neuron.
+                the NNS voting rewards of its large ICP neuron if that goes ahead.
             </p>
 
             <p class="blurb">
