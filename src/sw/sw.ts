@@ -17,26 +17,13 @@ const DEBUG = true;
 //workbox config
 registerRoute(
     (route) => {
-        return [/screenshots\//, /network12.*jpg/, /matt|hamish|julian/].some((re) =>
-            re.test(route.request.url)
-        );
-    },
-    new CacheFirstIfSignedIn({
-        cacheName: "openchat_avatars",
-        plugins: [
-            new CacheableResponsePlugin({
-                statuses: [0, 200], // need to include opaque responses here
-            }),
-            new ExpirationPlugin({
-                maxAgeSeconds: 30 * 24 * 60 * 60,
-            }),
-        ],
-    })
-);
-
-registerRoute(
-    (route) => {
-        return [/main-.*[css|js]$/, /assets\/underwater/].some((re) => re.test(route.request.url));
+        return [
+            /screenshots\//,
+            /network12.*jpg/,
+            /matt|hamish|julian/,
+            /main-.*[css|js]$/,
+            /assets\/underwater/,
+        ].some((re) => re.test(route.request.url));
     },
     new CacheFirstIfSignedIn({
         cacheName: "openchat_cache_first",
