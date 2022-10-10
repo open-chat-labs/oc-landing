@@ -145,12 +145,8 @@
 
             <p class="blurb">
                 <WhitepaperExternalLink
-                    href="https://internetcomputer.org/docs/current/tokenomics/nns/nns-intro"
-                    >Read here</WhitepaperExternalLink>
-                and
-                <WhitepaperExternalLink
-                    href="https://wiki.internetcomputer.org/wiki/Network_Nervous_System"
-                    >here</WhitepaperExternalLink> for more information on the NNS.
+                    href="https://internetcomputer.org/nns/"
+                    >Read here</WhitepaperExternalLink> for more information on the NNS.
             </p>
 
             <div class="sep">
