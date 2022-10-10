@@ -736,9 +736,9 @@
                 <div>The minimum ICP to be raised (otherwise sale fails and ICP returned)</div>
                 <div>100,000</div>
                 <div>Start date of sale</div>
-                <div>05-10-2022 at 15:00 GMT</div>
+                <div>announced soon...</div>
                 <div>End date of sale (unless maximum ICP raised sooner)</div>
-                <div>19-10-2022 at 15:00 GMT</div>
+                <div>announced soon...</div>
                 <div>Minimum number of buyers</div>
                 <div>100</div>
                 <div>Minimum ICP per buyer</div>
