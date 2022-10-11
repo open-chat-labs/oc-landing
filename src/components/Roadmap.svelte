@@ -43,50 +43,11 @@
 
 <Separator />
 
-<Section lazy={true} id={"communities"}>
-    <div class="roadmap-header">
-        <div class="date">
-            <div class="quarter">Q1</div>
-            <div class="year">2023</div>
-        </div>
-
-        <Headline>
-            <div class="title">Communities</div>
-        </Headline>
-    </div>
-    <div class="blurb">
-        <p>
-            Currently OpenChat is open to all. Any user or public group can be found by simply
-            searching. For many scenarios this is perfectly fine. But in the near term we will
-            deliver a new feature which will remove some limitations of this model.
-        </p>
-
-        <p>
-            Sometimes it would be nice to collect a number of groups together where they have
-            something in common. That commonality or <em>community</em> could be anything: perhaps
-            they all use the same language, or they all relate to a particular area of interest, or
-            they all relate to a particular <em>project</em>. In this sense, communities are a bit
-            like Discord servers.
-        </p>
-
-        <p>
-            Furthermore, a community may wish to restict and control its membership creating <em
-                >private</em>
-            communities. We see this as an important step for the future monetization of OpenChat as
-            it enables us to easily support its use as an internal communication tool
-            <em>within a corporate setting.</em> In that sense, communities can also be thought of like
-            Slack workspaces.
-        </p>
-    </div>
-</Section>
-
-<Separator />
-
 <Section lazy={true} id={"user-rewards"}>
     <div class="roadmap-header">
         <div class="date">
-            <div class="quarter">Q2</div>
-            <div class="year">2023</div>
+            <div class="quarter">Q4</div>
+            <div class="year">2022</div>
         </div>
 
         <Headline>
@@ -119,7 +80,7 @@
 <Section lazy={true} id={"integrations"}>
     <div class="roadmap-header">
         <div class="date">
-            <div class="quarter">Q3</div>
+            <div class="quarter">Q1</div>
             <div class="year">2023</div>
         </div>
 
@@ -142,6 +103,45 @@
         <p>
             The OpenChat team will build the apis, libraries and UI components required to make chat
             integration as seamless as possible.
+        </p>
+    </div>
+</Section>
+
+<Separator />
+
+<Section lazy={true} id={"communities"}>
+    <div class="roadmap-header">
+        <div class="date">
+            <div class="quarter">Q2</div>
+            <div class="year">2023</div>
+        </div>
+
+        <Headline>
+            <div class="title">Communities</div>
+        </Headline>
+    </div>
+    <div class="blurb">
+        <p>
+            Currently OpenChat is open to all. Any user or public group can be found by simply
+            searching. For many scenarios this is perfectly fine. But in the near term we will
+            deliver a new feature which will remove some limitations of this model.
+        </p>
+
+        <p>
+            Sometimes it would be nice to collect a number of groups together where they have
+            something in common. That commonality or <em>community</em> could be anything: perhaps
+            they all use the same language, or they all relate to a particular area of interest, or
+            they all relate to a particular <em>project</em>. In this sense, communities are a bit
+            like Discord servers.
+        </p>
+
+        <p>
+            Furthermore, a community may wish to restict and control its membership creating <em
+                >private</em>
+            communities. We see this as an important step for the future monetization of OpenChat as
+            it enables us to easily support its use as an internal communication tool
+            <em>within a corporate setting.</em> In that sense, communities can also be thought of like
+            Slack workspaces.
         </p>
     </div>
 </Section>
