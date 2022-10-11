@@ -90,15 +90,14 @@
     </div>
     <div class="blurb">
         <p>
-            With communities we can also unlock the potential of third party integrations. One
-            obvious application is to provide chat functionality as a service to other dApps in the
-            Internet Computer ecosystem.
+            We are keen to provide chat functionality as a service to other dApps in the Internet 
+            Computer ecosystem.
         </p>
         <p>
             We are currently consulting with many builders in the community to find out how they
             would like to integrate OpenChat functionality in the future. The appetite is certainly
-            there! Whether it is the simplest direct chat functionality that is integrated or full
-            blown access to the dApp's community remains to be seen.
+            there! We will likely start with simple direct chat functionality before later offering 
+            groups and other more advanced features.
         </p>
         <p>
             The OpenChat team will build the apis, libraries and UI components required to make chat
@@ -122,13 +121,14 @@
     </div>
     <div class="blurb">
         <p>
-            Currently OpenChat is open to all. Any user or public group can be found by simply
-            searching. For many scenarios this is perfectly fine. But in the near term we will
-            deliver a new feature which will remove some limitations of this model.
+            By building the capability to integrate with 3rd party dApps, each with their own community, 
+            we also unlock the potential to introduce the concept of <em>communities</em> to the OpenChat 
+            dApp itself. Currently OpenChat is open to all. Any user or public group can be found by simply
+            searching. For many scenarios this is perfectly fine. 
         </p>
 
         <p>
-            Sometimes it would be nice to collect a number of groups together where they have
+            However, sometimes it would be nice to collect a number of groups together where they have
             something in common. That commonality or <em>community</em> could be anything: perhaps
             they all use the same language, or they all relate to a particular area of interest, or
             they all relate to a particular <em>project</em>. In this sense, communities are a bit
