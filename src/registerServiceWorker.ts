@@ -41,17 +41,6 @@ export function registerServiceWorker() {
             // delays code execution until serviceworker is ready
             await navigator.serviceWorker.ready;
             console.log("SW is now ready");
-
-            if (reg !== undefined) {
-                reg.update();
-            }
-
-            // const registration = await navigator.serviceWorker.getRegistration();
-            // if (registration.active && !navigator.serviceWorker.controller) {
-            //     // There's an active SW, but no controller for this tab. The service worker events are also _not_ fired.
-            //     // This happens after a hard refresh --> Perform a soft reload to load everything from the SW.
-            //     window.location.reload();
-            // }
         }
     });
 }

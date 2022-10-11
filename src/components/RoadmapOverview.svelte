@@ -45,19 +45,9 @@
             </div>
 
             <div class="status" class:visible>
-                <div class="when">Q1</div>
-                <div class="status-text">2023</div>
+                <div class="when">Q4</div>
+                <div class="status-text">2022</div>
             </div>
-            <div class="txt">
-                <div class="txt-header">Communities</div>
-                <div class="txt-desc">
-                    Create your own (optionally private) community within OpenChat. A community can
-                    be thought of like a slack workspace or a discord server. You control who joins
-                    your community and you can create a rich set of private or public groups within
-                    in making use of all of the OpenChat features that you already know.
-                </div>
-            </div>
-
             <div class="txt">
                 <div class="txt-header">User rewards</div>
                 <div class="txt-desc">
@@ -66,8 +56,19 @@
                     supercharge adoption.
                 </div>
             </div>
+
+            <div class="txt">
+                <div class="txt-header">Integrations & Communities</div>
+                <div class="txt-desc">
+                    Support communities with integrated chat or create your own (optionally private)
+                    community within OpenChat. A community can be thought of like a slack workspace
+                    or a discord server. You control who joins your community and you can create a
+                    rich set of private or public groups within it making use of all of the OpenChat
+                    features that you already know.
+                </div>
+            </div>
             <div class="status" class:visible>
-                <div class="when">Q2</div>
+                <div class="when">Q1/2</div>
                 <div class="status-text">2023</div>
             </div>
 

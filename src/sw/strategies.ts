@@ -28,7 +28,8 @@ export class IcHandler extends StrategyHandler {
             "SW: cache miss (or revalidation), falling back to default ic service worker ",
             input
         );
-        return handleRequest(toRequest(input));
+        const response = await handleRequest(toRequest(input));
+        return response;
     }
 }
 
