@@ -9,9 +9,6 @@
 
     $: path = $currentPath.path;
 
-    $: console.log("Current route: ", $currentPath, path);
-    $: console.log("Current path: ", path);
-
     function close() {
         context = false;
     }
