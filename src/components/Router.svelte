@@ -5,17 +5,38 @@
     import FeaturesPage from "./FeaturesPage.svelte";
     import RoadmapPage from "./RoadmapPage.svelte";
     import { createEventDispatcher, onMount, tick } from "svelte";
-    import { currentPath } from "../stores/route";
+    import { currentPath, Route } from "../stores/route";
 
     const dispatch = createEventDispatcher();
 
     let popping = false;
 
+    function scrollToHash(hash: string) {
+        if (hash === "") return;
+
+        const main = document.getElementById("main");
+        const target = document.getElementById(hash);
+        const rect = target.getBoundingClientRect();
+        const top = rect.top + main.scrollTop - 80;
+        main.scrollTo({
+            top,
+        });
+        target.classList.add("highlight");
+        window.setTimeout(() => {
+            target.classList.remove("highlight");
+        }, 1000);
+    }
+
     onMount(() => {
-        window.addEventListener("popstate", () => {
+        window.addEventListener("popstate", (ev: PopStateEvent) => {
             popping = true;
-            changeRoute(window.location.pathname.slice(1));
-            tick().then(() => (popping = false));
+            currentPath.set({
+                path: window.location.pathname.slice(1),
+                hash: window.location.hash.slice(1),
+            });
+            tick().then(() => {
+                popping = false;
+            });
         });
     });
 
@@ -41,15 +62,30 @@
         return [HomePage, "home"];
     }
 
-    function changeRoute(path: string): void {
-        const [c, r] = pathToComponent(path);
+    function changeRoute(route: Route): void {
+        const [c, r] = pathToComponent(route.path);
         selected = c;
-        currentPath.set(r);
-        if (!popping) {
-            console.log("Setting path to ", path);
-            window.history.pushState({}, "", path); // Update URL as well as browser history.
+
+        if (route.path !== $currentPath.path || route.hash !== window.location.hash) {
+            currentPath.update((p) => ({
+                ...p,
+                path: r,
+            }));
         }
-        dispatch("scrollToTop");
+
+        if (!popping) {
+            console.log("Setting path to ", route.path, route.hash);
+            window.history.pushState(
+                {},
+                "",
+                `${route.path}${route.hash === "" ? "" : "#" + route.hash}`
+            ); // Update URL as well as browser history.
+        }
+        tick().then(() => scrollToHash(route.hash));
+
+        if (route.hash === "") {
+            dispatch("scrollToTop");
+        }
     }
 </script>
 

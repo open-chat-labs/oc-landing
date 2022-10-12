@@ -18,7 +18,7 @@
         <TableOfContents />
 
         <div class="body">
-            <h2 id="1">1) Product / Service Overview</h2>
+            <h2 class="link-target" id="1">1) Product / Service Overview</h2>
 
             <p class="blurb">
                 OpenChat is a fully featured chat application running on the <WhitepaperInternalLink
@@ -78,7 +78,7 @@
                 <Separator />
             </div>
 
-            <h2 id="2">2) Internet Computer Overview</h2>
+            <h2 class="link-target" id="2">2) Internet Computer Overview</h2>
 
             <p class="blurb">
                 The <WhitepaperExternalLink
@@ -96,7 +96,7 @@
                 users.
             </p>
 
-            <h3 id="2-1">Canister smart-contracts</h3>
+            <h3 class="link-target" id="2-1">Canister smart-contracts</h3>
 
             <p class="blurb">
                 Applications on the IC are composed of canister smart-contracts organized into
@@ -128,7 +128,7 @@
                 on the IC is simplified compared to traditional IT stacks.
             </p>
 
-            <h3 id="2-2">Network Nervous System (NNS)</h3>
+            <h3 class="link-target" id="2-2">Network Nervous System (NNS)</h3>
 
             <p class="blurb">
                 A key feature of the Internet Computer blockchain is the Network Nervous System
@@ -144,8 +144,7 @@
             </p>
 
             <p class="blurb">
-                <WhitepaperExternalLink
-                    href="https://internetcomputer.org/nns/"
+                <WhitepaperExternalLink href="https://internetcomputer.org/nns/"
                     >Read here</WhitepaperExternalLink> for more information on the NNS.
             </p>
 
@@ -153,9 +152,9 @@
                 <Separator />
             </div>
 
-            <h2 id="3">3) OpenChat DAO</h2>
+            <h2 class="link-target" id="3">3) OpenChat DAO</h2>
 
-            <h3 id="3-1">Summary</h3>
+            <h3 class="link-target" id="3-1">Summary</h3>
 
             <ul class="blurb">
                 <li>
@@ -175,7 +174,7 @@
                 </li>
             </ul>
 
-            <h3 id="3-2">Creation of the DAO</h3>
+            <h3 class="link-target" id="3-2">Creation of the DAO</h3>
 
             <p class="blurb">
                 The OpenChat SNS will be created from the latest NNS blessed SNS canisters by the
@@ -207,7 +206,7 @@
                 be considered a public good.
             </p>
 
-            <h3 id="3-3">Control of the DAO</h3>
+            <h3 class="link-target" id="3-3">Control of the DAO</h3>
 
             <p class="blurb">
                 After the decentralization sale the SNS will be in control of the dapp including its
@@ -226,9 +225,9 @@
                 copy the source code of another IC app, breaking its licensing terms.
             </p>
 
-            <h3 id="3-4">Governance of the DAO</h3>
+            <h3 class="link-target" id="3-4">Governance of the DAO</h3>
 
-            <h4 id="3-4-1">Proposals</h4>
+            <h4 class="link-target" id="3-4-1">Proposals</h4>
 
             <p class="blurb">SNS proposals have the following types.</p>
 
@@ -304,7 +303,7 @@
                 </li>
             </ul>
 
-            <h4 id="3-4-2">Voting and voting rewards</h4>
+            <h4 class="link-target" id="3-4-2">Voting and voting rewards</h4>
 
             <p class="blurb">
                 Proposals are used to govern all aspects of the OpenChat dapp. Token holders are
@@ -378,7 +377,7 @@
                 rewards.
             </p>
 
-            <h3 id="3-5">The power of the DAO</h3>
+            <h3 class="link-target" id="3-5">The power of the DAO</h3>
 
             <p class="blurb">
                 There are many factors which will influence the success of OpenChat. It must have a
@@ -389,7 +388,7 @@
                 available to OpenChat to help it succeed is <em>tokenization</em>.
             </p>
 
-            <h4 id="3-5-1">Growth</h4>
+            <h4 class="link-target" id="3-5-1">Growth</h4>
 
             <p class="blurb">
                 The OpenChat system will automatically reward users with CHAT tokens for using the
@@ -400,7 +399,7 @@
                 100,000s of advocates is created helping drive growth further.
             </p>
 
-            <h4 id="3-5-2">Trust</h4>
+            <h4 class="link-target" id="3-5-2">Trust</h4>
 
             <p class="blurb">
                 An essential condition for tokenization to be viable in the first place is <em
@@ -417,7 +416,7 @@
                 <Separator />
             </div>
 
-            <h2 id="4">4) Purpose of the CHAT utility token</h2>
+            <h2 class="link-target" id="4">4) Purpose of the CHAT utility token</h2>
 
             <ul class="blurb">
                 <li>
@@ -439,7 +438,7 @@
                 </li>
             </ul>
 
-            <h3 id="4-1">Premium features</h3>
+            <h3 class="link-target" id="4-1">Premium features</h3>
 
             <p class="blurb">
                 There are many ways OpenChat could evolve to allow users to spend their CHAT tokens
@@ -459,7 +458,7 @@
                 from the user’s canister to the SNS treasury account and then grant the feature.
             </p>
 
-            <h4 id="4-1-1">Current premium features</h4>
+            <h4 class="link-target" id="4-1-1">Current premium features</h4>
 
             <p class="blurb">
                 There are already some premium features that OpenChat offers which for the time
@@ -474,7 +473,7 @@
                 <li>Increased group creation limit from 10 to 25</li>
             </ul>
 
-            <h4 id="4-1-2">Communities</h4>
+            <h4 class="link-target" id="4-1-2">Communities</h4>
 
             <p class="blurb">
                 A key feature we are planning to build soon is called “communities”. These will be
@@ -488,7 +487,7 @@
                 for admittance to a community.
             </p>
 
-            <h4 id="4-1-3">Other possible future premium features</h4>
+            <h4 class="link-target" id="4-1-3">Other possible future premium features</h4>
 
             <p class="blurb">
                 Here are some more features that OpenChat could offer and charge for in the future.
@@ -506,7 +505,7 @@
                 </li>
             </ul>
 
-            <h4 id="4-1-4">Additional potential revenue</h4>
+            <h4 class="link-target" id="4-1-4">Additional potential revenue</h4>
 
             <ul class="blurb">
                 <li>Provide chat functionality to other IC apps with an OpenChat integration</li>
@@ -514,7 +513,7 @@
                 <li>Transaction charge to use an integrated token swap service</li>
             </ul>
 
-            <h3 id="4-2">User rewards</h3>
+            <h3 class="link-target" id="4-2">User rewards</h3>
 
             <p class="blurb">
                 The design of the user reward system has not been confirmed yet and we will consult
@@ -536,7 +535,7 @@
                 like all OpenChat code, be open source and visible to anyone.
             </p>
 
-            <h4 id="4-2-1">User reputation</h4>
+            <h4 class="link-target" id="4-2-1">User reputation</h4>
 
             <p class="blurb">
                 We think a reward system should be based on reputation. Each user would have a
@@ -554,7 +553,7 @@
                 in their OpenChat account, or even better, neurons.
             </p>
 
-            <h4 id="4-2-2">Rewards</h4>
+            <h4 class="link-target" id="4-2-2">Rewards</h4>
 
             <p class="blurb">
                 The reward algorithm can use reputation to determine which users are rewarded and
@@ -578,9 +577,9 @@
                 <Separator />
             </div>
 
-            <h2 id="5">5) Token allocation at SNS genesis</h2>
+            <h2 class="link-target" id="5">5) Token allocation at SNS genesis</h2>
 
-            <h3 id="5-1">Initial token allocation</h3>
+            <h3 class="link-target" id="5-1">Initial token allocation</h3>
 
             <p class="blurb">
                 The SNS will be initialized with 1 billion CHAT tokens allocated in the following
@@ -594,7 +593,7 @@
                 originalHeight={380}
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTR-Snm-_Eq_UcQ5ClcdjGTLg4UOyvUl04rZXpY1W0n_yLuKJkANs-umrNS4F469qZoI17w1Nci08Sf/pubchart?oid=368502713&amp;format=interactive&amp;w=1000px" />
 
-            <h4 id="5-1-1">NNS controlled (yellow)</h4>
+            <h4 class="link-target" id="5-1-1">NNS controlled (yellow)</h4>
 
             <p class="blurb">
                 The NNS will initially be allocated 29% of the total supply of CHAT tokens. 20% will
@@ -612,7 +611,7 @@
                 dissolve delay one month greater than the previous, so from 1-12 months.
             </p>
 
-            <h4 id="5-1-2">Founders and funders (pink)</h4>
+            <h4 class="link-target" id="5-1-2">Founders and funders (pink)</h4>
 
             <p class="blurb">
                 OpenChat has been built by a team of 3 developers since January 2021 and has
@@ -657,7 +656,7 @@
                 cannot “rug-pull” investors.
             </p>
 
-            <h4 id="5-1-3">SNS treasury (blue)</h4>
+            <h4 class="link-target" id="5-1-3">SNS treasury (blue)</h4>
 
             <p class="blurb">
                 After the decentralization sale the SNS will be left with a treasury of the
@@ -691,7 +690,7 @@
                 this might not all happen at once.
             </p>
 
-            <h3 id="5-2">Initial SNS configuration</h3>
+            <h3 class="link-target" id="5-2">Initial SNS configuration</h3>
 
             <p class="blurb">
                 The SNS will initially be configured with the values shown in the tables below which
@@ -723,7 +722,7 @@
                 <div>5%</div>
             </div>
 
-            <h3 id="5-3">SNS decentralization sale configuration</h3>
+            <h3 class="link-target" id="5-3">SNS decentralization sale configuration</h3>
 
             <p class="blurb">
                 The decentralization sale will be configured with the values shown below.
@@ -755,7 +754,7 @@
                 <Separator />
             </div>
 
-            <h2 id="6">6) OpenChat SNS treasury</h2>
+            <h2 class="link-target" id="6">6) OpenChat SNS treasury</h2>
 
             <p class="blurb">The SNS will hold a treasury of ICP tokens and CHAT tokens.</p>
 
@@ -796,7 +795,7 @@
                 </WhitepaperInternalLink>.
             </p>
 
-            <h3 id="6-1">ICP for cycles to fund hosting</h3>
+            <h3 class="link-target" id="6-1">ICP for cycles to fund hosting</h3>
 
             <p class="blurb">
                 Initially, proposals will be created to transfer ICP as needed to the account of a
@@ -806,7 +805,7 @@
                 ICP to itself and burn it for cycles to run the dapp.
             </p>
 
-            <h3 id="6-2">3rd party services</h3>
+            <h3 class="link-target" id="6-2">3rd party services</h3>
 
             <p class="blurb">
                 The intention is for OpenChat to have no off-chain dependencies so that it is not
@@ -838,7 +837,7 @@
                 </li>
             </ul>
 
-            <h3 id="6-3">Pay the development team</h3>
+            <h3 class="link-target" id="6-3">Pay the development team</h3>
 
             <p class="blurb">
                 Initially at least DFINITY will continue to fund the OpenChat development team and
@@ -861,9 +860,9 @@
                 <Separator />
             </div>
 
-            <h2 id="7">7) Tokenomics</h2>
+            <h2 class="link-target" id="7">7) Tokenomics</h2>
 
-            <h3 id="7-1">Total supply levers</h3>
+            <h3 class="link-target" id="7-1">Total supply levers</h3>
 
             <p class="blurb">
                 At genesis the total supply of CHAT tokens will be 1B. The supply will increase if
@@ -884,7 +883,7 @@
 
             <p class="blurb">The only way the SNS can burn tokens is by proposal.</p>
 
-            <h3 id="7-2">Income and outgoings</h3>
+            <h3 class="link-target" id="7-2">Income and outgoings</h3>
 
             <p class="blurb">
                 At genesis the SNS will have a treasury of ICP from the decentralization sale and
@@ -932,7 +931,7 @@
                 originalHeight={582}
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTR-Snm-_Eq_UcQ5ClcdjGTLg4UOyvUl04rZXpY1W0n_yLuKJkANs-umrNS4F469qZoI17w1Nci08Sf/pubchart?oid=285935273&amp;format=interactive" />
 
-            <h3 id="7-3">Token price</h3>
+            <h3 class="link-target" id="7-3">Token price</h3>
 
             <p class="blurb">
                 There are various factors that will influence the price of CHAT tokens such as
@@ -985,7 +984,7 @@
                 impact price by increasing the liquid supply.
             </p>
 
-            <h3 id="7-4">Voting power over time</h3>
+            <h3 class="link-target" id="7-4">Voting power over time</h3>
 
             <p class="blurb">
                 The following diagram depicts a projection of the voting power over time segmented
@@ -1094,6 +1093,14 @@
                 border-bottom: none;
             }
         }
+    }
+
+    :global(.link-target) {
+        transition: color ease-in-out 300ms;
+    }
+
+    :global(.link-target.highlight) {
+        color: var(--accent);
     }
 
     :global(.whitepaper .body .whitepaper-link) {

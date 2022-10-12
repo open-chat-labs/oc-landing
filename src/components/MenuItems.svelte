@@ -7,6 +7,8 @@
     export let context = false;
     let debug = false;
 
+    $: path = $currentPath.path;
+
     function close() {
         context = false;
     }
@@ -14,20 +16,37 @@
 
 <div class="menu-items" class:context>
     <div class="nav">
-        <div class="menu-item" class:selected={$currentPath === "home" || $currentPath === ""}>
-            <Link on:linkClicked={close} mode={"menu"} path="home">About</Link>
+        <div class="menu-item">
+            <Link
+                selected={path === "home" || path === ""}
+                on:linkClicked={close}
+                mode={"menu"}
+                path="home">About</Link>
         </div>
-        <div class="menu-item" class:selected={$currentPath === "features"}>
-            <Link on:linkClicked={close} mode={"menu"} path="features">Features</Link>
+        <div class="menu-item">
+            <Link
+                selected={path === "features"}
+                on:linkClicked={close}
+                mode={"menu"}
+                path="features">Features</Link>
         </div>
-        <div class="menu-item" class:selected={$currentPath === "roadmap"}>
-            <Link on:linkClicked={close} mode={"menu"} path="roadmap">Roadmap</Link>
+        <div class="menu-item">
+            <Link selected={path === "roadmap"} on:linkClicked={close} mode={"menu"} path="roadmap"
+                >Roadmap</Link>
         </div>
-        <div class="menu-item" class:selected={$currentPath === "whitepaper"}>
-            <Link on:linkClicked={close} mode={"menu"} path="whitepaper">Whitepaper</Link>
+        <div class="menu-item">
+            <Link
+                selected={path === "whitepaper"}
+                on:linkClicked={close}
+                mode={"menu"}
+                path="whitepaper">Whitepaper</Link>
         </div>
-        <div class="menu-item" class:selected={$currentPath === "architecture"}>
-            <Link on:linkClicked={close} mode={"menu"} path="architecture">Architecture</Link>
+        <div class="menu-item">
+            <Link
+                selected={path === "architecture"}
+                on:linkClicked={close}
+                mode={"menu"}
+                path="architecture">Architecture</Link>
         </div>
         {#if debug}
             <div class="menu-item link" on:click={toggleTheme}>theme</div>

@@ -23,7 +23,4 @@
     a {
         position: relative;
     }
-    :global(.whitepaper .highlight) {
-        color: var(--accent);
-    }
 </style>
