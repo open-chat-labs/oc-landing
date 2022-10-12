@@ -17,7 +17,7 @@
         const main = document.getElementById("main");
         const target = document.getElementById(hash);
         const rect = target.getBoundingClientRect();
-        const top = rect.top + main.scrollTop - 80;
+        const top = rect.top + main.scrollTop - 70;
         main.scrollTo({
             top,
         });
@@ -81,7 +81,7 @@
                 `${route.path}${route.hash === "" ? "" : "#" + route.hash}`
             ); // Update URL as well as browser history.
         }
-        tick().then(() => scrollToHash(route.hash));
+        setTimeout(() => scrollToHash(route.hash), 200);
 
         if (route.hash === "") {
             dispatch("scrollToTop");
