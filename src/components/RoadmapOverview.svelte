@@ -13,7 +13,12 @@
 </script>
 
 <Section bind:visible lazy={true} id={"roadmap"}>
-    <div on:click={() => currentPath.set("roadmap")}>
+    <div
+        on:click={() =>
+            currentPath.set({
+                path: "roadmap",
+                hash: "",
+            })}>
         <Headline>Roadmap Overview</Headline>
 
         <div class="grid">
