@@ -12,6 +12,7 @@
     import { AuthProvider } from "./authProvider";
     import { selectedAuthProviderStore, loggingIn, loggedIn } from "./stores/authProviders";
     import "./theme/themes";
+    import { currentPath } from "./stores/route";
 
     let mainEl: HTMLElement | undefined;
     let scrollTop = 0;
@@ -97,6 +98,13 @@
             );
         }
     }
+
+    function clearHash() {
+        currentPath.update((p) => ({
+            ...p,
+            hash: "",
+        }));
+    }
 </script>
 
 {#if $loggingIn}
@@ -121,7 +129,7 @@
     {/if}
 
     {#if backToTop}
-        <div transition:fade|local class="fab" on:click={scrollToTop}>
+        <div transition:fade|local class="fab" on:click={clearHash}>
             <Fab>
                 <ArrowUp size={"1.4em"} color={"rgba(255,255,255,0.8)"} />
             </Fab>

@@ -4,12 +4,16 @@
 
     export let path: string | undefined = undefined;
     export let mode: "menu" | "link" = "link";
+    export let selected = false;
 
     const dispatch = createEventDispatcher();
 
     function clickLink(e: MouseEvent) {
         if (path !== undefined) {
-            currentPath.set(path);
+            currentPath.set({
+                path,
+                hash: "",
+            });
         }
         e.preventDefault();
         dispatch("linkClicked");
@@ -20,7 +24,7 @@
     class="link"
     class:menu={mode === "menu"}
     href={path === undefined ? "#" : `/${path}`}
-    class:selected={$currentPath === path}
+    class:selected
     on:click={clickLink}><slot /></a>
 
 <style type="text/scss">
