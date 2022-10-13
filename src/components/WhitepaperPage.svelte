@@ -743,11 +743,14 @@
                 <div>1</div>
             </div>
 
+            <h4 class="link-target" id="5-3-1">Valuation range</h4>
+
             <p class="blurb">
                 The reason to impose a maximum target is to give investors a minimum bound on the
                 number of CHAT tokens they will receive for their ICP investment. The lower bound of
                 0.1M ICP and the upper bound of 1M ICP for 20% of the tokens gives the OpenChat DAO
-                an initial total valuation between 0.5M ICP and 5M ICP.
+                an initial total valuation between 0.5M ICP and 5M ICP. For 1 ICP you would receive 
+                between 200 -> 2000 CHAT tokens.
             </p>
 
             <div class="sep">
