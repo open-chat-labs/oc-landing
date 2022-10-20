@@ -113,10 +113,11 @@ export default {
                     <!DOCTYPE html>
                     <html lang="en">
                         <head>
+                            <title>OpenChat: Decentralised chat on the Internet Computer</title>
                             <meta charset="utf-8" />
                             <meta name="viewport" content="width=device-width, initial-scale=1" />
                             <meta name="apple-mobile-web-app-title" content="OpenChat" />
-                            <title>OpenChat</title>
+                            <meta name="description" content="OpenChat is a fully featured chat application running end-to-end on the Internet Computer blockchain." />
                             <link rel="manifest" href="/openchat.webmanifest" />
                             <link rel="apple-touch-startup-image" href="/apple-touch-icon.png" />
                             <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
