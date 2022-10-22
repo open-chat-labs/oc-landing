@@ -47,7 +47,16 @@
                 loggedIn.set(true);
             }
         });
+        captureReferralCode();
     });
+
+    function captureReferralCode() {
+        const qs = new URLSearchParams(window.location.search);
+        const referredBy = qs.get("ref") ?? undefined;
+        if (referredBy) {
+            localStorage.setItem("openchat_referredby", referredBy);
+        }
+    }
 
     function doLogin(authProvider: AuthProvider): Promise<Identity> {
         loggingIn.set(true);

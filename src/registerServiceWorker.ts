@@ -1,3 +1,5 @@
+import { startSwCheckPoller } from "./updateServiceWorker";
+
 function updateStatus(message: string) {
     const statusEl = document.getElementById("status");
     if (statusEl) {
@@ -34,13 +36,15 @@ export function registerServiceWorker() {
                 reg = await navigator.serviceWorker.register("sw.js");
                 console.log("SW registered");
             } catch (e) {
-                reg = await navigator.serviceWorker.register("/sw.js");
                 console.log("retrying SW registered");
+                reg = await navigator.serviceWorker.register("/sw.js");
             }
 
             // delays code execution until serviceworker is ready
             await navigator.serviceWorker.ready;
             console.log("SW is now ready");
+
+            startSwCheckPoller();
         }
     });
 }
