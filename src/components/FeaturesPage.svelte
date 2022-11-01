@@ -4,6 +4,8 @@
     import Content from "./Content.svelte";
     import Feature from "./Feature.svelte";
 
+    const sectionHeight = 800;
+    const scrollOffet = 56;
     let scrollTop = 0;
 
     onMount(() => {
@@ -13,56 +15,40 @@
         });
     });
 
-    $: console.log("scroll top: ", scrollTop);
-
     function clamp(n: number) {
         if (n < 0) return 0;
         if (n > 700) return 700;
         return n;
     }
+
+    const screenshots = [
+        { url: "../screenshots/mobilefirst.png", alt: "mobile first" },
+        { url: "../screenshots/creategroup1.png", alt: "create group" },
+        { url: "../screenshots/permissions.png", alt: "group permissions" },
+        { url: "../screenshots/whatshot.gif", alt: "find groups to join" },
+        { url: "../screenshots/userprofile.gif", alt: "user profile" },
+        { url: "../screenshots/messages.gif", alt: "sending messages" },
+        { url: "../screenshots/search.gif", alt: "searching" },
+        { url: "../screenshots/voting.png", alt: "voting" },
+    ];
 </script>
 
 <div class="phone">
-    <div class="feature-img-container">
-        <img class="feature-img" src={"../screenshots/mobilefirst.png"} alt={"mobile first"} />
-    </div>
-
-    <div
-        style={`top: unset; bottom: 0; height: ${clamp(scrollTop - 56)}px`}
-        class="feature-img-container">
-        <img class="feature-img" src={"../screenshots/creategroup1.png"} alt={"create group"} />
-    </div>
-
-    <!-- <div class="feature-screen wipe-item-container">
-        <div class="wipe-item">
-            <img src={"../screenshots/permissions.png"} alt={"set group permissions"} />
-        </div>
-    </div>
-    <div class="feature-screen wipe-item-container">
-        <div class="wipe-item">
-            <img src={"../screenshots/whatshot.gif"} alt={"find groups to join"} />
-        </div>
-    </div>
-    <div class="feature-screen wipe-item-container">
-        <div class="wipe-item">
-            <img src={"../screenshots/userprofile.gif"} alt={"user profile"} />
-        </div>
-    </div>
-    <div class="feature-screen wipe-item-container">
-        <div class="wipe-item">
-            <img src={"../screenshots/messages.gif"} alt={"sending messages"} />
-        </div>
-    </div>
-    <div class="feature-screen wipe-item-container">
-        <div class="wipe-item">
-            <img src={"../screenshots/search.gif"} alt={"searching"} />
-        </div>
-    </div>
-    <div class="feature-screen wipe-item-container">
-        <div class="wipe-item">
-            <img src={"../screenshots/voting.png"} alt={"voting"} />
-        </div>
-    </div> -->
+    {#each screenshots as screenshot, i}
+        {#if i === 0}
+            <div class="feature-img-container">
+                <img class="feature-img" src={screenshot.url} alt={screenshot.alt} />
+            </div>
+        {:else}
+            <div
+                style={`top: unset; bottom: 0; height: ${clamp(
+                    scrollTop - (scrollOffet + sectionHeight * (i - 1))
+                )}px`}
+                class="feature-img-container">
+                <img class="feature-img" src={screenshot.url} alt={screenshot.alt} />
+            </div>
+        {/if}
+    {/each}
 </div>
 
 <div class="content">
@@ -177,16 +163,15 @@
 
 <style type="text/scss">
     .phone {
+        pointer-events: none;
         overflow: hidden;
         display: block;
-        width: var(--p-width);
-        height: var(--p-height);
-        --p-width: 400px;
-        --p-height: 708px;
+        width: 408px;
+        height: 708px;
         position: fixed;
         right: 40%;
         top: 160px;
-        transform: translateX(400px);
+        transform: translateX(408px);
         border: 4px solid #000;
         @include box-shadow(3);
         z-index: 2;
@@ -207,8 +192,6 @@
             max-height: 100%;
             object-fit: cover;
             object-position: bottom;
-            transform-origin: bottom;
-            vertical-align: initial;
         }
     }
 
