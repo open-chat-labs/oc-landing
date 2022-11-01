@@ -31,6 +31,7 @@ registerRoute(
             /network12.*jpg/,
             /matt|hamish|julian/,
             /main-.*[css|js]$/,
+            /worker.js/,
             /assets\/underwater/,
         ].some((re) => re.test(route.request.url));
     },

@@ -81,7 +81,7 @@
                 `${route.path}${route.hash === "" ? "" : "#" + route.hash}`
             ); // Update URL as well as browser history.
         }
-        setTimeout(() => scrollToHash(route.hash), 200);
+        setTimeout(() => scrollToHash(route.hash), 0);
 
         if (route.hash === "") {
             dispatch("scrollToTop");
