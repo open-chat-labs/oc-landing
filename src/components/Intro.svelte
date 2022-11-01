@@ -14,7 +14,7 @@
             OpenChat is a fully featured chat application running end-to-end on the Internet
             Computer blockchain.
         </p>
-        <Launch />
+        <Launch on:login />
         <div class="powered-by">
             <img src="../ic-badge-powered-by_label-stripe-white-text.svg" alt="powered by the IC" />
         </div>

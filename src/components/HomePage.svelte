@@ -9,7 +9,7 @@
 </script>
 
 <Content>
-    <Intro />
+    <Intro on:login />
 </Content>
 
 <Content>

@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <Link path="features">Click here for a full description of the product features.</Link>
+    <Link path="features">View All Features =></Link>
 </Section>
 
 <style type="text/scss">

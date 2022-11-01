@@ -6,7 +6,7 @@
     import Launch from "./Launch.svelte";
 
     export let context = false;
-    let debug = false;
+    let debug = true;
 
     $: path = $currentPath.path;
 
@@ -43,7 +43,7 @@
                 path="architecture">Architecture</Link>
         </div>
         <div class="menu-item">
-            <Launch />
+            <Launch on:login />
         </div>
         {#if debug}
             <div class="menu-item link" on:click={toggleTheme}>theme</div>
