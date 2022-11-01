@@ -7,16 +7,12 @@
 <style type="text/scss">
     h2 {
         margin: 0;
-        font-weight: 900;
-        font-size: 2.5rem;
+        @include ubuntu(700, 48, 55);
         margin-bottom: 1.5rem;
+        text-transform: uppercase;
 
         &.dark {
             color: var(--accent);
-        }
-
-        &:not(.dark) {
-            text-shadow: 1px 1px #191919;
         }
     }
 </style>

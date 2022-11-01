@@ -39,9 +39,9 @@
                 <div class="value">{"Authentication"}</div>
                 <div class="arrow">
                     {#if showMenu}
-                        <ChevronUp {viewBox} size={"1.6em"} color={"#fff"} />
+                        <ChevronUp {viewBox} size={"1.6em"} color={"inherit"} />
                     {:else}
-                        <ChevronDown {viewBox} size={"1.6em"} color={"#fff"} />
+                        <ChevronDown {viewBox} size={"1.6em"} color={"inherit"} />
                     {/if}
                 </div>
             </div>
@@ -85,7 +85,7 @@
         text-transform: lowercase;
         font-weight: 300;
         cursor: pointer;
-        color: rgba(255, 255, 255, 0.9);
+        color: inherit;
     }
     .list {
         display: flex;

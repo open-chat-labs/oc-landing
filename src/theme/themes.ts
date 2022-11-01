@@ -12,6 +12,11 @@ export interface Theme {
     hgradient: string;
     gradient: string;
     accent: string;
+    bg: string;
+
+    launch: {
+        bg: string;
+    };
 
     header: {
         bg: string;

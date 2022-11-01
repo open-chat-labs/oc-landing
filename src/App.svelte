@@ -127,7 +127,7 @@
 
     <Router on:login={login} on:scrollToTop={scrollToTop} />
 
-    {#if show}
+    <!-- {#if show}
         <BackgroundLogo
             width={`${bigLogo}px`}
             bottom={"0"}
@@ -135,7 +135,7 @@
             opacity={"0.05"}
             skew={"5deg"} />
         <BackgroundLogo width={`${smallLogo}px`} bottom={"0"} right={"100px"} opacity={"0.1"} />
-    {/if}
+    {/if} -->
 
     {#if backToTop}
         <div transition:fade|local class="fab" on:click={clearHash}>
@@ -156,7 +156,7 @@
         }
 
         :root {
-            --txt: #191919;
+            --txt: #242834;
             --font-size: 16px;
             --primary: #22a7f2;
             --primary-shadow: #053d5c;
@@ -183,8 +183,10 @@
 
         body {
             color: var(--txt);
-            margin: 0;
-            padding: 0;
+            background: var(--bg);
+            margin: 0 auto;
+            padding: toRem(40) 0 0 0;
+
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
                 Cantarell, "Helvetica Neue", sans-serif;
@@ -270,17 +272,12 @@
     .main {
         display: grid;
         grid-template-columns: 1f;
-        // grid-template-rows: repeat(2, auto);
-        grid-template-rows: toRem(60) auto;
-        text-align: center;
-
-        // display: flex;
-        // flex-direction: column;
-        background: var(--gradient);
+        grid-template-rows: toRem(80) auto;
         overflow-y: auto;
         overflow-x: hidden;
         height: 100%;
         min-height: 100%;
+        margin: 0 auto;
     }
     .fab {
         position: absolute;

@@ -7,6 +7,8 @@
     import Link from "./Link.svelte";
     import { loggedIn } from "../stores/authProviders";
     import { createEventDispatcher } from "svelte";
+    import LogoPurple from "./LogoPurple.svelte";
+    import { currentPath } from "../stores/route";
 
     const dispatch = createEventDispatcher();
 
@@ -19,10 +21,24 @@
             dispatch("login");
         }
     }
+
+    function home() {
+        currentPath.set({
+            path: "/",
+            hash: "",
+        });
+    }
 </script>
 
-<div class="menu">
-    {#if !$mobileWidth}
+<div class="header">
+    <div class="logo" on:click={home}>
+        <LogoPurple />
+        <div class="name">OpenChat</div>
+    </div>
+    <div class="menu">
+        <MenuItems on:login on:logout />
+    </div>
+    <!-- {#if !$mobileWidth}
         <Link path="home">
             <img class="logo" src="../spinner.svg" alt="Logo" />
         </Link>
@@ -47,32 +63,39 @@
         {#if showMenu}
             <MenuItems bind:context={showMenu} on:logout />
         {/if}
-    {/if}
+    {/if} -->
 </div>
 
 <style type="text/scss">
     .logo {
-        width: toRem(45);
-        height: toRem(45);
+        display: flex;
+        cursor: pointer;
+        gap: $sp2;
+        align-items: center;
+
+        .name {
+            font-size: toRem(21);
+        }
     }
 
-    .menu {
-        font-weight: 300;
-        flex: 0 0 toRem(60);
+    .header {
+        font-family: "Ubuntu", sans-serif;
+        background-color: pink;
+        // max-width: 1120px;
+        margin: 0 auto;
+        width: 100%;
+        font-weight: 700;
+        flex: 0 0 toRem(80);
         @include z-index("menu");
-        padding: $sp4;
         background-color: var(--header-bg);
         color: var(--header-txt);
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: $sp5;
-        // @include box-shadow(1);
-        @include constrain();
         position: sticky;
         top: 0;
-        height: toRem(60);
-        backdrop-filter: blur(20px);
-        border-bottom: var(--header-bd);
+        height: toRem(80);
+        @include constrain(toRem(160));
     }
 </style>

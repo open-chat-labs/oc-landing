@@ -3,6 +3,7 @@
     import AuthSelector from "./AuthSelector.svelte";
     import { currentPath } from "../stores/route";
     import Link from "./Link.svelte";
+    import Launch from "./Launch.svelte";
 
     export let context = false;
     let debug = false;
@@ -16,13 +17,6 @@
 
 <div class="menu-items" class:context>
     <div class="nav">
-        <div class="menu-item">
-            <Link
-                selected={path === "home" || path === ""}
-                on:linkClicked={close}
-                mode={"menu"}
-                path="home">About</Link>
-        </div>
         <div class="menu-item">
             <Link
                 selected={path === "features"}
@@ -48,19 +42,22 @@
                 mode={"menu"}
                 path="architecture">Architecture</Link>
         </div>
+        <div class="menu-item">
+            <Launch />
+        </div>
         {#if debug}
             <div class="menu-item link" on:click={toggleTheme}>theme</div>
         {/if}
     </div>
-    <div class="menu-item end">
+    <!-- <div class="menu-item end">
         <AuthSelector on:authSelected={close} on:logout {context} />
-    </div>
+    </div> -->
 </div>
 
 <style type="text/scss">
     :global(.menu-items.context .link) {
-        font-weight: 600 !important;
-        font-size: toRem(20);
+        font-weight: 700 !important;
+        font-size: toRem(16);
     }
 
     .menu-items {

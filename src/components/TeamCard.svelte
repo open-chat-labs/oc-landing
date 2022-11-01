@@ -14,19 +14,15 @@
         on:mouseenter={() => (hovering = true)}
         on:mouseleave={() => (hovering = false)}
         style={`background-image: url("${imageUrl}")`}>
-        <div class="name">
-            {name}
-        </div>
         {#if hovering}
             <div
                 transition:fade|local
                 class="overlay"
-                style={`background-image: url("${hoverImageUrl}")`}>
-                <div class="name">
-                    {name}
-                </div>
-            </div>
+                style={`background-image: url("${hoverImageUrl}")`} />
         {/if}
+    </div>
+    <div class="name">
+        {name}
     </div>
     <div class="blurb">
         {blurb}
@@ -53,17 +49,11 @@
         height: 100%;
     }
     .img {
-        height: toRem(200);
+        height: toRem(250);
         // background-color: var(--secondary);
         position: relative;
         margin-bottom: $sp4;
         position: relative;
-
-        &:hover {
-            .name {
-                transform: scale(1.2);
-            }
-        }
 
         @include size-below(xs) {
             height: toRem(350);
@@ -71,19 +61,11 @@
     }
 
     .name {
-        transition: transform ease-in-out 200ms;
-        transform-origin: 100% 50%;
-        position: absolute;
-        bottom: 5px;
-        right: 10px;
-        font-style: italic;
-        font-size: toRem(30);
-        font-weight: 500;
-        color: #fff;
-        text-shadow: 3px 3px 2px var(--tertiary);
+        @include ubuntu(500, 31, 35);
+        margin-bottom: $sp4;
     }
 
     .blurb {
-        text-align: justify;
+        @include roboto(400, 16, 19);
     }
 </style>

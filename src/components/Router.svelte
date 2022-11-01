@@ -97,6 +97,5 @@
     .body {
         flex: auto;
         position: relative;
-        @include constrain();
     }
 </style>

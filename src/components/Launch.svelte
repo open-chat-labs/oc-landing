@@ -4,7 +4,7 @@
 
     const dispatch = createEventDispatcher();
 
-    $: txt = $loggingIn ? "Logging in..." : "Go to chat";
+    $: txt = $loggingIn ? "Logging in..." : "Launch app";
 
     function launch() {
         if ($loggedIn) {
@@ -19,15 +19,17 @@
 
 <style type="text/scss">
     .launch {
-        @include box-shadow(3);
+        display: inline-block;
         transition: background-color ease-in-out 200ms;
         color: #fff;
-        background-color: var(--primary);
+        background-color: var(--launch-bg);
         border: none;
+        border-radius: toRem(4);
         cursor: pointer;
         text-decoration: none;
-        font-weight: 500;
-        padding: toRem(15) toRem(30);
-        font-size: toRem(30);
+        font-family: "Ubuntu", sans-serif;
+        font-weight: 700;
+        padding: toRem(12) toRem(16) toRem(12) toRem(16);
+        font-size: toRem(16);
     }
 </style>

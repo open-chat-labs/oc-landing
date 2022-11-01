@@ -2,7 +2,8 @@ import type { Theme } from "./themes";
 
 const gradient = "linear-gradient(#22a7f2, #5f2583)";
 // const primary = "#085d8c";
-const primary = "#22a7f2";
+// const primary = "#22a7f2";
+const primary = "#7E52FF";
 const secondary = "#df783f";
 
 export function lightTheme(): Theme {
@@ -16,15 +17,19 @@ export function lightTheme(): Theme {
         secondary,
         hgradient: "linear-gradient(0.25turn, #22a7f2, hotpink)",
         gradient,
-        // txt: "#191919",
-        txt: "#fff",
+        txt: "#242834",
         accent: "hotpink",
+        bg: "white",
+
+        launch: {
+            bg: primary,
+        },
 
         header: {
             // bg: "#22a7f2",
             // bg: "rgba(0,0,0,0.2)",
-            bg: "rgba(102,139,203,0.8)",
-            txt: "#ffffff",
+            bg: "#fff",
+            txt: "#242834",
             bd: "none",
         },
 

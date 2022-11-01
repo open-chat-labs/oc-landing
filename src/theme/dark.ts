@@ -28,9 +28,10 @@ export function darkTheme(defaultTheme: Theme): Theme {
         gradient: darkBase,
         txt: txtHigh,
         accent: "#e87fb4",
+        bg: "#242834",
 
         header: {
-            bg: dark10,
+            bg: "transparent",
             txt: txtMed,
             bd: "1px solid rgba(255,255,255,0.2)",
         },
