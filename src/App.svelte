@@ -12,7 +12,7 @@
     import { AuthProvider } from "./authProvider";
     import { selectedAuthProviderStore, loggingIn, loggedIn } from "./stores/authProviders";
     import "./theme/themes";
-    import { currentPath, isLandingPagePath } from "./stores/route";
+    import { currentPath } from "./stores/route";
 
     let mainEl: HTMLElement | undefined;
     let scrollTop = 0;
