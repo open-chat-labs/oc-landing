@@ -653,7 +653,7 @@
                 already dissolved). The DFINITY foundation neurons will have a vesting period of 1
                 year and the dev team neurons will have a vesting period of 3 years. This is to
                 ensure that the founding team remains committed to the project in the long term and
-                cannot “rug-pull” decentralization sale participants.
+                cannot “rug-pull” community token holders.
             </p>
 
             <h4 class="link-target" id="5-1-3">SNS treasury (blue)</h4>
