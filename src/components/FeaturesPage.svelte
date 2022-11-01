@@ -35,19 +35,13 @@
 
 <div class="phone">
     {#each screenshots as screenshot, i}
-        {#if i === 0}
-            <div class="feature-img-container">
-                <img class="feature-img" src={screenshot.url} alt={screenshot.alt} />
-            </div>
-        {:else}
-            <div
-                style={`top: unset; bottom: 0; height: ${clamp(
-                    scrollTop - (scrollOffet + sectionHeight * (i - 1))
-                )}px`}
-                class="feature-img-container">
-                <img class="feature-img" src={screenshot.url} alt={screenshot.alt} />
-            </div>
-        {/if}
+        <div
+            style={`height: ${
+                i === 0 ? 700 : clamp(scrollTop - (scrollOffet + sectionHeight * (i - 1)))
+            }px`}
+            class="feature-img-container">
+            <img class="feature-img" src={screenshot.url} alt={screenshot.alt} />
+        </div>
     {/each}
 </div>
 
@@ -162,17 +156,21 @@
 </div>
 
 <style type="text/scss">
+    $border: 5px;
+    $height: calc(700px + $border * 2);
+    $width: calc(392px + $border * 2);
+
     .phone {
         pointer-events: none;
         overflow: hidden;
         display: block;
-        width: 408px;
-        height: 708px;
+        width: $width;
+        height: $height;
         position: fixed;
         right: 40%;
         top: 160px;
-        transform: translateX(408px);
-        border: 4px solid #000;
+        transform: translateX($width);
+        border: $border solid #000;
         @include box-shadow(3);
         z-index: 2;
     }
@@ -180,10 +178,11 @@
     .feature-img-container {
         display: block;
         position: absolute;
-        top: 0;
+        bottom: 0;
         left: 0;
         z-index: 2;
         width: 100%;
+        height: $height;
 
         .feature-img {
             width: 100%;
