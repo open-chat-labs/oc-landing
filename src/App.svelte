@@ -12,7 +12,7 @@
     import { AuthProvider } from "./authProvider";
     import { selectedAuthProviderStore, loggingIn, loggedIn } from "./stores/authProviders";
     import "./theme/themes";
-    import { currentPath } from "./stores/route";
+    import { currentPath, isLandingPageRoute } from "./stores/route";
 
     let mainEl: HTMLElement | undefined;
     let scrollTop = 0;
@@ -87,10 +87,10 @@
         doLogin($selectedAuthProviderStore)
             .then((_id) => {
                 console.log("App.svelte - successfully logged in we should ideally reload now");
-                if (window.location.hash !== "") {
-                    window.location.reload();
-                } else {
+                if (isLandingPageRoute()) {
                     window.location.replace("/");
+                } else {
+                    window.location.reload();
                 }
             })
             .catch((err) => {
