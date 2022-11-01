@@ -1,233 +1,221 @@
 <script lang="ts">
+    import { onMount } from "svelte";
+    import ArrowLink from "./ArrowLink.svelte";
     import Content from "./Content.svelte";
-    import Separator from "./Separator.svelte";
     import Feature from "./Feature.svelte";
-    import Link from "./Link.svelte";
+
+    let scrollTop = 0;
+
+    onMount(() => {
+        const main = document.getElementById("main");
+        main?.addEventListener("scroll", () => {
+            scrollTop = main?.scrollTop ?? 0;
+        });
+    });
+
+    $: console.log("scroll top: ", scrollTop);
+
+    function clamp(n: number) {
+        if (n < 0) return 0;
+        if (n > 700) return 700;
+        return n;
+    }
 </script>
 
-<Content offset={false}>
-    <Feature
-        lazy={false}
-        screenshotUrl={"../screenshots/mobilefirst.png"}
-        screenshotAlt={"mobile first"}
-        title={"Mobile first"}>
-        <p>
-            A chat app should be used on the go and so OpenChat was designed from the beginning to
-            work well first and foremost on your mobile device.
-        </p>
-        <p>
-            The user interface will respond to give a seamless experience on devices of any size
-            from mobile to desktop.
-        </p>
-        <p>
-            It has been designed initially as a progressive web app meaning that on most mobile
-            phone platforms it can be saved to your homescreen to give a native app like experience.
-        </p>
+<div class="phone">
+    <div class="feature-img-container">
+        <img class="feature-img" src={"../screenshots/mobilefirst.png"} alt={"mobile first"} />
+    </div>
 
-        <p>
-            As support for various web apis grows we can enhance the app's behaviours on all
-            platforms without the costly duplication of effort required to build fully native apps
-            for each target platform.
-        </p>
+    <div
+        style={`top: unset; bottom: 0; height: ${clamp(scrollTop - 56)}px`}
+        class="feature-img-container">
+        <img class="feature-img" src={"../screenshots/creategroup1.png"} alt={"create group"} />
+    </div>
 
-        <p>
-            In the near future we intend to create native app shells for iOS and Android so that we
-            can exploit any native apis that are not yet supported via standard web apis (most
-            notably Push Notifications on iOS).
-        </p>
-    </Feature>
+    <!-- <div class="feature-screen wipe-item-container">
+        <div class="wipe-item">
+            <img src={"../screenshots/permissions.png"} alt={"set group permissions"} />
+        </div>
+    </div>
+    <div class="feature-screen wipe-item-container">
+        <div class="wipe-item">
+            <img src={"../screenshots/whatshot.gif"} alt={"find groups to join"} />
+        </div>
+    </div>
+    <div class="feature-screen wipe-item-container">
+        <div class="wipe-item">
+            <img src={"../screenshots/userprofile.gif"} alt={"user profile"} />
+        </div>
+    </div>
+    <div class="feature-screen wipe-item-container">
+        <div class="wipe-item">
+            <img src={"../screenshots/messages.gif"} alt={"sending messages"} />
+        </div>
+    </div>
+    <div class="feature-screen wipe-item-container">
+        <div class="wipe-item">
+            <img src={"../screenshots/search.gif"} alt={"searching"} />
+        </div>
+    </div>
+    <div class="feature-screen wipe-item-container">
+        <div class="wipe-item">
+            <img src={"../screenshots/voting.png"} alt={"voting"} />
+        </div>
+    </div> -->
+</div>
 
-    <Separator />
+<div class="content">
+    <Content>
+        <Feature backgroundColor={"#4AE97A"} title={"Mobile first"}>
+            <p>
+                A chat app should be used on the go and so OpenChat was designed from the beginning
+                to work well first and foremost on your mobile device.
+            </p>
+            <p>
+                The user interface will respond to give a seamless experience on devices of any size
+                from mobile to desktop.
+            </p>
+        </Feature>
 
-    <Feature
-        screenshotUrl={"../screenshots/creategroup1.png"}
-        screenshotAlt={"create a group"}
-        title={"Groups"}
-        rtl={true}>
-        <p>
-            Of course it is possible to chat directly one-to-one with another person but it is also
-            possible to create group chats.
-        </p>
-        <p>
-            This is a great way to expand the usefulness of the app. Create private groups with
-            friends and family to coordinate and chat together. With a private group, you have full
-            control over who is the group.
-        </p>
-        <p>
-            You can also decide to create a public group. You can then share a url to join your new
-            group or you can just allow people to discover it organically via search,
-            recommendations or word of mouth. Be sure to add some information to your group's
-            description to tell people what the group is about and to list any guidance on conduct
-            that you might expect.
-        </p>
-    </Feature>
+        <Feature backgroundColor={"#7E52FF"} color={"#ffffff"} title={"Groups"}>
+            <p>
+                Create private groups with friends and family to coordinate and chat together. With
+                a private group, you have full control over who is the group.
+            </p>
+        </Feature>
 
-    <Separator />
+        <Feature backgroundColor={"#242834"} color={"#ffffff"} title={"Permissions"}>
+            <p>
+                Permissions are assigned to different types of users. As the group owner you will
+                decide who gets admin privileges. Making other people admins will allow them to help
+                you moderate the group to make sure it works the way you want.
+            </p>
+        </Feature>
 
-    <Feature
-        screenshotUrl={"../screenshots/permissions.png"}
-        screenshotAlt={"set group permissions"}
-        title={"Permissions"}>
-        <p>
-            Whether you are creating a public or a private group you will be given a sensible set of
-            default permissions for your group.
-        </p>
-        <p>
-            Permissions are assigned to different types of users. As the group owner you will decide
-            who gets admin privileges. Making other people admins will allow them to help you
-            moderate the group to make sure it works the way you want.
-        </p>
-        <p>
-            Take a look through the options to exercise fine control over your group. For example,
-            you may want to create a group that is completely read-only for ordinary members.
-        </p>
-    </Feature>
+        <Feature backgroundColor={"#ff4844"} title={"Finding groups"}>
+            <p>
+                By selecting the "What's hot" menu option you can find list of popular groups. In
+                the future we will add more fine grain categorisation and filtering capability to
+                make it even easier to find what you're looking for.
+            </p>
+            <p>
+                If you <em>know</em> the name of the group you are looking for, you can also simply search
+                for it from the universal search box and preview or join the group from there.
+            </p>
+        </Feature>
 
-    <Separator />
+        <Feature backgroundColor={"#4ab9e9"} title={"User profile"}>
+            <p>Configure your personal information, UI settings and chat settings at any time.</p>
 
-    <Feature
-        screenshotUrl={"../screenshots/whatshot.gif"}
-        screenshotAlt={"find groups to join"}
-        title={"Finding groups"}
-        rtl={true}>
-        <p>When you first join OpenChat it might be a little unclear how to get started.</p>
-        <p>
-            By selecting the "What's hot" menu option you can find list of popular groups. In the
-            future we will add more fine grain categorisation and filtering capability to make it
-            even easier to find what you're looking for.
-        </p>
-        <p>
-            If you see something you like you can join right away. Alternatively you can choose to
-            preview a group allowing you to browse recent messages in read-only mode to help you
-            decide whether you'd like to join.
-        </p>
-        <p>Of course you can leave a group at any time so don't be shy.</p>
-        <p>
-            If you <em>know</em> the name of the group you are looking for, you can also simply search
-            for it from the universal search box and preview or join the group from there.
-        </p>
-    </Feature>
+            <p>Manage your crypt accounts and account storage.</p>
 
-    <Separator />
+            <p>View your own personl stats. Get messaging!</p>
+        </Feature>
 
-    <Feature
-        screenshotUrl={"../screenshots/userprofile.gif"}
-        screenshotAlt={"user profile"}
-        title={"User profile"}>
-        <p>
-            It's a really good idea to get familiar with your user profile section as a lot of
-            important features are included in here.
-        </p>
-        <p>
-            Firstly you can select / change your user avatar so people know who they are talking to.
-            You can also change your username and set a bio to tell people a little bit about
-            yourself. This forms the basis for the user card that people will see when they click on
-            your username.
-        </p>
-        <p>
-            You can also change various aspects of the app appearance. Choose a language to
-            translate the UI into (if you speak a language that is not yet supported, perhaps you
-            can help us with some translations!). We support a light or a dark theme or you can
-            choose to follow the theme specified by the system you are running on. And finally you
-            can make adjustments to the font size if you prefer things more roomy or more compact
-            than the default.
-        </p>
+        <Feature backgroundColor={"#ffc702"} title={"Sending messages"}>
+            <p>
+                Sending messages is the heart of any chat app. OpenChat provides all of the features
+                that you would expect and adds a few unique capabilities of its own.
+            </p>
 
-        <p>
-            You can share a registration url to make it easier for friends and family to join. This 
-            contains a code unique to you and means the system is able to link any users to your account 
-            who have joined using your url. In the near future referrals of genuine users will 
-            be rewarded with CHAT tokens. Note that any referrals made now will count towards CHAT rewards 
-            later and that early adopters stand to earn higher rewards. So start inviting now and help 
-            OpenChat grow!
-        </p>
+            <ul class="list">
+                <li>Send, edit or delete text messages</li>
+                <li>Use inline markdown to format messages</li>
+                <li>Attach images, video, audio clips or files to your messages</li>
+                <li>React to messages</li>
+                <li>Send giphy messages</li>
+                <li>Create and send polls</li>
+                <li>Send crypto via message to other users</li>
+                <li>Translate messages into your chosen language</li>
+                <li>Reply to messages either inline or as part of a threaded conversation</li>
+                <li>Pin important messages within a group</li>
+            </ul>
+        </Feature>
 
-        <p>
-            You can configure various aspects of how chats behave. Play with these settings to find
-            a combination that work for you.
-        </p>
+        <Feature backgroundColor={"#f34ac9"} title={"Search"}>
+            <p>
+                There a several ways to search within OpenChat. To search globally for users, public
+                groups or messages, just use the universal search box directly under the user panel
+                and above the chat list.
+            </p>
 
-        <p>
-            You can manage and see the balances of various crypto accounts. These accounts are
-            important for paying for various premium features and for sending crypto to other users
-            as chat messages. This will be explained in more detail when we talk about sending
-            messages.
-        </p>
-        <p>Finally, you can see your own personal stats. Get messaging!</p>
-    </Feature>
+            <p>
+                Then simply click on any result. For users, this will initiate a direct chat; for
+                groups that you are not currently a member of you will enter preview mode and from
+                there you can decide whether to join or not; for messages you will be taken directly
+                to the relevant chat with the correct message selected.
+            </p>
 
-    <Separator />
+            <p>
+                You can also search <em>within</em> a chat by selecting search from the chat's menu.
+                This allows you to find a specific message within that particular chat only.
+            </p>
+        </Feature>
 
-    <Feature
-        screenshotUrl={"../screenshots/messages.gif"}
-        screenshotAlt={"sending messages"}
-        title={"Sending messages"}
-        rtl={true}>
-        <p>
-            Sending messages is the heart of any chat app. OpenChat provides all of the features
-            that you would expect and adds a few unique capabilities of its own.
-        </p>
+        <Feature backgroundColor={"#000000"} color={"#ffffff"} title={"Proposal voting"}>
+            <p>
+                A unique feature of OpenChat is that it allows you to vote directly on NNS and
+                (soon) SNS proposals.
+            </p>
 
-        <ul class="list">
-            <li>Send, edit or delete text messages</li>
-            <li>Use inline markdown to format messages</li>
-            <li>Attach images, video, audio clips or files to your messages</li>
-            <li>React to messages</li>
-            <li>Send giphy messages</li>
-            <li>Create and send polls</li>
-            <li>Send crypto via message to other users</li>
-            <li>Translate messages into your chosen language</li>
-            <li>Reply to messages either inline or as part of a threaded conversation</li>
-            <li>Pin important messages within a group</li>
-        </ul>
-    </Feature>
+            <p>
+                Simply register your OpenChat account as a hotkey for the neuron that you wish to
+                vote with and join the relevant public group.
+            </p>
 
-    <Separator />
-
-    <Feature screenshotUrl={"../screenshots/search.gif"} screenshotAlt={"Search"} title={"Search"}>
-        <p>
-            There a several ways to search within OpenChat. To search globally for users, public
-            groups or messages, just use the universal search box directly under the user panel and
-            above the chat list.
-        </p>
-
-        <p>
-            Then simply click on any result. For users, this will initiate a direct chat; for groups
-            that you are not currently a member of you will enter preview mode and from there you
-            can decide whether to join or not; for messages you will be taken directly to the
-            relevant chat with the correct message selected.
-        </p>
-
-        <p>
-            You can also search <em>within</em> a chat by selecting search from the chat's menu. This
-            allows you to find a specific message within that particular chat only.
-        </p>
-    </Feature>
-
-    <Separator />
-
-    <Feature
-        screenshotUrl={"../screenshots/voting.png"}
-        screenshotAlt={"Voting"}
-        title={"Proposal voting"}
-        rtl={true}>
-        <p>
-            A unique feature of OpenChat is that it allows you to vote directly on NNS and (soon)
-            SNS proposals.
-        </p>
-
-        <p>
-            Simply register your OpenChat account as a hotkey for the neuron that you wish to vote
-            with and join the relevant public group.
-        </p>
-
-        <p>You can then discuss and vote on proposals from right inside your favourite chat app.</p>
-    </Feature>
-
-    <Link path={"roadmap"}>Click here for details of our future roadmap.</Link>
-</Content>
+            <p>
+                You can then discuss and vote on proposals from right inside your favourite chat
+                app.
+            </p>
+            <div class="roadmap">
+                <ArrowLink path={"roadmap"}>View Entire Roadmap</ArrowLink>
+            </div>
+        </Feature>
+    </Content>
+</div>
 
 <style type="text/scss">
+    .phone {
+        overflow: hidden;
+        display: block;
+        width: var(--p-width);
+        height: var(--p-height);
+        --p-width: 400px;
+        --p-height: 708px;
+        position: fixed;
+        right: 40%;
+        top: 160px;
+        transform: translateX(400px);
+        border: 4px solid #000;
+        @include box-shadow(3);
+        z-index: 2;
+    }
+
+    .feature-img-container {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+
+        .feature-img {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            object-position: bottom;
+            transform-origin: bottom;
+            vertical-align: initial;
+        }
+    }
+
+    .content {
+        position: relative;
+        z-index: 1;
+    }
     .list {
         text-align: left;
         list-style: none;

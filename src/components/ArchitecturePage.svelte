@@ -4,7 +4,7 @@
     import Separator from "./Separator.svelte";
 </script>
 
-<Content offset={false}>
+<Content>
     <Headline>Architecture</Headline>
 
     <div class="arch">

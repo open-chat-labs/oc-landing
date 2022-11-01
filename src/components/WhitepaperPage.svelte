@@ -11,7 +11,7 @@
     let width = 0;
 </script>
 
-<Content offset={false}>
+<Content>
     <div class="whitepaper" bind:clientWidth={width}>
         <Headline>OpenChat SNS Whitepaper</Headline>
 
@@ -749,7 +749,7 @@
                 The reason to impose a maximum target is to give investors a minimum bound on the
                 number of CHAT tokens they will receive for their ICP investment. The lower bound of
                 0.1M ICP and the upper bound of 1M ICP for 20% of the tokens gives the OpenChat DAO
-                an initial total valuation between 0.5M ICP and 5M ICP. For 1 ICP you would receive 
+                an initial total valuation between 0.5M ICP and 5M ICP. For 1 ICP you would receive
                 between 200 -> 2000 CHAT tokens.
             </p>
 

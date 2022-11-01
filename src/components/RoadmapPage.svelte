@@ -3,6 +3,6 @@
     import Roadmap from "./Roadmap.svelte";
 </script>
 
-<Content offset={false}>
+<Content>
     <Roadmap />
 </Content>

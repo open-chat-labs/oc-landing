@@ -1,12 +1,11 @@
 <script lang="ts">
     import { toggleTheme } from "../theme/themes";
-    import AuthSelector from "./AuthSelector.svelte";
     import { currentPath } from "../stores/route";
     import Link from "./Link.svelte";
     import Launch from "./Launch.svelte";
 
     export let context = false;
-    let debug = true;
+    let debug = false;
 
     $: path = $currentPath.path;
 
