@@ -56,12 +56,12 @@
             align-items: center;
             gap: toRem(8);
             h1 {
-                @include ubuntu(700, 37, 43);
+                @include manrope(700, 37, 43);
                 margin: 0;
             }
         }
         h2 {
-            @include ubuntu(500, 28, 32);
+            @include manrope(500, 28, 32);
             margin-bottom: toRem(10);
         }
 

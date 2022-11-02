@@ -33,7 +33,7 @@
         gap: $sp5;
 
         h2 {
-            @include ubuntu(700, 37, 43);
+            @include manrope(700, 37, 43);
         }
 
         @include size-below(xs) {

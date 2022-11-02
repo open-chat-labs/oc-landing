@@ -31,7 +31,7 @@
     .content {
         padding: 0 toRem(160);
         h2 {
-            @include ubuntu(700, 50, 57);
+            @include manrope(700, 50, 57);
             margin-bottom: toRem(48);
             text-align: left;
             max-width: 80%;

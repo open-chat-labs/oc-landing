@@ -7,7 +7,7 @@
 <style type="text/scss">
     h2 {
         margin: 0;
-        @include ubuntu(700, 48, 55);
+        @include manrope(700, 48, 55);
         margin-bottom: 1.5rem;
 
         &.dark {

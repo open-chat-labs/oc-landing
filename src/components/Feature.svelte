@@ -17,7 +17,7 @@
 <style type="text/scss">
     .title {
         margin: 0;
-        @include ubuntu(700, 50, 57);
+        @include manrope(700, 50, 57);
         margin-bottom: $sp5;
     }
     .blurb {

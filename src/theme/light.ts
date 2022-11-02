@@ -25,7 +25,7 @@ export function lightTheme(): Theme {
         },
 
         header: {
-            bg: "#fff",
+            bg: "#ffffff",
             txt: black,
             bd: "none",
         },

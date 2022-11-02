@@ -134,12 +134,12 @@
         }
 
         .title {
-            @include ubuntu(700, 50, 57);
+            @include manrope(700, 50, 57);
             flex: 4;
         }
 
         .when {
-            @include ubuntu(700, 28, 32);
+            @include manrope(700, 28, 32);
         }
 
         .detail {

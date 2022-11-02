@@ -258,8 +258,8 @@ $shadow-level-3: 2px 6px 12px 0 rgba(25, 25, 25, 0.55);
     @include font($font-weight, $font-size, $line-height);
 }
 
-@mixin ubuntu($font-weight: 700, $font-size: 28, $line-height: 32) {
-    font-family: "Ubuntu", sans-serif;
+@mixin manrope($font-weight: 700, $font-size: 28, $line-height: 32) {
+    font-family: "Manrope", sans-serif;
     @include font($font-weight, $font-size, $line-height);
 }
 

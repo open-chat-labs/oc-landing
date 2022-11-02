@@ -2,7 +2,6 @@
     import { fade } from "svelte/transition";
     import Header from "./components/Header.svelte";
     import Router from "./components/Router.svelte";
-    import BackgroundLogo from "./components/BackgroundLogo.svelte";
     import { dimensions } from "./stores/screenDimensions";
     import Fab from "./components/Fab.svelte";
     import ArrowUp from "svelte-material-icons/ArrowUp.svelte";
@@ -14,6 +13,7 @@
     import "./theme/themes";
     import { currentPath } from "./stores/route";
     import Content from "./components/Content.svelte";
+    import { themeStore } from "./theme/themes";
 
     let mainEl: HTMLElement | undefined;
     let scrollTop = 0;
@@ -23,9 +23,6 @@
     });
     const SESSION_TIMEOUT_NANOS = BigInt(30 * 24 * 60 * 60 * 1000 * 1000 * 1000); // 30 days
 
-    $: bigLogo = $dimensions.width / 3;
-    $: smallLogo = $dimensions.width / 5;
-    $: show = $dimensions.width > 1800;
     $: backToTop = scrollTop > 400;
 
     function onScroll() {
@@ -123,9 +120,14 @@
     </div>
 {/if}
 
+<Header on:login={login} on:logout={logout} />
+
 <main id="main" class="main" bind:this={mainEl} on:scroll={onScroll}>
     <Content>
-        <Header on:login={login} on:logout={logout} />
+        <div
+            class="burst"
+            class:dark={$themeStore.name === "dark"}
+            class:light={$themeStore.name === "light"} />
 
         <Router on:login={login} on:scrollToTop={scrollToTop} />
     </Content>
@@ -178,7 +180,7 @@
             color: var(--txt);
             background: var(--bg);
             margin: 0 auto;
-            padding: toRem(40) 0 0 0;
+            padding: 0;
 
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
@@ -276,5 +278,32 @@
         position: absolute;
         bottom: toRem(40);
         right: toRem(40);
+    }
+
+    .burst {
+        position: absolute;
+
+        &.dark {
+            $size: toRem(1003);
+            width: $size;
+            height: $size;
+            left: toRem(718);
+            top: toRem(367);
+            background: linear-gradient(180deg, #23a2ee 0%, #5b2b88 100%);
+            opacity: 0.4;
+            filter: blur(toRem(300));
+        }
+
+        &.light {
+            $size: toRem(863);
+            width: $size;
+            height: $size;
+            left: toRem(788);
+            top: toRem(437);
+            background: linear-gradient(269.91deg, #23a2ee 0.07%, #5b2b88 99.92%);
+            mix-blend-mode: normal;
+            opacity: 0.3;
+            filter: blur(toRem(250));
+        }
     }
 </style>

@@ -27,7 +27,7 @@
 
 <style type="text/scss">
     a {
-        @include ubuntu(700, 16, 18);
+        @include manrope(700, 16, 18);
         color: inherit;
         text-decoration: none;
         display: flex;

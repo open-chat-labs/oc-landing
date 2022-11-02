@@ -29,8 +29,7 @@
 
 <style type="text/scss">
     a {
-        font-style: italic;
-        font-size: toRem(16);
+        @include manrope(700, 16, 22);
         color: inherit;
 
         &:hover {

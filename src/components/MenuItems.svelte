@@ -55,11 +55,11 @@
 
 <style type="text/scss">
     :global(.menu-items.context .link) {
-        font-weight: 700 !important;
-        font-size: toRem(16);
+        @include manrope(700, 16, 22);
     }
 
     .menu-items {
+        @include manrope(700, 16, 22);
         display: flex;
         justify-content: space-between;
         align-items: center;

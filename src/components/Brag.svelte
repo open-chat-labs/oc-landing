@@ -46,7 +46,7 @@
         }
 
         .title {
-            @include ubuntu(700, 28, 32);
+            @include manrope(700, 28, 32);
             margin-bottom: $sp4;
         }
 

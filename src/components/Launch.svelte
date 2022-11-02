@@ -27,9 +27,7 @@
         border-radius: toRem(4);
         cursor: pointer;
         text-decoration: none;
-        font-family: "Ubuntu", sans-serif;
-        font-weight: 700;
+        @include manrope(700, 16, 18);
         padding: toRem(12) toRem(16) toRem(12) toRem(16);
-        font-size: toRem(16);
     }
 </style>
