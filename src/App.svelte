@@ -266,6 +266,7 @@
     }
     .main {
         display: grid;
+        position: relative;
         grid-template-columns: 1f;
         grid-template-rows: toRem(80) auto;
         overflow-y: auto;
@@ -292,6 +293,15 @@
             background: linear-gradient(180deg, #23a2ee 0%, #5b2b88 100%);
             opacity: 0.4;
             filter: blur(toRem(300));
+
+            @include mobile() {
+                $size: toRem(461);
+                width: $size;
+                height: $size;
+                left: 195px;
+                top: 351px;
+                filter: blur(toRem(200));
+            }
         }
 
         &.light {
@@ -304,6 +314,15 @@
             mix-blend-mode: normal;
             opacity: 0.3;
             filter: blur(toRem(250));
+
+            @include mobile() {
+                $size: toRem(400);
+                width: $size;
+                height: $size;
+                left: 195px;
+                top: 351px;
+                filter: blur(toRem(150));
+            }
         }
     }
 </style>

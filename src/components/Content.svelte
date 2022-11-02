@@ -1,7 +1,5 @@
-<div class="outer">
-    <div class="content">
-        <slot />
-    </div>
+<div class="content">
+    <slot />
 </div>
 
 <style type="text/scss">
@@ -9,14 +7,9 @@
         max-width: 1440px;
         padding: 0;
         margin: 0 auto;
-    }
 
-    .outer {
-        position: relative;
-
-        @include mobile() {
-            margin: 0;
-            top: 0;
+        @include mobile {
+            width: 100%;
         }
     }
 </style>

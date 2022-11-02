@@ -162,7 +162,7 @@
         height: $height;
         position: fixed;
         right: 45%;
-        top: 160px;
+        top: 120px;
         transform: translateX($width);
         border: $border solid #000;
         @include box-shadow(3);
@@ -191,7 +191,7 @@
     .content {
         position: relative;
         z-index: 1;
-        padding: 0 toRem(160) toRem(260) toRem(160);
+        padding: 0 toRem(160) toRem(190) toRem(160);
     }
 
     .list {

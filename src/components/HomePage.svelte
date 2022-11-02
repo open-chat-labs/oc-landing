@@ -21,15 +21,19 @@
     <Roadmap />
 </div>
 
-<BragBox />
+<!-- <BragBox />
 
 <div class="content">
     <Team />
-</div>
-
+</div> -->
 <style type="text/scss">
     .content {
         padding: 0 toRem(160);
+
+        @include mobile() {
+            padding: 0 toRem(24);
+        }
+
         h2 {
             @include manrope(700, 50, 57);
             margin-bottom: toRem(48);
