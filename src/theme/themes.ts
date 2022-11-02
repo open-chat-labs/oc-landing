@@ -7,6 +7,7 @@ export interface Theme {
     label: string;
 
     txt: string;
+    "txt-light": string;
     primary: string;
     secondary: string;
     hgradient: string;
@@ -24,27 +25,13 @@ export interface Theme {
         bd: string;
     };
 
-    content: {
-        bg: string;
-    };
-
     auth: {
         bg: string;
         txt: string;
     };
 
     roadmap: {
-        status: {
-            txt: string;
-            bg: string;
-        };
-        desc: {
-            txt: string;
-            bg: string;
-        };
-        date: {
-            bg: string;
-        };
+        bd: string;
     };
 }
 

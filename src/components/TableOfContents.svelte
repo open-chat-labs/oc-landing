@@ -120,7 +120,8 @@
                         >SNS decentralization sale configuration</WhitepaperInternalLink>
                     <ul>
                         <li>
-                            <WhitepaperInternalLink id={"5-3-1"}>Valuation range</WhitepaperInternalLink>
+                            <WhitepaperInternalLink id={"5-3-1"}
+                                >Valuation range</WhitepaperInternalLink>
                         </li>
                     </ul>
                 </li>

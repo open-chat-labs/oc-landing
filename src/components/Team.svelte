@@ -5,7 +5,7 @@
 </script>
 
 <Section lazy={true} id={"team"}>
-    <Headline>The Team</Headline>
+    <h2>The Team</h2>
 
     <div class="team">
         <TeamCard
@@ -31,6 +31,10 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: $sp5;
+
+        h2 {
+            @include ubuntu(700, 37, 43);
+        }
 
         @include size-below(xs) {
             grid-template-columns: 1fr;

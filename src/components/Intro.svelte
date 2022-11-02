@@ -1,80 +1,45 @@
 <script lang="ts">
-    import Section from "./Section.svelte";
-    import { mobileWidth } from "../stores/screenDimensions";
-    import Separator from "./Separator.svelte";
-    import Headline from "./Headline.svelte";
     import Launch from "./Launch.svelte";
+    import { themeStore } from "../theme/themes";
+    import LogoOrange from "./LogoOrange.svelte";
+    import OnChain from "./OnChain.svelte";
+
+    $: imgUrl = $themeStore.name === "light" ? "../intro_light.png" : "../intro_dark.png";
 </script>
 
 <div class="intro">
     <div class="left">
-        <h1>OpenChat</h1>
+        <div class="name">
+            <LogoOrange size={56} />
+            <h1>OpenChat</h1>
+        </div>
         <h2>A decentralized chat app governed by the people for the people</h2>
         <p>
-            OpenChat is a fully featured chat application running end-to-end on the Internet
-            Computer blockchain.
+            OpenChat is a fully featured chat application running end-to-end on the <a
+                href="https://internetcomputer.org/"
+                target="_blank">
+                Internet Computer
+            </a> blockchain.
         </p>
         <Launch on:login />
         <div class="powered-by">
-            <img src="../ic-badge-powered-by_label-stripe-white-text.svg" alt="powered by the IC" />
+            <OnChain />
         </div>
     </div>
     <div class="right">
         <div class="image-wrapper">
-            <img class="img" alt="Open chat list" src="../screenshots/chatlist.png" />
+            <img class="img" alt="Open chat list" src={imgUrl} />
         </div>
     </div>
 </div>
 
-<!-- <Section lazy={false} id={"intro"}>
-    <Headline>Welcome to OpenChat</Headline>
-    <div class="grid">
-        {#if !$mobileWidth}
-            <div class="image-wrapper">
-                <img class="img" alt="Open chat list" src="../screenshots/chatlist.png" />
-            </div>
-        {/if}
-        <div class="right">
-            <p>
-                OpenChat is a fully featured chat application running end-to-end on the Internet
-                Computer blockchain.
-            </p>
-            {#if $mobileWidth}
-                <img
-                    loading="lazy"
-                    class="img desktop"
-                    alt="Open chat desktop"
-                    src="../screenshots/chatbot.png" />
-            {/if}
-            <p>
-                Each user is given a canister which holds their data, serves as a wallet so they can
-                send tokens as chat messages, and allows OpenChat to scale to the whole planet!
-            </p>
-            <Separator />
-            <p>
-                OpenChat will bring chat to the wider Internet Computer ecosystem through
-                integrations with other projects and will seek to play a role in the metaverse. The
-                planned communities capability will allow OpenChat to become a decentralized
-                alternative to Slack in the workplace.
-            </p>
-            <Separator />
-            <p>
-                Soon OpenChat will be governed by its community as a DAO with its own CHAT token. A
-                large proportion of CHAT will be given as rewards to users for positive
-                contributions and to turbo-charge growth, making a team of millions of advocates,
-                and allowing OpenChat to become a viable challenger to centralized big tech
-                competitors!
-            </p>
-        </div>
-    </div>
-</Section> -->
 <style type="text/scss">
     .intro {
-        padding: toRem(100) toRem(160) 0 toRem(160);
+        position: relative;
         margin-bottom: toRem(160);
         display: grid;
         grid-template-columns: 3fr 2fr;
-        gap: $sp5;
+        gap: toRem(100);
         justify-content: center;
         align-items: center;
 
@@ -85,28 +50,24 @@
 
     .left {
         text-align: left;
-        h1 {
-            font-family: "Ubuntu", sans-serif;
-            font-weight: 700;
-            font-size: toRem(48);
-            line-height: toRem(55);
-            margin-bottom: toRem(16);
-            text-transform: uppercase;
-        }
 
+        .name {
+            display: flex;
+            align-items: center;
+            gap: toRem(8);
+            h1 {
+                @include ubuntu(700, 37, 43);
+                margin: 0;
+            }
+        }
         h2 {
-            font-family: "Ubuntu", sans-serif;
-            font-weight: 500;
-            font-size: toRem(31);
-            line-height: toRem(35);
+            @include ubuntu(500, 28, 32);
             margin-bottom: toRem(10);
         }
 
         p {
-            font-family: "Roboto", sans-serif;
-            font-weight: 400;
-            font-size: toRem(16);
-            line-height: toRem(19);
+            @include roboto(400, 16, 28);
+            color: var(--txt-light);
         }
 
         .powered-by {
@@ -117,22 +78,11 @@
     }
 
     .right {
-        padding: 0 toRem(50);
+        padding: toRem(100) toRem(20) 0 toRem(50);
     }
 
     .img {
+        box-shadow: 8px 4px 16px 0px #00000066;
         width: 100%;
-    }
-
-    // .image-wrapper {
-    //     perspective: 1000px;
-
-    //     .img {
-    //         transform: skewX(6deg) rotateY(20deg);
-    //     }
-    // }
-
-    .desktop {
-        margin-bottom: $sp5;
     }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { CacheFirst } from "workbox-strategies";
     import Brag from "./Brag.svelte";
+    import Section from "./Section.svelte";
     import LogoPurple from "./LogoPurple.svelte";
 
     const brags = [
@@ -39,20 +39,22 @@
     });
 </script>
 
-<div class="bragbox">
-    <Brag
-        index={index + 1}
-        total={brags.length}
-        avatar={selected.avatar}
-        username={selected.username}
-        date={selected.date}
-        title={selected.title}
-        blurb={selected.blurb} />
+<Section lazy={true} id={"brag-box"}>
+    <div class="bragbox">
+        <Brag
+            index={index + 1}
+            total={brags.length}
+            avatar={selected.avatar}
+            username={selected.username}
+            date={selected.date}
+            title={selected.title}
+            blurb={selected.blurb} />
 
-    <div class="logo">
-        <LogoPurple size={492} fillOpacity={0.7} strokeOpacity={0.3} />
+        <div class="logo">
+            <LogoPurple size={492} fillOpacity={0.1} strokeOpacity={0.05} />
+        </div>
     </div>
-</div>
+</Section>
 
 <style type="text/scss">
     .bragbox {
@@ -60,7 +62,7 @@
         position: relative;
         padding: toRem(100) toRem(160);
         height: 492px;
-        background-color: #7e52ff;
+        background-color: #23a2ee;
     }
 
     .logo {

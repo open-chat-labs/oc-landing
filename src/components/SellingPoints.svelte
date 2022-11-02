@@ -1,10 +1,9 @@
 <script lang="ts">
     import Section from "./Section.svelte";
-    import { mobileWidth } from "../stores/screenDimensions";
-    import Link from "./Link.svelte";
+    import ArrowLink from "./ArrowLink.svelte";
 </script>
 
-<Section lazy={false} id={"usp"}>
+<Section lazy={true} id={"usp"}>
     <div class="grid">
         <div class="on-chain item">
             <div class="icon" />
@@ -56,7 +55,7 @@
         </div>
     </div>
 
-    <Link path="features">View All Features =></Link>
+    <ArrowLink path={"features"}>View All Features</ArrowLink>
 </Section>
 
 <style type="text/scss">
@@ -78,30 +77,33 @@
         border-radius: toRem(4);
         transition: transform ease-in-out 200ms;
         text-align: left;
+        color: #242834;
 
         &.on-chain {
-            background-color: #a663ff;
+            background-color: #23a2ee;
             color: #ffffff;
         }
 
         &.dao {
-            background-color: #f34ac9;
+            background-color: #f36d28;
         }
 
         &.open-source {
-            background-color: #4ae97a;
+            background-color: #8d2380;
+            color: #ffffff;
         }
 
         &.scalable {
-            background-color: #ffc702;
+            background-color: #592f8b;
+            color: #ffffff;
         }
 
         &.secure {
-            background-color: #ff4844;
+            background-color: #faad3a;
         }
 
         &.reliable {
-            background-color: #4ab9e9;
+            background-color: #e41e79;
         }
 
         .icon {

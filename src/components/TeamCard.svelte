@@ -61,11 +61,12 @@
     }
 
     .name {
-        @include ubuntu(500, 31, 35);
+        @include ubuntu(700, 28, 32);
         margin-bottom: $sp4;
     }
 
     .blurb {
-        @include roboto(400, 16, 19);
+        @include roboto(400, 16, 28);
+        color: var(--txt-light);
     }
 </style>

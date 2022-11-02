@@ -1,23 +1,22 @@
 import type { Theme } from "./themes";
 
 const gradient = "linear-gradient(#22a7f2, #5f2583)";
-// const primary = "#085d8c";
-// const primary = "#22a7f2";
 const primary = "#7E52FF";
 const secondary = "#df783f";
+
+const black = "#242834";
 
 export function lightTheme(): Theme {
     return {
         name: "light",
         label: "Light",
 
-        // primary: "#22a7f2",
-        primary,
-        // secondary: "#ff9505",
+        primary: "#22a7f2",
         secondary,
         hgradient: "linear-gradient(0.25turn, #22a7f2, hotpink)",
         gradient,
-        txt: "#242834",
+        txt: black,
+        "txt-light": "#5C5C5C",
         accent: "hotpink",
         bg: "white",
 
@@ -26,15 +25,9 @@ export function lightTheme(): Theme {
         },
 
         header: {
-            // bg: "#22a7f2",
-            // bg: "rgba(0,0,0,0.2)",
             bg: "#fff",
-            txt: "#242834",
+            txt: black,
             bd: "none",
-        },
-
-        content: {
-            bg: "rgba(255,255,255,0.1)",
         },
 
         auth: {
@@ -43,18 +36,7 @@ export function lightTheme(): Theme {
         },
 
         roadmap: {
-            status: {
-                txt: "#fff",
-                // bg: "#ff9505",
-                bg: secondary,
-            },
-            desc: {
-                txt: "#191919",
-                bg: "#efefef",
-            },
-            date: {
-                bg: secondary,
-            },
+            bd: "#E2E2E2",
         },
     };
 }

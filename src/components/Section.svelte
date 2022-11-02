@@ -32,7 +32,7 @@
 
 <style type="text/scss">
     section {
-        margin-bottom: toRem(40);
+        margin-bottom: toRem(100);
 
         @include mobile() {
             margin-bottom: toRem(20);

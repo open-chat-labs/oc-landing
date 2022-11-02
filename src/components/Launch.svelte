@@ -22,7 +22,7 @@
         display: inline-block;
         transition: background-color ease-in-out 200ms;
         color: #fff;
-        background-color: var(--launch-bg);
+        background-color: var(--primary);
         border: none;
         border-radius: toRem(4);
         cursor: pointer;

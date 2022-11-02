@@ -5,7 +5,7 @@
     import Launch from "./Launch.svelte";
 
     export let context = false;
-    let debug = false;
+    let debug = true;
 
     $: path = $currentPath.path;
 
@@ -41,12 +41,12 @@
                 mode={"menu"}
                 path="architecture">Architecture</Link>
         </div>
+        {#if debug}
+            <div class="menu-item link" on:click={toggleTheme}>Theme</div>
+        {/if}
         <div class="menu-item">
             <Launch on:login />
         </div>
-        {#if debug}
-            <div class="menu-item link" on:click={toggleTheme}>theme</div>
-        {/if}
     </div>
     <!-- <div class="menu-item end">
         <AuthSelector on:authSelected={close} on:logout {context} />

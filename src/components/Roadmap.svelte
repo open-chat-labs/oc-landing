@@ -1,7 +1,6 @@
 <script lang="ts">
     import Headline from "./Headline.svelte";
     import Section from "./Section.svelte";
-    import Separator from "./Separator.svelte";
 </script>
 
 <Section lazy={false} id={"sns"}>
@@ -41,8 +40,6 @@
     </div>
 </Section>
 
-<Separator />
-
 <Section lazy={true} id={"user-rewards"}>
     <div class="roadmap-header">
         <div class="date">
@@ -75,39 +72,6 @@
     </div>
 </Section>
 
-<Separator />
-
-<Section lazy={true} id={"integrations"}>
-    <div class="roadmap-header">
-        <div class="date">
-            <div class="quarter">Q1</div>
-            <div class="year">2023</div>
-        </div>
-
-        <Headline>
-            <div class="title">Integrations</div>
-        </Headline>
-    </div>
-    <div class="blurb">
-        <p>
-            We are keen to provide chat functionality as a service to other dApps in the Internet 
-            Computer ecosystem.
-        </p>
-        <p>
-            We are currently consulting with many builders in the community to find out how they
-            would like to integrate OpenChat functionality in the future. The appetite is certainly
-            there! We will likely start with simple direct chat functionality before later offering 
-            groups and other more advanced features.
-        </p>
-        <p>
-            The OpenChat team will build the apis, libraries and UI components required to make chat
-            integration as seamless as possible.
-        </p>
-    </div>
-</Section>
-
-<Separator />
-
 <Section lazy={true} id={"communities"}>
     <div class="roadmap-header">
         <div class="date">
@@ -121,18 +85,18 @@
     </div>
     <div class="blurb">
         <p>
-            By building the capability to integrate with 3rd party dApps, each with their own community, 
-            we also unlock the potential to introduce the concept of <em>communities</em> to the OpenChat 
-            dApp itself. Currently OpenChat is open to all. Any user or public group can be found by simply
-            searching. For many scenarios this is perfectly fine. 
+            By building the capability to integrate with 3rd party dApps, each with their own
+            community, we also unlock the potential to introduce the concept of <em>communities</em>
+            to the OpenChat dApp itself. Currently OpenChat is open to all. Any user or public group
+            can be found by simply searching. For many scenarios this is perfectly fine.
         </p>
 
         <p>
-            However, sometimes it would be nice to collect a number of groups together where they have
-            something in common. That commonality or <em>community</em> could be anything: perhaps
-            they all use the same language, or they all relate to a particular area of interest, or
-            they all relate to a particular <em>project</em>. In this sense, communities are a bit
-            like Discord servers.
+            However, sometimes it would be nice to collect a number of groups together where they
+            have something in common. That commonality or <em>community</em> could be anything:
+            perhaps they all use the same language, or they all relate to a particular area of
+            interest, or they all relate to a particular <em>project</em>. In this sense,
+            communities are a bit like Discord servers.
         </p>
 
         <p>
@@ -145,8 +109,6 @@
         </p>
     </div>
 </Section>
-
-<Separator />
 
 <Section lazy={true} id={"video"}>
     <Headline>
@@ -162,8 +124,6 @@
         </p>
     </div>
 </Section>
-
-<Separator />
 
 <Section lazy={true} id={"apps"}>
     <Headline>
@@ -195,8 +155,6 @@
     </div>
 </Section>
 
-<Separator />
-
 <Section lazy={true} id={"e2e"}>
     <Headline>
         <div class="title">End to end encryption</div>
@@ -213,8 +171,6 @@
         </p>
     </div>
 </Section>
-
-<Separator />
 
 <Section lazy={true} id={"other"}>
     <Headline>
@@ -266,7 +222,7 @@
         text-align: left;
     }
     .blurb {
-        font-size: toRem(20);
+        @include roboto(300, 16, 28);
     }
     .list {
         text-align: left;

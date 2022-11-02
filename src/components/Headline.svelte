@@ -9,7 +9,6 @@
         margin: 0;
         @include ubuntu(700, 48, 55);
         margin-bottom: 1.5rem;
-        text-transform: uppercase;
 
         &.dark {
             color: var(--accent);

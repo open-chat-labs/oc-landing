@@ -6,14 +6,13 @@
 
 <style type="text/scss">
     .content {
-        max-width: 1000px;
+        max-width: 1440px;
+        padding: 0;
         margin: 0 auto;
-        @include constrain(0, 0);
     }
 
     .outer {
         position: relative;
-        background-color: var(--content-bg);
 
         @include mobile() {
             margin: 0;

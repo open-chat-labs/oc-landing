@@ -13,6 +13,7 @@
     import { selectedAuthProviderStore, loggingIn, loggedIn } from "./stores/authProviders";
     import "./theme/themes";
     import { currentPath } from "./stores/route";
+    import Content from "./components/Content.svelte";
 
     let mainEl: HTMLElement | undefined;
     let scrollTop = 0;
@@ -123,19 +124,11 @@
 {/if}
 
 <main id="main" class="main" bind:this={mainEl} on:scroll={onScroll}>
-    <Header on:login={login} on:logout={logout} />
+    <Content>
+        <Header on:login={login} on:logout={logout} />
 
-    <Router on:login={login} on:scrollToTop={scrollToTop} />
-
-    <!-- {#if show}
-        <BackgroundLogo
-            width={`${bigLogo}px`}
-            bottom={"0"}
-            left={"0"}
-            opacity={"0.05"}
-            skew={"5deg"} />
-        <BackgroundLogo width={`${smallLogo}px`} bottom={"0"} right={"100px"} opacity={"0.1"} />
-    {/if} -->
+        <Router on:login={login} on:scrollToTop={scrollToTop} />
+    </Content>
 
     {#if backToTop}
         <div transition:fade|local class="fab" on:click={clearHash}>
