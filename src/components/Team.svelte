@@ -3,7 +3,7 @@
     import TeamCard from "./TeamCard.svelte";
 </script>
 
-<Section lazy={false} id={"team"}>
+<Section id={"team"}>
     <h2>The Team</h2>
 
     <div class="team">

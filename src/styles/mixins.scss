@@ -268,3 +268,10 @@ $shadow-level-3: 2px 6px 12px 0 rgba(25, 25, 25, 0.55);
     font-size: toRem($font-size);
     line-height: toRem($line-height);
 }
+
+@mixin content-padding() {
+    padding: 0 toRem(160);
+    @include mobile() {
+        padding: 0 toRem(24);
+    }
+}

@@ -248,7 +248,7 @@
     .block {
         top: 0;
         left: 0;
-        position: absolute;
+        position: fixed;
         height: 100vh;
         width: 100%;
         pointer-events: all;
@@ -257,10 +257,12 @@
         justify-content: center;
         align-items: center;
         z-index: 100;
+        pointer-events: all;
 
         img {
-            width: toRem(150);
-            height: toRem(150);
+            opacity: 0.6;
+            width: toRem(120);
+            height: toRem(120);
             @include spin();
         }
     }

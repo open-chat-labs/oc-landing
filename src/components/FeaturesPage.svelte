@@ -1,10 +1,15 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import ArrowLink from "./ArrowLink.svelte";
     import Feature from "./Feature.svelte";
+    import { themeStore } from "../theme/themes";
+    import { mobileWidth } from "../stores/screenDimensions";
 
     const sectionHeight = 800;
     const scrollOffet = 56;
     let scrollTop = 0;
+    let phoneEl: HTMLDivElement;
+    let bottomPadding = 0;
 
     function onScroll() {
         scrollTop = window.scrollY;
@@ -16,34 +21,58 @@
         return n;
     }
 
-    const screenshots = [
-        { url: "../screenshots/mobilefirst.png", alt: "mobile first" },
-        { url: "../screenshots/creategroup1.png", alt: "create group" },
-        { url: "../screenshots/permissions.png", alt: "group permissions" },
-        { url: "../screenshots/whatshot.gif", alt: "find groups to join" },
-        { url: "../screenshots/userprofile.gif", alt: "user profile" },
-        { url: "../screenshots/messages.gif", alt: "sending messages" },
-        { url: "../screenshots/search.gif", alt: "searching" },
-        { url: "../screenshots/voting.png", alt: "voting" },
-    ];
+    const screenshotMap = {
+        light: [
+            { url: "../screenshots/mobilefirst.png", alt: "mobile first" },
+            { url: "../screenshots/creategroup1.png", alt: "create group" },
+            { url: "../screenshots/permissions.png", alt: "group permissions" },
+            { url: "../screenshots/whatshot.gif", alt: "find groups to join" },
+            { url: "../screenshots/userprofile.gif", alt: "user profile" },
+            { url: "../screenshots/messages.gif", alt: "sending messages" },
+            { url: "../screenshots/search.gif", alt: "searching" },
+            { url: "../screenshots/voting_light.png", alt: "voting" },
+        ],
+        dark: [
+            { url: "../screenshots/mobilefirst.png", alt: "mobile first" },
+            { url: "../screenshots/creategroup1.png", alt: "create group" },
+            { url: "../screenshots/permissions.png", alt: "group permissions" },
+            { url: "../screenshots/whatshot.gif", alt: "find groups to join" },
+            { url: "../screenshots/userprofile.gif", alt: "user profile" },
+            { url: "../screenshots/messages.gif", alt: "sending messages" },
+            { url: "../screenshots/search.gif", alt: "searching" },
+            { url: "../screenshots/voting_dark.png", alt: "voting" },
+        ],
+    };
+
+    $: screenshots = screenshotMap[$themeStore.name];
+
+    onMount(() => {
+        if (phoneEl) {
+            // calculate how far from bottom of the screen the bottom of the phone is
+            const rect = phoneEl.getBoundingClientRect();
+            bottomPadding = window.innerHeight - rect.bottom - 45;
+        }
+    });
 </script>
 
 <svelte:window on:scroll={onScroll} />
 
-<div class="phone">
-    {#each screenshots as screenshot, i}
-        <div
-            style={`height: ${
-                i === 0 ? 700 : clamp(scrollTop - (scrollOffet + sectionHeight * (i - 1)))
-            }px`}
-            class="feature-img-container">
-            <img class="feature-img" src={screenshot.url} alt={screenshot.alt} />
-        </div>
-    {/each}
-</div>
+{#if !$mobileWidth}
+    <div class="phone" bind:this={phoneEl}>
+        {#each screenshots as screenshot, i}
+            <div
+                style={`height: ${
+                    i === 0 ? 700 : clamp(scrollTop - (scrollOffet + sectionHeight * (i - 1)))
+                }px`}
+                class="feature-img-container">
+                <img class="feature-img" src={screenshot.url} alt={screenshot.alt} />
+            </div>
+        {/each}
+    </div>
+{/if}
 
-<div class="content">
-    <Feature backgroundColor={"#4AE97A"} title={"Mobile first"}>
+<div class="content" style={`padding-bottom: ${bottomPadding}px`}>
+    <Feature backgroundColor={"#23a2ee"} color={"#ffffff"} title={"Mobile first"}>
         <p>
             A chat app should be used on the go and so OpenChat was designed from the beginning to
             work well first and foremost on your mobile device.
@@ -54,14 +83,14 @@
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#7E52FF"} color={"#ffffff"} title={"Groups"}>
+    <Feature backgroundColor={"#f36d28"} title={"Groups"}>
         <p>
             Create private groups with friends and family to coordinate and chat together. With a
             private group, you have full control over who is the group.
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#242834"} color={"#ffffff"} title={"Permissions"}>
+    <Feature backgroundColor={"#8d2380"} color={"#ffffff"} title={"Permissions"}>
         <p>
             Permissions are assigned to different types of users. As the group owner you will decide
             who gets admin privileges. Making other people admins will allow them to help you
@@ -69,7 +98,7 @@
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#ff4844"} title={"Finding groups"}>
+    <Feature backgroundColor={"#592f8b"} color={"#ffffff"} title={"Finding groups"}>
         <p>
             By selecting the "What's hot" menu option you can find list of popular groups. In the
             future we will add more fine grain categorisation and filtering capability to make it
@@ -81,7 +110,7 @@
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#4ab9e9"} title={"User profile"}>
+    <Feature backgroundColor={"#faad3a"} title={"User profile"}>
         <p>Configure your personal information, UI settings and chat settings at any time.</p>
 
         <p>Manage your crypt accounts and account storage.</p>
@@ -89,47 +118,23 @@
         <p>View your own personl stats. Get messaging!</p>
     </Feature>
 
-    <Feature backgroundColor={"#ffc702"} title={"Sending messages"}>
+    <Feature backgroundColor={"#e41e79"} title={"Sending messages"}>
         <p>
             Sending messages is the heart of any chat app. OpenChat provides all of the features
             that you would expect and adds a few unique capabilities of its own.
         </p>
-
-        <ul class="list">
-            <li>Send, edit or delete text messages</li>
-            <li>Use inline markdown to format messages</li>
-            <li>Attach images, video, audio clips or files to your messages</li>
-            <li>React to messages</li>
-            <li>Send giphy messages</li>
-            <li>Create and send polls</li>
-            <li>Send crypto via message to other users</li>
-            <li>Translate messages into your chosen language</li>
-            <li>Reply to messages either inline or as part of a threaded conversation</li>
-            <li>Pin important messages within a group</li>
-        </ul>
     </Feature>
 
-    <Feature backgroundColor={"#f34ac9"} title={"Search"}>
+    <Feature backgroundColor={"#23a2ee"} color={"#ffffff"} title={"Search"}>
         <p>
-            There a several ways to search within OpenChat. To search globally for users, public
-            groups or messages, just use the universal search box directly under the user panel and
-            above the chat list.
+            Search globally for users, messages or public groups right from the universal search box
+            below the user panel.
         </p>
 
-        <p>
-            Then simply click on any result. For users, this will initiate a direct chat; for groups
-            that you are not currently a member of you will enter preview mode and from there you
-            can decide whether to join or not; for messages you will be taken directly to the
-            relevant chat with the correct message selected.
-        </p>
-
-        <p>
-            You can also search <em>within</em> a chat by selecting search from the chat's menu. This
-            allows you to find a specific message within that particular chat only.
-        </p>
+        <p>You can also search for messages within any selected chat.</p>
     </Feature>
 
-    <Feature backgroundColor={"#000000"} color={"#ffffff"} title={"Proposal voting"}>
+    <Feature backgroundColor={"#f36d28"} color={"#ffffff"} title={"Proposal voting"}>
         <p>
             A unique feature of OpenChat is that it allows you to vote directly on NNS and (soon)
             SNS proposals.
@@ -139,8 +144,6 @@
             Simply register your OpenChat account as a hotkey for the neuron that you wish to vote
             with and join the relevant public group.
         </p>
-
-        <p>You can then discuss and vote on proposals from right inside your favourite chat app.</p>
         <div class="roadmap">
             <ArrowLink path={"roadmap"}>View Entire Roadmap</ArrowLink>
         </div>
@@ -189,23 +192,7 @@
     .content {
         position: relative;
         z-index: 1;
-        padding: 0 toRem(160) toRem(190) toRem(160);
-    }
-
-    .list {
-        text-align: left;
-        list-style: none;
-        margin: 0 0 0 toRem(22);
-        padding: 0;
-        position: relative;
-
-        li {
-            &:before {
-                position: absolute;
-                content: "✓";
-                left: toRem(-22);
-                color: darkseagreen;
-            }
-        }
+        @include content-padding();
+        padding-bottom: toRem(460);
     }
 </style>

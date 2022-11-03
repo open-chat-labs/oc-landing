@@ -15,6 +15,14 @@ export interface Theme {
     accent: string;
     bg: string;
 
+    context: {
+        bg: string;
+    };
+
+    phone: {
+        bd: string;
+    };
+
     launch: {
         bg: string;
     };

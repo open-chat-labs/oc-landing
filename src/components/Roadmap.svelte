@@ -3,7 +3,7 @@
     import Section from "./Section.svelte";
 </script>
 
-<Section lazy={false} id={"sns"}>
+<Section id={"sns"}>
     <div class="roadmap-header">
         <div class="date">
             <div class="quarter">Q4</div>
@@ -40,7 +40,7 @@
     </div>
 </Section>
 
-<Section lazy={true} id={"user-rewards"}>
+<Section id={"user-rewards"}>
     <div class="roadmap-header">
         <div class="date">
             <div class="quarter">Q4</div>
@@ -72,7 +72,7 @@
     </div>
 </Section>
 
-<Section lazy={true} id={"communities"}>
+<Section id={"communities"}>
     <div class="roadmap-header">
         <div class="date">
             <div class="quarter">Q2</div>
@@ -110,7 +110,7 @@
     </div>
 </Section>
 
-<Section lazy={true} id={"video"}>
+<Section id={"video"}>
     <Headline>
         <div class="title">Voice & video</div>
     </Headline>
@@ -125,7 +125,7 @@
     </div>
 </Section>
 
-<Section lazy={true} id={"apps"}>
+<Section id={"apps"}>
     <Headline>
         <div class="title">Native apps</div>
     </Headline>
@@ -155,7 +155,7 @@
     </div>
 </Section>
 
-<Section lazy={true} id={"e2e"}>
+<Section id={"e2e"}>
     <Headline>
         <div class="title">End to end encryption</div>
     </Headline>
@@ -172,7 +172,7 @@
     </div>
 </Section>
 
-<Section lazy={true} id={"other"}>
+<Section id={"other"}>
     <Headline>
         <div class="title">Other features</div>
     </Headline>

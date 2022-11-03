@@ -1,9 +1,10 @@
 <script lang="ts">
+    import { mobileWidth } from "../stores/screenDimensions";
     import Section from "./Section.svelte";
     import ArrowLink from "./ArrowLink.svelte";
 </script>
 
-<Section lazy={false} id={"usp"}>
+<Section id={"usp"}>
     <div class="grid">
         <div class="on-chain item">
             <div class="icon" />
@@ -55,7 +56,9 @@
         </div>
     </div>
 
-    <ArrowLink path={"features"}>View All Features</ArrowLink>
+    {#if !$mobileWidth}
+        <ArrowLink path={"features"}>View All Features</ArrowLink>
+    {/if}
 </Section>
 
 <style type="text/scss">
@@ -71,10 +74,9 @@
     }
 
     .item {
-        // border-radius: toRem(10);
         padding: toRem(40) toRem(32) toRem(32) toRem(32);
         min-height: toRem(300);
-        border-radius: toRem(4);
+        // border-radius: toRem(4);
         transition: transform ease-in-out 200ms;
         text-align: left;
         color: #242834;

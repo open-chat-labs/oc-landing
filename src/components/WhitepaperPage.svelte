@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { mobileWidth } from "../stores/screenDimensions";
     import TableOfContents from "./TableOfContents.svelte";
     import Headline from "./Headline.svelte";
     import Separator from "./Separator.svelte";
@@ -10,7 +11,9 @@
 
     let width = 0;
 
-    $: totalWidth = width - toPixel(20); // 160px * 2 = 320px of padding which is 20rems
+    $: padding = $mobileWidth ? 3 : 20;
+
+    $: totalWidth = width - toPixel(padding); // 160px * 2 = 320px of padding which is 20rems
 </script>
 
 <div class="whitepaper" bind:clientWidth={width}>
@@ -1021,7 +1024,7 @@
 <style type="text/scss">
     .whitepaper {
         text-align: left;
-        padding: 0 toRem(160);
+        @include content-padding();
     }
 
     h2,

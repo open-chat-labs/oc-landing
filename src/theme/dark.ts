@@ -21,6 +21,14 @@ export function darkTheme(defaultTheme: Theme): Theme {
         bg: black,
         "txt-light": "#B1B1B1",
 
+        context: {
+            bg: "#2f3039",
+        },
+
+        phone: {
+            bd: "#ffffffdd",
+        },
+
         header: {
             bg: black,
             txt: txtMed,

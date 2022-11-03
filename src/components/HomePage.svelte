@@ -29,7 +29,7 @@
 
 <style type="text/scss">
     .content {
-        padding: 0 toRem(160);
+        @include content-padding();
 
         @include mobile() {
             padding: 0 toRem(24);

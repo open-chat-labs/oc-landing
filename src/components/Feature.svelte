@@ -30,5 +30,10 @@
         justify-content: center;
         min-height: 800px;
         padding: 0 50% 0 toRem(160);
+
+        @include mobile() {
+            padding: toRem(50) toRem(24);
+            min-height: unset;
+        }
     }
 </style>

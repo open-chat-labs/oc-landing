@@ -39,7 +39,7 @@
     });
 </script>
 
-<Section lazy={true} id={"brag-box"}>
+<Section id={"brag-box"}>
     <div class="bragbox">
         <Brag
             index={index + 1}

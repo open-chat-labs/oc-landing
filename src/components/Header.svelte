@@ -1,6 +1,7 @@
 <script lang="ts">
     import { mobileWidth } from "../stores/screenDimensions";
     import MenuItems from "./MenuItems.svelte";
+    import MobileMenuItems from "./MobileMenuItems.svelte";
     import { currentPath } from "../stores/route";
     import LogoOrange from "./LogoOrange.svelte";
     import Menu from "svelte-material-icons/Menu.svelte";
@@ -11,7 +12,7 @@
 
     function home() {
         currentPath.set({
-            path: "/",
+            path: "home",
             hash: "",
         });
     }
@@ -24,9 +25,10 @@
             <div class="name">OpenChat</div>
         </div>
         {#if $mobileWidth}
-            <div class="menu-toggle" on:click={() => (showMenu = !showMenu)}>
+            <div class="menu-toggle" on:click|stopPropagation={() => (showMenu = !showMenu)}>
                 {#if showMenu}
                     <Close size={"1.6em"} color={"var(--txt)"} />
+                    <MobileMenuItems on:close={() => (showMenu = false)} on:login on:logout />
                 {:else}
                     <Menu size={"1.6em"} color={"var(--txt)"} />
                 {/if}
@@ -67,11 +69,10 @@
 
     .header {
         max-width: 1440px;
-        padding: 0 toRem(160);
+        @include content-padding();
 
         @include mobile() {
             width: 100%;
-            padding: 0 toRem(24);
         }
 
         margin: 0 auto;

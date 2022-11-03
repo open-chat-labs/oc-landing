@@ -10,8 +10,8 @@
         @include manrope(700, 48, 55);
         margin-bottom: 1.5rem;
 
-        &.dark {
-            color: var(--accent);
+        @include mobile() {
+            @include manrope(700, 32, 45);
         }
     }
 </style>

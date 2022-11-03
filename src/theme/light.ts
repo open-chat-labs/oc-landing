@@ -20,6 +20,14 @@ export function lightTheme(): Theme {
         accent: "hotpink",
         bg: "white",
 
+        context: {
+            bg: "#ffffff",
+        },
+
+        phone: {
+            bd: "transparent",
+        },
+
         launch: {
             bg: primary,
         },

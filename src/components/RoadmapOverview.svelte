@@ -3,11 +3,9 @@
     import Link from "./Link.svelte";
     import { currentPath } from "../stores/route";
     import ArrowLink from "./ArrowLink.svelte";
-
-    let visible = false;
 </script>
 
-<Section bind:visible lazy={false} id={"roadmap"}>
+<Section id={"roadmap"}>
     <div
         class="roadmap"
         on:click={() =>
