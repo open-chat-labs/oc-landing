@@ -44,7 +44,7 @@
         width: 100%;
         padding: 0;
         margin: 0 auto;
-        position: sticky;
+        position: fixed;
         top: 0;
         @include z-index("menu");
         background-color: var(--header-bg);

@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { onMount } from "svelte";
     import ArrowLink from "./ArrowLink.svelte";
     import Feature from "./Feature.svelte";
 
@@ -7,12 +6,9 @@
     const scrollOffet = 56;
     let scrollTop = 0;
 
-    onMount(() => {
-        const main = document.getElementById("main");
-        main?.addEventListener("scroll", () => {
-            scrollTop = main?.scrollTop ?? 0;
-        });
-    });
+    function onScroll() {
+        scrollTop = window.scrollY;
+    }
 
     function clamp(n: number) {
         if (n < 0) return 0;
@@ -31,6 +27,8 @@
         { url: "../screenshots/voting.png", alt: "voting" },
     ];
 </script>
+
+<svelte:window on:scroll={onScroll} />
 
 <div class="phone">
     {#each screenshots as screenshot, i}

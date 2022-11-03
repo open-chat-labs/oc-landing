@@ -2,7 +2,6 @@
     import { fade } from "svelte/transition";
     import Header from "./components/Header.svelte";
     import Router from "./components/Router.svelte";
-    import { dimensions } from "./stores/screenDimensions";
     import Fab from "./components/Fab.svelte";
     import ArrowUp from "svelte-material-icons/ArrowUp.svelte";
     import { onMount } from "svelte";
@@ -15,7 +14,6 @@
     import Content from "./components/Content.svelte";
     import { themeStore } from "./theme/themes";
 
-    let mainEl: HTMLElement | undefined;
     let scrollTop = 0;
     let authClient = AuthClient.create({
         idleOptions: { disableIdle: true },
@@ -26,11 +24,11 @@
     $: backToTop = scrollTop > 400;
 
     function onScroll() {
-        scrollTop = mainEl?.scrollTop ?? 0;
+        scrollTop = window.scrollY;
     }
 
     function scrollToTop() {
-        mainEl?.scrollTo({
+        window.scrollTo({
             behavior: "auto",
             top: 0,
         });
@@ -122,7 +120,7 @@
 
 <Header on:login={login} on:logout={logout} />
 
-<main id="main" class="main" bind:this={mainEl} on:scroll={onScroll}>
+<main id="main" class="main">
     <Content>
         <div
             class="burst"
@@ -132,6 +130,8 @@
         <Router on:login={login} on:scrollToTop={scrollToTop} />
     </Content>
 </main>
+
+<svelte:window on:scroll={onScroll} />
 
 {#if backToTop}
     <div transition:fade|local class="fab" on:click={clearHash}>
@@ -147,7 +147,7 @@
         body {
             position: relative;
             width: 100%;
-            height: 100%;
+            // height: 100%;
         }
 
         :root {
@@ -168,7 +168,7 @@
             box-sizing: border-box;
             font-size: var(--font-size);
             -webkit-text-size-adjust: none;
-            scroll-behavior: smooth;
+            scroll-behavior: auto;
         }
         *,
         *:before,
@@ -265,15 +265,11 @@
         }
     }
     .main {
-        display: grid;
         position: relative;
-        grid-template-columns: 1f;
-        grid-template-rows: toRem(80) auto;
         overflow-y: auto;
         overflow-x: hidden;
-        height: 100%;
-        min-height: 100%;
         margin: 0 auto;
+        margin-top: toRem(80);
     }
     .fab {
         position: fixed;

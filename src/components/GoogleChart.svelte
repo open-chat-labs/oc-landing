@@ -7,6 +7,8 @@
     export let title: string;
     export let totalWidth: number;
 
+    $: console.log(originalWidth, originalHeight, title, totalWidth);
+
     let windowWidth = 0;
     $: scale = Math.min(windowWidth - toPixel(2), totalWidth) / originalWidth;
 

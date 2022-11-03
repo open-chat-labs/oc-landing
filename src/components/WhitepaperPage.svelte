@@ -6,8 +6,11 @@
     import WhitepaperInternalLink from "./WhitepaperInternalLink.svelte";
     import WhitepaperExternalLink from "./WhitepaperExternalLink.svelte";
     import GoogleChart from "./GoogleChart.svelte";
+    import { toPixel } from "../stores/screenDimensions";
 
     let width = 0;
+
+    $: totalWidth = width - toPixel(20); // 160px * 2 = 320px of padding which is 20rems
 </script>
 
 <div class="whitepaper" bind:clientWidth={width}>
@@ -565,7 +568,7 @@
         </p>
 
         <GoogleChart
-            totalWidth={width}
+            {totalWidth}
             title="Initial token allocation"
             originalWidth={730}
             originalHeight={380}
@@ -618,7 +621,7 @@
         </p>
 
         <GoogleChart
-            totalWidth={width}
+            {totalWidth}
             title="Voting power at genesis"
             originalWidth={684}
             originalHeight={380}
@@ -903,7 +906,7 @@
         </p>
 
         <GoogleChart
-            totalWidth={width}
+            {totalWidth}
             title="CHAT supply over time"
             originalWidth={943}
             originalHeight={582}
@@ -998,7 +1001,7 @@
         </p>
 
         <GoogleChart
-            totalWidth={width}
+            {totalWidth}
             title="Voting power over time"
             originalWidth={813}
             originalHeight={503}

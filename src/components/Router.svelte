@@ -14,11 +14,10 @@
     function scrollToHash(hash: string) {
         if (hash === "") return;
 
-        const main = document.getElementById("main");
         const target = document.getElementById(hash);
         const rect = target.getBoundingClientRect();
-        const top = rect.top + main.scrollTop - 70;
-        main.scrollTo({
+        const top = rect.top + window.scrollY - 80;
+        window.scrollTo({
             top,
         });
         target.classList.add("highlight");
