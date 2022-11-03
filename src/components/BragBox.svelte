@@ -60,9 +60,16 @@
     .bragbox {
         overflow: hidden;
         position: relative;
-        padding: toRem(100) toRem(160);
         height: 492px;
         background-color: #23a2ee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 toRem(160);
+
+        @include mobile() {
+            padding: 0 toRem(24);
+        }
     }
 
     .logo {

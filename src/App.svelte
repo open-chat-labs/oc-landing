@@ -131,15 +131,15 @@
 
         <Router on:login={login} on:scrollToTop={scrollToTop} />
     </Content>
-
-    {#if backToTop}
-        <div transition:fade|local class="fab" on:click={clearHash}>
-            <Fab>
-                <ArrowUp size={"1.4em"} color={"rgba(255,255,255,0.8)"} />
-            </Fab>
-        </div>
-    {/if}
 </main>
+
+{#if backToTop}
+    <div transition:fade|local class="fab" on:click={clearHash}>
+        <Fab>
+            <ArrowUp size={"1.4em"} color={"rgba(255,255,255,0.8)"} />
+        </Fab>
+    </div>
+{/if}
 
 <style type="text/scss">
     :global {
@@ -276,7 +276,7 @@
         margin: 0 auto;
     }
     .fab {
-        position: absolute;
+        position: fixed;
         bottom: toRem(40);
         right: toRem(40);
     }

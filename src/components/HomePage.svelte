@@ -21,11 +21,12 @@
     <Roadmap />
 </div>
 
-<!-- <BragBox />
+<BragBox />
 
 <div class="content">
     <Team />
-</div> -->
+</div>
+
 <style type="text/scss">
     .content {
         padding: 0 toRem(160);
@@ -39,6 +40,11 @@
             margin-bottom: toRem(48);
             text-align: left;
             max-width: 80%;
+
+            @include mobile() {
+                @include manrope(700, 28, 38);
+                margin-bottom: toRem(16);
+            }
         }
 
         p {
@@ -46,6 +52,12 @@
             color: var(--txt-light);
             margin-bottom: toRem(80);
             max-width: 60%;
+
+            @include mobile() {
+                @include roboto(100, 14, 24);
+                max-width: 100%;
+                margin-bottom: toRem(40);
+            }
         }
     }
 </style>

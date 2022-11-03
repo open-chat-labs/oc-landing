@@ -1,10 +1,9 @@
 <script lang="ts">
-    import Headline from "./Headline.svelte";
     import Section from "./Section.svelte";
     import TeamCard from "./TeamCard.svelte";
 </script>
 
-<Section lazy={true} id={"team"}>
+<Section lazy={false} id={"team"}>
     <h2>The Team</h2>
 
     <div class="team">
@@ -32,12 +31,11 @@
         grid-template-columns: repeat(3, 1fr);
         gap: $sp5;
 
-        h2 {
-            @include manrope(700, 37, 43);
-        }
-
-        @include size-below(xs) {
+        @include mobile() {
             grid-template-columns: 1fr;
         }
+    }
+    h2 {
+        @include manrope(700, 37, 43);
     }
 </style>

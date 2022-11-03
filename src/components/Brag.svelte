@@ -33,7 +33,6 @@
     .brag {
         display: flex;
         color: #fff;
-        max-width: 60%;
         gap: $sp5;
         @include roboto(400, 16, 28);
 

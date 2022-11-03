@@ -7,7 +7,7 @@
     let visible = false;
 </script>
 
-<Section bind:visible lazy={true} id={"roadmap"}>
+<Section bind:visible lazy={false} id={"roadmap"}>
     <div
         class="roadmap"
         on:click={() =>
@@ -111,9 +111,18 @@
         .item {
             border-top: solid 1px var(--roadmap-bd);
             padding: toRem(48) 0;
-            display: flex;
             justify-content: flex-start;
             gap: $sp3;
+            display: grid;
+            grid-template-columns: 1fr 2fr 2fr;
+            grid-template-areas: "status title detail";
+
+            @include mobile() {
+                grid-template-columns: 1fr 2fr;
+                grid-template-areas:
+                    "status title title"
+                    "detail detail detail";
+            }
         }
 
         .item:last-child {
@@ -121,6 +130,7 @@
         }
 
         .status {
+            grid-area: status;
             display: flex;
             gap: $sp3;
             align-items: flex-start;
@@ -134,8 +144,13 @@
         }
 
         .title {
+            grid-area: title;
             @include manrope(700, 50, 57);
             flex: 4;
+
+            @include mobile() {
+                @include manrope(700, 32, 38);
+            }
         }
 
         .when {
@@ -143,6 +158,7 @@
         }
 
         .detail {
+            grid-area: detail;
             flex: 4;
         }
 

@@ -4,34 +4,37 @@
     import LogoOrange from "./LogoOrange.svelte";
     import OnChain from "./OnChain.svelte";
     import { mobileWidth } from "../stores/screenDimensions";
+    import OnChainAlt from "./OnChainAlt.svelte";
 
     $: imgUrl = $themeStore.name === "light" ? "../intro_light.png" : "../intro_dark.png";
     $: logoSize = $mobileWidth ? 40 : 56;
 </script>
 
 <div class="intro">
-    <div class="left">
-        <div class="name">
-            <LogoOrange size={logoSize} />
-            <h1>OpenChat</h1>
-        </div>
-        <h2>A decentralized chat app governed by the people for the people</h2>
-        <p>
-            OpenChat is a fully featured chat application running end-to-end on the <a
-                href="https://internetcomputer.org/"
-                target="_blank">
-                Internet Computer
-            </a> blockchain.
-        </p>
-        <Launch on:login />
-        <div class="powered-by">
-            <OnChain />
-        </div>
+    <div class="name">
+        <LogoOrange size={logoSize} />
+        <h1>OpenChat</h1>
     </div>
-    <div class="right">
-        <div class="image-wrapper">
-            <img class="img" alt="Open chat list" src={imgUrl} />
-        </div>
+    <h2 class="title">A decentralized chat app governed by the people for the people</h2>
+    <p class="blurb">
+        OpenChat is a fully featured chat application running end-to-end on the <a
+            href="https://internetcomputer.org/"
+            target="_blank">
+            Internet Computer
+        </a> blockchain.
+    </p>
+    <div class="launch">
+        <Launch on:login />
+    </div>
+    <div class="powered-by">
+        {#if $mobileWidth}
+            <OnChainAlt />
+        {:else}
+            <OnChain />
+        {/if}
+    </div>
+    <div class="image-wrapper">
+        <img class="img" alt="Open chat list" src={imgUrl} />
     </div>
 </div>
 
@@ -43,52 +46,73 @@
         grid-template-columns: 3fr 2fr;
         justify-content: center;
         align-items: center;
-        gap: toRem(100);
+        column-gap: toRem(100);
+
+        grid-template-areas:
+            ". image"
+            "name image"
+            "title image"
+            "blurb image"
+            "launch image"
+            ". image"
+            "powered-by image";
 
         @include mobile() {
-            grid-template-columns: 1fr;
-            gap: 0;
+            width: 125%;
+            margin-top: toRem(100);
+            margin-bottom: toRem(100);
+            grid-template-columns: 6fr 1fr 3fr;
+            column-gap: toRem(20);
+
+            grid-template-areas:
+                "name name name"
+                "title title ."
+                "blurb image image"
+                "launch image image"
+                ". image image"
+                "powered-by . .";
         }
     }
 
-    .left {
-        text-align: left;
-
-        @include mobile() {
-            padding-top: toRem(120);
-        }
-
-        .name {
-            display: flex;
-            align-items: center;
-            gap: toRem(8);
-            h1 {
-                @include manrope(700, 37, 43);
-                margin: 0;
-            }
-        }
-        h2 {
-            @include manrope(500, 28, 32);
-            margin-bottom: toRem(10);
-        }
-
-        p {
-            @include roboto(400, 16, 28);
-            color: var(--txt-light);
-        }
-
-        .powered-by {
-            position: absolute;
-            bottom: 0;
-            height: toRem(30);
+    .name {
+        grid-area: name;
+        display: flex;
+        align-items: center;
+        gap: toRem(8);
+        h1 {
+            @include manrope(700, 37, 43);
+            margin: 0;
         }
     }
+    .title {
+        grid-area: title;
+        @include manrope(500, 28, 32);
+        margin-bottom: toRem(10);
+    }
 
-    .right {
-        padding: toRem(100) toRem(20) 0 toRem(50);
+    .blurb {
+        grid-area: blurb;
+        @include roboto(400, 16, 28);
+        color: var(--txt-light);
+    }
+
+    .powered-by {
+        grid-area: powered-by;
+        position: absolute;
+        bottom: 0;
+        height: toRem(30);
+    }
+
+    .launch {
+        grid-area: launch;
+    }
+
+    .image-wrapper {
+        grid-area: image;
+        padding: toRem(40);
+
         @include mobile() {
-            padding: toRem(24) 0 0 50%;
-            margin-right: -100px;
+            padding: 0;
         }
     }
 

@@ -29,5 +29,11 @@
         text-decoration: none;
         @include manrope(700, 16, 18);
         padding: toRem(12) toRem(16) toRem(12) toRem(16);
+
+        @include mobile() {
+            @include manrope(700, 20, 18);
+            padding: toRem(16) toRem(20);
+            margin-top: toRem(30);
+        }
     }
 </style>

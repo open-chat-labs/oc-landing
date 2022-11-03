@@ -3,7 +3,7 @@
     import ArrowLink from "./ArrowLink.svelte";
 </script>
 
-<Section lazy={true} id={"usp"}>
+<Section lazy={false} id={"usp"}>
     <div class="grid">
         <div class="on-chain item">
             <div class="icon" />
@@ -73,7 +73,7 @@
     .item {
         // border-radius: toRem(10);
         padding: toRem(40) toRem(32) toRem(32) toRem(32);
-        min-height: toRem(200);
+        min-height: toRem(300);
         border-radius: toRem(4);
         transition: transform ease-in-out 200ms;
         text-align: left;
