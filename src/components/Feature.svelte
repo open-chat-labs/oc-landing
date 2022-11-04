@@ -28,12 +28,13 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-        min-height: 800px;
+        min-height: 1000px;
         padding: 0 50% 0 toRem(160);
 
         @include mobile() {
             padding: toRem(50) toRem(24);
             min-height: unset;
+            height: calc(100vh - toRem(80));
         }
     }
 </style>

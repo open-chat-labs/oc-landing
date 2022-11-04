@@ -76,6 +76,7 @@
     .intro {
         position: relative;
         margin-bottom: toRem(160);
+        margin-top: toRem(80);
         display: grid;
         grid-template-columns: 3fr 2fr;
         justify-content: center;
@@ -93,7 +94,6 @@
             "powered-by image";
 
         @include mobile() {
-            margin-top: toRem(80);
             margin-bottom: 0;
             grid-template-columns: 6fr 1fr;
             column-gap: 0;
@@ -116,6 +116,10 @@
         h1 {
             @include manrope(700, 37, 50);
             margin: 0;
+
+            @include mobile() {
+                @include manrope(700, 28, 38);
+            }
         }
     }
     .title {

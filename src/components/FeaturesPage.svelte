@@ -4,8 +4,8 @@
     import { themeStore } from "../theme/themes";
     import { mobileWidth } from "../stores/screenDimensions";
 
-    const sectionHeight = 800;
-    const scrollOffet = 106;
+    const sectionHeight = 1000;
+    const scrollOffet = 206;
     let scrollTop = 0;
     let phoneEl: HTMLDivElement;
     let bottomPadding = 0;
@@ -162,7 +162,7 @@
         height: $height;
         position: fixed;
         right: 40%;
-        top: 170px;
+        top: 270px;
         transform: translateX($width);
         border: $border solid var(--phone-bd);
         border-radius: toRem(18);
