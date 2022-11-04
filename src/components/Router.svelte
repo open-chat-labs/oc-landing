@@ -11,21 +11,6 @@
 
     let popping = false;
 
-    function scrollToHash(hash: string) {
-        if (hash === "") return;
-
-        const target = document.getElementById(hash);
-        const rect = target.getBoundingClientRect();
-        const top = rect.top + window.scrollY - 80;
-        window.scrollTo({
-            top,
-        });
-        target.classList.add("highlight");
-        window.setTimeout(() => {
-            target.classList.remove("highlight");
-        }, 1000);
-    }
-
     onMount(() => {
         window.addEventListener("popstate", (ev: PopStateEvent) => {
             popping = true;
@@ -80,7 +65,6 @@
                 `${route.path}${route.hash === "" ? "" : "#" + route.hash}`
             ); // Update URL as well as browser history.
         }
-        setTimeout(() => scrollToHash(route.hash), 0);
 
         if (route.hash === "") {
             dispatch("scrollToTop");

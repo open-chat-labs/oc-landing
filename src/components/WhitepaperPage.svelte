@@ -7,28 +7,54 @@
     import WhitepaperExternalLink from "./WhitepaperExternalLink.svelte";
     import GoogleChart from "./GoogleChart.svelte";
     import { toPixel } from "../stores/screenDimensions";
+    import { currentPath } from "../stores/route";
 
     let width = 0;
-
-    let openIndex = 0;
+    let linked: number | undefined = undefined;
 
     $: padding = $mobileWidth ? 3 : 20;
-
     $: widthRatio = $mobileWidth ? 1 : 0.7;
-
     $: totalWidth = (width - toPixel(padding)) * widthRatio; // 160px * 2 = 320px of padding which is 20rems
+
+    function scrollToHash(hash: string) {
+        const matches = /^(\d{1})(?:-(\d{1}))?(?:-(\d{1}))?$/.exec(hash);
+        if (!matches) {
+            linked = undefined;
+            return;
+        }
+
+        const [_, one] = matches;
+        linked = Number(one);
+
+        setTimeout(() => {
+            const target = document.getElementById(hash);
+            if (!target) {
+                console.log("target not found");
+                return;
+            }
+
+            const rect = target.getBoundingClientRect();
+            const top = rect.top + window.scrollY - 80;
+            console.log("Scrolling to ", window.scrollY, rect);
+            window.scrollTo({
+                top,
+            });
+            target.classList.add("highlight");
+            window.setTimeout(() => {
+                target.classList.remove("highlight");
+            }, 1000);
+        }, 200); // this 200 is the duration of the collapsible card transition :puke:
+    }
+
+    $: {
+        scrollToHash($currentPath.hash);
+    }
 </script>
 
 <div class="whitepaper" bind:clientWidth={width}>
     <Headline>OpenChat SNS Whitepaper</Headline>
 
-    <!-- <TableOfContents /> -->
-
-    <CollapsibleCard
-        open={openIndex === 0}
-        on:opened={() => (openIndex = 0)}
-        number={1}
-        headerText={"Product / Service Overview"}>
+    <CollapsibleCard open={linked === 1} number={1} headerText={"Product / Service Overview"}>
         <p class="blurb">
             OpenChat is a fully featured chat application running on the <WhitepaperInternalLink
                 id={"2"}>Internet Computer</WhitepaperInternalLink>
@@ -81,11 +107,7 @@
         </p>
     </CollapsibleCard>
 
-    <CollapsibleCard
-        number={2}
-        open={openIndex === 1}
-        on:opened={() => (openIndex = 1)}
-        headerText={"Internet Computer Overview"}>
+    <CollapsibleCard open={linked === 2} number={2} headerText={"Internet Computer Overview"}>
         <p class="blurb">
             The <WhitepaperExternalLink
                 href="https://medium.com/dfinity/the-internet-computer-for-geeks-a-new-dfinity-white-paper-ecb075b2d525"
@@ -152,11 +174,7 @@
         </p>
     </CollapsibleCard>
 
-    <CollapsibleCard
-        open={openIndex === 2}
-        on:opened={() => (openIndex = 2)}
-        number={3}
-        headerText={"OpenChat DAO"}>
+    <CollapsibleCard open={linked === 3} number={3} headerText={"OpenChat DAO"}>
         <h3 class="link-target" id="3-1">Summary</h3>
 
         <ul class="blurb">
@@ -409,8 +427,7 @@
     </CollapsibleCard>
 
     <CollapsibleCard
-        open={openIndex === 3}
-        on:opened={() => (openIndex = 3)}
+        open={linked === 4}
         number={4}
         headerText={"Purpose of the CHAT utility token"}>
         <ul class="blurb">
@@ -563,11 +580,7 @@
         </p>
     </CollapsibleCard>
 
-    <CollapsibleCard
-        open={openIndex === 4}
-        on:opened={() => (openIndex = 4)}
-        number={5}
-        headerText={"Token allocation at SNS genesis"}>
+    <CollapsibleCard open={linked === 5} number={5} headerText={"Token allocation at SNS genesis"}>
         <h3 class="link-target" id="5-1">Initial token allocation</h3>
 
         <p class="blurb">
@@ -742,11 +755,7 @@
         </p>
     </CollapsibleCard>
 
-    <CollapsibleCard
-        open={openIndex === 5}
-        on:opened={() => (openIndex = 5)}
-        number={6}
-        headerText={"OpenChat SNS treasury"}>
+    <CollapsibleCard open={linked === 6} number={6} headerText={"OpenChat SNS treasury"}>
         <p class="blurb">The SNS will hold a treasury of ICP tokens and CHAT tokens.</p>
 
         <p class="blurb">
@@ -847,12 +856,7 @@
         </p>
     </CollapsibleCard>
 
-    <CollapsibleCard
-        open={openIndex === 6}
-        on:opened={() => (openIndex = 6)}
-        last={true}
-        number={7}
-        headerText={"Tokenomics"}>
+    <CollapsibleCard open={linked === 7} last={true} number={7} headerText={"Tokenomics"}>
         <h3 class="link-target" id="7-1">Total supply levers</h3>
 
         <p class="blurb">
@@ -1039,10 +1043,13 @@
     }
 
     h3 {
+        @include manrope(700, 20, 22);
+    }
+
+    h4 {
         @include manrope(700, 16, 22);
     }
 
-    h2,
     h3,
     h4 {
         margin-bottom: $sp3;
