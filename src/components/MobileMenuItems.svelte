@@ -102,6 +102,7 @@
         right: toRem(24);
         top: toRem(70);
         flex-direction: column;
+        @include z-index("menu");
     }
 
     .provider {

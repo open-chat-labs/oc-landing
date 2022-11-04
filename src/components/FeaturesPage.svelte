@@ -177,7 +177,7 @@
         border: 5px solid var(--phone-bd);
         border-radius: toRem(18);
         @include box-shadow(3);
-        z-index: 2;
+        @include z-index("phone");
     }
 
     .feature-img-container {

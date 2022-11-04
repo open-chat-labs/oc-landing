@@ -2,6 +2,8 @@
     import { slide } from "svelte/transition";
     import { expoInOut } from "svelte/easing";
     import Arrow from "./Arrow.svelte";
+    import { mobileWidth } from "../stores/screenDimensions";
+    import Copy from "svelte-material-icons/ContentCopy.svelte";
 
     import { createEventDispatcher } from "svelte";
 
@@ -16,12 +18,21 @@
         dispatch(open ? "opened" : "closed");
         dispatch("toggle");
     }
+
+    $: size = $mobileWidth ? "14px" : "16px";
 </script>
 
 <div class="card" class:last>
     <div class="header" class:open on:click={toggle}>
         <div class="number">{number}</div>
-        <div class="words">{headerText}</div>
+        <div class="words">
+            <span>{headerText}</span>
+            <div
+                class="copy"
+                on:click|stopPropagation={() => dispatch("copyUrl", number.toString())}>
+                <Copy {size} color={"var(--txt)"} />
+            </div>
+        </div>
         <div class="icon">
             <Arrow rotate={open ? -45 : 45} color={open ? "var(--primary)" : "var(--txt)"} />
         </div>
@@ -58,6 +69,16 @@
             padding: toRem(18) 0;
             @include manrope(500, 18, 24);
         }
+
+        .words {
+            display: flex;
+            align-items: center;
+            gap: $sp3;
+        }
+
+        .copy {
+            cursor: pointer;
+        }
     }
 
     .words {
@@ -69,7 +90,7 @@
         flex: 0 0 toRem(80);
 
         @include mobile() {
-            flex: 0 0 toRem(40);
+            flex: 0 0 toRem(30);
             @include manrope(700, 18, 38);
         }
     }
@@ -80,7 +101,7 @@
     }
 
     .body {
-        padding: 0 0 toRem(40) toRem(80);
+        padding: 0 0 toRem(30) toRem(80);
         max-width: 75%;
 
         @include mobile() {

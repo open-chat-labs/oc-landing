@@ -8,6 +8,7 @@
     import GoogleChart from "./GoogleChart.svelte";
     import { toPixel } from "../stores/screenDimensions";
     import { currentPath } from "../stores/route";
+    import WhitepaperLinkTarget from "./WhitepaperLinkTarget.svelte";
 
     let width = 0;
     let linked: number | undefined = undefined;
@@ -15,6 +16,12 @@
     $: padding = $mobileWidth ? 3 : 20;
     $: widthRatio = $mobileWidth ? 1 : 0.7;
     $: totalWidth = (width - toPixel(padding)) * widthRatio; // 160px * 2 = 320px of padding which is 20rems
+
+    function copyUrl(ev: CustomEvent<string>) {
+        navigator.clipboard.writeText(
+            `${window.location.origin}${window.location.pathname}#${ev.detail}`
+        );
+    }
 
     function scrollToHash(hash: string) {
         const matches = /^(\d{1})(?:-(\d{1}))?(?:-(\d{1}))?$/.exec(hash);
@@ -54,7 +61,11 @@
 <div class="whitepaper" bind:clientWidth={width}>
     <Headline>OpenChat SNS Whitepaper</Headline>
 
-    <CollapsibleCard open={linked === 1} number={1} headerText={"Product / Service Overview"}>
+    <CollapsibleCard
+        on:copyUrl={copyUrl}
+        open={linked === 1}
+        number={1}
+        headerText={"Product / Service Overview"}>
         <p class="blurb">
             OpenChat is a fully featured chat application running on the <WhitepaperInternalLink
                 id={"2"}>Internet Computer</WhitepaperInternalLink>
@@ -107,7 +118,11 @@
         </p>
     </CollapsibleCard>
 
-    <CollapsibleCard open={linked === 2} number={2} headerText={"Internet Computer Overview"}>
+    <CollapsibleCard
+        on:copyUrl={copyUrl}
+        open={linked === 2}
+        number={2}
+        headerText={"Internet Computer Overview"}>
         <p class="blurb">
             The <WhitepaperExternalLink
                 href="https://medium.com/dfinity/the-internet-computer-for-geeks-a-new-dfinity-white-paper-ecb075b2d525"
@@ -122,7 +137,8 @@
             costs are paid by the app/service providers rather than users.
         </p>
 
-        <h3 class="link-target" id="2-1">Canister smart-contracts</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="2-1"
+            >Canister smart-contracts</WhitepaperLinkTarget>
 
         <p class="blurb">
             Applications on the IC are composed of canister smart-contracts organized into subnets.
@@ -154,7 +170,8 @@
             IC is simplified compared to traditional IT stacks.
         </p>
 
-        <h3 class="link-target" id="2-2">Network Nervous System (NNS)</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="2-2"
+            >Network Nervous System (NNS)</WhitepaperLinkTarget>
 
         <p class="blurb">
             A key feature of the Internet Computer blockchain is the Network Nervous System (NNS),
@@ -174,8 +191,12 @@
         </p>
     </CollapsibleCard>
 
-    <CollapsibleCard open={linked === 3} number={3} headerText={"OpenChat DAO"}>
-        <h3 class="link-target" id="3-1">Summary</h3>
+    <CollapsibleCard
+        on:copyUrl={copyUrl}
+        open={linked === 3}
+        number={3}
+        headerText={"OpenChat DAO"}>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-1">Summary</WhitepaperLinkTarget>
 
         <ul class="blurb">
             <li>
@@ -193,7 +214,8 @@
             </li>
         </ul>
 
-        <h3 class="link-target" id="3-2">Creation of the DAO</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-2"
+            >Creation of the DAO</WhitepaperLinkTarget>
 
         <p class="blurb">
             The OpenChat SNS will be created from the latest NNS blessed SNS canisters by the
@@ -224,7 +246,8 @@
             considered a public good.
         </p>
 
-        <h3 class="link-target" id="3-3">Control of the DAO</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-3"
+            >Control of the DAO</WhitepaperLinkTarget>
 
         <p class="blurb">
             After the decentralization sale the SNS will be in control of the dapp including its
@@ -243,9 +266,10 @@
             source code of another IC app, breaking its licensing terms.
         </p>
 
-        <h3 class="link-target" id="3-4">Governance of the DAO</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-4"
+            >Governance of the DAO</WhitepaperLinkTarget>
 
-        <h4 class="link-target" id="3-4-1">Proposals</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-4-1">Proposals</WhitepaperLinkTarget>
 
         <p class="blurb">SNS proposals have the following types.</p>
 
@@ -320,7 +344,8 @@
             </li>
         </ul>
 
-        <h4 class="link-target" id="3-4-2">Voting and voting rewards</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-4-2"
+            >Voting and voting rewards</WhitepaperLinkTarget>
 
         <p class="blurb">
             Proposals are used to govern all aspects of the OpenChat dapp. Token holders are
@@ -391,7 +416,8 @@
                 >this document</WhitepaperExternalLink> for a full description of SNS voting and rewards.
         </p>
 
-        <h3 class="link-target" id="3-5">The power of the DAO</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-5"
+            >The power of the DAO</WhitepaperLinkTarget>
 
         <p class="blurb">
             There are many factors which will influence the success of OpenChat. It must have a
@@ -402,7 +428,7 @@
             to help it succeed is <em>tokenization</em>.
         </p>
 
-        <h4 class="link-target" id="3-5-1">Growth</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-5-1">Growth</WhitepaperLinkTarget>
 
         <p class="blurb">
             The OpenChat system will automatically reward users with CHAT tokens for using the app
@@ -413,7 +439,7 @@
             created helping drive growth further.
         </p>
 
-        <h4 class="link-target" id="3-5-2">Trust</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-5-2">Trust</WhitepaperLinkTarget>
 
         <p class="blurb">
             An essential condition for tokenization to be viable in the first place is <em>trust</em
@@ -427,6 +453,7 @@
     </CollapsibleCard>
 
     <CollapsibleCard
+        on:copyUrl={copyUrl}
         open={linked === 4}
         number={4}
         headerText={"Purpose of the CHAT utility token"}>
@@ -450,7 +477,7 @@
             </li>
         </ul>
 
-        <h3 class="link-target" id="4-1">Premium features</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-1">Premium features</WhitepaperLinkTarget>
 
         <p class="blurb">
             There are many ways OpenChat could evolve to allow users to spend their CHAT tokens to
@@ -469,7 +496,8 @@
             the user’s canister to the SNS treasury account and then grant the feature.
         </p>
 
-        <h4 class="link-target" id="4-1-1">Current premium features</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-1-1"
+            >Current premium features</WhitepaperLinkTarget>
 
         <p class="blurb">
             There are already some premium features that OpenChat offers which for the time being
@@ -482,7 +510,7 @@
             <li>Increased group creation limit from 10 to 25</li>
         </ul>
 
-        <h4 class="link-target" id="4-1-2">Communities</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-1-2">Communities</WhitepaperLinkTarget>
 
         <p class="blurb">
             A key feature we are planning to build soon is called “communities”. These will be like
@@ -496,7 +524,8 @@
             admittance to a community.
         </p>
 
-        <h4 class="link-target" id="4-1-3">Other possible future premium features</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-1-3"
+            >Other possible future premium features</WhitepaperLinkTarget>
 
         <p class="blurb">
             Here are some more features that OpenChat could offer and charge for in the future.
@@ -513,7 +542,8 @@
             </li>
         </ul>
 
-        <h4 class="link-target" id="4-1-4">Additional potential revenue</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-1-4"
+            >Additional potential revenue</WhitepaperLinkTarget>
 
         <ul class="blurb">
             <li>Provide chat functionality to other IC apps with an OpenChat integration</li>
@@ -521,7 +551,7 @@
             <li>Transaction charge to use an integrated token swap service</li>
         </ul>
 
-        <h3 class="link-target" id="4-2">User rewards</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-2">User rewards</WhitepaperLinkTarget>
 
         <p class="blurb">
             The design of the user reward system has not been confirmed yet and we will consult with
@@ -543,7 +573,7 @@
             source and visible to anyone.
         </p>
 
-        <h4 class="link-target" id="4-2-1">User reputation</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-2-1">User reputation</WhitepaperLinkTarget>
 
         <p class="blurb">
             We think a reward system should be based on reputation. Each user would have a
@@ -560,7 +590,7 @@
             their OpenChat account, or even better, neurons.
         </p>
 
-        <h4 class="link-target" id="4-2-2">Rewards</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-2-2">Rewards</WhitepaperLinkTarget>
 
         <p class="blurb">
             The reward algorithm can use reputation to determine which users are rewarded and the
@@ -580,8 +610,13 @@
         </p>
     </CollapsibleCard>
 
-    <CollapsibleCard open={linked === 5} number={5} headerText={"Token allocation at SNS genesis"}>
-        <h3 class="link-target" id="5-1">Initial token allocation</h3>
+    <CollapsibleCard
+        on:copyUrl={copyUrl}
+        open={linked === 5}
+        number={5}
+        headerText={"Token allocation at SNS genesis"}>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-1"
+            >Initial token allocation</WhitepaperLinkTarget>
 
         <p class="blurb">
             The SNS will be initialized with 1 billion CHAT tokens allocated in the following
@@ -595,7 +630,8 @@
             originalHeight={380}
             src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTR-Snm-_Eq_UcQ5ClcdjGTLg4UOyvUl04rZXpY1W0n_yLuKJkANs-umrNS4F469qZoI17w1Nci08Sf/pubchart?oid=368502713&amp;format=interactive&amp;w=1000px" />
 
-        <h4 class="link-target" id="5-1-1">NNS controlled (yellow)</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-1-1"
+            >NNS controlled (yellow)</WhitepaperLinkTarget>
 
         <p class="blurb">
             The NNS will initially be allocated 29% of the total supply of CHAT tokens. 20% will be
@@ -613,7 +649,8 @@
             month greater than the previous, so from 1-12 months.
         </p>
 
-        <h4 class="link-target" id="5-1-2">Founders and funders (pink)</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-1-2"
+            >Founders and funders (pink)</WhitepaperLinkTarget>
 
         <p class="blurb">
             OpenChat has been built by a team of 3 developers since January 2021 and has received
@@ -657,7 +694,8 @@
             investors.
         </p>
 
-        <h4 class="link-target" id="5-1-3">SNS treasury (blue)</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-1-3"
+            >SNS treasury (blue)</WhitepaperLinkTarget>
 
         <p class="blurb">
             After the decentralization sale the SNS will be left with a treasury of the remaining
@@ -691,7 +729,8 @@
             at once.
         </p>
 
-        <h3 class="link-target" id="5-2">Initial SNS configuration</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-2"
+            >Initial SNS configuration</WhitepaperLinkTarget>
 
         <p class="blurb">
             The SNS will initially be configured with the values shown in the tables below which can
@@ -723,7 +762,8 @@
             <div>5%</div>
         </div>
 
-        <h3 class="link-target" id="5-3">SNS decentralization sale configuration</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-3"
+            >SNS decentralization sale configuration</WhitepaperLinkTarget>
 
         <p class="blurb">
             The decentralization sale will be configured with the values shown below.
@@ -744,7 +784,7 @@
             <div>1</div>
         </div>
 
-        <h4 class="link-target" id="5-3-1">Valuation range</h4>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-3-1">Valuation range</WhitepaperLinkTarget>
 
         <p class="blurb">
             The reason to impose a maximum target is to give investors a minimum bound on the number
@@ -755,7 +795,11 @@
         </p>
     </CollapsibleCard>
 
-    <CollapsibleCard open={linked === 6} number={6} headerText={"OpenChat SNS treasury"}>
+    <CollapsibleCard
+        on:copyUrl={copyUrl}
+        open={linked === 6}
+        number={6}
+        headerText={"OpenChat SNS treasury"}>
         <p class="blurb">The SNS will hold a treasury of ICP tokens and CHAT tokens.</p>
 
         <p class="blurb">
@@ -794,7 +838,8 @@
             </WhitepaperInternalLink>.
         </p>
 
-        <h3 class="link-target" id="6-1">ICP for cycles to fund hosting</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="6-1"
+            >ICP for cycles to fund hosting</WhitepaperLinkTarget>
 
         <p class="blurb">
             Initially, proposals will be created to transfer ICP as needed to the account of a
@@ -804,7 +849,8 @@
             burn it for cycles to run the dapp.
         </p>
 
-        <h3 class="link-target" id="6-2">3rd party services</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="6-2"
+            >3rd party services</WhitepaperLinkTarget>
 
         <p class="blurb">
             The intention is for OpenChat to have no off-chain dependencies so that it is not
@@ -836,7 +882,8 @@
             </li>
         </ul>
 
-        <h3 class="link-target" id="6-3">Pay the development team</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="6-3"
+            >Pay the development team</WhitepaperLinkTarget>
 
         <p class="blurb">
             Initially at least DFINITY will continue to fund the OpenChat development team and thus
@@ -856,8 +903,14 @@
         </p>
     </CollapsibleCard>
 
-    <CollapsibleCard open={linked === 7} last={true} number={7} headerText={"Tokenomics"}>
-        <h3 class="link-target" id="7-1">Total supply levers</h3>
+    <CollapsibleCard
+        on:copyUrl={copyUrl}
+        open={linked === 7}
+        last={true}
+        number={7}
+        headerText={"Tokenomics"}>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="7-1"
+            >Total supply levers</WhitepaperLinkTarget>
 
         <p class="blurb">
             At genesis the total supply of CHAT tokens will be 1B. The supply will increase if more
@@ -878,7 +931,8 @@
 
         <p class="blurb">The only way the SNS can burn tokens is by proposal.</p>
 
-        <h3 class="link-target" id="7-2">Income and outgoings</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="7-2"
+            >Income and outgoings</WhitepaperLinkTarget>
 
         <p class="blurb">
             At genesis the SNS will have a treasury of ICP from the decentralization sale and 530M
@@ -925,7 +979,7 @@
             originalHeight={582}
             src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTR-Snm-_Eq_UcQ5ClcdjGTLg4UOyvUl04rZXpY1W0n_yLuKJkANs-umrNS4F469qZoI17w1Nci08Sf/pubchart?oid=285935273&amp;format=interactive" />
 
-        <h3 class="link-target" id="7-3">Token price</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="7-3">Token price</WhitepaperLinkTarget>
 
         <p class="blurb">
             There are various factors that will influence the price of CHAT tokens such as
@@ -977,7 +1031,8 @@
             increasing the liquid supply.
         </p>
 
-        <h3 class="link-target" id="7-4">Voting power over time</h3>
+        <WhitepaperLinkTarget on:copyUrl={copyUrl} id="7-4"
+            >Voting power over time</WhitepaperLinkTarget>
 
         <p class="blurb">
             The following diagram depicts a projection of the voting power over time segmented by
@@ -1042,27 +1097,6 @@
         }
     }
 
-    h3 {
-        @include manrope(700, 20, 22);
-    }
-
-    h4 {
-        @include manrope(700, 16, 22);
-    }
-
-    h3,
-    h4 {
-        margin-bottom: $sp3;
-    }
-
-    h3 {
-        margin-top: $sp6;
-
-        @include mobile() {
-            margin-top: $sp4;
-        }
-    }
-
     .blurb {
         @include roboto(400, 14, 24);
 
@@ -1095,14 +1129,6 @@
                 border-right: solid 1px var(--roadmap-bd);
             }
         }
-    }
-
-    :global(.link-target) {
-        transition: color ease-in-out 300ms;
-    }
-
-    :global(.link-target.highlight) {
-        color: var(--accent);
     }
 
     :global(.whitepaper .whitepaper-link) {
