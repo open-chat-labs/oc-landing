@@ -13,7 +13,7 @@
 
     // all the crazy calculations
     $: availableHeight = windowHeight - menuHeight;
-    $: sectionHeight = $mobileWidth ? availableHeight : 1000;
+    $: sectionHeight = $mobileWidth ? availableHeight : 900;
     $: phoneHeight = $mobileWidth ? availableHeight * 0.7 : 600;
     $: phoneTop = (sectionHeight - phoneHeight) / 2 + menuHeight;
     $: phoneWidth = phoneHeight * 0.56;
@@ -116,14 +116,9 @@
         backgroundColor={"#08AEDB"}
         color={black}
         title={"Finding groups"}>
+        <p>Select the "What's hot" menu option to find popular groups.</p>
         <p>
-            By selecting the "What's hot" menu option you can find list of popular groups. In the
-            future we will add more fine grain categorisation and filtering capability to make it
-            even easier to find what you're looking for.
-        </p>
-        <p>
-            If you <em>know</em> the name of the group you are looking for, you can also simply search
-            for it from the universal search box and preview or join the group from there.
+            Or simply search from the universal search box to preview or join the group from there.
         </p>
     </Feature>
 

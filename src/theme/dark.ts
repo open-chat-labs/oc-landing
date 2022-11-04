@@ -4,7 +4,8 @@ const txtHigh = "rgba(255,255,255,0.8)";
 const txtMed = "rgba(255,255,255,0.6)";
 const txtLow = "rgba(255,255,255,0.38)";
 
-const primary = "#085d8c";
+const primary = "#22a7f2";
+// const primary = "#085d8c";
 const secondary = "#df783f";
 
 const black = "#1B1C21";

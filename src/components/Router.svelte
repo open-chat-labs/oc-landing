@@ -47,16 +47,16 @@
 
     function pathToComponent(path: string): [any, string] {
         if (path === "architecture") {
-            return [ArchitecturePage, "architecture"];
+            return [ArchitecturePage, path];
         }
         if (path === "whitepaper") {
-            return [WhitepaperPage, "whitepaper"];
+            return [WhitepaperPage, path];
         }
         if (path === "features") {
-            return [FeaturesPage, "features"];
+            return [FeaturesPage, path];
         }
         if (path === "roadmap") {
-            return [RoadmapPage, "roadmap"];
+            return [RoadmapPage, path];
         }
         return [HomePage, "home"];
     }

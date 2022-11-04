@@ -42,9 +42,7 @@
         }
 
         &.selected {
-            text-decoration: underline;
-            text-underline-offset: $sp1;
-            text-decoration-thickness: 2px;
+            color: var(--primary);
         }
     }
 </style>

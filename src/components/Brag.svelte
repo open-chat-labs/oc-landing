@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { fade } from "svelte/transition";
-
     export let avatar: string;
     export let username: string;
     export let date: number;
@@ -9,7 +7,7 @@
     $: dateStr = new Date(date).toLocaleDateString();
 </script>
 
-<div class="brag" transition:fade>
+<div class="brag">
     <div class="quote">"{title}"</div>
     <div class="footer">
         <img class="avatar" src={avatar} alt="user avatar" />
