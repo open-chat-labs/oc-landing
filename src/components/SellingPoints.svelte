@@ -81,7 +81,7 @@
 
     .item {
         padding: toRem(40) toRem(32) toRem(32) toRem(32);
-        min-height: toRem(300);
+        min-height: toRem(310);
         // border-radius: toRem(4);
         transition: transform ease-in-out 200ms;
         text-align: left;

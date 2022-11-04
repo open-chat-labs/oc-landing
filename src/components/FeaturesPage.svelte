@@ -10,6 +10,7 @@
     let phoneEl: HTMLDivElement;
     let bottomPadding = 0;
     let phoneHeight = 600;
+    const black = "#242834";
 
     function onScroll() {
         scrollTop = window.scrollY;
@@ -92,7 +93,7 @@
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#FEC000"} title={"Permissions"}>
+    <Feature backgroundColor={"#FEC000"} color={black} title={"Permissions"}>
         <p>
             Permissions are assigned to different types of users. As the group owner you will decide
             who gets admin privileges. Making other people admins will allow them to help you
@@ -100,7 +101,7 @@
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#08AEDB"} title={"Finding groups"}>
+    <Feature backgroundColor={"#08AEDB"} color={black} title={"Finding groups"}>
         <p>
             By selecting the "What's hot" menu option you can find list of popular groups. In the
             future we will add more fine grain categorisation and filtering capability to make it
@@ -120,7 +121,7 @@
         <p>View your own personl stats. Get messaging!</p>
     </Feature>
 
-    <Feature backgroundColor={"#05B09F"} title={"Sending messages"}>
+    <Feature backgroundColor={"#05B09F"} color={black} title={"Sending messages"}>
         <p>
             Sending messages is the heart of any chat app. OpenChat provides all of the features
             that you would expect and adds a few unique capabilities of its own.
