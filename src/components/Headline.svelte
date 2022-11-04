@@ -7,11 +7,11 @@
 <style type="text/scss">
     h2 {
         margin: 0;
-        @include manrope(700, 48, 55);
+        @include manrope(500, 50, 68);
         margin-bottom: 1.5rem;
 
         @include mobile() {
-            @include manrope(700, 32, 45);
+            @include manrope(500, 32, 45);
         }
     }
 </style>

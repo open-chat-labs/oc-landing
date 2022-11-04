@@ -123,11 +123,13 @@
 
 <main id="main" class="main">
     <Content>
-        <div
-            class:fixed={$currentPath.path === "features"}
-            class="burst"
-            class:dark={$themeStore.name === "dark"}
-            class:light={$themeStore.name === "light"} />
+        {#if $currentPath.path !== "whitepaper"}
+            <div
+                class:fixed={$currentPath.path === "features"}
+                class="burst"
+                class:dark={$themeStore.name === "dark"}
+                class:light={$themeStore.name === "light"} />
+        {/if}
 
         <Router on:login={login} on:scrollToTop={scrollToTop} />
     </Content>

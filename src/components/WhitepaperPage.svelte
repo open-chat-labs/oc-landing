@@ -1,8 +1,7 @@
 <script lang="ts">
     import { mobileWidth } from "../stores/screenDimensions";
-    import TableOfContents from "./TableOfContents.svelte";
+    import CollapsibleCard from "./CollapsibleCard.svelte";
     import Headline from "./Headline.svelte";
-    import Separator from "./Separator.svelte";
     import Link from "./Link.svelte";
     import WhitepaperInternalLink from "./WhitepaperInternalLink.svelte";
     import WhitepaperExternalLink from "./WhitepaperExternalLink.svelte";
@@ -11,19 +10,25 @@
 
     let width = 0;
 
+    let openIndex = 0;
+
     $: padding = $mobileWidth ? 3 : 20;
 
-    $: totalWidth = width - toPixel(padding); // 160px * 2 = 320px of padding which is 20rems
+    $: widthRatio = $mobileWidth ? 1 : 0.7;
+
+    $: totalWidth = (width - toPixel(padding)) * widthRatio; // 160px * 2 = 320px of padding which is 20rems
 </script>
 
 <div class="whitepaper" bind:clientWidth={width}>
     <Headline>OpenChat SNS Whitepaper</Headline>
 
-    <TableOfContents />
+    <!-- <TableOfContents /> -->
 
-    <div class="body">
-        <h2 class="link-target" id="1">1) Product / Service Overview</h2>
-
+    <CollapsibleCard
+        open={openIndex === 0}
+        on:opened={() => (openIndex = 0)}
+        number={1}
+        headerText={"Product / Service Overview"}>
         <p class="blurb">
             OpenChat is a fully featured chat application running on the <WhitepaperInternalLink
                 id={"2"}>Internet Computer</WhitepaperInternalLink>
@@ -74,13 +79,13 @@
             people are happy to use will the rocket fuel of tokenization enable OpenChat to grow and
             challenge monopolistic big tech incumbents.
         </p>
+    </CollapsibleCard>
 
-        <div class="sep">
-            <Separator />
-        </div>
-
-        <h2 class="link-target" id="2">2) Internet Computer Overview</h2>
-
+    <CollapsibleCard
+        number={2}
+        open={openIndex === 1}
+        on:opened={() => (openIndex = 1)}
+        headerText={"Internet Computer Overview"}>
         <p class="blurb">
             The <WhitepaperExternalLink
                 href="https://medium.com/dfinity/the-internet-computer-for-geeks-a-new-dfinity-white-paper-ecb075b2d525"
@@ -145,13 +150,13 @@
             <WhitepaperExternalLink href="https://internetcomputer.org/nns/"
                 >Read here</WhitepaperExternalLink> for more information on the NNS.
         </p>
+    </CollapsibleCard>
 
-        <div class="sep">
-            <Separator />
-        </div>
-
-        <h2 class="link-target" id="3">3) OpenChat DAO</h2>
-
+    <CollapsibleCard
+        open={openIndex === 2}
+        on:opened={() => (openIndex = 2)}
+        number={3}
+        headerText={"OpenChat DAO"}>
         <h3 class="link-target" id="3-1">Summary</h3>
 
         <ul class="blurb">
@@ -401,13 +406,13 @@
             proposed to the NNS and then started automatically by the NNS, ensures there is no foul play.
             All this means that token holders can trust their investment is secure.
         </p>
+    </CollapsibleCard>
 
-        <div class="sep">
-            <Separator />
-        </div>
-
-        <h2 class="link-target" id="4">4) Purpose of the CHAT utility token</h2>
-
+    <CollapsibleCard
+        open={openIndex === 3}
+        on:opened={() => (openIndex = 3)}
+        number={4}
+        headerText={"Purpose of the CHAT utility token"}>
         <ul class="blurb">
             <li>
                 It can be staked as neurons (very similar to ICP neurons) allowing token holders to
@@ -556,13 +561,13 @@
             premium features. Using the SNS UI users will also be able to stake their CHAT as
             neurons, take part in OpenChat governance and earn voting rewards.
         </p>
+    </CollapsibleCard>
 
-        <div class="sep">
-            <Separator />
-        </div>
-
-        <h2 class="link-target" id="5">5) Token allocation at SNS genesis</h2>
-
+    <CollapsibleCard
+        open={openIndex === 4}
+        on:opened={() => (openIndex = 4)}
+        number={5}
+        headerText={"Token allocation at SNS genesis"}>
         <h3 class="link-target" id="5-1">Initial token allocation</h3>
 
         <p class="blurb">
@@ -735,13 +740,13 @@
             total valuation between 0.5M ICP and 5M ICP. For 1 ICP you would receive between 200 ->
             2000 CHAT tokens.
         </p>
+    </CollapsibleCard>
 
-        <div class="sep">
-            <Separator />
-        </div>
-
-        <h2 class="link-target" id="6">6) OpenChat SNS treasury</h2>
-
+    <CollapsibleCard
+        open={openIndex === 5}
+        on:opened={() => (openIndex = 5)}
+        number={6}
+        headerText={"OpenChat SNS treasury"}>
         <p class="blurb">The SNS will hold a treasury of ICP tokens and CHAT tokens.</p>
 
         <p class="blurb">
@@ -840,13 +845,14 @@
             to receive ICP for ongoing funding. For example the team could make a proposal each
             quarter with a development plan and a request for funds.
         </p>
+    </CollapsibleCard>
 
-        <div class="sep">
-            <Separator />
-        </div>
-
-        <h2 class="link-target" id="7">7) Tokenomics</h2>
-
+    <CollapsibleCard
+        open={openIndex === 6}
+        on:opened={() => (openIndex = 6)}
+        last={true}
+        number={7}
+        headerText={"Tokenomics"}>
         <h3 class="link-target" id="7-1">Total supply levers</h3>
 
         <p class="blurb">
@@ -1018,13 +1024,22 @@
             community as more tokens are distributed. Importantly the balance of voting power should
             always remain in the hands of the wider community.
         </p>
-    </div>
+    </CollapsibleCard>
 </div>
 
 <style type="text/scss">
     .whitepaper {
         text-align: left;
         @include content-padding();
+        margin-top: toRem(80);
+
+        @include mobile() {
+            margin-top: 0;
+        }
+    }
+
+    h3 {
+        @include manrope(700, 16, 22);
     }
 
     h2,
@@ -1035,12 +1050,14 @@
 
     h3 {
         margin-top: $sp6;
+
+        @include mobile() {
+            margin-top: $sp4;
+        }
     }
 
     .blurb {
-        font-size: toRem(16);
-        font-weight: 300;
-        line-height: toRem(22);
+        @include roboto(400, 14, 24);
 
         li {
             margin-bottom: $sp3;
@@ -1048,26 +1065,27 @@
     }
 
     .tab {
-        font-size: toRem(14);
         display: grid;
         grid-template-columns: 4fr 1fr;
-        background-color: rgba(255, 255, 255, 0.1);
         margin-bottom: $sp4;
+        color: var(--txt-light);
 
         > div {
             padding: toRem(12);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: solid 1px var(--roadmap-bd);
+
+            &:nth-child(-n + 2) {
+                border-top: solid 1px var(--roadmap-bd);
+            }
 
             &:nth-child(odd) {
-                border-right: 1px solid rgba(255, 255, 255, 0.3);
+                border-left: solid 1px var(--roadmap-bd);
+                border-right: solid 1px var(--roadmap-bd);
             }
 
             &:nth-child(even) {
                 text-align: right;
-            }
-
-            &:last-child() {
-                border-bottom: none;
+                border-right: solid 1px var(--roadmap-bd);
             }
         }
     }
@@ -1080,7 +1098,7 @@
         color: var(--accent);
     }
 
-    :global(.whitepaper .body .whitepaper-link) {
+    :global(.whitepaper .whitepaper-link) {
         text-decoration: underline;
         text-underline-offset: 2px;
         color: inherit;
@@ -1090,10 +1108,5 @@
         &:hover {
             text-decoration: underline;
         }
-    }
-
-    .sep {
-        margin-top: $sp6;
-        text-align: center;
     }
 </style>
