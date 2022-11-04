@@ -29,7 +29,7 @@
     .team {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: $sp5;
+        gap: toRem(80);
 
         @include mobile() {
             grid-template-columns: 1fr;

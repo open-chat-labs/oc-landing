@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import ArrowLink from "./ArrowLink.svelte";
     import Feature from "./Feature.svelte";
     import { themeStore } from "../theme/themes";
     import { mobileWidth } from "../stores/screenDimensions";
@@ -72,7 +71,7 @@
 {/if}
 
 <div class="content" style={`padding-bottom: ${bottomPadding}px`}>
-    <Feature backgroundColor={"#23a2ee"} color={"#ffffff"} title={"Mobile first"}>
+    <Feature backgroundColor={"#transparent"} title={"Mobile first"}>
         <p>
             A chat app should be used on the go and so OpenChat was designed from the beginning to
             work well first and foremost on your mobile device.
@@ -83,14 +82,14 @@
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#f36d28"} title={"Groups"}>
+    <Feature backgroundColor={"#FF005C"} color={"#ffffff"} title={"Groups"}>
         <p>
             Create private groups with friends and family to coordinate and chat together. With a
             private group, you have full control over who is the group.
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#8d2380"} color={"#ffffff"} title={"Permissions"}>
+    <Feature backgroundColor={"#FEC000"} title={"Permissions"}>
         <p>
             Permissions are assigned to different types of users. As the group owner you will decide
             who gets admin privileges. Making other people admins will allow them to help you
@@ -98,7 +97,7 @@
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#592f8b"} color={"#ffffff"} title={"Finding groups"}>
+    <Feature backgroundColor={"#08AEDB"} title={"Finding groups"}>
         <p>
             By selecting the "What's hot" menu option you can find list of popular groups. In the
             future we will add more fine grain categorisation and filtering capability to make it
@@ -110,7 +109,7 @@
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#faad3a"} title={"User profile"}>
+    <Feature backgroundColor={"#673BB7"} color={"#ffffff"} title={"User profile"}>
         <p>Configure your personal information, UI settings and chat settings at any time.</p>
 
         <p>Manage your crypt accounts and account storage.</p>
@@ -118,14 +117,14 @@
         <p>View your own personl stats. Get messaging!</p>
     </Feature>
 
-    <Feature backgroundColor={"#e41e79"} title={"Sending messages"}>
+    <Feature backgroundColor={"#05B09F"} title={"Sending messages"}>
         <p>
             Sending messages is the heart of any chat app. OpenChat provides all of the features
             that you would expect and adds a few unique capabilities of its own.
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#23a2ee"} color={"#ffffff"} title={"Search"}>
+    <Feature backgroundColor={"#FF8541"} color={"#ffffff"} title={"Search"}>
         <p>
             Search globally for users, messages or public groups right from the universal search box
             below the user panel.
@@ -134,7 +133,7 @@
         <p>You can also search for messages within any selected chat.</p>
     </Feature>
 
-    <Feature backgroundColor={"#f36d28"} color={"#ffffff"} title={"Proposal voting"}>
+    <Feature backgroundColor={"transparent"} title={"Proposal voting"}>
         <p>
             A unique feature of OpenChat is that it allows you to vote directly on NNS and (soon)
             SNS proposals.
@@ -144,9 +143,6 @@
             Simply register your OpenChat account as a hotkey for the neuron that you wish to vote
             with and join the relevant public group.
         </p>
-        <div class="roadmap">
-            <ArrowLink path={"roadmap"}>View Entire Roadmap</ArrowLink>
-        </div>
     </Feature>
 </div>
 
@@ -162,10 +158,11 @@
         width: $width;
         height: $height;
         position: fixed;
-        right: 45%;
+        right: 40%;
         top: 120px;
         transform: translateX($width);
-        border: $border solid #000;
+        border: $border solid var(--phone-bd);
+        border-radius: toRem(18);
         @include box-shadow(3);
         z-index: 2;
     }
@@ -192,7 +189,10 @@
     .content {
         position: relative;
         z-index: 1;
-        @include content-padding();
+        padding: 0;
         padding-bottom: toRem(460);
+        @include mobile() {
+            padding: 0;
+        }
     }
 </style>

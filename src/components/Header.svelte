@@ -59,7 +59,7 @@
     .logo {
         display: flex;
         cursor: pointer;
-        gap: $sp2;
+        gap: $sp3;
         align-items: center;
 
         .name {

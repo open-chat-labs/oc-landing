@@ -1,13 +1,17 @@
 <script lang="ts">
-    import { mobileWidth } from "../stores/screenDimensions";
+    import Dao from "./icons/Dao.svelte";
+    import OnChain from "./icons/OnChain.svelte";
+    import OpenSource from "./icons/OpenSource.svelte";
+    import Reliable from "./icons/Reliable.svelte";
+    import Scalable from "./icons/Scalable.svelte";
+    import Secure from "./icons/Secure.svelte";
     import Section from "./Section.svelte";
-    import ArrowLink from "./ArrowLink.svelte";
 </script>
 
 <Section id={"usp"}>
-    <div class="grid">
+    <div class="selling-points">
         <div class="on-chain item">
-            <div class="icon" />
+            <OnChain />
             <div class="title">100% On Chain</div>
             <div class="txt">
                 All of your data is stored 100% on chain in your own canister. Each group chat also
@@ -15,7 +19,7 @@
             </div>
         </div>
         <div class="dao item">
-            <div class="icon" />
+            <Dao />
             <div class="title">DAO Controlled</div>
             <div class="txt">
                 The product roadmap can <em>only</em> be decided, approved and enacted by the community.
@@ -23,7 +27,7 @@
             </div>
         </div>
         <div class="open-source item">
-            <div class="icon" />
+            <OpenSource />
             <div class="title">Open Source</div>
             <div class="txt">
                 All of the source code is available to inspect. We use repeatable, verifiable builds
@@ -31,7 +35,7 @@
             </div>
         </div>
         <div class="scalable item">
-            <div class="icon" />
+            <Scalable />
             <div class="title">Scalable</div>
             <div class="txt">
                 Our canister architecture combined with the power of the Internet Computer allow us
@@ -39,7 +43,7 @@
             </div>
         </div>
         <div class="secure item">
-            <div class="icon" />
+            <Secure />
             <div class="title">Secure</div>
             <div class="txt">
                 Relax in the knowledge that your messages are secured using advanced blockchain
@@ -47,7 +51,7 @@
             </div>
         </div>
         <div class="reliable item">
-            <div class="icon" />
+            <Reliable />
             <div class="title">Reliable</div>
             <div class="txt">
                 With each canister replicated by the Internet Computer you never have to worry about
@@ -55,14 +59,16 @@
             </div>
         </div>
     </div>
-
-    {#if !$mobileWidth}
-        <ArrowLink path={"features"}>View All Features</ArrowLink>
-    {/if}
 </Section>
 
 <style type="text/scss">
-    .grid {
+    :global(.selling-points .icon) {
+        width: toRem(40);
+        height: toRem(40);
+        margin-bottom: toRem(24);
+    }
+
+    .selling-points {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: $sp4;
@@ -82,37 +88,29 @@
         color: #242834;
 
         &.on-chain {
-            background-color: #23a2ee;
+            background-color: #ff005c;
             color: #ffffff;
         }
 
         &.dao {
-            background-color: #f36d28;
+            background-color: #fec000;
         }
 
         &.open-source {
-            background-color: #8d2380;
-            color: #ffffff;
+            background-color: #08aedb;
         }
 
         &.scalable {
-            background-color: #592f8b;
+            background-color: #673bb7;
             color: #ffffff;
         }
 
         &.secure {
-            background-color: #faad3a;
+            background-color: #05b09f;
         }
 
         &.reliable {
-            background-color: #e41e79;
-        }
-
-        .icon {
-            width: toRem(40);
-            height: toRem(40);
-            margin-bottom: toRem(24);
-            background-color: #242834;
+            background-color: #ff8541;
         }
 
         .title {

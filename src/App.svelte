@@ -12,8 +12,9 @@
     import "./theme/themes";
     import { currentPath } from "./stores/route";
     import Content from "./components/Content.svelte";
-    import { themeStore } from "./theme/themes";
+    import { themeStore, toggleTheme } from "./theme/themes";
 
+    let debug = localStorage.getItem("openchat_theme_toggle") === "true";
     let scrollTop = 0;
     let authClient = AuthClient.create({
         idleOptions: { disableIdle: true },
@@ -123,6 +124,7 @@
 <main id="main" class="main">
     <Content>
         <div
+            class:fixed={$currentPath.path === "features"}
             class="burst"
             class:dark={$themeStore.name === "dark"}
             class:light={$themeStore.name === "light"} />
@@ -141,7 +143,22 @@
     </div>
 {/if}
 
+{#if debug}
+    <div on:click={toggleTheme} class="theme" />
+{/if}
+
 <style type="text/scss">
+    .theme {
+        cursor: pointer;
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        bottom: 10px;
+        left: 10px;
+        border-radius: 50%;
+        background-color: #22a7f2;
+    }
+
     :global {
         html,
         body {
@@ -282,6 +299,10 @@
     .burst {
         position: absolute;
 
+        &.fixed {
+            position: fixed;
+        }
+
         &.dark {
             $size: toRem(1003);
             width: $size;
@@ -296,8 +317,8 @@
                 $size: toRem(461);
                 width: $size;
                 height: $size;
-                left: 195px;
-                top: 351px;
+                left: 82px;
+                top: 251px;
                 filter: blur(toRem(200));
             }
         }
@@ -318,7 +339,7 @@
                 width: $size;
                 height: $size;
                 left: 195px;
-                top: 351px;
+                top: 251px;
                 filter: blur(toRem(150));
             }
         }

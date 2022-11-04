@@ -21,6 +21,10 @@ export function darkTheme(defaultTheme: Theme): Theme {
         bg: black,
         "txt-light": "#B1B1B1",
 
+        brag: {
+            op: "0.7",
+        },
+
         context: {
             bg: "#2f3039",
         },

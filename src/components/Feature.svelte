@@ -17,11 +17,11 @@
 <style type="text/scss">
     .title {
         margin: 0;
-        @include manrope(700, 50, 57);
+        @include manrope(500, 50, 68);
         margin-bottom: $sp5;
     }
     .blurb {
-        font-size: toRem(20);
+        @include roboto(400, 16, 28);
     }
     .feature {
         display: flex;

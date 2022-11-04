@@ -20,6 +20,10 @@ export function lightTheme(): Theme {
         accent: "hotpink",
         bg: "white",
 
+        brag: {
+            op: "0.3",
+        },
+
         context: {
             bg: "#ffffff",
         },

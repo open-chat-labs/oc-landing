@@ -59,8 +59,16 @@
             <OnChain />
         {/if}
     </div>
-    <div class="image-wrapper">
-        <img class="img" alt="Open chat list" src={imgUrl} />
+    <div class="image-wrapper-wrapper">
+        <div class="image-wrapper">
+            <img class="img" alt="Open chat list" src={imgUrl} />
+            {#if $mobileWidth}
+                <div
+                    class:light={$themeStore.name === "light"}
+                    class:dark={$themeStore.name === "dark"}
+                    class="overlay" />
+            {/if}
+        </div>
     </div>
 </div>
 
@@ -73,6 +81,7 @@
         justify-content: center;
         align-items: center;
         column-gap: toRem(100);
+        row-gap: toRem(20);
 
         grid-template-areas:
             ". image"
@@ -84,19 +93,18 @@
             "powered-by image";
 
         @include mobile() {
-            width: 125%;
-            margin-top: toRem(100);
-            margin-bottom: toRem(100);
-            grid-template-columns: 6fr 1fr 3fr;
-            column-gap: toRem(20);
+            margin-top: toRem(80);
+            margin-bottom: 0;
+            grid-template-columns: 6fr 1fr;
+            column-gap: 0;
 
             grid-template-areas:
-                "name name name"
-                "title title ."
-                "blurb image image"
-                "launch image image"
-                ". image image"
-                "powered-by . .";
+                "name name"
+                "title title"
+                "blurb ."
+                "launch launch"
+                "image image"
+                "powered-by .";
         }
     }
 
@@ -106,20 +114,26 @@
         align-items: center;
         gap: toRem(8);
         h1 {
-            @include manrope(700, 37, 43);
+            @include manrope(700, 37, 50);
             margin: 0;
         }
     }
     .title {
         grid-area: title;
-        @include manrope(500, 28, 32);
+        @include manrope(500, 50, 68);
+        margin-top: 0;
         margin-bottom: toRem(10);
+
+        @include mobile() {
+            @include manrope(500, 32, 42);
+        }
     }
 
     .blurb {
         grid-area: blurb;
         @include roboto(400, 16, 28);
         color: var(--txt-light);
+        margin-bottom: 0;
     }
 
     .powered-by {
@@ -127,6 +141,11 @@
         position: absolute;
         bottom: 0;
         height: toRem(30);
+        z-index: 1;
+
+        @include mobile() {
+            bottom: toRem(50);
+        }
     }
 
     .launch {
@@ -136,12 +155,47 @@
         align-items: center;
     }
 
-    .image-wrapper {
+    .image-wrapper-wrapper {
         grid-area: image;
+        @include mobile() {
+            border-radius: toRem(18);
+            height: toRem(420);
+            overflow: hidden;
+        }
+    }
+
+    .image-wrapper {
         padding: toRem(40);
+        position: relative;
 
         @include mobile() {
             padding: 0;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            &.dark {
+                background: linear-gradient(
+                    180deg,
+                    rgba(27, 28, 33, 0) 0%,
+                    #1b1c21 42.19%,
+                    #1b1c21 100%
+                );
+            }
+
+            &.light {
+                background: linear-gradient(
+                    180deg,
+                    rgba(231, 238, 247, 0) 0%,
+                    #ffffff 39.74%,
+                    #ffffff 100%
+                );
+            }
         }
     }
 

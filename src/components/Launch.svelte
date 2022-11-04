@@ -33,7 +33,8 @@
         @include mobile() {
             @include manrope(700, 20, 18);
             padding: toRem(16) toRem(20);
-            margin-top: toRem(30);
+            width: 100%;
+            text-align: center;
         }
     }
 </style>

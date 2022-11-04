@@ -2,29 +2,25 @@
     import { onMount } from "svelte";
     import Brag from "./Brag.svelte";
     import Section from "./Section.svelte";
-    import LogoPurple from "./LogoPurple.svelte";
 
     const brags = [
         {
             avatar: "../random.svg",
             username: "Donni3_Dark0",
             date: Date.now(),
-            title: "An unmatched messaging platform",
-            blurb: "It is the best messaging application on the market, that simple. I use it every day, from building my buisness to connecting with friends. OpenChat is the ONLY messaging application I use. I also love that I can transfer ICP and BTC within the application! Who else does this?",
+            title: "It’s the best messaging application on the market, that simple.",
         },
         {
             avatar: "../elton.svg",
             username: "mov3rse",
             date: Date.now(),
-            title: "What a splendid thing!",
-            blurb: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut pellentesque velit. Praesent nisl diam, mattis in eleifend id, finibus nec ex. Aenean at laoreet ex, a interdum dolor. Cras eget mi purus. Morbi eu euismod orci. Aenean varius, erat ac elementum varius, elit mi venenatis nisi, nec ornare lacus ligula eu velit. Duis fermentum ullamcorper tellus vel semper. Morbi.",
+            title: "What a splendid thing! Actually quite good I suppose.",
         },
         {
             avatar: "../ghost.svg",
             username: "julian_jelfs",
             date: Date.now(),
-            title: "Better than you might expect actually.",
-            blurb: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus est, imperdiet ac ex vitae, auctor laoreet magna. Quisque condimentum accumsan augue, quis pulvinar quam volutpat at. Cras faucibus nunc justo, vitae tincidunt quam dignissim a. Proin ligula turpis, consectetur sit amet diam in, dictum.",
+            title: "Better than you might expect actually. Seems to work quite well as it goes.",
         },
     ];
 
@@ -40,28 +36,31 @@
 </script>
 
 <Section id={"brag-box"}>
+    <div class="background" />
     <div class="bragbox">
         <Brag
-            index={index + 1}
-            total={brags.length}
             avatar={selected.avatar}
             username={selected.username}
             date={selected.date}
-            title={selected.title}
-            blurb={selected.blurb} />
-
-        <div class="logo">
-            <LogoPurple size={492} fillOpacity={0.1} strokeOpacity={0.05} />
-        </div>
+            title={selected.title} />
     </div>
 </Section>
 
 <style type="text/scss">
+    .background {
+        background: linear-gradient(180deg, #23a2ee 0%, #5b2b88 100%);
+        filter: blur(300px);
+        opacity: var(--brag-op);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
     .bragbox {
         overflow: hidden;
         position: relative;
-        height: 492px;
-        background-color: #23a2ee;
+        height: 324px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -70,11 +69,5 @@
         @include mobile() {
             padding: 0 toRem(24);
         }
-    }
-
-    .logo {
-        position: absolute;
-        top: 0;
-        right: toRem(-85);
     }
 </style>

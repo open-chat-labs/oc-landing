@@ -23,6 +23,10 @@ export interface Theme {
         bd: string;
     };
 
+    brag: {
+        op: string;
+    };
+
     launch: {
         bg: string;
     };

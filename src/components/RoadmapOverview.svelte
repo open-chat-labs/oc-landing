@@ -16,7 +16,7 @@
         <div class="header">
             <h2>Roadmap</h2>
             <div class="features">
-                <ArrowLink path={"roadmap"}>View Entire Roadmap</ArrowLink>
+                <ArrowLink path={"roadmap"} color={"#23A2EE"}>View Entire Roadmap</ArrowLink>
             </div>
         </div>
         <div class="grid">
@@ -76,7 +76,7 @@
 
             <div class="item">
                 <div class="status">
-                    <div class="year">Continuous</div>
+                    <div class="complete">Continuous</div>
                 </div>
                 <div class="title">The future</div>
                 <div class="detail">
@@ -87,7 +87,7 @@
             </div>
         </div>
 
-        <ArrowLink path={"roadmap"}>View Entire Roadmap</ArrowLink>
+        <ArrowLink path={"roadmap"} color={"#23A2EE"}>View Entire Roadmap</ArrowLink>
     </div>
 </Section>
 
@@ -102,7 +102,7 @@
     .grid {
         display: grid;
         grid-template-columns: 1fr;
-        margin-bottom: $sp5;
+        margin-bottom: toRem(60);
         align-items: flex-start;
         @include roboto(400, 16, 28);
 
@@ -136,23 +136,20 @@
             flex: 2;
         }
 
-        .complete {
-            color: #4ae97a;
-            @include roboto(600, 16, 28);
-        }
-
         .title {
             grid-area: title;
             @include manrope(700, 50, 57);
             flex: 4;
 
             @include mobile() {
-                @include manrope(700, 32, 38);
+                @include manrope(700, 28, 38);
+                margin-bottom: toRem(20);
             }
         }
 
         .when {
             @include manrope(700, 28, 32);
+            color: #23a2ee;
         }
 
         .detail {
@@ -163,6 +160,11 @@
         .detail,
         .year {
             color: var(--txt-light);
+        }
+
+        .complete {
+            color: #23a2ee;
+            @include roboto(600, 16, 28);
         }
     }
 </style>
