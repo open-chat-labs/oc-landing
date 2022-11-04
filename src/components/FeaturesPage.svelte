@@ -5,10 +5,11 @@
     import { mobileWidth } from "../stores/screenDimensions";
 
     const sectionHeight = 800;
-    const scrollOffet = 56;
+    const scrollOffet = 106;
     let scrollTop = 0;
     let phoneEl: HTMLDivElement;
     let bottomPadding = 0;
+    let phoneHeight = 600;
 
     function onScroll() {
         scrollTop = window.scrollY;
@@ -16,7 +17,7 @@
 
     function clamp(n: number) {
         if (n < 0) return 0;
-        if (n > 700) return 700;
+        if (n > phoneHeight) return phoneHeight;
         return n;
     }
 
@@ -61,7 +62,9 @@
         {#each screenshots as screenshot, i}
             <div
                 style={`height: ${
-                    i === 0 ? 700 : clamp(scrollTop - (scrollOffet + sectionHeight * (i - 1)))
+                    i === 0
+                        ? phoneHeight
+                        : clamp(scrollTop - (scrollOffet + sectionHeight * (i - 1)))
                 }px`}
                 class="feature-img-container">
                 <img class="feature-img" src={screenshot.url} alt={screenshot.alt} />
@@ -148,8 +151,8 @@
 
 <style type="text/scss">
     $border: 5px;
-    $height: calc(700px + $border * 2);
-    $width: calc(392px + $border * 2);
+    $height: calc(600px + $border * 2);
+    $width: calc(336px + $border * 2);
 
     .phone {
         pointer-events: none;
@@ -159,7 +162,7 @@
         height: $height;
         position: fixed;
         right: 40%;
-        top: 120px;
+        top: 170px;
         transform: translateX($width);
         border: $border solid var(--phone-bd);
         border-radius: toRem(18);
