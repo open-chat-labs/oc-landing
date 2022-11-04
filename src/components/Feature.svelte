@@ -3,13 +3,16 @@
     export let color: string = "var(--txt)";
 
     export let title: string;
+    export let height: number;
 </script>
 
-<div style={`background-color: ${backgroundColor}; color: ${color};`} class="feature">
+<div
+    style={`height: ${height}px; background-color: ${backgroundColor}; color: ${color};`}
+    class="feature">
     <div class="title">
         {title}
     </div>
-    <div class="blurb">
+    <div class="blurb" class:light={backgroundColor === "transparent"}>
         <slot />
     </div>
 </div>
@@ -19,22 +22,29 @@
         margin: 0;
         @include manrope(500, 50, 68);
         margin-bottom: $sp5;
+
+        @include mobile() {
+            @include manrope(500, 28, 38);
+        }
     }
     .blurb {
-        @include roboto(400, 16, 28);
+        @include roboto(300, 16, 28);
+
+        &.light {
+            color: var(--txt-light);
+        }
     }
     .feature {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-        min-height: 1000px;
         padding: 0 50% 0 toRem(160);
 
         @include mobile() {
-            padding: toRem(50) toRem(24);
-            min-height: unset;
-            height: calc(100vh - toRem(80));
+            // padding: toRem(50) toRem(24);
+
+            padding: toRem(50) 50% toRem(50) toRem(24);
         }
     }
 </style>

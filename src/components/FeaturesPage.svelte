@@ -2,14 +2,25 @@
     import { onMount } from "svelte";
     import Feature from "./Feature.svelte";
     import { themeStore } from "../theme/themes";
-    import { mobileWidth } from "../stores/screenDimensions";
+    import { mobileWidth, toPixel } from "../stores/screenDimensions";
 
-    const sectionHeight = 1000;
-    const scrollOffet = 206;
     let scrollTop = 0;
     let phoneEl: HTMLDivElement;
     let bottomPadding = 0;
-    let phoneHeight = 600;
+    let phoneBorder = 5;
+    let windowHeight = window.innerHeight;
+    let menuHeight = toPixel(5);
+
+    // all the crazy calculations
+    $: availableHeight = windowHeight - menuHeight;
+    $: sectionHeight = $mobileWidth ? availableHeight : 1000;
+    $: phoneHeight = $mobileWidth ? availableHeight * 0.7 : 600;
+    $: phoneTop = (sectionHeight - phoneHeight) / 2 + menuHeight;
+    $: phoneWidth = phoneHeight * 0.56;
+    $: cssHeight = phoneHeight + phoneBorder * 2;
+    $: cssWidth = phoneWidth + phoneBorder * 2;
+    $: scrollOffset = (sectionHeight - cssHeight) / 2;
+
     const black = "#242834";
 
     function onScroll() {
@@ -56,26 +67,25 @@
     });
 </script>
 
-<svelte:window on:scroll={onScroll} />
+<svelte:window bind:innerHeight={windowHeight} on:scroll={onScroll} />
 
-{#if !$mobileWidth}
-    <div class="phone" bind:this={phoneEl}>
-        {#each screenshots as screenshot, i}
-            <div
-                style={`height: ${
-                    i === 0
-                        ? phoneHeight
-                        : clamp(scrollTop - (scrollOffet + sectionHeight * (i - 1)))
-                }px`}
-                class="feature-img-container">
-                <img class="feature-img" src={screenshot.url} alt={screenshot.alt} />
-            </div>
-        {/each}
-    </div>
-{/if}
+<div
+    class="phone"
+    bind:this={phoneEl}
+    style={`top: ${phoneTop}px; height: ${cssHeight}px; width: ${cssWidth}px; transform: translateX(${cssWidth}px)`}>
+    {#each screenshots as screenshot, i}
+        <div
+            style={`height: ${
+                i === 0 ? phoneHeight : clamp(scrollTop - (scrollOffset + sectionHeight * (i - 1)))
+            }px`}
+            class="feature-img-container">
+            <img class="feature-img" src={screenshot.url} alt={screenshot.alt} />
+        </div>
+    {/each}
+</div>
 
 <div class="content" style={`padding-bottom: ${bottomPadding}px`}>
-    <Feature backgroundColor={"#transparent"} title={"Mobile first"}>
+    <Feature height={sectionHeight} backgroundColor={"transparent"} title={"Mobile first"}>
         <p>
             A chat app should be used on the go and so OpenChat was designed from the beginning to
             work well first and foremost on your mobile device.
@@ -86,14 +96,14 @@
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#FF005C"} color={"#ffffff"} title={"Groups"}>
+    <Feature height={sectionHeight} backgroundColor={"#FF005C"} color={"#ffffff"} title={"Groups"}>
         <p>
             Create private groups with friends and family to coordinate and chat together. With a
             private group, you have full control over who is the group.
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#FEC000"} color={black} title={"Permissions"}>
+    <Feature height={sectionHeight} backgroundColor={"#FEC000"} color={black} title={"Permissions"}>
         <p>
             Permissions are assigned to different types of users. As the group owner you will decide
             who gets admin privileges. Making other people admins will allow them to help you
@@ -101,7 +111,11 @@
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#08AEDB"} color={black} title={"Finding groups"}>
+    <Feature
+        height={sectionHeight}
+        backgroundColor={"#08AEDB"}
+        color={black}
+        title={"Finding groups"}>
         <p>
             By selecting the "What's hot" menu option you can find list of popular groups. In the
             future we will add more fine grain categorisation and filtering capability to make it
@@ -113,7 +127,11 @@
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#673BB7"} color={"#ffffff"} title={"User profile"}>
+    <Feature
+        height={sectionHeight}
+        backgroundColor={"#673BB7"}
+        color={"#ffffff"}
+        title={"User profile"}>
         <p>Configure your personal information, UI settings and chat settings at any time.</p>
 
         <p>Manage your crypt accounts and account storage.</p>
@@ -121,14 +139,18 @@
         <p>View your own personl stats. Get messaging!</p>
     </Feature>
 
-    <Feature backgroundColor={"#05B09F"} color={black} title={"Sending messages"}>
+    <Feature
+        height={sectionHeight}
+        backgroundColor={"#05B09F"}
+        color={black}
+        title={"Sending messages"}>
         <p>
             Sending messages is the heart of any chat app. OpenChat provides all of the features
             that you would expect and adds a few unique capabilities of its own.
         </p>
     </Feature>
 
-    <Feature backgroundColor={"#FF8541"} color={"#ffffff"} title={"Search"}>
+    <Feature height={sectionHeight} backgroundColor={"#FF8541"} color={"#ffffff"} title={"Search"}>
         <p>
             Search globally for users, messages or public groups right from the universal search box
             below the user panel.
@@ -137,7 +159,7 @@
         <p>You can also search for messages within any selected chat.</p>
     </Feature>
 
-    <Feature backgroundColor={"transparent"} title={"Proposal voting"}>
+    <Feature height={sectionHeight} backgroundColor={"transparent"} title={"Proposal voting"}>
         <p>
             A unique feature of OpenChat is that it allows you to vote directly on NNS and (soon)
             SNS proposals.
@@ -151,21 +173,13 @@
 </div>
 
 <style type="text/scss">
-    $border: 5px;
-    $height: calc(600px + $border * 2);
-    $width: calc(336px + $border * 2);
-
     .phone {
         pointer-events: none;
         overflow: hidden;
         display: block;
-        width: $width;
-        height: $height;
         position: fixed;
         right: 40%;
-        top: 270px;
-        transform: translateX($width);
-        border: $border solid var(--phone-bd);
+        border: 5px solid var(--phone-bd);
         border-radius: toRem(18);
         @include box-shadow(3);
         z-index: 2;
@@ -178,7 +192,6 @@
         left: 0;
         z-index: 2;
         width: 100%;
-        height: $height;
 
         .feature-img {
             width: 100%;
