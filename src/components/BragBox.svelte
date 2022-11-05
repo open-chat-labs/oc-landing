@@ -38,23 +38,27 @@
 
     let counter = 0;
     $: index = counter % brags.length;
-    $: selected = brags[index];
 
     onMount(() => {
         setInterval(() => {
             counter = counter + 1;
-        }, 3000);
+        }, 4000);
     });
 </script>
 
 <Section id={"brag-box"}>
     <div class="background" />
     <div class="bragbox">
-        <Brag
-            avatar={selected.avatar}
-            username={selected.username}
-            date={selected.date}
-            title={selected.title} />
+        <div class="brags">
+            {#each brags as brag, i}
+                <Brag
+                    visible={i === index}
+                    avatar={brag.avatar}
+                    username={brag.username}
+                    date={brag.date.getTime()}
+                    title={brag.title} />
+            {/each}
+        </div>
     </div>
 </Section>
 
@@ -70,16 +74,18 @@
         height: 100%;
     }
     .bragbox {
-        overflow: hidden;
-        position: relative;
-        height: 324px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         padding: 0 toRem(160);
 
         @include mobile() {
             padding: 0 toRem(24);
         }
+    }
+    .brags {
+        position: relative;
+        overflow: hidden;
+        height: 324px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
