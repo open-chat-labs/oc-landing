@@ -8,10 +8,11 @@
     import { createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
-    export let number: number;
-    export let headerText: string;
+    export let id: string | undefined = undefined;
+    export let title: string;
     export let open = false;
     export let last = false;
+    export let gutter: "small" | "large" = "small";
 
     function toggle() {
         open = !open;
@@ -24,14 +25,16 @@
 
 <div class="card" class:last>
     <div class="header" class:open on:click={toggle}>
-        <div class="number">{number}</div>
-        <div class="words">
-            <span>{headerText}</span>
-            <div
-                class="copy"
-                on:click|stopPropagation={() => dispatch("copyUrl", number.toString())}>
-                <Copy {size} color={"var(--txt)"} />
-            </div>
+        <div class={`subtitle ${gutter}`}>
+            <slot name="subtitle" />
+        </div>
+        <div class="title">
+            <span>{title}</span>
+            {#if id !== undefined}
+                <div class="copy" on:click|stopPropagation={() => dispatch("copyUrl", id)}>
+                    <Copy {size} color={"var(--txt)"} />
+                </div>
+            {/if}
         </div>
         <div class="icon">
             <Arrow rotate={open ? -45 : 45} color={open ? "var(--primary)" : "var(--txt)"} />
@@ -40,10 +43,10 @@
 
     {#if open}
         <div
-            class="words body"
+            class={`body ${gutter}`}
             transition:slide|local={{ duration: 200, easing: expoInOut }}
             class:open>
-            <slot />
+            <slot name="body" />
         </div>
     {/if}
 </div>
@@ -70,7 +73,8 @@
             @include manrope(500, 18, 24);
         }
 
-        .words {
+        .title {
+            flex: auto;
             display: flex;
             align-items: center;
             gap: $sp3;
@@ -79,19 +83,23 @@
         .copy {
             cursor: pointer;
         }
-    }
 
-    .words {
-        flex: auto;
-    }
+        .subtitle {
+            @include manrope(700, 28, 38);
+            flex: 0 0 toRem(80);
 
-    .number {
-        @include manrope(700, 28, 38);
-        flex: 0 0 toRem(80);
+            &.large {
+                flex: 0 0 toRem(160);
+            }
 
-        @include mobile() {
-            flex: 0 0 toRem(30);
-            @include manrope(700, 18, 38);
+            @include mobile() {
+                flex: 0 0 toRem(30);
+                @include manrope(700, 18, 38);
+
+                &.large {
+                    flex: 0 0 toRem(80);
+                }
+            }
         }
     }
 
@@ -104,9 +112,16 @@
         padding: 0 0 toRem(30) toRem(80);
         max-width: 75%;
 
+        &.large {
+            padding: 0 0 toRem(30) toRem(160);
+        }
+
         @include mobile() {
             padding: 0 0 toRem(24) 0;
             max-width: 100%;
+            &.large {
+                padding: 0 0 toRem(24) 0;
+            }
         }
     }
 </style>

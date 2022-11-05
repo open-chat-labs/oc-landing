@@ -121,16 +121,16 @@
 
 <Header on:login={login} on:logout={logout} />
 
+<div class="burst-wrapper">
+    <div
+        class:fixed={$currentPath.path === "features"}
+        class="burst"
+        class:dark={$themeStore.name === "dark"}
+        class:light={$themeStore.name === "light"} />
+</div>
+
 <main id="main" class="main">
     <Content>
-        {#if $currentPath.path !== "whitepaper"}
-            <div
-                class:fixed={$currentPath.path === "features"}
-                class="burst"
-                class:dark={$themeStore.name === "dark"}
-                class:light={$themeStore.name === "light"} />
-        {/if}
-
         <Router on:login={login} on:scrollToTop={scrollToTop} />
     </Content>
 </main>
@@ -296,6 +296,15 @@
         position: fixed;
         bottom: toRem(40);
         right: toRem(40);
+    }
+
+    .burst-wrapper {
+        overflow: hidden;
+        max-width: 100%;
+        width: 100%;
+        position: absolute;
+        height: 100vh;
+        min-height: 100%;
     }
 
     .burst {
