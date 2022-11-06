@@ -734,6 +734,7 @@
                 <div>Minimum ICP per buyer</div>
                 <div>1</div>
             </div>
+
             <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-3-1"
                 >Valuation range</WhitepaperLinkTarget>
 
@@ -1049,6 +1050,7 @@
         grid-template-columns: 4fr 1fr;
         margin-bottom: $sp4;
         color: var(--txt-light);
+        @include roboto(400, 14, 24);
 
         > div {
             padding: toRem(12);
