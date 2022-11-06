@@ -117,9 +117,5 @@
             @include manrope(700, 28, 32);
             margin-bottom: toRem(24);
         }
-
-        .txt {
-            @include roboto(400, 16, 28);
-        }
     }
 </style>

@@ -135,7 +135,6 @@
 
     .blurb {
         grid-area: blurb;
-        @include roboto(400, 16, 28);
         color: var(--txt-light);
         margin-bottom: 0;
     }

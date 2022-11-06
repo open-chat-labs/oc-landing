@@ -67,7 +67,6 @@
         p {
             grid-area: blurb;
             margin-bottom: 0;
-            @include roboto(400, 16, 28);
             color: var(--txt-light);
             max-width: 80%;
 

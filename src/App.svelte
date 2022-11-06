@@ -1,9 +1,6 @@
 <script lang="ts">
-    import { fade } from "svelte/transition";
     import Header from "./components/Header.svelte";
     import Router from "./components/Router.svelte";
-    import Fab from "./components/Fab.svelte";
-    import ArrowUp from "svelte-material-icons/ArrowUp.svelte";
     import { onMount } from "svelte";
     import { AuthClient, IdbStorage } from "@dfinity/auth-client";
     import type { Identity } from "@dfinity/agent";
@@ -15,18 +12,11 @@
     import { themeStore, toggleTheme } from "./theme/themes";
 
     let debug = localStorage.getItem("openchat_theme_toggle") === "true";
-    let scrollTop = 0;
     let authClient = AuthClient.create({
         idleOptions: { disableIdle: true },
         storage: new IdbStorage(),
     });
     const SESSION_TIMEOUT_NANOS = BigInt(30 * 24 * 60 * 60 * 1000 * 1000 * 1000); // 30 days
-
-    $: backToTop = scrollTop > 400;
-
-    function onScroll() {
-        scrollTop = window.scrollY;
-    }
 
     function scrollToTop() {
         window.scrollTo({
@@ -104,13 +94,6 @@
             );
         }
     }
-
-    function clearHash() {
-        currentPath.update((p) => ({
-            ...p,
-            hash: "",
-        }));
-    }
 </script>
 
 {#if $loggingIn}
@@ -134,16 +117,6 @@
         <Router on:login={login} on:scrollToTop={scrollToTop} />
     </Content>
 </main>
-
-<svelte:window on:scroll={onScroll} />
-
-{#if backToTop}
-    <div transition:fade|local class="fab" on:click={clearHash}>
-        <Fab>
-            <ArrowUp size={"1.4em"} color={"rgba(255,255,255,0.8)"} />
-        </Fab>
-    </div>
-{/if}
 
 {#if debug}
     <div on:click={toggleTheme} class="theme" />
@@ -205,7 +178,9 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
                 Cantarell, "Helvetica Neue", sans-serif;
             font-family: "Roboto", sans-serif;
-            font-weight: 300;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.75rem;
         }
 
         label {

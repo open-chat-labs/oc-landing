@@ -24,7 +24,6 @@
         transform: translateY(-50%);
         transition: opacity 1s ease-in-out;
         text-align: left;
-        @include roboto(400, 16, 28);
         opacity: 0;
 
         &.visible {

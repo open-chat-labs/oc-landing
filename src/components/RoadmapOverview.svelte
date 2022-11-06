@@ -104,7 +104,6 @@
         grid-template-columns: 1fr;
         margin-bottom: toRem(60);
         align-items: flex-start;
-        @include roboto(400, 16, 28);
 
         .item {
             border-top: solid 1px var(--roadmap-bd);
