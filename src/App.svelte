@@ -7,9 +7,9 @@
     import { AuthProvider } from "./authProvider";
     import { selectedAuthProviderStore, loggingIn, loggedIn } from "./stores/authProviders";
     import "./theme/themes";
-    import { currentPath } from "./stores/route";
     import Content from "./components/Content.svelte";
     import { themeStore, toggleTheme } from "./theme/themes";
+    import { currentPath, isLandingPageRoute } from "./stores/route";
 
     let debug = localStorage.getItem("openchat_theme_toggle") === "true";
     let authClient = AuthClient.create({
@@ -74,7 +74,11 @@
         doLogin($selectedAuthProviderStore)
             .then((_id) => {
                 console.log("App.svelte - successfully logged in we should ideally reload now");
-                window.location.replace("/");
+                if (isLandingPageRoute()) {
+                    window.location.replace("/");
+                } else {
+                    window.location.reload();
+                }
             })
             .catch((err) => {
                 loggingIn.set(false);

@@ -238,7 +238,7 @@
             </p>
             <p>
                 Anyone can take part in the sale by depositing ICP into the SNS using the NNS
-                launchpad. Once the sale has completed each investor will receive the same
+                launchpad. Once the sale has completed each participant will receive the same
                 proportion of CHAT tokens as their share of the ICP deposited and the proceeds of
                 the sale will be held in an ICP ledger account owned by the SNS governance canister.
             </p>
@@ -607,11 +607,12 @@
                 remaining 9% will be held in reserve until some future time when there would be a
                 subsequent NNS proposal to either sell the reserve or burn it.
             </p>
-            <p>
-                Investors in the decentralization sale will deposit ICP into the SNS and once the
+
+            <p class="blurb">
+                Participants in the decentralization sale will deposit ICP into the SNS and once the
                 sale has completed they will receive the same proportion of CHAT tokens as their
-                share of the ICP deposited. Each investor will receive their CHAT as a basket of 13
-                equal value neurons. The first neuron will have a zero dissolve delay and so be
+                share of the ICP deposited. Each participant will receive their CHAT as a basket of
+                13 equal value neurons. The first neuron will have a zero dissolve delay and so be
                 immediately disbursable to liquid CHAT tokens. Each subsequent neuron will have a
                 dissolve delay one month greater than the previous, so from 1-12 months.
             </p>
@@ -654,7 +655,7 @@
                 already dissolved). The DFINITY foundation neurons will have a vesting period of 1
                 year and the dev team neurons will have a vesting period of 3 years. This is to
                 ensure that the founding team remains committed to the project in the long term and
-                cannot “rug-pull” investors.
+                cannot “rug-pull” community token holders.
             </p>
             <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-1-3"
                 >SNS treasury (blue)</WhitepaperLinkTarget>
@@ -735,8 +736,9 @@
             </div>
             <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-3-1"
                 >Valuation range</WhitepaperLinkTarget>
+
             <p>
-                The reason to impose a maximum target is to give investors a minimum bound on the
+                The reason to impose a maximum target is to give participants a minimum bound on the
                 number of CHAT tokens they will receive for their ICP investment. The lower bound of
                 0.1M ICP and the upper bound of 1M ICP for 20% of the tokens gives the OpenChat DAO
                 an initial total valuation between 0.5M ICP and 5M ICP. For 1 ICP you would receive
@@ -974,15 +976,15 @@
                     The dev team and seed funders will keep 92% of their neurons staked for the
                     period
                 </li>
-                <li>Other CHAT holders will stake 50% of their neurons going forwards</li>
+                <li>Other CHAT holders will stake 50% of their tokens going forwards</li>
                 <li>The average dissolve delay for a neuron will be 6.5 months</li>
                 <li>
-                    20% CHAT sold in decentralization sale and remaining 9% allocated for sale
-                    remains unsold. The
+                    20% of CHAT sold in decentralization sale and the remaining 9% allocated for
+                    sale remains unsold
                 </li>
                 <li>
-                    founding dev team and seed funders have their voting power reduced as a
-                    proportion of CHAT sold out of total allocation for sale = 20/29 = 69%
+                    The founding dev team and seed funders have their voting power reduced as a
+                    proportion of CHAT sold out of total allocation for sale = 20/29 or 69%
                 </li>
             </ul>
             <p>
