@@ -66,6 +66,10 @@
     .background {
         background: linear-gradient(180deg, #23a2ee 0%, #5b2b88 100%);
         filter: blur(300px);
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
         opacity: var(--brag-op);
         position: absolute;
         top: 0;

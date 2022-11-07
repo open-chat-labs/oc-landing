@@ -288,6 +288,11 @@
 
     .burst {
         position: absolute;
+        border-radius: 50%;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
 
         &.fixed {
             position: fixed;
@@ -298,7 +303,7 @@
             width: $size;
             height: $size;
             left: 40%;
-            top: toRem(367);
+            top: toRem(267);
             background: linear-gradient(180deg, #23a2ee 0%, #5b2b88 100%);
             opacity: 0.4;
             filter: blur(toRem(300));
