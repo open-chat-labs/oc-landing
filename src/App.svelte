@@ -297,7 +297,7 @@
             $size: toRem(1003);
             width: $size;
             height: $size;
-            left: toRem(718);
+            left: 40%;
             top: toRem(367);
             background: linear-gradient(180deg, #23a2ee 0%, #5b2b88 100%);
             opacity: 0.4;
@@ -317,9 +317,9 @@
             $size: toRem(863);
             width: $size;
             height: $size;
-            left: toRem(788);
+            left: 40%;
             top: toRem(437);
-            background: linear-gradient(269.91deg, #23a2ee 0.07%, #5b2b88 99.92%);
+            background: linear-gradient(269.91deg, #23a2ee 0%, #5b2b88 100%);
             mix-blend-mode: normal;
             opacity: 0.3;
             filter: blur(toRem(250));
