@@ -60,6 +60,29 @@
         </div>
     </CollapsibleCard>
 
+    <CollapsibleCard gutter={"large"} title={"Integrations"}>
+        <div slot="subtitle" class="date">
+            <div class="quarter">Q1</div>
+            <div class="year">2023</div>
+        </div>
+        <div class="body" slot="body">
+            <p>
+                We are keen to provide chat functionality as a service to other dApps in the
+                Internet Computer ecosystem.
+            </p>
+            <p>
+                We are currently consulting with many builders in the community to find out how they
+                would like to integrate OpenChat functionality in the future. The appetite is
+                certainly there! We will likely start with simple direct chat functionality before
+                later offering groups and other more advanced features.
+            </p>
+            <p>
+                The OpenChat team will build the apis, libraries and UI components required to make
+                chat integration as seamless as possible.
+            </p>
+        </div>
+    </CollapsibleCard>
+
     <CollapsibleCard gutter={"large"} title={"Communities"}>
         <div slot="subtitle" class="date">
             <div class="quarter">Q2</div>
