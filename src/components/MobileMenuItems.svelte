@@ -51,9 +51,9 @@
     <div class="menu-item">
         <Link on:linkClicked={launch} mode={"menu"}>Launch app</Link>
     </div>
-    <!-- {#if $loggedIn}
+    {#if $loggedIn}
         <Link on:linkClicked={() => dispatch("logout")} mode={"menu"}>Logout</Link>
-    {/if} -->
+    {/if}
     {#if $showAuthProviders}
         <div class="menu-item">
             <div

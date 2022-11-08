@@ -64,8 +64,7 @@
     function logout() {
         authClient.then((c) =>
             c.logout().then(() => {
-                loggingIn.set(false);
-                loggedIn.set(false);
+                window.location.reload();
             })
         );
     }
