@@ -7,13 +7,18 @@
 </script>
 
 <div
-    style={`height: ${height}px; background-color: ${backgroundColor}; color: ${color};`}
+    style={`height: ${height}px; color: ${color}; background: linear-gradient(78.53deg, rgba(0, 0, 0, 0.1) 5.34%, rgba(0, 0, 0, 0) 70.2%), ${backgroundColor};`}
     class="feature">
-    <div class="title">
-        {title}
-    </div>
-    <div class="blurb" class:light={backgroundColor === "transparent"}>
-        <slot />
+    <div class="inner">
+        <div class="desc">
+            <div class="title">
+                {title}
+            </div>
+            <div class="blurb" class:light={backgroundColor === "transparent"}>
+                <slot />
+            </div>
+        </div>
+        <div class="phone" />
     </div>
 </div>
 
@@ -34,17 +39,30 @@
             color: var(--txt-light);
         }
     }
-    .feature {
+
+    .inner {
+        max-width: 1440px;
+        margin: 0 auto;
         display: flex;
-        flex-direction: column;
+        height: 100%;
         align-items: flex-start;
         justify-content: center;
-        padding: 0 50% 0 toRem(160);
-
+        padding: 0 toRem(160);
         @include mobile() {
-            // padding: toRem(50) toRem(24);
+            padding: 0 toRem(24);
+        }
 
-            padding: toRem(50) 50% toRem(50) toRem(24);
+        .desc {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100%;
+            flex: 1;
+        }
+
+        .phone {
+            flex: 1;
         }
     }
 </style>

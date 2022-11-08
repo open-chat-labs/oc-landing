@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import Feature from "./Feature.svelte";
     import { themeStore } from "../theme/themes";
-    import { mobileWidth, toPixel } from "../stores/screenDimensions";
+    import { mobileWidth, toPixel, availableHeight } from "../stores/screenDimensions";
 
     let scrollTop = 0;
     let phoneEl: HTMLDivElement;
@@ -12,9 +12,8 @@
     let menuHeight = toPixel(5);
 
     // all the crazy calculations
-    $: availableHeight = windowHeight - menuHeight;
-    $: sectionHeight = $mobileWidth ? availableHeight : 900;
-    $: phoneHeight = $mobileWidth ? availableHeight * 0.7 : 600;
+    $: sectionHeight = $availableHeight;
+    $: phoneHeight = $mobileWidth ? $availableHeight * 0.7 : 600;
     $: phoneTop = (sectionHeight - phoneHeight) / 2 + menuHeight;
     $: phoneWidth = phoneHeight * 0.56;
     $: cssHeight = phoneHeight + phoneBorder * 2;

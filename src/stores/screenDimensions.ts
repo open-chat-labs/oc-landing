@@ -16,6 +16,10 @@ export const dimensions = readable(
     }
 );
 
+export const availableHeight = derived(dimensions, ($dimensions) => {
+    return $dimensions.height - pixelsFromRems(5, $dimensions.width);
+});
+
 resetRootFontForScreenWidth(window.innerWidth);
 
 function resetRootFontForScreenWidth(width: number) {
@@ -54,24 +58,27 @@ function setRootFontSize(n: number): void {
     document.documentElement.style.setProperty("--font-size", `${n}px`);
 }
 
-export function toPixel(rem: number): number {
-    const dim = get(dimensions);
-
-    if (dim.width < 354) {
+function pixelsFromRems(rem: number, width: number): number {
+    if (width < 354) {
         return rem * 13;
-    } else if (dim.width < 576) {
+    } else if (width < 576) {
         return rem * 14;
-    } else if (dim.width < 768) {
+    } else if (width < 768) {
         return rem * 14;
-    } else if (dim.width < 992) {
+    } else if (width < 992) {
         return rem * 15;
-    } else if (dim.width < 1200) {
+    } else if (width < 1200) {
         return rem * 15;
-    } else if (dim.width < 1792) {
+    } else if (width < 1792) {
         return rem * 16;
     } else {
         return rem * 16;
     }
+}
+
+export function toPixel(rem: number): number {
+    const dim = get(dimensions);
+    return pixelsFromRems(rem, dim.width);
 }
 
 export const screenWidth = derived(dimensions, ($dimensions) => {

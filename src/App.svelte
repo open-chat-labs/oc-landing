@@ -7,7 +7,6 @@
     import { AuthProvider } from "./authProvider";
     import { selectedAuthProviderStore, loggingIn, loggedIn } from "./stores/authProviders";
     import "./theme/themes";
-    import Content from "./components/Content.svelte";
     import { themeStore, toggleTheme } from "./theme/themes";
     import { currentPath, isLandingPageRoute } from "./stores/route";
 
@@ -117,9 +116,7 @@
 </div>
 
 <main id="main" class="main">
-    <Content>
-        <Router on:login={login} on:scrollToTop={scrollToTop} />
-    </Content>
+    <Router on:login={login} on:scrollToTop={scrollToTop} />
 </main>
 
 {#if debug}
@@ -135,7 +132,7 @@
         bottom: 10px;
         left: 10px;
         border-radius: 50%;
-        background-color: #22a7f2;
+        background-color: var(--primary);
     }
 
     :global {
@@ -155,9 +152,9 @@
             --secondary: #ff9505;
             --tertiary: #5f2583;
             --accent: hotpink;
-            --gradient: linear-gradient(#22a7f2, #5f2583);
-            --hgradient: linear-gradient(0.25turn, #22a7f2, hotpink);
-            --bg-gradient: linear-gradient(#22a7f2, hotpink);
+            --gradient: linear-gradient(var(--primary), #5f2583);
+            --hgradient: linear-gradient(0.25turn, var(--primary), hotpink);
+            --bg-gradient: linear-gradient(var(--primary), hotpink);
         }
 
         html {
@@ -235,11 +232,15 @@
         }
 
         a {
-            text-decoration: underline;
+            text-decoration: none;
             text-underline-offset: 2px;
-            color: inherit;
+            color: var(--primary);
             cursor: pointer;
             white-space: nowrap;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 

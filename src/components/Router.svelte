@@ -6,6 +6,7 @@
     import RoadmapPage from "./RoadmapPage.svelte";
     import { createEventDispatcher, onMount, tick } from "svelte";
     import { currentPath, Route } from "../stores/route";
+    import Content from "./Content.svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -73,7 +74,13 @@
 </script>
 
 <div class="body">
-    <svelte:component this={selected} on:login />
+    {#if $currentPath.path === "features"}
+        <svelte:component this={selected} on:login />
+    {:else}
+        <Content>
+            <svelte:component this={selected} on:login />
+        </Content>
+    {/if}
 </div>
 
 <style type="text/scss">

@@ -13,7 +13,7 @@ export function lightTheme(): Theme {
 
         primary,
         secondary,
-        hgradient: "linear-gradient(0.25turn, #22a7f2, hotpink)",
+        hgradient: `linear-gradient(0.25turn, ${primary}, hotpink)`,
         gradient,
         txt: black,
         "txt-light": "#5C5C5C",

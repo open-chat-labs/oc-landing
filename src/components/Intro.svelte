@@ -4,7 +4,7 @@
     import { showAuthProviders, selectedAuthProviderStore } from "../stores/authProviders";
     import LogoOrange from "./LogoOrange.svelte";
     import OnChain from "./OnChain.svelte";
-    import { mobileWidth } from "../stores/screenDimensions";
+    import { availableHeight, mobileWidth } from "../stores/screenDimensions";
     import OnChainAlt from "./OnChainAlt.svelte";
     import { AuthProvider } from "../authProvider";
     import InternetIdentityLogo from "./InternetIdentityLogo.svelte";
@@ -14,69 +14,76 @@
             ? "../screenshots/intro_light.png"
             : "../screenshots/intro_dark.png";
     $: logoSize = $mobileWidth ? 40 : 56;
+
+    $: introStyle = $mobileWidth ? "" : `height: ${$availableHeight}px`;
 </script>
 
-<div class="intro">
-    <div class="name">
-        <LogoOrange size={logoSize} />
-        <h1>OpenChat</h1>
-    </div>
-    <h2 class="title">A decentralized chat app governed by the people for the people</h2>
-    <p class="blurb">
-        OpenChat is a fully featured chat application running end-to-end on the <a
-            href="https://internetcomputer.org/"
-            target="_blank">
-            Internet Computer
-        </a> blockchain.
-    </p>
-    <div class="launch">
-        <Launch on:login />
-        {#if $showAuthProviders && !$mobileWidth}
-            <div class="auth-providers">
-                <div
-                    class="provider"
-                    class:selected={$selectedAuthProviderStore === AuthProvider.II}
-                    on:click={() => selectedAuthProviderStore.set(AuthProvider.II)}>
-                    <div class="ii-img">
-                        <InternetIdentityLogo />
+<div class="wrapper" style={introStyle}>
+    <div class="intro">
+        <div class="name">
+            <LogoOrange size={logoSize} />
+            <h1>OpenChat</h1>
+        </div>
+        <h2 class="title">A decentralized chat app governed by the people for the people</h2>
+        <p class="blurb">
+            OpenChat is a fully featured chat application running end-to-end on the <a
+                href="https://internetcomputer.org/"
+                target="_blank">
+                Internet Computer
+            </a> blockchain.
+        </p>
+        <div class="launch">
+            <Launch on:login />
+            {#if $showAuthProviders && !$mobileWidth}
+                <div class="auth-providers">
+                    <div
+                        class="provider"
+                        class:selected={$selectedAuthProviderStore === AuthProvider.II}
+                        on:click={() => selectedAuthProviderStore.set(AuthProvider.II)}>
+                        <div class="ii-img">
+                            <InternetIdentityLogo />
+                        </div>
+                        {AuthProvider.II}
                     </div>
-                    {AuthProvider.II}
+                    <div
+                        class="provider"
+                        class:selected={$selectedAuthProviderStore === AuthProvider.NFID}
+                        on:click={() => selectedAuthProviderStore.set(AuthProvider.NFID)}>
+                        <img class="nfid-img" src="../nfid.svg" alt="" />
+                        {AuthProvider.NFID}
+                    </div>
                 </div>
-                <div
-                    class="provider"
-                    class:selected={$selectedAuthProviderStore === AuthProvider.NFID}
-                    on:click={() => selectedAuthProviderStore.set(AuthProvider.NFID)}>
-                    <img class="nfid-img" src="../nfid.svg" alt="" />
-                    {AuthProvider.NFID}
-                </div>
-            </div>
-        {/if}
-    </div>
-    <div class="powered-by">
-        {#if $mobileWidth}
-            <OnChainAlt />
-        {:else}
-            <OnChain />
-        {/if}
-    </div>
-    <div class="image-wrapper-wrapper">
-        <div class="image-wrapper">
-            <img class="img" alt="Open chat list" src={imgUrl} />
-            {#if $mobileWidth}
-                <div
-                    class:light={$themeStore.name === "light"}
-                    class:dark={$themeStore.name === "dark"}
-                    class="overlay" />
             {/if}
+        </div>
+        <div class="powered-by">
+            {#if $mobileWidth}
+                <OnChainAlt />
+            {:else}
+                <OnChain />
+            {/if}
+        </div>
+        <div class="image-wrapper-wrapper">
+            <div class="image-wrapper">
+                <img class="img" alt="Open chat list" src={imgUrl} />
+                {#if $mobileWidth}
+                    <div
+                        class:light={$themeStore.name === "light"}
+                        class:dark={$themeStore.name === "dark"}
+                        class="overlay" />
+                {/if}
+            </div>
         </div>
     </div>
 </div>
 
 <style type="text/scss">
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .intro {
         position: relative;
-        margin-bottom: toRem(160);
-        margin-top: toRem(80);
         display: grid;
         grid-template-columns: 3fr 2fr;
         justify-content: center;
@@ -85,15 +92,14 @@
         row-gap: toRem(20);
 
         grid-template-areas:
-            ". image"
             "name image"
             "title image"
             "blurb image"
             "launch image"
-            ". image"
             "powered-by image";
 
         @include mobile() {
+            margin-top: toRem(80);
             margin-bottom: 0;
             grid-template-columns: 6fr 1fr;
             column-gap: 0;
