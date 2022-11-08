@@ -1,108 +1,71 @@
 <script lang="ts">
-    import { mobileWidth } from "../stores/screenDimensions";
-    import Headline from "./Headline.svelte";
-    import Section from "./Section.svelte";
+    export let backgroundColor: string;
+    export let color: string = "var(--txt)";
 
-    export let screenshotUrl: string | undefined = undefined;
-    export let screenshotAlt: string | undefined = undefined;
     export let title: string;
-    export let rtl = false;
-    export let lazy = true;
+    export let height: number;
+
+    $: bgStyle =
+        backgroundColor === "transparent"
+            ? ""
+            : `background: linear-gradient(78.53deg, rgba(0, 0, 0, 0.1) 5.34%, rgba(0, 0, 0, 0) 70.2%), ${backgroundColor};`;
 </script>
 
-<Section {lazy} id={title}>
-    <div class="feature" class:rtl={rtl && !$mobileWidth} class:full={screenshotUrl === undefined}>
-        {#if screenshotUrl !== undefined}
-            <div class="screenshot">
-                <img src={screenshotUrl} alt={screenshotAlt} />
+<div style={`height: ${height}px; color: ${color}; ${bgStyle}`} class="feature">
+    <div class="inner">
+        <div class="desc">
+            <div class="title">
+                {title}
             </div>
-        {/if}
-        <div class="title">
-            <Headline>{title}</Headline>
+            <div class="blurb" class:light={backgroundColor === "transparent"}>
+                <slot />
+            </div>
         </div>
-        <div class="blurb">
-            <slot />
-        </div>
+        <div class="phone" />
     </div>
-</Section>
+</div>
 
 <style type="text/scss">
-    .blurb {
-        font-size: toRem(20);
-    }
-    .feature {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-template-rows: auto 1fr;
-        grid-column-gap: $sp7;
-        margin-bottom: $sp6;
-
-        .screenshot {
-            grid-area: 1 / 1 / 3 / 2;
-
-            @include size-above(sm) {
-                perspective: 1000px;
-
-                img {
-                    transform: skewX(2deg) rotateY(25deg);
-                }
-            }
-        }
-        .title {
-            grid-area: 1 / 2 / 2 / 3;
-        }
-        .blurb {
-            grid-area: 2 / 2 / 3 / 3;
-        }
-
-        &.rtl {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-
-            .screenshot {
-                grid-area: 1 / 2 / 3 / 3;
-
-                @include size-above(sm) {
-                    img {
-                        transform: skewX(-2deg) rotateY(-25deg);
-                    }
-                }
-            }
-            .title {
-                grid-area: 1 / 1 / 2 / 2;
-            }
-            .blurb {
-                grid-area: 2 / 1 / 3 / 2;
-            }
-        }
-
-        &.full {
-            grid-template-columns: 1fr;
-            grid-template-rows: repeat(2, auto);
-            grid-column-gap: 0;
-        }
+    .title {
+        margin: 0;
+        @include manrope(500, 50, 68);
+        margin-bottom: $sp5;
 
         @include mobile() {
-            grid-template-columns: 1fr;
-            grid-template-rows: auto repeat(2, auto);
-
-            .title {
-                grid-area: 1 / 1 / 2 / 2;
-                text-align: center;
-            }
-            .screenshot {
-                grid-area: 2 / 1 / 3 / 2;
-                margin-bottom: $sp6;
-                text-align: center;
-                padding: 0 toRem(40);
-            }
-            .blurb {
-                grid-area: 3 / 1 / 4 / 2;
-            }
+            @include manrope(500, 32, 44);
         }
     }
-    img {
-        width: 100%;
-        @include box-shadow(3);
+    .blurb {
+        @include roboto(300, 16, 28);
+
+        &.light {
+            color: var(--txt-light);
+        }
+    }
+
+    .inner {
+        max-width: 1440px;
+        margin: 0 auto;
+        display: flex;
+        height: 100%;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 0 toRem(160);
+        @include mobile() {
+            padding: 0 toRem(24);
+        }
+
+        .desc {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100%;
+            flex: 1;
+        }
+
+        .phone {
+            flex: 1;
+        }
     }
 </style>

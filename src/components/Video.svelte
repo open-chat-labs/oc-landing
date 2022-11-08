@@ -8,7 +8,7 @@
     $: height = width * ratio;
 </script>
 
-<Section lazy={true} id={"video"}>
+<Section id={"video"}>
     <Headline>Watch a demo</Headline>
     <iframe
         {width}

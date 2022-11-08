@@ -28,6 +28,8 @@ registerRoute(
     (route) => {
         return [
             /screenshots\//,
+            /brag_/,
+            /burst_/,
             /network12.*jpg/,
             /matt|hamish|julian/,
             /main-.*[css|js]$/,

@@ -1,10 +1,8 @@
 <script lang="ts">
-    import Content from "./Content.svelte";
     import Headline from "./Headline.svelte";
-    import Separator from "./Separator.svelte";
 </script>
 
-<Content offset={false}>
+<div class="content">
     <Headline>Architecture</Headline>
 
     <div class="arch">
@@ -19,11 +17,12 @@
             >check out the source code</a
         >.
     </p>
-
-    <Separator />
-</Content>
+</div>
 
 <style type="text/scss">
+    .content {
+        @include content-padding();
+    }
     .arch {
         margin-bottom: $sp4;
         position: relative;

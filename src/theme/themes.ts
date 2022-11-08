@@ -7,20 +7,34 @@ export interface Theme {
     label: string;
 
     txt: string;
+    "txt-light": string;
     primary: string;
     secondary: string;
     hgradient: string;
     gradient: string;
     accent: string;
+    bg: string;
+
+    context: {
+        bg: string;
+    };
+
+    phone: {
+        bd: string;
+    };
+
+    brag: {
+        op: string;
+    };
+
+    launch: {
+        bg: string;
+    };
 
     header: {
         bg: string;
         txt: string;
         bd: string;
-    };
-
-    content: {
-        bg: string;
     };
 
     auth: {
@@ -29,17 +43,7 @@ export interface Theme {
     };
 
     roadmap: {
-        status: {
-            txt: string;
-            bg: string;
-        };
-        desc: {
-            txt: string;
-            bg: string;
-        };
-        date: {
-            bg: string;
-        };
+        bd: string;
     };
 }
 

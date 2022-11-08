@@ -1,69 +1,41 @@
 <script lang="ts">
-    import { toggleTheme } from "../theme/themes";
-    import AuthSelector from "./AuthSelector.svelte";
     import { currentPath } from "../stores/route";
     import Link from "./Link.svelte";
+    import Launch from "./Launch.svelte";
+    import { loggedIn } from "../stores/authProviders";
+    import { createEventDispatcher } from "svelte";
 
-    export let context = false;
-    let debug = false;
-
+    const dispatch = createEventDispatcher();
     $: path = $currentPath.path;
-
-    function close() {
-        context = false;
-    }
 </script>
 
-<div class="menu-items" class:context>
+<div class="menu-items">
     <div class="nav">
         <div class="menu-item">
-            <Link
-                selected={path === "home" || path === ""}
-                on:linkClicked={close}
-                mode={"menu"}
-                path="home">About</Link>
+            <Link selected={path === "features"} mode={"menu"} path="features">Features</Link>
         </div>
         <div class="menu-item">
-            <Link
-                selected={path === "features"}
-                on:linkClicked={close}
-                mode={"menu"}
-                path="features">Features</Link>
+            <Link selected={path === "roadmap"} mode={"menu"} path="roadmap">Roadmap</Link>
         </div>
         <div class="menu-item">
-            <Link selected={path === "roadmap"} on:linkClicked={close} mode={"menu"} path="roadmap"
-                >Roadmap</Link>
+            <Link selected={path === "whitepaper"} mode={"menu"} path="whitepaper">Whitepaper</Link>
         </div>
         <div class="menu-item">
-            <Link
-                selected={path === "whitepaper"}
-                on:linkClicked={close}
-                mode={"menu"}
-                path="whitepaper">Whitepaper</Link>
+            <Link selected={path === "architecture"} mode={"menu"} path="architecture"
+                >Architecture</Link>
         </div>
-        <div class="menu-item">
-            <Link
-                selected={path === "architecture"}
-                on:linkClicked={close}
-                mode={"menu"}
-                path="architecture">Architecture</Link>
-        </div>
-        {#if debug}
-            <div class="menu-item link" on:click={toggleTheme}>theme</div>
+        {#if $loggedIn}
+            <Link on:linkClicked={() => dispatch("logout")} mode={"menu"}>Logout</Link>
         {/if}
-    </div>
-    <div class="menu-item end">
-        <AuthSelector on:authSelected={close} on:logout {context} />
+        <div class="menu-item">
+            <Launch on:login />
+        </div>
     </div>
 </div>
 
 <style type="text/scss">
-    :global(.menu-items.context .link) {
-        font-weight: 600 !important;
-        font-size: toRem(20);
-    }
-
     .menu-items {
+        @include manrope(700, 16, 22);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -75,28 +47,6 @@
             justify-content: flex-start;
             align-items: center;
             gap: $sp5;
-        }
-
-        &.context {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-            color: var(--txt);
-            padding: $sp4 $sp4 $sp6 $sp4;
-            position: absolute;
-            align-items: flex-end;
-            justify-content: flex-start;
-            right: 0;
-            top: toRem(60);
-            flex-direction: column;
-
-            .nav {
-                flex-direction: column;
-                align-items: flex-end;
-            }
-        }
-
-        .end {
-            align-self: flex-end;
         }
     }
 </style>

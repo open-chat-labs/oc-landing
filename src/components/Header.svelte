@@ -1,78 +1,88 @@
 <script lang="ts">
     import { mobileWidth } from "../stores/screenDimensions";
-    import Home from "svelte-material-icons/Home.svelte";
+    import MenuItems from "./MenuItems.svelte";
+    import MobileMenuItems from "./MobileMenuItems.svelte";
+    import { currentPath } from "../stores/route";
+    import LogoOrange from "./LogoOrange.svelte";
     import Menu from "svelte-material-icons/Menu.svelte";
     import Close from "svelte-material-icons/Close.svelte";
-    import MenuItems from "./MenuItems.svelte";
-    import Link from "./Link.svelte";
-    import { loggedIn } from "../stores/authProviders";
-    import { createEventDispatcher } from "svelte";
-
-    const dispatch = createEventDispatcher();
 
     let showMenu = false;
+    $: logoSize = $mobileWidth ? 24 : 32;
 
-    function launch() {
-        if ($loggedIn) {
-            window.location.href = "/";
-        } else {
-            dispatch("login");
-        }
+    function home() {
+        currentPath.set({
+            path: "home",
+            hash: "",
+        });
     }
 </script>
 
-<div class="menu">
-    {#if !$mobileWidth}
-        <Link path="home">
-            <img class="logo" src="../spinner.svg" alt="Logo" />
-        </Link>
-    {/if}
-
-    {#if !$mobileWidth}
-        <Link on:linkClicked={launch} mode={"menu"}>Go to chat</Link>
-        <MenuItems on:login on:logout />
-    {:else}
-        <Link path="home">
-            <Home size={"1.6em"} color={"#fff"} />
-        </Link>
-        <Link on:linkClicked={launch} mode={"menu"}>Go to chat</Link>
-        <div on:click={() => (showMenu = !showMenu)}>
-            {#if showMenu}
-                <Close size={"1.6em"} color={"#fff"} />
-            {:else}
-                <Menu size={"1.6em"} color={"#fff"} />
-            {/if}
+<div class="wrapper">
+    <div class="header">
+        <div class="logo" on:click={home}>
+            <LogoOrange size={logoSize} />
+            <div class="name">OpenChat</div>
         </div>
-
-        {#if showMenu}
-            <MenuItems bind:context={showMenu} on:logout />
+        {#if $mobileWidth}
+            <div class="menu-toggle" on:click|stopPropagation={() => (showMenu = !showMenu)}>
+                {#if showMenu}
+                    <Close size={"1.6em"} color={"var(--txt)"} />
+                    <MobileMenuItems on:close={() => (showMenu = false)} on:login on:logout />
+                {:else}
+                    <Menu size={"1.6em"} color={"var(--txt)"} />
+                {/if}
+            </div>
+        {:else}
+            <div class="menu">
+                <MenuItems on:login on:logout />
+            </div>
         {/if}
-    {/if}
+    </div>
 </div>
 
 <style type="text/scss">
-    .logo {
-        width: toRem(45);
-        height: toRem(45);
+    .wrapper {
+        width: 100%;
+        padding: 0;
+        margin: 0 auto;
+        position: fixed;
+        top: 0;
+        @include z-index("menu");
+        background-color: var(--header-bg);
     }
 
-    .menu {
-        font-weight: 300;
-        flex: 0 0 toRem(60);
-        @include z-index("menu");
-        padding: $sp4;
-        background-color: var(--header-bg);
-        color: var(--header-txt);
+    .menu-toggle {
+        cursor: pointer;
+    }
+
+    .logo {
+        display: flex;
+        cursor: pointer;
+        gap: $sp3;
+        align-items: center;
+
+        .name {
+            @include manrope(700, 21, 29);
+        }
+    }
+
+    .header {
+        max-width: 1440px;
+        @include content-padding();
+
+        @include mobile() {
+            width: 100%;
+        }
+
+        margin: 0 auto;
+        width: 100%;
+        flex: 0 0 toRem(80);
+        color: var(--txt);
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: $sp5;
-        // @include box-shadow(1);
-        @include constrain();
-        position: sticky;
-        top: 0;
-        height: toRem(60);
-        backdrop-filter: blur(20px);
-        border-bottom: var(--header-bd);
+        height: toRem(80);
     }
 </style>

@@ -29,7 +29,8 @@
 
 <style type="text/scss">
     a {
-        font-style: italic;
+        @include manrope(700, 16, 22);
+        color: inherit;
 
         &:hover {
             text-decoration: underline;
@@ -37,16 +38,11 @@
 
         &.menu {
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
             font-style: normal;
-            text-transform: lowercase;
         }
 
         &.selected {
-            text-decoration: underline;
-            text-decoration-color: var(--accent);
-            text-underline-offset: $sp1;
-            text-decoration-thickness: 2px;
+            color: var(--primary);
         }
     }
 </style>

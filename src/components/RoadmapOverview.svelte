@@ -1,34 +1,31 @@
 <script lang="ts">
     import Section from "./Section.svelte";
-    import CheckBold from "svelte-material-icons/CheckBold.svelte";
-    import RocketLaunch from "svelte-material-icons/RocketLaunch.svelte";
-    import { mobileWidth } from "../stores/screenDimensions";
-    import Headline from "./Headline.svelte";
     import Link from "./Link.svelte";
     import { currentPath } from "../stores/route";
-
-    let visible = false;
-    let iconColor = "var(--roadmap-status-txt)";
-    $: iconSize = $mobileWidth ? "4em" : "5.5em";
+    import ArrowLink from "./ArrowLink.svelte";
 </script>
 
-<Section bind:visible lazy={true} id={"roadmap"}>
+<Section id={"roadmap"}>
     <div
+        class="roadmap"
         on:click={() =>
             currentPath.set({
                 path: "roadmap",
                 hash: "",
             })}>
-        <Headline>Roadmap Overview</Headline>
-
-        <div class="grid">
-            <div class="status complete" class:visible>
-                <CheckBold size={iconSize} color={iconColor} />
-                <div class="status-text">done</div>
+        <div class="header">
+            <h2 class="title">Roadmap</h2>
+            <div class="features">
+                <ArrowLink path={"roadmap"} color={"#23A2EE"}>View Entire Roadmap</ArrowLink>
             </div>
-            <div class="item txt">
-                <div class="txt-header">Basic chat features</div>
-                <div class="txt-desc">
+        </div>
+        <div class="grid">
+            <div class="item">
+                <div class="status">
+                    <span class="complete">Complete</span>
+                </div>
+                <div class="title">Basic chat features</div>
+                <div class="detail">
                     All of the basic features that you expect from a chat app: direct chats, public
                     and private groups; attach files, images, giphs, emojis; translate, pin, edit
                     and delete messages; send ICP; create polls; customise appearance; use on
@@ -36,35 +33,39 @@
                 </div>
             </div>
 
-            <div class="txt">
-                <div class="txt-header">SNS launch</div>
-                <div class="txt-desc">
+            <div class="item">
+                <div class="status">
+                    <div class="when">Q4</div>
+                    <div class="year">2022</div>
+                </div>
+                <div class="title">SNS launch</div>
+                <div class="detail">
                     Launching of a Service Nervous System and handing over control of OpenChat to
                     the control of that SNS. From this point forward the system will be
                     democratically controlled by the holders of the CHAT utility token.
                 </div>
             </div>
-            <div class="status" class:visible>
-                <div class="when">Q4</div>
-                <div class="status-text">2022</div>
-            </div>
 
-            <div class="status" class:visible>
-                <div class="when">Q4</div>
-                <div class="status-text">2022</div>
-            </div>
-            <div class="txt">
-                <div class="txt-header">User rewards</div>
-                <div class="txt-desc">
+            <div class="item">
+                <div class="status">
+                    <div class="when">Q4</div>
+                    <div class="year">2022</div>
+                </div>
+                <div class="title">User rewards</div>
+                <div class="detail">
                     The SNS launch will unlock the potential to reward users with CHAT tokens to
                     shape the character of the system, to help build great communities and to
                     supercharge adoption.
                 </div>
             </div>
 
-            <div class="txt">
-                <div class="txt-header">Integrations & Communities</div>
-                <div class="txt-desc">
+            <div class="item">
+                <div class="status">
+                    <div class="when">Q1/2</div>
+                    <div class="year">2023</div>
+                </div>
+                <div class="title">Integrations & Communities</div>
+                <div class="detail">
                     Support communities with integrated chat or create your own (optionally private)
                     community within OpenChat. A community can be thought of like a slack workspace
                     or a discord server. You control who joins your community and you can create a
@@ -72,17 +73,13 @@
                     features that you already know.
                 </div>
             </div>
-            <div class="status" class:visible>
-                <div class="when">Q1/2</div>
-                <div class="status-text">2023</div>
-            </div>
 
-            <div class="status" class:visible>
-                <RocketLaunch size={iconSize} color={iconColor} />
-            </div>
-            <div class="txt">
-                <div class="txt-header">The future</div>
-                <div class="txt-desc">
+            <div class="item">
+                <div class="status">
+                    <div class="complete">Continuous</div>
+                </div>
+                <div class="title">The future</div>
+                <div class="detail">
                     We see great potential and have many ideas for the future, but what makes
                     OpenChat unique is that the community will decide the directions we take and the
                     priorities we pursue. We are excited to see what you come up with!
@@ -90,96 +87,87 @@
             </div>
         </div>
 
-        <Link path="roadmap">Click here for a more detailed product roadmap.</Link>
+        <ArrowLink path={"roadmap"} color={"#23A2EE"}>View Entire Roadmap</ArrowLink>
     </div>
 </Section>
 
 <style type="text/scss">
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: $sp4;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: $sp5;
 
-        @include mobile() {
-            column-gap: 0;
+        .title {
+            @include manrope(700, 37, 51);
         }
+    }
 
-        .txt {
-            padding: $sp5;
-            text-align: left;
-            grid-column: span 3;
-            background: var(--roadmap-desc-bg);
-            color: var(--roadmap-desc-txt);
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-bottom: toRem(60);
+        align-items: flex-start;
+
+        .item {
+            border-top: solid 1px var(--roadmap-bd);
+            padding: toRem(48) 0;
+            justify-content: flex-start;
+            gap: $sp3;
+            display: grid;
+            grid-template-columns: 1fr 2fr 2fr;
+            grid-template-areas: "status title detail";
 
             @include mobile() {
-                padding: $sp4;
+                grid-template-columns: 1fr 2fr;
+                grid-template-areas:
+                    "status title title"
+                    "detail detail detail";
             }
+        }
 
-            .txt-header {
-                font-size: toRem(30);
-                font-weight: 500;
-                margin-bottom: $sp3;
-            }
-
-            .txt-desc {
-                font-size: toRem(20);
-                font-weight: 300;
-            }
+        .item:last-child {
+            border-bottom: solid 1px var(--roadmap-bd);
         }
 
         .status {
-            min-height: toRem(150);
+            grid-area: status;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--roadmap-status-txt);
-            background-color: var(--roadmap-status-bg);
-            transition: transform ease-in-out 100ms;
+            gap: $sp3;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex: 2;
+        }
 
-            @include size-above(sm) {
-                &.visible {
-                    &:nth-child(1) {
-                        @include pop(1000ms);
-                    }
+        .title {
+            grid-area: title;
+            @include manrope(700, 50, 57);
+            flex: 4;
 
-                    &:nth-child(4) {
-                        @include pop(1100ms);
-                    }
-
-                    &:nth-child(5) {
-                        @include pop(1200ms);
-                    }
-
-                    &:nth-child(8) {
-                        @include pop(1300ms);
-                    }
-
-                    &:nth-child(9) {
-                        @include pop(1400ms);
-                    }
-                }
+            @include mobile() {
+                @include manrope(700, 28, 38);
+                margin-bottom: toRem(20);
             }
+        }
 
-            &.complete {
-                background-color: #2a9a2a;
-            }
+        .when {
+            @include manrope(700, 28, 32);
+            color: #23a2ee;
+        }
 
-            .when {
-                font-weight: 900;
-                font-size: toRem(50);
-                text-transform: uppercase;
-            }
+        .detail {
+            grid-area: detail;
+            flex: 4;
+        }
 
-            .status-text {
-                font-size: toRem(30);
-                text-transform: uppercase;
+        .detail,
+        .year {
+            color: var(--txt-light);
+        }
 
-                @include mobile() {
-                    font-size: toRem(25);
-                }
-            }
+        .complete {
+            color: #23a2ee;
+            @include roboto(600, 16, 28);
         }
     }
 </style>

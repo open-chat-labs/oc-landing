@@ -1,35 +1,15 @@
-<script lang="ts">
-    export let offset: boolean;
-</script>
-
-<div class="outer" class:offset>
-    <div class="content">
-        <slot />
-    </div>
+<div class="content">
+    <slot />
 </div>
 
 <style type="text/scss">
     .content {
-        padding: toRem(30);
-        max-width: 1000px;
+        max-width: 1440px;
+        padding: 0;
         margin: 0 auto;
 
-        @include mobile() {
-            padding: toRem(16);
-        }
-    }
-
-    .outer {
-        position: relative;
-        background-color: var(--content-bg);
-
-        &.offset {
-            margin-top: toRem(-80);
-        }
-
-        @include mobile() {
-            margin: 0;
-            top: 0;
+        @include mobile {
+            width: 100%;
         }
     }
 </style>
