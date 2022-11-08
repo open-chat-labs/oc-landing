@@ -1,12 +1,9 @@
 <script lang="ts">
-    import { onMount } from "svelte";
     import Feature from "./Feature.svelte";
     import { themeStore } from "../theme/themes";
     import { mobileWidth, toPixel, availableHeight } from "../stores/screenDimensions";
 
     let scrollTop = 0;
-    let phoneEl: HTMLDivElement;
-    let bottomPadding = 0;
     let phoneBorder = 5;
     let windowHeight = window.innerHeight;
     let menuHeight = toPixel(5);
@@ -56,21 +53,12 @@
     };
 
     $: screenshots = screenshotMap[$themeStore.name];
-
-    onMount(() => {
-        if (phoneEl) {
-            // calculate how far from bottom of the screen the bottom of the phone is
-            const rect = phoneEl.getBoundingClientRect();
-            bottomPadding = window.innerHeight - rect.bottom - 45;
-        }
-    });
 </script>
 
 <svelte:window bind:innerHeight={windowHeight} on:scroll={onScroll} />
 
 <div
     class="phone"
-    bind:this={phoneEl}
     style={`top: ${phoneTop}px; height: ${cssHeight}px; width: ${cssWidth}px; transform: translateX(${cssWidth}px)`}>
     {#each screenshots as screenshot, i}
         <div
@@ -83,7 +71,7 @@
     {/each}
 </div>
 
-<div class="content" style={`padding-bottom: ${bottomPadding}px`}>
+<div class="content">
     <Feature height={sectionHeight} backgroundColor={"transparent"} title={"Mobile first"}>
         <p>
             A chat app should be used on the go and so OpenChat was designed from the beginning to
@@ -99,6 +87,10 @@
         <p>
             Create private groups with friends and family to coordinate and chat together. With a
             private group, you have full control over who is the group.
+        </p>
+        <p>
+            Or create a public group. Set your own rules and then share it with the world via it's
+            url.
         </p>
     </Feature>
 
@@ -201,9 +193,5 @@
         position: relative;
         z-index: 1;
         padding: 0;
-        padding-bottom: toRem(460);
-        @include mobile() {
-            padding: 0;
-        }
     }
 </style>

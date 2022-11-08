@@ -2,6 +2,11 @@
     import { onMount } from "svelte";
     import Brag from "./Brag.svelte";
     import Section from "./Section.svelte";
+    import { themeStore } from "../theme/themes";
+
+    let isFirefox = navigator.userAgent.indexOf("Firefox") >= 0;
+    $: bgPath = $themeStore.name === "light" ? "../brag_light" : "../brag_dark";
+    $: bgUrl = isFirefox ? `${bgPath}.png` : `${bgPath}.svg`;
 
     const brags = [
         {
@@ -47,8 +52,7 @@
 </script>
 
 <Section id={"brag-box"}>
-    <div class="background" />
-    <div class="bragbox">
+    <div class="bragbox" style={`background-image: url(${bgUrl})`}>
         <div class="brags">
             {#each brags as brag, i}
                 <Brag
@@ -63,25 +67,17 @@
 </Section>
 
 <style type="text/scss">
-    .background {
-        background: linear-gradient(180deg, #23a2ee 0%, #5b2b88 100%);
-        filter: blur(300px);
-        -webkit-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -webkit-transform: translate3d(0, 0, 0);
-        -moz-transform: translate3d(0, 0, 0);
-        opacity: var(--brag-op);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
     .bragbox {
-        padding: toRem(160) toRem(160);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        padding: toRem(800) toRem(600);
+        margin: toRem(-640) toRem(-440);
 
         @include mobile() {
-            padding: toRem(40) toRem(24);
+            padding: toRem(340) toRem(324);
+            margin: toRem(-260) toRem(-276);
         }
     }
     .brags {

@@ -24,6 +24,8 @@
         });
     }
 
+    let isFirefox = navigator.userAgent.indexOf("Firefox") >= 0;
+
     onMount(async () => {
         authClient.then((c) => {
             const id = c.getIdentity();
@@ -97,6 +99,9 @@
             );
         }
     }
+
+    $: burstPath = $themeStore.name === "light" ? "../burst_light" : "../burst_dark";
+    $: burstUrl = isFirefox ? `${burstPath}.png` : `${burstPath}.svg`;
 </script>
 
 {#if $loggingIn}
@@ -107,12 +112,17 @@
 
 <Header on:login={login} on:logout={logout} />
 
-<div class="burst-wrapper">
-    <div
+<div
+    class="burst-wrapper"
+    class:fixed={$currentPath.path === "features"}
+    class:dark={$themeStore.name === "dark"}
+    class:light={$themeStore.name === "light"}
+    style={`background-image: url(${burstUrl})`}>
+    <!-- <div
         class:fixed={$currentPath.path === "features"}
         class="burst"
         class:dark={$themeStore.name === "dark"}
-        class:light={$themeStore.name === "light"} />
+        class:light={$themeStore.name === "light"} /> -->
 </div>
 
 <main id="main" class="main">
@@ -285,59 +295,19 @@
         position: absolute;
         height: 100vh;
         min-height: 100%;
-    }
 
-    .burst {
-        position: absolute;
-        border-radius: 50%;
-        -webkit-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -webkit-transform: translate3d(0, 0, 0);
-        -moz-transform: translate3d(0, 0, 0);
+        background-repeat: no-repeat;
+        background-size: 1400px;
+        background-origin: 50% 50%;
+        background-position: right 20% top toRem(150);
 
         &.fixed {
             position: fixed;
         }
 
-        &.dark {
-            $size: toRem(1003);
-            width: $size;
-            height: $size;
-            left: 40%;
-            top: toRem(267);
-            background: linear-gradient(180deg, #23a2ee 0%, #5b2b88 100%);
-            opacity: 0.4;
-            filter: blur(toRem(300));
-
-            @include mobile() {
-                $size: toRem(461);
-                width: $size;
-                height: $size;
-                left: 82px;
-                top: 251px;
-                filter: blur(toRem(200));
-            }
-        }
-
-        &.light {
-            $size: toRem(863);
-            width: $size;
-            height: $size;
-            left: 40%;
-            top: toRem(437);
-            background: linear-gradient(269.91deg, #23a2ee 0%, #5b2b88 100%);
-            mix-blend-mode: normal;
-            opacity: 0.3;
-            filter: blur(toRem(250));
-
-            @include mobile() {
-                $size: toRem(400);
-                width: $size;
-                height: $size;
-                left: 195px;
-                top: 251px;
-                filter: blur(toRem(150));
-            }
+        @include mobile() {
+            background-size: 800px;
+            background-position: left 0 top 0;
         }
     }
 </style>

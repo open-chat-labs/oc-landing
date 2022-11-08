@@ -29,7 +29,7 @@ export function lightTheme(): Theme {
         },
 
         phone: {
-            bd: "transparent",
+            bd: "#ffffff",
         },
 
         launch: {

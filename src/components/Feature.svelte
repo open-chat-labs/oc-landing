@@ -4,11 +4,14 @@
 
     export let title: string;
     export let height: number;
+
+    $: bgStyle =
+        backgroundColor === "transparent"
+            ? ""
+            : `background: linear-gradient(78.53deg, rgba(0, 0, 0, 0.1) 5.34%, rgba(0, 0, 0, 0) 70.2%), ${backgroundColor};`;
 </script>
 
-<div
-    style={`height: ${height}px; color: ${color}; background: linear-gradient(78.53deg, rgba(0, 0, 0, 0.1) 5.34%, rgba(0, 0, 0, 0) 70.2%), ${backgroundColor};`}
-    class="feature">
+<div style={`height: ${height}px; color: ${color}; ${bgStyle}`} class="feature">
     <div class="inner">
         <div class="desc">
             <div class="title">
