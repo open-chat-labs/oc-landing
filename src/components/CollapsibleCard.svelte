@@ -21,6 +21,7 @@
     }
 
     $: size = $mobileWidth ? "14px" : "16px";
+    $: arrowSize = $mobileWidth ? 16 : 20;
 </script>
 
 <div class="card" class:last>
@@ -37,7 +38,10 @@
             {/if}
         </div>
         <div class="icon">
-            <Arrow rotate={open ? -45 : 45} color={open ? "var(--primary)" : "var(--txt)"} />
+            <Arrow
+                size={arrowSize}
+                rotate={open ? -45 : 45}
+                color={open ? "var(--primary)" : "var(--txt)"} />
         </div>
     </div>
 

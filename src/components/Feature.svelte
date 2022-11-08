@@ -29,7 +29,7 @@
         margin-bottom: $sp5;
 
         @include mobile() {
-            @include manrope(500, 28, 38);
+            @include manrope(500, 32, 44);
         }
     }
     .blurb {

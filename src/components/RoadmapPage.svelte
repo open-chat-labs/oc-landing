@@ -115,7 +115,7 @@
     </CollapsibleCard>
 
     <CollapsibleCard gutter={"large"} title={"Voice & Video"}>
-        <div slot="subtitle" class="date">Future</div>
+        <div slot="subtitle" class="date future">Future</div>
         <div class="body" slot="body">
             <p>
                 Many (web2) apps in this space offer voice and video calling and we aim to do the
@@ -128,7 +128,7 @@
     </CollapsibleCard>
 
     <CollapsibleCard gutter={"large"} title={"Native Apps"}>
-        <div slot="subtitle" class="date">Future</div>
+        <div slot="subtitle" class="date future">Future</div>
         <div class="body" slot="body">
             <p>
                 Currently OpenChat is delivered as a responsive progressive web app. This means that
@@ -157,7 +157,7 @@
     </CollapsibleCard>
 
     <CollapsibleCard gutter={"large"} title={"End to end encryption"}>
-        <div slot="subtitle" class="date">Future</div>
+        <div slot="subtitle" class="date future">Future</div>
         <div class="body" slot="body">
             <p>
                 Currently, while the Internet Computer does provide very strong security guarantees,
@@ -172,7 +172,7 @@
     </CollapsibleCard>
 
     <CollapsibleCard gutter={"large"} last={true} title={"Other Features"}>
-        <div slot="subtitle" class="date">Future</div>
+        <div slot="subtitle" class="date future">Future</div>
         <div class="body" slot="body">
             <p>
                 As we will be governed by the SNS, we will be obliged to listen to our users along
@@ -239,7 +239,7 @@
 
     .body p,
     .body li {
-        @include roboto(400, 14, 24);
+        @include roboto(400, 16, 28);
     }
 
     .date {
@@ -255,6 +255,10 @@
         .year {
             @include roboto();
             color: var(--txt-light);
+        }
+
+        &.future {
+            @include roboto(600, 16, 28);
         }
 
         @include mobile() {

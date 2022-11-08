@@ -1025,7 +1025,7 @@
 
     .body p,
     .body li {
-        @include roboto(400, 14, 24);
+        @include roboto(400, 16, 28);
     }
 
     .list {
@@ -1069,18 +1069,6 @@
                 text-align: right;
                 border-right: solid 1px var(--roadmap-bd);
             }
-        }
-    }
-
-    :global(.whitepaper .whitepaper-link) {
-        text-decoration: underline;
-        text-underline-offset: 2px;
-        color: inherit;
-        cursor: pointer;
-        font-style: italic;
-
-        &:hover {
-            text-decoration: underline;
         }
     }
 </style>

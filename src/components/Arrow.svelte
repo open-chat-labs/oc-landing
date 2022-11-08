@@ -1,14 +1,15 @@
 <script lang="ts">
     export let color: string;
     export let rotate: number = 0;
+    export let size = 16;
 
     $: style = rotate === 0 ? "" : `transform: rotate(${rotate}deg)`;
 </script>
 
 <svg
     {style}
-    width="16"
-    height="16"
+    width={size}
+    height={size}
     viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg">

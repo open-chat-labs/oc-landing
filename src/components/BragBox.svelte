@@ -78,10 +78,10 @@
         height: 100%;
     }
     .bragbox {
-        padding: 0 toRem(160);
+        padding: toRem(160) toRem(160);
 
         @include mobile() {
-            padding: 0 toRem(24);
+            padding: toRem(40) toRem(24);
         }
     }
     .brags {

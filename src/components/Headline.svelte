@@ -8,10 +8,11 @@
     h2 {
         margin: 0;
         @include manrope(500, 50, 68);
-        margin-bottom: 1.5rem;
+        margin-bottom: toRem(60);
 
         @include mobile() {
             @include manrope(500, 32, 45);
+            margin-bottom: toRem(40);
         }
     }
 </style>

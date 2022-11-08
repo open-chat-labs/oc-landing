@@ -142,7 +142,11 @@
     .blurb {
         grid-area: blurb;
         color: var(--txt-light);
-        margin-bottom: 0;
+        margin-bottom: toRem(24);
+
+        @include mobile() {
+            margin-bottom: toRem(16);
+        }
     }
 
     .powered-by {
@@ -160,8 +164,11 @@
     .launch {
         grid-area: launch;
         display: flex;
-        gap: toRem(12);
+        gap: toRem(24);
         align-items: center;
+        @include mobile() {
+            margin-bottom: toRem(16);
+        }
     }
 
     .image-wrapper-wrapper {

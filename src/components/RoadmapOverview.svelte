@@ -14,7 +14,7 @@
                 hash: "",
             })}>
         <div class="header">
-            <h2>Roadmap</h2>
+            <h2 class="title">Roadmap</h2>
             <div class="features">
                 <ArrowLink path={"roadmap"} color={"#23A2EE"}>View Entire Roadmap</ArrowLink>
             </div>
@@ -97,6 +97,10 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: $sp5;
+
+        .title {
+            @include manrope(700, 37, 51);
+        }
     }
 
     .grid {

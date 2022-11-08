@@ -22,16 +22,35 @@
 
 <a class="link" href={path === undefined ? "#" : `/${path}`} on:click={clickLink}>
     <slot />
-    <Arrow {color} />
+    <div class="arrow">
+        <Arrow {color} />
+    </div>
 </a>
 
 <style type="text/scss">
     a {
+        position: relative;
         @include manrope(700, 16, 18);
         color: inherit;
         text-decoration: none;
         display: flex;
         align-items: center;
         gap: $sp3;
+        transition: color 250ms ease-in-out;
+
+        .arrow {
+            transition: flex 250ms ease-in-out;
+            flex: 0 0 toRem(16);
+            text-align: end;
+        }
+
+        &:hover {
+            text-decoration: none;
+            color: var(--txt-light);
+
+            .arrow {
+                flex: 0 0 toRem(24);
+            }
+        }
     }
 </style>

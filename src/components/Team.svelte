@@ -36,6 +36,6 @@
         }
     }
     h2 {
-        @include manrope(700, 37, 43);
+        @include manrope(700, 37, 51);
     }
 </style>
