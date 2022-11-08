@@ -88,10 +88,7 @@
             Create private groups with friends and family to coordinate and chat together. With a
             private group, you have full control over who is the group.
         </p>
-        <p>
-            Or create a public group. Set your own rules and then share it with the world via it's
-            url.
-        </p>
+        <p>Or create a public group and share it with the world.</p>
     </Feature>
 
     <Feature height={sectionHeight} backgroundColor={"#FEC000"} color={black} title={"Permissions"}>

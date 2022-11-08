@@ -2,10 +2,10 @@
     import { currentPath } from "../stores/route";
     import Link from "./Link.svelte";
     import Launch from "./Launch.svelte";
-    import { loggedIn } from "../stores/authProviders";
+    // import { loggedIn } from "../stores/authProviders";
     import { createEventDispatcher } from "svelte";
 
-    const dispatch = createEventDispatcher();
+    // const dispatch = createEventDispatcher();
     $: path = $currentPath.path;
 </script>
 
@@ -24,9 +24,9 @@
             <Link selected={path === "architecture"} mode={"menu"} path="architecture"
                 >Architecture</Link>
         </div>
-        {#if $loggedIn}
+        <!-- {#if $loggedIn}
             <Link on:linkClicked={() => dispatch("logout")} mode={"menu"}>Logout</Link>
-        {/if}
+        {/if} -->
         <div class="menu-item">
             <Launch on:login />
         </div>
