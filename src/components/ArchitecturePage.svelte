@@ -4,6 +4,7 @@
     import HashLinkTarget from "./HashLinkTarget.svelte";
     import { copyUrl } from "../utils/linking";
     import ZoomableImage from "./ZoomableImage.svelte";
+    import ExternalLink from "./ExternalLink.svelte";
 
     let linked: number | undefined = undefined;
 </script>
@@ -60,53 +61,101 @@
                     crawlable landing pages
                 </li>
                 <li>
-                    Assets canister - a canister which serves the static assets (.js, .css etc) for
-                    the web app
+                    <strong>Assets canister</strong> - a canister which serves the static assets (.js,
+                    .css etc) for the web app
                 </li>
                 <li>
-                    Landing page assets - an AWS s3 bucket serving the static assets for the landing
-                    pages (.html, .css etc) and the service worker
+                    <strong>Landing page assets</strong> - an AWS s3 bucket serving the static assets
+                    for the landing pages (.html, .css etc) and the service worker
                 </li>
                 <li>
-                    Users - a canister for each user which holds the user’s direct messages,
+                    <strong>Users</strong> - a canister for each user which holds the user’s direct messages,
                     references to the groups they are a member of, and serves as a wallet
                 </li>
                 <li>
-                    User Index - a canister which holds the registry of users and creates and
-                    upgrades user canisters
+                    <strong>User Index</strong> - a canister which holds the registry of users and creates
+                    and upgrades user canisters
                 </li>
                 <li>
-                    Groups - a canister for each chat group which holds the group members and the
-                    messages/events
+                    <strong>Groups</strong> - a canister for each chat group which holds the group members
+                    and the messages/events
                 </li>
                 <li>
-                    Group Index - a canister which holds the registry of groups and creates and
-                    upgrades group canisters
+                    <strong>Group Index</strong> - a canister which holds the registry of groups and
+                    creates and upgrades group canisters
                 </li>
                 <li>
-                    Notifications - a canister which holds a queue of notifications and a map of
-                    device subscriptions for each user
+                    <strong>Notifications</strong> - a canister which holds a queue of notifications
+                    and a map of device subscriptions for each user
                 </li>
                 <li>
-                    Proposals bot - a canister which can create OC proposals groups for the NNS and
-                    SNSs and syncs proposals from NNS/SNS governance canisters
+                    <strong>Proposals bot</strong> - a canister which can create OC proposals groups
+                    for the NNS and SNSs and syncs proposals from NNS/SNS governance canisters
                 </li>
                 <li>
-                    Online user aggregator - a canister which records the online status of OC users
-                    and periodically syncs them with the user index
+                    <strong>Online user aggregator</strong> - a canister which records the online status
+                    of OC users and periodically syncs them with the user index
                 </li>
                 <li>
-                    Cycles dispenser - a canister which is responsible for topping up the other
-                    canisters with cycles
+                    <strong>Cycles dispenser</strong> - a canister which is responsible for topping up
+                    the other canisters with cycles
                 </li>
                 <li>
-                    Notifications relay - an oracle hosted on an AWS ec2 instance which polls the
-                    Notifications canister and sends web push notifications
+                    <strong>Notifications relay</strong> - an oracle hosted on an AWS ec2 instance which
+                    polls the Notifications canister and sends web push notifications
                 </li>
                 <li>
-                    SMS relay - an oracle hosted on an AWS ec2 instance which polls the user index
-                    canister for user verification requests and sends SMSs containing verification
-                    codes
+                    <strong>SMS relay</strong> - an oracle hosted on an AWS ec2 instance which polls
+                    the user index canister for user verification requests and sends SMSs containing
+                    verification codes
+                </li>
+            </ul>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-2">Verifiable canister code</HashLinkTarget>
+
+            <p>
+                The <ExternalLink href={"https://github.com/open-ic/open-chat"}
+                    >OpenChat source code</ExternalLink> is built into the WASMs used by each type of
+                OpenChat canister in a repeatable way using docker. Anyone who pulls the OpenChat source
+                code and uses the docker build will produce identical WASM files.
+            </p>
+
+            <p>
+                Each canister exposes a metrics endpoint which is publicly accessible over the raw
+                domain. In each case these metrics include the git commit id which identifies the
+                specific source code revision used to build the WASM currently running on that
+                canister. For example here is the url of the metrics endpoint for the user index
+                canister: https://4bkt6-4aaaa-aaaaf-aaaiq-cai.raw.ic0.app/metrics.
+            </p>
+
+            <p>
+                You can use dfx to interrogate the sha256 hash of the WASM module for any given
+                canister id using the following command:
+            </p>
+
+            <code>dfx canister --network ic info 4bkt6-4aaaa-aaaaf-aaaiq-cai </code>
+
+            <p>
+                By building the WASM module for a canister at the given git commit, calculating its
+                sha256 hash, and comparing with the module hash returned by the IC using dfx, the
+                source code running on any canister can be verified.
+            </p>
+            <ul class="list">
+                <li>
+                    the canister ids of the top-level OpenChat canisters can be found in the
+                    canister_ids.json file in the root of the OpenChat repo
+                </li>
+                <li>
+                    the canister id of any group canister can be found in the url for that group in
+                    the OpenChat app
+                </li>
+                <li>
+                    likewise the canister id of any user canister can be found in the url of a
+                    direct chat with that user
+                </li>
+                <li>
+                    your own canister id can be found from the main menu in the advanced section of
+                    your profile
                 </li>
             </ul>
         </div>
