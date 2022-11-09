@@ -115,9 +115,20 @@ export default {
                         <head>
                             <title>OpenChat: Decentralised chat on the Internet Computer</title>
                             <meta charset="utf-8" />
+                            <meta name="theme-color" media="(prefers-color-scheme: light)" content="#22A7F2" />
+                            <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1B1C21" />
                             <meta name="viewport" content="width=device-width, initial-scale=1" />
                             <meta name="apple-mobile-web-app-title" content="OpenChat" />
                             <meta name="description" content="OpenChat is a fully featured chat application running end-to-end on the Internet Computer blockchain." />
+                            <meta property="og:title" content="OpenChat">
+                            <meta property="og:type" content="website" />
+                            <meta property="og:description" content="OpenChat is a fully featured chat application running end-to-end on the Internet Computer blockchain.">
+                            <meta property="og:image" media="(prefers-color-scheme: light)"  content="/share-oc-light.png">
+                            <meta property="og:image" media="(prefers-color-scheme: dark)"  content="/share-oc-dark.png">
+                            <meta property="og:url" content="https://oc.app">
+                            <meta name="twitter:card" content="summary_large_image">
+                            <meta property="og:site_name" content="OpenChat">
+                            <meta name="twitter:image:alt" content="OpenChat is a fully featured chat application running end-to-end on the Internet Computer blockchain.">
                             <link rel="manifest" href="/openchat.webmanifest" />
                             <link rel="apple-touch-startup-image" href="/apple-touch-icon.png" />
                             <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

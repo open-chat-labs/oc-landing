@@ -30,6 +30,7 @@ registerRoute(
             /screenshots\//,
             /brag_/,
             /burst_/,
+            /share-oc-/,
             /network12.*jpg/,
             /matt|hamish|julian/,
             /main-.*[css|js]$/,
