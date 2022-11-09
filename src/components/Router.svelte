@@ -75,10 +75,10 @@
 
 <div class="body">
     {#if $currentPath.path === "features"}
-        <svelte:component this={selected} on:login />
+        <svelte:component this={selected} on:login on:zoom />
     {:else}
         <Content>
-            <svelte:component this={selected} on:login />
+            <svelte:component this={selected} on:login on:zoom />
         </Content>
     {/if}
 </div>
