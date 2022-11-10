@@ -28,6 +28,7 @@ registerRoute(
     (route) => {
         return [
             /screenshots\//,
+            /architecture\//,
             /brag_/,
             /burst_/,
             /share-oc-/,

@@ -173,7 +173,7 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        z-index: 2;
+        @include z-index("phone-image");
         width: 100%;
 
         .feature-img {
@@ -188,7 +188,7 @@
 
     .content {
         position: relative;
-        z-index: 1;
+        @include z-index("features");
         padding: 0;
     }
 </style>

@@ -1,13 +1,22 @@
 <script lang="ts">
+    import { fade } from "svelte/transition";
     import { createEventDispatcher } from "svelte";
 
     export let url: string;
     export let alt: string;
 
     const dispatch = createEventDispatcher();
+
+    function onKeyDown(ev: KeyboardEvent) {
+        if (ev.key === "Escape") {
+            dispatch("collapse");
+        }
+    }
 </script>
 
-<div class="zoomed" on:click={() => dispatch("collapse")}>
+<svelte:window on:keydown={onKeyDown} />
+
+<div transition:fade|local class="zoomed" on:click={() => dispatch("collapse")}>
     <img src={url} {alt} />
 </div>
 

@@ -2,12 +2,17 @@
     import Headline from "./Headline.svelte";
     import CollapsibleCard from "./CollapsibleCard.svelte";
     import HashLinkTarget from "./HashLinkTarget.svelte";
-    import { copyUrl } from "../utils/linking";
+    import { copyUrl, scrollToHash } from "../utils/linking";
     import ZoomableImage from "./ZoomableImage.svelte";
     import ExternalLink from "./ExternalLink.svelte";
     import HashLink from "./HashLink.svelte";
+    import { currentPath } from "../stores/route";
 
     let linked: number | undefined = undefined;
+
+    $: {
+        linked = scrollToHash($currentPath.hash);
+    }
 </script>
 
 <div class="architecture">
@@ -32,7 +37,11 @@
         </div>
     </CollapsibleCard>
 
-    <CollapsibleCard on:copyUrl={copyUrl} open={linked === 2} id={"2"} title={"System in depth"}>
+    <CollapsibleCard
+        on:copyUrl={copyUrl}
+        open={linked === 2}
+        id={"2"}
+        title={"System components in depth"}>
         <span slot="subtitle">2</span>
         <div class="body" slot="body">
             <p>
@@ -134,8 +143,259 @@
                 or forward the same file multiple times without additional cost.
             </p>
 
-            <HashLinkTarget on:copyUrl={copyUrl} id="2-2">Verifiable canister code</HashLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-1-6">Notifications</HashLinkTarget>
 
+            <p>
+                The notifications canister holds a queue of notifications sent from user or group
+                canisters to be sent on to registered users using <ExternalLink
+                    href="https://web.dev/push-notifications-overview/"
+                    >web push notifications</ExternalLink
+                >. It also holds a set of web push subscriptions for each user.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-1-6">Proposals bot</HashLinkTarget>
+
+            <p>
+                The proposals bot canister syncs proposals from the NNS and each registered SNS with
+                the equivalent proposals group in OpenChat.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-1-7">Online users aggregator</HashLinkTarget>
+
+            <p>
+                The online users aggregator canister has one simple responsibility. Every 61
+                seconds, while the user is signed-in, the app calls mark_as_online on this canister
+                which adds it to a set of online user principals. In the background, on every
+                heartbeat, if this set is not empty the online users aggregator will call
+                c2c_mark_users_online on the user index canister with all of these users before then
+                emptying the set. The user index can then update the online status of its users
+                which are discovered by the app using the users endpoint. This canister exists
+                purely to take update load away from the user index canister.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-1-8">Assets canister</HashLinkTarget>
+
+            <p>
+                The assets canister (via the service worker) serves the static assets for the web
+                app. The response from the assets canister includes the asset data and a threshold
+                signature. The service worker uses the IC public key to verify the signature of each
+                asset and prove it has not been served by a malicious node and tampered with, before
+                returning the HTTP GET response. Thus any assets served by the asset canister can be
+                considered on-chain and are tamperproof. The service worker itself, and the root
+                html which loads it, cannot be served by the assets canister.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-1-9">Cycles dispenser</HashLinkTarget>
+
+            <p>
+                The cycles dispenser is a canister responsible for topping up the other canisters
+                with cycles automatically when they are running low.
+            </p>
+
+            <p>
+                Cycles can also be deposited into the cycles dispenser. It also has an ICP ledger
+                account which it will access if its cycles balance dips below a threshold and then
+                burn some into cycles. When OpenChat is controlled by its SNS, a simple ICP transfer
+                proposal can be made periodically to keep the whole system topped up with cycles.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-1-10">Deployment / Upgrade</HashLinkTarget>
+
+            <p>
+                User and group canisters are upgraded in batches via their respective index
+                canisters. These update functions on the index canisters can only be called by dev
+                team member principals and going forward, only by the SNS.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-1-11">Common endpoints</HashLinkTarget>
+
+            <p>
+                Every OpenChat canister exposes a public <ExternalLink
+                    href="https://4bkt6-4aaaa-aaaaf-aaaiq-cai.raw.ic0.app/metrics"
+                    >metrics endpoint</ExternalLink> which includes some common data (below) and also
+                data specific to the type of canister.
+            </p>
+
+            <ul class="list">
+                <li>memory used</li>
+                <li>time now (in milliseconds since unix epoch)</li>
+                <li>cycles balance</li>
+                <li>wasm version</li>
+                <li>git commit id</li>
+            </ul>
+
+            <p>
+                Also every OpenChat canister exposes a public <ExternalLink
+                    href="https://4bkt6-4aaaa-aaaaf-aaaiq-cai.raw.ic0.app/logs"
+                    >logs endpoint</ExternalLink
+                >.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-2">Off-chain components</HashLinkTarget>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-2-1">SMS relay oracle</HashLinkTarget>
+
+            <p>
+                This is used as part of the phone number verification process we currently use. Once
+                we start using NFID for proof of unique personhood we can remove it.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-2-2"
+                >Notification relay oracle</HashLinkTarget>
+
+            <p>
+                This is currently required to support push notifications. Once the Internet Computer
+                supports HTTP calls from a single replica, the notifications canister will be able
+                to directly send notifications to web push notifications servers.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-2-3"
+                >Landing page assets and service worker</HashLinkTarget>
+
+            <p>
+                Our landing page assets and custom service worker are currently served from an AWS
+                S3 bucket. Once DFINITY have made the changes laid out in the <ExternalLink
+                    href="https://forum.dfinity.org/t/boundary-node-roadmap/15562"
+                    >Boundary Node Roadmap</ExternalLink>
+                we will no longer need to fork the service worker and we can also move all the landing
+                page assets into the assets canister. At this point we will have no need for AWS s3.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-3">Frontend components</HashLinkTarget>
+
+            <ZoomableImage
+                on:zoom
+                url={"../architecture/frontend.png"}
+                alt="Frontend architecture" />
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-3-1">Landing pages</HashLinkTarget>
+
+            <p>
+                When a user navigates to <ExternalLink href="https://oc.app">oc.app</ExternalLink> for
+                the first time the root html is loaded from an AWS s3 bucket. In turn this loads the
+                landing page css and javascript plus the service worker javascript. Once the landing
+                page javascript is loaded it installs the service worker.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-3-2">Service worker</HashLinkTarget>
+
+            <p>
+                Our forked service worker allows us to modify the default behaviour in two key ways.
+                Firstly we can choose precisely when we route requests through to the asset
+                canister. This way, if the user is signed in we will route through to the asset
+                canister and thus serve the chat app, if not we will serve assets from AWS and the
+                user will remain on the landing page. Secondly, we can intercept all requests and
+                implement an optimum caching strategy for all resources.
+            </p>
+
+            <p>
+                The service worker will still simply pass through any calls to raw canister urls. We
+                request message files such as images from the OpenStorage bucket canisters over
+                HTTPS on the raw domain. Because these requests are not changed by the service
+                worker the responses can be cached by the browser’s standard HTTP cache.
+            </p>
+
+            <p>
+                The responses for update calls contain a threshold signature which the service
+                worker verifies using the Internet Computer public key.
+            </p>
+
+            <p>The service worker has also been modified to handle web push notifications.</p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-3-3">Chat app</HashLinkTarget>
+
+            <p>
+                The OpenChat app is written in typescript and Svelte and is composed of three
+                layers.
+            </p>
+
+            <ul class="list">
+                <li>
+                    the UI layer built using the <ExternalLink href="https://svelte.dev/"
+                        >Svelte compiler</ExternalLink>
+                </li>
+                <li>
+                    the OpenChat client library which exposes the app’s runtime state to the UI as a
+                    collection of reactive svelte stores
+                </li>
+                <li>
+                    the OpenChat agent which is responsible for calling canisters APIs and caching
+                    their responses
+                </li>
+            </ul>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-3-3-1">Agent</HashLinkTarget>
+
+            <p>
+                The OpenChat agent runs in a separate thread from the UI as a web worker which helps
+                keep the UI responsive. It exposes its API to the client library on top of the
+                browser’s <ExternalLink
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage"
+                    >post message API</ExternalLink
+                >.
+            </p>
+
+            <p>
+                It calls into the OpenChat canister APIs using the <ExternalLink
+                    href="https://github.com/dfinity/agent-js">Internet Computer agent</ExternalLink
+                >. Internally it uses the decorator pattern to implement a caching layer using
+                IndexDB.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-3-3-2">Client library</HashLinkTarget>
+
+            <p>
+                When the client library is loaded it registers a web worker running the OpenChat
+                agent which it wraps to provide an API to the UI layer. It also polls the agent to
+                keep important runtime state up to date in the form of a collection of reactive
+                svelte stores.
+            </p>
+
+            <p>
+                In general the readable runtime state is derived from a merging of the confirmed
+                server-side state (which it reads from the agent) and pending local updates (made
+                locally by the user). The pending updates are synced with the canister backend using
+                API calls and eventually become confirmed.
+            </p>
+
+            <p>It maintains local user settings in the browser’s local storage.</p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-3-3-3">User interface</HashLinkTarget>
+
+            <p>
+                The UI is composed of svelte components which call into APIs and react to svelte
+                stores exposed by the client library and UI specific svelte stores. This layer also
+                deals with the application routing, the global styling and theming, and
+                multi-language text resources.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-3-3-4">WebRTC</HashLinkTarget>
+
+            <p>
+                The client library uses <ExternalLink href="https://en.wikipedia.org/wiki/WebRTC"
+                    >WebRTC</ExternalLink> to instantaneously send messages and typing notifications
+                to online users directly between browsers. We always send messages via the Internet Computer
+                but will also send them over WebRTC sockets where possible. WebRTC is a securely encrypted
+                peer-2-peer protocol and so is a good fit for a decentralized chat application. However
+                there are a couple of off-chain components involved.
+            </p>
+
+            <p>
+                Currently we use third party STUN and signalling infrastructure to support WebRTC
+                (and will probably incorporate TURN servers for improved reliability in the future).
+            </p>
+
+            <p>We hope that these features will become supported on the IC itself in the future.</p>
+        </div>
+    </CollapsibleCard>
+
+    <CollapsibleCard
+        on:copyUrl={copyUrl}
+        open={linked === 3}
+        id={"3"}
+        title={"Verification of canister code"}>
+        <span slot="subtitle">3</span>
+        <div class="body" slot="body">
             <p>
                 The <ExternalLink href={"https://github.com/open-ic/open-chat"}
                     >OpenChat source code</ExternalLink> is built into the WASMs used by each type of
@@ -156,7 +416,7 @@
                 canister id using the following command:
             </p>
 
-            <code>dfx canister --network ic info 4bkt6-4aaaa-aaaaf-aaaiq-cai </code>
+            <code class="code">dfx canister --network ic info 4bkt6-4aaaa-aaaaf-aaaiq-cai </code>
 
             <p>
                 By building the WASM module for a canister at the given git commit, calculating its
@@ -184,12 +444,77 @@
         </div>
     </CollapsibleCard>
 
-    <div class="footnote">
-        Full details of the OpenChat architecture will be available here soon. In the meantime
-        please feel free to <a href="https://github.com/open-ic/open-chat" target="_blank"
-            >check out the source code</a
-        >.
-    </div>
+    <CollapsibleCard
+        last={true}
+        on:copyUrl={copyUrl}
+        open={linked === 4}
+        id={"4"}
+        title={"External system dependencies"}>
+        <span slot="subtitle">4</span>
+        <div class="body" slot="body">
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-1">Internet Identity (II)</HashLinkTarget>
+
+            <p>
+                II is the standard authentication mechanism supported by the InternetComputer and
+                the default authentication option for OpenChat and is described
+                <ExternalLink href="https://wiki.internetcomputer.org/wiki/Internet_Identity"
+                    >here.</ExternalLink
+                >.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-2">NFID</HashLinkTarget>
+
+            <p>
+                <ExternalLink href="https://docs.nfid.one/">NFID</ExternalLink> is a very interesting
+                alternative to II. It is actually built on top of II and provides a superset of functionality.
+                It also provides a revised UX on top of II and provides some other capabilities such
+                as social login, advanced phone number verification and in the future, any number of
+                other useful credentials e.g. email address or even full blown KYC.
+            </p>
+
+            <p>
+                NFID is implemented using its own smart contracts and by integrating with those of
+                II. It is developed and maintained by Identity Labs who have worked closely with
+                DFINITY’s cryptographers to ensure their system is secure. However at this point
+                their source code is not publicly available and they directly control the upgrade
+                process. In time they plan to open source and become an SNS controlled DAO which
+                would then put them on an equal footing with II in terms of security. Until that
+                point we expect to keep II as the default authentication provider for OpenChat.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-3">Ledgers</HashLinkTarget>
+
+            <p>
+                OpenChat currently integrates with the NNS ledger and is poised to integrate with
+                the OpenChat SNS ledger. It is also ready to integrate with any future Internet
+                Computer ledgers as they become available. This allows users to transfer tokens into
+                and out of their OpenChat wallet (canister) and to send tokens as messages to other
+                users.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-4">Governance</HashLinkTarget>
+
+            <p>
+                Likewise we integrate with the NNS governance canister and very soon the OpenChat
+                SNS governance canister. As they become available we will also integrate with the
+                SNS governance canisters for other projects. This enables special proposal groups in
+                OpenChat which allow users to see/filter proposals, chat about them in threads, and
+                conveniently vote with all linked neurons in one operation.
+            </p>
+
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-5">UserGeek</HashLinkTarget>
+
+            <p>
+                We integrate with <ExternalLink
+                    href="https://fbbjb-oyaaa-aaaah-qaojq-cai.raw.ic0.app/">UserGeek</ExternalLink> from
+                the browser to anonymously collect and analyze user app usage data. Below is the UserGeek
+                dashboard for OpenChat at the time of writing (1st Nov 2022 at 4pm UTC). We hope UserGeek
+                will support public dashboards so we can make this permanently available from our website.
+            </p>
+
+            <ZoomableImage on:zoom url={"../architecture/usergeek.png"} alt="UserGeek charts" />
+        </div>
+    </CollapsibleCard>
 </div>
 
 <style type="text/scss">
@@ -213,16 +538,6 @@
         margin-top: toRem(80);
     }
 
-    .arch {
-        margin-bottom: $sp4;
-        position: relative;
-        text-align: center;
-
-        img {
-            width: 100%;
-        }
-    }
-
     .list {
         text-align: left;
         list-style: none;
@@ -240,20 +555,12 @@
         }
     }
 
-    .draft {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-25deg);
-        opacity: 0.3;
-        color: var(--secondary);
-        text-transform: uppercase;
-        margin: 0;
+    .code {
+        margin-bottom: toRem(24);
+        display: inline-block;
 
-        font-size: toRem(200);
-
-        @include mobile() {
-            font-size: toRem(100);
+        &::before {
+            content: " > ";
         }
     }
 </style>

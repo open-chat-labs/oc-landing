@@ -275,7 +275,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 100;
+        @include z-index("overlay");
         pointer-events: all;
 
         img {

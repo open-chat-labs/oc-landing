@@ -1,6 +1,7 @@
 <script lang="ts">
     import ArrowExpand from "svelte-material-icons/ArrowExpand.svelte";
     import { createEventDispatcher } from "svelte";
+    import { mobileWidth } from "../stores/screenDimensions";
 
     const dispatch = createEventDispatcher();
 
@@ -10,6 +11,7 @@
     export let alt: string;
 
     function zoomin() {
+        if ($mobileWidth) return;
         dispatch("zoom", { url, alt });
         zoom = !zoom;
     }
@@ -21,9 +23,12 @@
 
 <div class="wrapper" on:click={zoomin}>
     <img class="zoomable" src={url} {alt} />
-    <div class="expand">
-        <ArrowExpand size={"1em"} color={"#000"} />
-    </div>
+
+    {#if !$mobileWidth}
+        <div class="expand">
+            <ArrowExpand size={"1em"} color={"#000"} />
+        </div>
+    {/if}
 </div>
 
 <style type="text/scss">

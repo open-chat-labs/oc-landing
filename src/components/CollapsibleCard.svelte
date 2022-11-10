@@ -110,6 +110,7 @@
     .icon {
         flex: 0 0 toRem(40);
         justify-self: flex-end;
+        text-align: right;
     }
 
     .body {
