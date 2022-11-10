@@ -21,8 +21,15 @@
 
 <style type="text/scss">
     .content {
+        text-align: left;
         @include content-padding();
+        margin-top: toRem(80);
+
+        @include mobile() {
+            margin-top: 0;
+        }
     }
+
     .arch {
         margin-bottom: $sp4;
         position: relative;

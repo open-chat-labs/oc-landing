@@ -47,7 +47,7 @@
     onMount(() => {
         setInterval(() => {
             counter = counter + 1;
-        }, 4000);
+        }, 6000);
     });
 </script>
 
