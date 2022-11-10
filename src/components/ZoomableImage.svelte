@@ -1,6 +1,5 @@
 <script lang="ts">
     import ArrowExpand from "svelte-material-icons/ArrowExpand.svelte";
-    import ArrowCollapse from "svelte-material-icons/ArrowCollapse.svelte";
     import { createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
@@ -20,9 +19,9 @@
     <div class="zoomed" style={`background-image: url(${url})`} />
 {/if}
 
-<div class="wrapper">
+<div class="wrapper" on:click={zoomin}>
     <img class="zoomable" src={url} {alt} />
-    <div class="expand" class:zoomed={zoom} on:click={zoomin}>
+    <div class="expand">
         <ArrowExpand size={"1em"} color={"#000"} />
     </div>
 </div>
@@ -32,11 +31,11 @@
         position: absolute;
         bottom: toRem(10);
         left: toRem(10);
-        cursor: pointer;
     }
 
     .wrapper {
         position: relative;
+        cursor: pointer;
     }
 
     .zoomable {
