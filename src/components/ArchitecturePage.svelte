@@ -202,12 +202,19 @@
             <HashLinkTarget on:copyUrl={copyUrl} id="2-1-10">Deployment / Upgrade</HashLinkTarget>
 
             <p>
-                User and group canisters are upgraded in batches via their respective index
-                canisters. These update functions on the index canisters can only be called by dev
-                team member principals and going forward, only by the SNS.
+                User and group canisters are upgraded in batches with an API call to their
+                respective index canisters which can only be called by dev team member principals
+                and going forward, only by the SNS.
             </p>
 
-            <HashLinkTarget on:copyUrl={copyUrl} id="2-1-11">Common endpoints</HashLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-1-11">APIs</HashLinkTarget>
+
+            <p>
+                The client-facing APIs all use candid which is the standard for the Internet
+                Computer. The internal canister-to-canister APIs use <ExternalLink
+                    href="https://msgpack.org/index.html">MessagePack</ExternalLink> which is efficient
+                and flexible allowing them to evolve easily by keeping backward compatibility.
+            </p>
 
             <p>
                 Every OpenChat canister exposes a public <ExternalLink
