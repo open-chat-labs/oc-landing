@@ -10,8 +10,6 @@
 
     $: depth = matches.length;
 
-    $: console.log(id, matches);
-
     $: size = $mobileWidth ? "14px" : "16px";
 </script>
 
@@ -71,6 +69,12 @@
 
         .copy {
             cursor: pointer;
+            opacity: 0;
+            transition: opacity 250ms ease-in-out;
+        }
+
+        &:hover .copy {
+            opacity: 1;
         }
 
         @include mobile() {
