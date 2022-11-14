@@ -32,7 +32,7 @@
 
             <ZoomableImage
                 on:zoom
-                url={"../architecture/simple.png"}
+                url={"../architecture/simple.jpg"}
                 alt="High level architecture" />
         </div>
     </CollapsibleCard>
@@ -51,7 +51,7 @@
 
             <ZoomableImage
                 on:zoom
-                url={"../architecture/complex.png"}
+                url={"../architecture/complex.jpg"}
                 alt="Complete architecture" />
 
             <HashLinkTarget on:copyUrl={copyUrl} id="2-1">Canister components</HashLinkTarget>
@@ -272,7 +272,7 @@
 
             <ZoomableImage
                 on:zoom
-                url={"../architecture/frontend.png"}
+                url={"../architecture/frontend.jpg"}
                 alt="Frontend architecture" />
 
             <HashLinkTarget on:copyUrl={copyUrl} id="2-3-1">Landing pages</HashLinkTarget>
