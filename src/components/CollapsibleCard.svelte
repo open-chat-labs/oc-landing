@@ -82,10 +82,17 @@
             display: flex;
             align-items: center;
             gap: $sp3;
-        }
 
-        .copy {
-            cursor: pointer;
+            .copy {
+                cursor: pointer;
+
+                opacity: 0;
+                transition: opacity 250ms ease-in-out;
+            }
+
+            &:hover .copy {
+                opacity: 1;
+            }
         }
 
         .subtitle {
@@ -105,11 +112,12 @@
                 }
             }
         }
-    }
 
-    .icon {
-        flex: 0 0 toRem(40);
-        justify-self: flex-end;
+        .icon {
+            flex: 0 0 toRem(40);
+            justify-self: flex-end;
+            text-align: right;
+        }
     }
 
     .body {

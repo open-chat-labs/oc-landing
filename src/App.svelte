@@ -9,6 +9,9 @@
     import "./theme/themes";
     import { themeStore, toggleTheme } from "./theme/themes";
     import { currentPath, isLandingPageRoute } from "./stores/route";
+    import ZoomedImage from "./components/ZoomedImage.svelte";
+
+    let zooming: { url: string; alt: string } | undefined = undefined;
 
     let debug = localStorage.getItem("openchat_theme_toggle") === "true";
     let authClient = AuthClient.create({
@@ -69,6 +72,10 @@
         );
     }
 
+    function zoomImage(ev: CustomEvent<{ url: string; alt: string }>) {
+        zooming = ev.detail;
+    }
+
     function login(): void {
         if ($loggingIn) return;
         doLogin($selectedAuthProviderStore)
@@ -111,6 +118,10 @@
 
 <Header on:login={login} on:logout={logout} />
 
+{#if zooming !== undefined}
+    <ZoomedImage on:collapse={() => (zooming = undefined)} url={zooming.url} alt={zooming.alt} />
+{/if}
+
 <div
     class="burst-wrapper"
     class:fixed={$currentPath.path === "features"}
@@ -125,7 +136,7 @@
 </div>
 
 <main id="main" class="main">
-    <Router on:login={login} on:scrollToTop={scrollToTop} />
+    <Router on:zoom={zoomImage} on:login={login} on:scrollToTop={scrollToTop} />
 </main>
 
 {#if debug}
@@ -264,7 +275,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 100;
+        @include z-index("overlay");
         pointer-events: all;
 
         img {

@@ -3,12 +3,13 @@
     import CollapsibleCard from "./CollapsibleCard.svelte";
     import Headline from "./Headline.svelte";
     import Link from "./Link.svelte";
-    import WhitepaperInternalLink from "./WhitepaperInternalLink.svelte";
-    import WhitepaperExternalLink from "./WhitepaperExternalLink.svelte";
+    import HashLink from "./HashLink.svelte";
+    import ExternalLink from "./ExternalLink.svelte";
     import GoogleChart from "./GoogleChart.svelte";
     import { toPixel } from "../stores/screenDimensions";
     import { currentPath } from "../stores/route";
-    import WhitepaperLinkTarget from "./WhitepaperLinkTarget.svelte";
+    import HashLinkTarget from "./HashLinkTarget.svelte";
+    import { copyUrl, scrollToHash } from "../utils/linking";
 
     let width = 0;
     let linked: number | undefined = undefined;
@@ -17,44 +18,8 @@
     $: widthRatio = $mobileWidth ? 1 : 0.7;
     $: totalWidth = (width - toPixel(padding)) * widthRatio; // 160px * 2 = 320px of padding which is 20rems
 
-    function copyUrl(ev: CustomEvent<string>) {
-        navigator.clipboard.writeText(
-            `${window.location.origin}${window.location.pathname}#${ev.detail}`
-        );
-    }
-
-    function scrollToHash(hash: string) {
-        const matches = /^(\d{1})(?:-(\d{1}))?(?:-(\d{1}))?$/.exec(hash);
-        if (!matches) {
-            linked = undefined;
-            return;
-        }
-
-        const [_, one] = matches;
-        linked = Number(one);
-
-        setTimeout(() => {
-            const target = document.getElementById(hash);
-            if (!target) {
-                console.log("target not found");
-                return;
-            }
-
-            const rect = target.getBoundingClientRect();
-            const top = rect.top + window.scrollY - 80;
-            console.log("Scrolling to ", window.scrollY, rect);
-            window.scrollTo({
-                top,
-            });
-            target.classList.add("highlight");
-            window.setTimeout(() => {
-                target.classList.remove("highlight");
-            }, 1000);
-        }, 200); // this 200 is the duration of the collapsible card transition :puke:
-    }
-
     $: {
-        scrollToHash($currentPath.hash);
+        linked = scrollToHash($currentPath.hash);
     }
 </script>
 
@@ -69,27 +34,26 @@
         <span slot="subtitle">1</span>
         <div class="body" slot="body">
             <p>
-                OpenChat is a fully featured chat application running on the <WhitepaperInternalLink
-                    id={"2"}>Internet Computer</WhitepaperInternalLink>
+                OpenChat is a fully featured chat application running on the <HashLink id={"2"}
+                    >Internet Computer</HashLink>
                 blockchain similar to WhatsApp, Signal and Telegram, and will soon be getting a major
                 new capability called “communities” which are like Slack workspaces or Discord servers.
             </p>
             <p>
                 It is a responsive, progressive web application (PWA) and as such scales to take
                 advantage of any screen size and integrates with devices in a similar way to native
-                apps, with notifications on desktop and Android devices, and on <WhitepaperExternalLink
+                apps, with notifications on desktop and Android devices, and on <ExternalLink
                     href="https://www.apple.com/ios/ios-16/features/"
-                    >iOS from next year</WhitepaperExternalLink
+                    >iOS from next year</ExternalLink
                 >. You can find the full development roadmap <Link path={"roadmap"}>here</Link> .
             </p>
             <p>
-                The app is <WhitepaperExternalLink href="https://github.com/dfinity-lab/open-chat"
-                    >open source</WhitepaperExternalLink>
+                The app is <ExternalLink href="https://github.com/dfinity-lab/open-chat"
+                    >open source</ExternalLink>
                 and runs as a collection of
-                <WhitepaperInternalLink id={"2-1"}>canister smart-contracts</WhitepaperInternalLink
-                >. It is possible to see the code running on any canister at any time with a link
-                back to the particular version in source control and to independently verify this is
-                true.
+                <HashLink id={"2-1"}>canister smart-contracts</HashLink>. It is possible to see the
+                code running on any canister at any time with a link back to the particular version
+                in source control and to independently verify this is true.
             </p>
             <p>
                 A canister is created for each user which holds their direct chat data, links to the
@@ -107,12 +71,12 @@
             <p>
                 However, the ground-breaking difference between OpenChat and other similar apps, is
                 that it will soon be governed as a DAO with its own token called CHAT, analogous to
-                ICP. The DAO will be realized by a system called the <WhitepaperExternalLink
+                ICP. The DAO will be realized by a system called the <ExternalLink
                     href="https://internetcomputer.org/docs/current/tokenomics/sns/sns-intro-tokens"
-                    >SNS</WhitepaperExternalLink>
-                (Service Nervous System) analogous to the <WhitepaperExternalLink
+                    >SNS</ExternalLink>
+                (Service Nervous System) analogous to the <ExternalLink
                     href="https://internetcomputer.org/docs/current/tokenomics/nns/nns-intro"
-                    >NNS</WhitepaperExternalLink> (Network Nervous System) on the Internet Computer.
+                    >NNS</ExternalLink> (Network Nervous System) on the Internet Computer.
             </p>
             <p>
                 The focus of the founding dev team has been first and foremost on building a rich,
@@ -131,12 +95,12 @@
         <span slot="subtitle">2</span>
         <div class="body" slot="body">
             <p>
-                The <WhitepaperExternalLink
+                The <ExternalLink
                     href="https://medium.com/dfinity/the-internet-computer-for-geeks-a-new-dfinity-white-paper-ecb075b2d525"
-                    >Internet Computer</WhitepaperExternalLink> (IC) is a decentralized global compute
-                platform which uses ground-breaking blockchain technology to achieve consensus within
-                subnets. It is globally distributed in numerous independent data centers, is tamper proof
-                and unstoppable.
+                    >Internet Computer</ExternalLink> (IC) is a decentralized global compute platform
+                which uses ground-breaking blockchain technology to achieve consensus within subnets.
+                It is globally distributed in numerous independent data centers, is tamper proof and
+                unstoppable.
             </p>
             <p>
                 It can serve applications fully on-chain without needing any centralized frontend
@@ -145,8 +109,7 @@
                 computation and storage costs are paid by the app/service providers rather than
                 users.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="2-1"
-                >Canister smart-contracts</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-1">Canister smart-contracts</HashLinkTarget>
             <p>
                 Applications on the IC are composed of canister smart-contracts organized into
                 subnets. A subnet can contain 100,000s of canisters and is composed of (typically
@@ -169,15 +132,15 @@
                 blockchain comes into play but is beyond the scope of this document.
             </p>
             <p>
-                Canisters have the property of <WhitepaperExternalLink
+                Canisters have the property of <ExternalLink
                     href="https://en.wikipedia.org/wiki/Persistence_(computer_science)"
-                    >orthogonal persistence</WhitepaperExternalLink> which means as a programmer you
-                just write data objects to memory and they are automatically persisted by the system.
-                This removes the need for a database and is one of the reasons writing and running applications
-                on the IC is simplified compared to traditional IT stacks.
+                    >orthogonal persistence</ExternalLink> which means as a programmer you just write
+                data objects to memory and they are automatically persisted by the system. This removes
+                the need for a database and is one of the reasons writing and running applications on
+                the IC is simplified compared to traditional IT stacks.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="2-2"
-                >Network Nervous System (NNS)</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="2-2"
+                >Network Nervous System (NNS)</HashLinkTarget>
             <p>
                 A key feature of the Internet Computer blockchain is the Network Nervous System
                 (NNS), an open algorithmic governance system that oversees the network and the token
@@ -191,8 +154,8 @@
                 turn they can burn ICP to fuel the computation of their canisters.
             </p>
             <p>
-                <WhitepaperExternalLink href="https://internetcomputer.org/nns/"
-                    >Read here</WhitepaperExternalLink> for more information on the NNS.
+                <ExternalLink href="https://internetcomputer.org/nns/">Read here</ExternalLink> for more
+                information on the NNS.
             </p>
         </div>
     </CollapsibleCard>
@@ -200,7 +163,7 @@
     <CollapsibleCard on:copyUrl={copyUrl} open={linked === 3} id={"3"} title={"OpenChat DAO"}>
         <span slot="subtitle">3</span>
         <div class="body" slot="body">
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-1">Summary</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="3-1">Summary</HashLinkTarget>
             <ul class="list">
                 <li>
                     The OpenChat DAO is being formed to operate and steer the direction of OpenChat
@@ -218,15 +181,13 @@
                     this DAO and associated public good.
                 </li>
             </ul>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-2"
-                >Creation of the DAO</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="3-2">Creation of the DAO</HashLinkTarget>
             <p>
                 The OpenChat SNS will be created from the latest NNS blessed SNS canisters by the
-                founding dev team. Its <WhitepaperInternalLink id="5-2"
-                    >initial configuration</WhitepaperInternalLink> will be held permanently by the SNS
-                and be publicly inspectable. At this point control of the existing OpenChat operating
-                canisters will be transferred from the founding dev team to the SNS, such that, henceforth,
-                only the SNS may change OpenChat.
+                founding dev team. Its <HashLink id="5-2">initial configuration</HashLink> will be held
+                permanently by the SNS and be publicly inspectable. At this point control of the existing
+                OpenChat operating canisters will be transferred from the founding dev team to the SNS,
+                such that, henceforth, only the SNS may change OpenChat.
             </p>
             <p>
                 To initiate creation of the OpenChat DAO an NNS proposal will be submitted
@@ -246,8 +207,7 @@
                 At this point the DAO creation is completed and the running OpenChat service should
                 be considered a public good.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-3"
-                >Control of the DAO</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="3-3">Control of the DAO</HashLinkTarget>
             <p>
                 After the decentralization sale the SNS will be in control of the dapp including its
                 treasury of CHAT and ICP. In other words, only the SNS will be able to upgrade the
@@ -262,9 +222,8 @@
                 an SNS by stopping an SNS canister(s). One example could be if an IC app were to
                 copy the source code of another IC app, breaking its licensing terms.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-4"
-                >Governance of the DAO</WhitepaperLinkTarget>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-4-1">Proposals</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="3-4">Governance of the DAO</HashLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="3-4-1">Proposals</HashLinkTarget>
             <p>SNS proposals have the following types.</p>
             <ul class="list">
                 <li>
@@ -280,8 +239,8 @@
                 </li>
                 <li>
                     <strong>SNS config change</strong> proposals allow various SNS parameters to be
-                    changed. Part of the boot-strapping process for the SNS is to provide <WhitepaperInternalLink
-                        id="5-2">initial values for all of these parameters</WhitepaperInternalLink>
+                    changed. Part of the boot-strapping process for the SNS is to provide <HashLink
+                        id="5-2">initial values for all of these parameters</HashLink>
                     which will be covered later.
                 </li>
                 <li>
@@ -319,23 +278,20 @@
             </p>
             <ul class="list">
                 <li>
-                    One or more proposals to transfer some ICP and CHAT to one or more <WhitepaperExternalLink
+                    One or more proposals to transfer some ICP and CHAT to one or more <ExternalLink
                         href="https://docs.google.com/document/d/1V4CLsujL9HeZt3eP-LSr3hBS5iGcmNfa17d7ZaVKmLc/edit#heading=h.bn2twif6p6wt"
-                        >DEXes</WhitepaperExternalLink> to create initial liquidity pools to enable trading
-                    of CHAT
+                        >DEXes</ExternalLink> to create initial liquidity pools to enable trading of
+                    CHAT
                 </li>
                 <li>
                     The core dev team will engage with the community and then use a motion proposal
                     with a development roadmap for the following quarter which will likely include
-                    designing and building the <WhitepaperInternalLink id="4-1-2"
-                        >communities
-                    </WhitepaperInternalLink> feature and/or a <WhitepaperInternalLink id="4-2"
-                        >user reward system</WhitepaperInternalLink
-                    >.
+                    designing and building the <HashLink id="4-1-2">communities</HashLink> feature and/or
+                    a <HashLink id="4-2">user reward system</HashLink>.
                 </li>
             </ul>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-4-2"
-                >Voting and voting rewards</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="3-4-2"
+                >Voting and voting rewards</HashLinkTarget>
             <p>
                 Proposals are used to govern all aspects of the OpenChat dapp. Token holders are
                 rewarded for participating in votes on proposals so that decisions are decentralized
@@ -382,9 +338,8 @@
                 Voting rewards are generated by the SNS and accumulate in neurons that have
                 participated in voting as maturity. Maturity can be disbursed to an account
                 according to
-                <WhitepaperExternalLink
-                    href="https://wiki.internetcomputer.org/wiki/Maturity_modulation"
-                    >maturity modulation</WhitepaperExternalLink> Alternatively it can be staked or auto-staked.
+                <ExternalLink href="https://wiki.internetcomputer.org/wiki/Maturity_modulation"
+                    >maturity modulation</ExternalLink> Alternatively it can be staked or auto-staked.
                 For a given proposal vote, the voting reward earned by a given neuron is in proportion
                 to its voting power compared to the overall voting power of participating neurons. The
                 voting rewards are distributed daily and take into account all of the votes that ended
@@ -395,13 +350,11 @@
                 than this figure.
             </p>
             <p>
-                Please refer to <WhitepaperExternalLink
+                Please refer to <ExternalLink
                     href="https://docs.google.com/document/d/1Ty25xNbXKIs8YiXlmpT8vuPApVzjp1aTJL1WXySOUto/edit#heading=h.rrc8s7i3mbk6"
-                    >this document</WhitepaperExternalLink> for a full description of SNS voting and
-                rewards.
+                    >this document</ExternalLink> for a full description of SNS voting and rewards.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-5"
-                >The power of the DAO</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="3-5">The power of the DAO</HashLinkTarget>
             <p>
                 There are many factors which will influence the success of OpenChat. It must have a
                 great development team building an app with a great user experience. It must have
@@ -410,7 +363,7 @@
                 hard to break into a market with such established players. A crucial ingredient
                 available to OpenChat to help it succeed is <em>tokenization</em>.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-5-1">Growth</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="3-5-1">Growth</HashLinkTarget>
             <p>
                 The OpenChat system will automatically reward users with CHAT tokens for using the
                 app positively and for inviting friends and family to join if they also go on to use
@@ -419,7 +372,7 @@
                 tokens are invested in the future success of OpenChat and so a powerful team of
                 100,000s of advocates is created helping drive growth further.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="3-5-2">Trust</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="3-5-2">Trust</HashLinkTarget>
             <p>
                 An essential condition for tokenization to be viable in the first place is <em
                     >trust</em
@@ -443,30 +396,29 @@
             <ul class="list">
                 <li>
                     It can be staked as neurons (very similar to ICP neurons) allowing token holders
-                    to participate in the governance of OpenChat by <WhitepaperInternalLink
-                        id="3-4-2">voting</WhitepaperInternalLink> on SNS proposals, and by doing so,
-                    earn voting rewards. These rewards increase the longer the tokens are staked and
-                    so token holders are incentivised to act in the long term interests of OpenChat.
+                    to participate in the governance of OpenChat by <HashLink id="3-4-2"
+                        >voting</HashLink> on SNS proposals, and by doing so, earn voting rewards. These
+                    rewards increase the longer the tokens are staked and so token holders are incentivised
+                    to act in the long term interests of OpenChat.
                 </li>
                 <li>
-                    It can be used by OpenChat users to pay for <WhitepaperInternalLink id={"4-1"}
-                        >premium features</WhitepaperInternalLink
+                    It can be used by OpenChat users to pay for <HashLink id={"4-1"}
+                        >premium features</HashLink
                     >.
                 </li>
                 <li>
                     It can be used to reward contributions to the evolution or growth of the
-                    OpenChat service either through automated <WhitepaperInternalLink id="4-2"
-                        >user rewards</WhitepaperInternalLink> or by SNS proposal.
+                    OpenChat service either through automated <HashLink id="4-2"
+                        >user rewards</HashLink> or by SNS proposal.
                 </li>
             </ul>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-1"
-                >Premium features</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-1">Premium features</HashLinkTarget>
             <p>
                 There are many ways OpenChat could evolve to allow users to spend their CHAT tokens
                 to pay for premium features within the dapp. It is likely the underlying price for
                 premium features will be in CYCLES because these have a stable value (relative to
-                <WhitepaperExternalLink href="https://en.wikipedia.org/wiki/Special_drawing_rights"
-                    >XDR</WhitepaperExternalLink
+                <ExternalLink href="https://en.wikipedia.org/wiki/Special_drawing_rights"
+                    >XDR</ExternalLink
                 >) and then based on the exchange rate of CHAT->ICP (which we can request from
                 DEXes) and the exchange rate of ICP->CYCLES (obtained by calling the cycles minting
                 canister on the NNS subnet) we will provide a dynamic price for features in CHAT
@@ -477,8 +429,8 @@
                 OpenChat user canister which acts as a wallet. OpenChat will transfer the payment
                 from the user’s canister to the SNS treasury account and then grant the feature.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-1-1"
-                >Current premium features</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-1-1"
+                >Current premium features</HashLinkTarget>
             <p>
                 There are already some premium features that OpenChat offers which for the time
                 being can be obtained either by paying with ICP or verifying a phone number.
@@ -490,7 +442,7 @@
                 <li>On demand message translation</li>
                 <li>Increased group creation limit from 10 to 25</li>
             </ul>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-1-2">Communities</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-1-2">Communities</HashLinkTarget>
             <p>
                 A key feature we are planning to build soon is called “communities”. These will be
                 like Slack workspaces or Discord servers and consist of a set of users, groups, and
@@ -502,8 +454,8 @@
                 monetise their communities and revenue share with OpenChat by, for example, charging
                 for admittance to a community.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-1-3"
-                >Other possible future premium features</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-1-3"
+                >Other possible future premium features</HashLinkTarget>
             <p>
                 Here are some more features that OpenChat could offer and charge for in the future.
             </p>
@@ -518,20 +470,20 @@
                     messages)
                 </li>
             </ul>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-1-4"
-                >Additional potential revenue</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-1-4"
+                >Additional potential revenue</HashLinkTarget>
             <ul class="list">
                 <li>Provide chat functionality to other IC apps with an OpenChat integration</li>
                 <li>Transaction charge on sending tokens as messages</li>
                 <li>Transaction charge to use an integrated token swap service</li>
             </ul>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-2">User rewards</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-2">User rewards</HashLinkTarget>
             <p>
                 The design of the user reward system has not been confirmed yet and we will consult
                 with the OpenChat community before finalizing the design and making a proposal to
                 carry it out. This system can of course evolve over time with further proposals.
-                Once it is ready, a proposal will be made to transfer the <WhitepaperInternalLink
-                    id="5-1-3">reserved 38% of the CHAT</WhitepaperInternalLink>
+                Once it is ready, a proposal will be made to transfer the <HashLink id="5-1-3"
+                    >reserved 38% of the CHAT</HashLink>
                 from the SNS governance canister to the OpenChat root canister where it will be available
                 to OpenChat to algorithmically reward dapp users.
             </p>
@@ -544,8 +496,7 @@
                 challenge is made harder still because any system designed to reward users will,
                 like all OpenChat code, be open source and visible to anyone.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-2-1"
-                >User reputation</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-2-1">User reputation</HashLinkTarget>
             <p>
                 We think a reward system should be based on reputation. Each user would have a
                 reputation score taking into account positive and negative activity on the dapp.
@@ -560,7 +511,7 @@
                 We can also derive a positive signal for a user if they hold tokens (ICP, CHAT, BTC)
                 in their OpenChat account, or even better, neurons.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="4-2-2">Rewards</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="4-2-2">Rewards</HashLinkTarget>
             <p>
                 The reward algorithm can use reputation to determine which users are rewarded and
                 the value of the reward. We could either give a small reward to lots of users or
@@ -587,8 +538,7 @@
         title={"Token allocation at SNS genesis"}>
         <span slot="subtitle">5</span>
         <div class="body" slot="body">
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-1"
-                >Initial token allocation</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="5-1">Initial token allocation</HashLinkTarget>
             <p>
                 The SNS will be initialized with 1 billion CHAT tokens allocated in the following
                 proportions.
@@ -599,8 +549,7 @@
                 originalWidth={730}
                 originalHeight={380}
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTR-Snm-_Eq_UcQ5ClcdjGTLg4UOyvUl04rZXpY1W0n_yLuKJkANs-umrNS4F469qZoI17w1Nci08Sf/pubchart?oid=368502713&amp;format=interactive&amp;w=1000px" />
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-1-1"
-                >NNS controlled (yellow)</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="5-1-1">NNS controlled (yellow)</HashLinkTarget>
             <p>
                 The NNS will initially be allocated 29% of the total supply of CHAT tokens. 20% will
                 be immediately put up for sale to decentralize the governance and raise funds. The
@@ -616,12 +565,12 @@
                 immediately disbursable to liquid CHAT tokens. Each subsequent neuron will have a
                 dissolve delay one month greater than the previous, so from 1-12 months.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-1-2"
-                >Founders and funders (pink)</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="5-1-2"
+                >Founders and funders (pink)</HashLinkTarget>
             <p>
                 OpenChat has been built by a team of 3 developers since January 2021 and has
-                received seed funding from the <WhitepaperExternalLink href="https://dfinity.org/"
-                    >DFINITY foundation</WhitepaperExternalLink
+                received seed funding from the <ExternalLink href="https://dfinity.org/"
+                    >DFINITY foundation</ExternalLink
                 >. Each of the 3 founding developers will be allocated a share of 4% of the CHAT
                 tokens and the DFINITY foundation will be allocated a share of 6%. As above each
                 party will receive their share as a basket of 13 equal value neurons, the first
@@ -657,16 +606,14 @@
                 ensure that the founding team remains committed to the project in the long term and
                 cannot “rug-pull” community token holders.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-1-3"
-                >SNS treasury (blue)</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="5-1-3">SNS treasury (blue)</HashLinkTarget>
             <p>
                 After the decentralization sale the SNS will be left with a treasury of the
                 remaining 53% of CHAT tokens.
             </p>
             <p>
-                The bulk, 38% percent, will be used over time to automatically <WhitepaperInternalLink
-                    id="4-2">reward users</WhitepaperInternalLink> who positively contribute and help
-                OpenChat grow.
+                The bulk, 38% percent, will be used over time to automatically <HashLink id="4-2"
+                    >reward users</HashLink> who positively contribute and help OpenChat grow.
             </p>
             <p>
                 13% will be reserved to pay community bounties, by SNS proposal, to compensate
@@ -677,18 +624,17 @@
                 The remaining 2% will be used to provide initial liquidity pools for DEXes
                 (decentralized exchanges). In order for CHAT tokens to be traded it is necessary to
                 list CHAT on one or more exchanges. The intention is to trade on IC based DEXes. To
-                list CHAT on a DEX implementing an <WhitepaperExternalLink
+                list CHAT on a DEX implementing an <ExternalLink
                     href="https://academy.binance.com/en/articles/what-is-an-automated-market-maker-amm"
-                    >AMM</WhitepaperExternalLink> it is necessary to provide a liquidity pool of CHAT
-                backed by another token, in our case ICP raised from the decentralization sale. We plan
-                to make CHAT available on several DEXes as and when they are available. For each DEX
-                it will be necessary to create a proposal to transfer some CHAT from the SNS to the DEX,
-                and another proposal to transfer an equal value of ICP from the SNS to the DEX. The plan
+                    >AMM</ExternalLink> it is necessary to provide a liquidity pool of CHAT backed by
+                another token, in our case ICP raised from the decentralization sale. We plan to make
+                CHAT available on several DEXes as and when they are available. For each DEX it will
+                be necessary to create a proposal to transfer some CHAT from the SNS to the DEX, and
+                another proposal to transfer an equal value of ICP from the SNS to the DEX. The plan
                 is to “seed” these DEXes with the 2% of CHAT tokens set aside for this purpose although
                 this might not all happen at once.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-2"
-                >Initial SNS configuration</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="5-2">Initial SNS configuration</HashLinkTarget>
             <p>
                 The SNS will initially be configured with the values shown in the tables below which
                 can all subsequently be changed by proposal.
@@ -717,8 +663,8 @@
                 <div>Percentage of total supply that will be generated annually for rewards</div>
                 <div>5%</div>
             </div>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-3"
-                >SNS decentralization sale configuration</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="5-3"
+                >SNS decentralization sale configuration</HashLinkTarget>
             <p>The decentralization sale will be configured with the values shown below.</p>
             <div class="tab">
                 <div>The total number of CHAT tokens to be sold</div>
@@ -735,8 +681,7 @@
                 <div>1</div>
             </div>
 
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="5-3-1"
-                >Valuation range</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="5-3-1">Valuation range</HashLinkTarget>
 
             <p>
                 The reason to impose a maximum target is to give participants a minimum bound on the
@@ -759,9 +704,8 @@
             <p>
                 Immediately after the decentralization sale the SNS will have an ICP ledger account
                 with the ICP raised in the sale and a CHAT ledger account with 530M tokens. The plan
-                for these CHAT tokens is <WhitepaperInternalLink id="5-1-3"
-                    >described above</WhitepaperInternalLink> but the treasury is available to be used
-                by the DAO through proposals as it sees fit.
+                for these CHAT tokens is <HashLink id="5-1-3">described above</HashLink> but the treasury
+                is available to be used by the DAO through proposals as it sees fit.
             </p>
             <p>
                 Soon after the decentralization sale, as and when DEXes are available, proposals
@@ -780,17 +724,14 @@
             </p>
             <p>
                 Any liquid ICP in the reserve could be used directly, or the DAO could swap CHAT
-                from the CHAT reserve for ICP at a DEX, and use it to fund expenses such as <WhitepaperInternalLink
+                from the CHAT reserve for ICP at a DEX, and use it to fund expenses such as <HashLink
                     id="6-1">
                     cycles for hosting
-                </WhitepaperInternalLink>, <WhitepaperInternalLink id="6-2"
-                    >3rd party services</WhitepaperInternalLink
-                >, and potentially later for <WhitepaperInternalLink id="6-3">
-                    paying the development team
-                </WhitepaperInternalLink>.
+                </HashLink>, <HashLink id="6-2">3rd party services</HashLink>, and potentially later
+                for <HashLink id="6-3">paying the development team</HashLink>.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="6-1"
-                >ICP for cycles to fund hosting</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="6-1"
+                >ICP for cycles to fund hosting</HashLinkTarget>
             <p>
                 Initially, proposals will be created to transfer ICP as needed to the account of a
                 designated developer who will use it to buy cycles and top-up the root OpenChat
@@ -798,8 +739,7 @@
                 automatically create a proposal when it is below a threshold of cycles to transfer
                 ICP to itself and burn it for cycles to run the dapp.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="6-2"
-                >3rd party services</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="6-2">3rd party services</HashLinkTarget>
             <p>
                 The intention is for OpenChat to have no off-chain dependencies so that it is not
                 necessary to trust any human agent, for example to transact in FIAT currencies. At
@@ -823,13 +763,12 @@
                 </li>
                 <li>
                     Serving the dapp on oc.app (hosted on AWS). Eventually this capability will be
-                    built into the boundary nodes - <WhitepaperExternalLink
+                    built into the boundary nodes - <ExternalLink
                         href="https://forum.dfinity.org/t/boundary-node-roadmap/15562"
-                        >see here</WhitepaperExternalLink>
+                        >see here</ExternalLink>
                 </li>
             </ul>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="6-3"
-                >Pay the development team</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="6-3">Pay the development team</HashLinkTarget>
             <p>
                 Initially at least DFINITY will continue to fund the OpenChat development team and
                 thus a core contributor to the OpenChat open source project. DFINITY is expecting to
@@ -856,8 +795,7 @@
         title={"Tokenomics"}>
         <span slot="subtitle">7</span>
         <div class="body" slot="body">
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="7-1"
-                >Total supply levers</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="7-1">Total supply levers</HashLinkTarget>
             <p>
                 At genesis the total supply of CHAT tokens will be 1B. The supply will increase if
                 more tokens are minted and decrease if tokens are burned.
@@ -865,17 +803,16 @@
             <p>
                 The SNS is configured to generate 5% of the total supply annually to pay voting
                 rewards to participating neurons. This value of 5% could be subsequently changed by
-                proposal. Voting rewards accumulate in participating neurons as <WhitepaperExternalLink
+                proposal. Voting rewards accumulate in participating neurons as <ExternalLink
                     href="https://wiki.internetcomputer.org/wiki/Maturity_modulation"
-                    >maturity</WhitepaperExternalLink
+                    >maturity</ExternalLink
                 >. At the point a neuron’s maturity is disbursed it is burned and the corresponding
                 value of CHAT tokens will be minted by the SNS ledger to an account. It is also
                 possible for the SNS to mint tokens by proposal although it is unlikely the OpenChat
                 DAO will elect to do this.
             </p>
             <p>The only way the SNS can burn tokens is by proposal.</p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="7-2"
-                >Income and outgoings</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="7-2">Income and outgoings</HashLinkTarget>
             <p>
                 At genesis the SNS will have a treasury of ICP from the decentralization sale and
                 530M CHAT tokens.
@@ -915,7 +852,7 @@
                 originalWidth={943}
                 originalHeight={582}
                 src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTR-Snm-_Eq_UcQ5ClcdjGTLg4UOyvUl04rZXpY1W0n_yLuKJkANs-umrNS4F469qZoI17w1Nci08Sf/pubchart?oid=285935273&amp;format=interactive" />
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="7-3">Token price</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="7-3">Token price</HashLinkTarget>
             <p>There are various factors that will influence the price of CHAT tokens such as</p>
             <ul class="list">
                 <li>Total supply</li>
@@ -941,10 +878,10 @@
                 There are various tokenomics parameters which can affect the proportion of CHAT that
                 is locked up. These include the max dissolve delay, the dissolve delay bonus, min
                 dissolve delay to vote, max age, max age bonus, and voting reward rate. We have
-                carefully chosen <WhitepaperInternalLink id="5-2"
-                    >initial values</WhitepaperInternalLink> for these parameters which we believe provide
-                a good balance of incentives but these are all levers available to the DAO to allow it
-                to influence the total and liquid supply and therefore the price if so desired.
+                carefully chosen <HashLink id="5-2">initial values</HashLink> for these parameters which
+                we believe provide a good balance of incentives but these are all levers available to
+                the DAO to allow it to influence the total and liquid supply and therefore the price
+                if so desired.
             </p>
             <p>
                 Consider the SNS treasury of CHAT tokens. These tokens are liquid but are only being
@@ -960,16 +897,14 @@
                 higher to encourage more user growth but in the short term that could negatively
                 impact price by increasing the liquid supply.
             </p>
-            <WhitepaperLinkTarget on:copyUrl={copyUrl} id="7-4"
-                >Voting power over time</WhitepaperLinkTarget>
+            <HashLinkTarget on:copyUrl={copyUrl} id="7-4">Voting power over time</HashLinkTarget>
             <p>
                 The following diagram depicts a projection of the voting power over time segmented
                 by founding dev team & seed funders and the rest of the token holder community. This
-                projection is derived on the basis of the <WhitepaperInternalLink id="5-2"
-                    >initial SNS parameter values</WhitepaperInternalLink
-                >, the <WhitepaperInternalLink id="5-1"
-                    >initial token distribution</WhitepaperInternalLink
-                >, intrinsic properties of founder/funder neurons and some assumptions:
+                projection is derived on the basis of the <HashLink id="5-2"
+                    >initial SNS parameter values</HashLink
+                >, the <HashLink id="5-1">initial token distribution</HashLink>, intrinsic
+                properties of founder/funder neurons and some assumptions:
             </p>
             <ul class="list">
                 <li>The SNS will distribute 20% of its treasury annually</li>
@@ -989,9 +924,9 @@
                 </li>
             </ul>
             <p>
-                The full model used to plot this graph can be found in <WhitepaperExternalLink
+                The full model used to plot this graph can be found in <ExternalLink
                     href="https://docs.google.com/spreadsheets/d/1-LuBsCXxXdpia0-CDEY5eFveczp3eQdM3BponEX3Tq0/edit#gid=1167954061"
-                    >this spreadsheet</WhitepaperExternalLink
+                    >this spreadsheet</ExternalLink
                 >.
             </p>
             <GoogleChart

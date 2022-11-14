@@ -154,7 +154,7 @@
         position: absolute;
         bottom: 0;
         height: toRem(30);
-        z-index: 1;
+        @include z-index("powered-by");
 
         @include mobile() {
             bottom: toRem(50);
