@@ -26,8 +26,8 @@
                 Computer which provides chat functionality. The canisters provide an API and serve
                 the assets for the OpenChat web app, and going forwards, will allow 3rd-party
                 services to integrate chat. The following diagram shows the OpenChat system in
-                orange with its various external dependencies. The blue boxes are services running
-                on the Internet Computer and the gray boxes are off-chain.
+                yellow with its various external dependencies. The orange boxes are services running
+                on the Internet Computer and the blue boxes are off-chain.
             </p>
 
             <ZoomableImage
@@ -45,8 +45,10 @@
         <span slot="subtitle">2</span>
         <div class="body" slot="body">
             <p>
-                The OpenChat system architecture has been driven by both the requirements and by the
-                current and anticipated future characteristics of the Internet Computer.
+                This diagram shows the OpenChat system enclosed in the box with the dashed orange border, 
+                decomposed into the various deployable units. The solid links represent Internet Computer 
+                updates which go through blockchain consensus. The green boxes are all canisters and the 
+                light gray boxes are services hosted on AWS.                
             </p>
 
             <ZoomableImage
