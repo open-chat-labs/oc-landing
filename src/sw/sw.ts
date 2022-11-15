@@ -284,7 +284,7 @@ async function showNotification(notification: Notification): Promise<void> {
     }
 
     if (closeExistingNotifications) {
-        // We need to close any exiting notifications for the same tag otherwise the new notification will not be shown
+        // We need to close any existing notifications for the same tag otherwise the new notification will not be shown
         const existing = await self.registration.getNotifications({
             tag: path,
         });

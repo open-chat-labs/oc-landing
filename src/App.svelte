@@ -39,6 +39,12 @@
             }
         });
         captureReferralCode();
+
+        navigator?.serviceWorker?.addEventListener("message", (event) => {
+            if (event.data.type === "NOTIFICATION_CLICKED") {
+                window.location.assign(`/#/${event.data.path}`);
+            }
+        });
     });
 
     function captureReferralCode() {
