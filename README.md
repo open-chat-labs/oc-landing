@@ -31,6 +31,8 @@ Secondly, we modify the behaviour of the default service worker such that it onl
 relevant canister if the user is signed in. This means that we will show the landing page both if the user has not yet
 installed the service worker _and_ if the user is not signed in.
 
+Thirdly, we handle web push notifications.
+
 And finally, we integrate it with google workbox so that we can add easy control over the caching of assets to improve
 the performance of the app.
 
