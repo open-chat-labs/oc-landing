@@ -4,7 +4,15 @@
     import Arrow from "./Arrow.svelte";
 
     export let path: string | undefined = undefined;
+    export let url: string | undefined = undefined;
     export let color: string = "#7E52FF";
+    export let target: string | undefined = undefined;
+
+    $: href = path === undefined 
+        ? url === undefined 
+        ? "#" 
+        : url 
+        : `/${path}`;
 
     const dispatch = createEventDispatcher();
 
@@ -15,12 +23,17 @@
                 hash: "",
             });
         }
+        
+        if (url != undefined) {
+            return;
+        }
+
         e.preventDefault();
         dispatch("linkClicked");
     }
 </script>
 
-<a class="link" href={path === undefined ? "#" : `/${path}`} on:click={clickLink}>
+<a class="link" href={href} target={target} on:click={clickLink}>
     <slot />
     <div class="arrow">
         <Arrow {color} />

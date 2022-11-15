@@ -7,6 +7,7 @@
     import ExternalLink from "./ExternalLink.svelte";
     import HashLink from "./HashLink.svelte";
     import { currentPath } from "../stores/route";
+    import ArrowLink from "./ArrowLink.svelte";
 
     let linked: number | undefined = undefined;
 
@@ -524,6 +525,11 @@
             <ZoomableImage on:zoom url={"../architecture/usergeek.png"} alt="UserGeek charts" />
         </div>
     </CollapsibleCard>
+    <div class="unabridged">
+        <ArrowLink url="https://github.com/open-ic/open-chat/blob/master/architecture/doc.md#openchat-architecture" target="_blank" color={"#23A2EE"}>
+            Unabridged architecture
+        </ArrowLink>
+    </div>
 </div>
 
 <style type="text/scss">
@@ -571,5 +577,12 @@
         &::before {
             content: " > ";
         }
+    }
+
+    .unabridged {
+        margin-top: toRem(36);
+        margin-bottom: toRem(20);
+        display: flex;
+        justify-content: flex-end;
     }
 </style>
