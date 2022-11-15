@@ -235,7 +235,9 @@ async function showNotification(notification: Notification): Promise<void> {
     let title = "OpenChat - ";
     let body: string;
     let path: string;
+    let tag: string;
     let timestamp: number;
+
     // If true, we close existing notifications where the `path` matches, this ensures this new notification will
     // trigger an alert. If false, and there is already at least one notification with a matching path, then this new
     // notification will be silent
@@ -248,7 +250,8 @@ async function showNotification(notification: Notification): Promise<void> {
         title += notification.senderName;
         body = content.text;
         icon = content.image ?? icon;
-        path = notification.sender;
+        path = `${notification.sender}/${notification.message.event.messageIndex}`;
+        tag = notification.sender; 
         timestamp = Number(notification.message.timestamp);
         closeExistingNotifications = true;
     } else if (notification.kind === "group_notification") {
@@ -260,24 +263,28 @@ async function showNotification(notification: Notification): Promise<void> {
         title += notification.groupName;
         body = `${notification.senderName}: ${content.text}`;
         icon = content.image ?? icon;
-        path = notification.chatId;
+        path = `${notification.chatId}/${notification.message.event.messageIndex}`;
+        tag = notification.chatId;
         timestamp = Number(notification.message.timestamp);
         closeExistingNotifications = true;
     } else if (notification.kind === "direct_reaction") {
         title += notification.username;
         body = `${notification.username} reacted '${notification.reaction}' to your message`;
         path = `${notification.them}/${notification.message.event.messageIndex}`;
+        tag = path;
         timestamp = Number(notification.timestamp);
     } else if (notification.kind === "group_reaction") {
         title += notification.groupName;
         body = `${notification.addedByName} reacted '${notification.reaction}' to your message`;
         path = `${notification.chatId}/${notification.message.event.messageIndex}`;
+        tag = path;
         timestamp = Number(notification.timestamp);
     } else if (notification.kind === "added_to_group_notification") {
         // TODO Multi language support
         title += notification.groupName;
         body = `${notification.addedByUsername} added you to the group "${notification.groupName}"`;
         path = notification.chatId;
+        tag = notification.chatId;
         timestamp = Number(notification.timestamp);
     } else {
         throw new UnsupportedValueError("Unexpected notification type received", notification);
@@ -285,19 +292,18 @@ async function showNotification(notification: Notification): Promise<void> {
 
     if (closeExistingNotifications) {
         // We need to close any existing notifications for the same tag otherwise the new notification will not be shown
-        const existing = await self.registration.getNotifications({
-            tag: path,
-        });
+        const existing = await self.registration.getNotifications({ tag });
         existing.forEach((n) => n.close());
     }
 
     await self.registration.showNotification(title, {
         body,
         icon,
-        tag: path,
+        tag,
         timestamp,
         data: {
             path,
+            notification,
         },
     });
 }
