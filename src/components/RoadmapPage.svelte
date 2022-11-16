@@ -120,7 +120,7 @@
             <p>
                 Many (web2) apps in this space offer voice and video calling and we aim to do the
                 same. There are certainly challenges in doing this in a way that is both reliable
-                and meaningfully decentralised. This is why this function is so often delegated to a
+                and meaningfully decentralized. This is why this function is so often delegated to a
                 centralised web2 partner. It is likely to require an incremental approach and a fair
                 amount of R&D.
             </p>

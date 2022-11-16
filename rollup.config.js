@@ -113,7 +113,7 @@ export default {
                     <!DOCTYPE html>
                     <html lang="en">
                         <head>
-                            <title>OpenChat: Decentralised chat on the Internet Computer</title>
+                            <title>OpenChat: Decentralized chat on the Internet Computer</title>
                             <meta charset="utf-8" />
                             <meta name="theme-color" media="(prefers-color-scheme: light)" content="#22A7F2" />
                             <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1B1C21" />
