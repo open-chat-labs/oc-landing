@@ -33,7 +33,7 @@
 
             <ZoomableImage
                 on:zoom
-                url={"../architecture/simple.jpg"}
+                url={"../architecture/simple.svg"}
                 alt="High level architecture" />
         </div>
     </CollapsibleCard>
@@ -46,15 +46,15 @@
         <span slot="subtitle">2</span>
         <div class="body" slot="body">
             <p>
-                This diagram shows the OpenChat system enclosed in the box with the dashed orange border, 
-                decomposed into the various deployable units. The solid links represent Internet Computer 
-                updates which go through blockchain consensus. The green boxes are all canisters and the 
-                light gray boxes are services hosted on AWS.                
+                This diagram shows the OpenChat system enclosed in the box with the dashed orange
+                border, decomposed into the various deployable units. The solid links represent
+                Internet Computer updates which go through blockchain consensus. The green boxes are
+                all canisters and the light gray boxes are services hosted on AWS.
             </p>
 
             <ZoomableImage
                 on:zoom
-                url={"../architecture/complex.jpg"}
+                url={"../architecture/complex.svg"}
                 alt="Complete architecture" />
 
             <HashLinkTarget on:copyUrl={copyUrl} id="2-1">Canister components</HashLinkTarget>
@@ -275,7 +275,7 @@
 
             <ZoomableImage
                 on:zoom
-                url={"../architecture/frontend.jpg"}
+                url={"../architecture/frontend.svg"}
                 alt="Frontend architecture" />
 
             <HashLinkTarget on:copyUrl={copyUrl} id="2-3-1">Landing pages</HashLinkTarget>
@@ -526,7 +526,10 @@
         </div>
     </CollapsibleCard>
     <div class="unabridged">
-        <ArrowLink url="https://github.com/open-ic/open-chat/blob/master/architecture/doc.md#openchat-architecture" target="_blank" color={"#23A2EE"}>
+        <ArrowLink
+            url="https://github.com/open-ic/open-chat/blob/master/architecture/doc.md#openchat-architecture"
+            target="_blank"
+            color={"#23A2EE"}>
             Unabridged architecture
         </ArrowLink>
     </div>
