@@ -27,16 +27,15 @@ const DEBUG = false;
 registerRoute(
     (route) => {
         return [
+            /assets\/.*png|jpg|svg/,
             /screenshots\//,
             /architecture\//,
             /brag_/,
             /burst_/,
             /share-oc-/,
             /network12.*jpg/,
-            /matt|hamish|julian/,
             /main-.*[css|js]$/,
             /worker.js/,
-            /assets\/underwater/,
         ].some((re) => re.test(route.request.url));
     },
     new CacheFirstIfSignedIn({
@@ -58,12 +57,9 @@ registerRoute(
 
 registerRoute(
     (route) => {
-        return [
-            /assets\/.*\.svg$/,
-            /openchat.webmanifest/,
-            /icon.png/,
-            /apple-touch-icon.png/,
-        ].some((re) => re.test(route.request.url));
+        return [/openchat.webmanifest/, /icon.png/, /apple-touch-icon.png/].some((re) =>
+            re.test(route.request.url)
+        );
     },
     new StaleWhileRevalidateIfSignedIn({
         cacheName: "openchat_stale_while_revalidate",
@@ -251,7 +247,7 @@ async function showNotification(notification: Notification): Promise<void> {
         body = content.text;
         icon = content.image ?? icon;
         path = `${notification.sender}/${notification.message.event.messageIndex}`;
-        tag = notification.sender; 
+        tag = notification.sender;
         timestamp = Number(notification.message.timestamp);
         closeExistingNotifications = true;
     } else if (notification.kind === "group_notification") {
