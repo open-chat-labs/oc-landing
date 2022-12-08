@@ -1,9 +1,8 @@
 {
-    "extends": "@tsconfig/svelte/tsconfig.json",
-
-    "include": ["src/**/*", "svelte.config.js"],
-    "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
+    "include": ["src/**/*"],
+    "exclude": ["node_modules/*", "public/*"],
     "compilerOptions": {
+        "moduleResolution": "node",
         "importsNotUsedAsValues": "remove",
         "esModuleInterop": true,
         "isolatedModules": false,
@@ -17,8 +16,9 @@
             "DOM.Iterable",
             "WebWorker"
         ],
+        "target": "es2020",
         "module": "es2020",
         "rootDir": ".",
-        "types": ["svelte", "node"]
+        "types": ["node"]
     }
 }
