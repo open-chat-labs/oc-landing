@@ -84,6 +84,8 @@ export default {
                                     overflow-x: hidden;
                                     height: 100vh;
                                     min-height: 100%;
+                                    padding: 20px;
+                                    text-align: center;
                                 }
                             </style>
                         </head>
