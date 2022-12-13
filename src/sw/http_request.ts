@@ -2,12 +2,12 @@
  * Implement the HttpRequest to Canisters Proposal.
  *
  */
-import { Actor, ActorSubclass, HttpAgent } from "@dfinity/agent";
+import { Actor, ActorSubclass, HttpAgent, concat } from "@dfinity/agent";
 import { Principal } from "@dfinity/principal";
 import { validateBody } from "./validation";
 import * as base64Arraybuffer from "base64-arraybuffer";
 import * as pako from "pako";
-import { _SERVICE, HttpResponse } from "../http-interface/canister_http_interface_types";
+import { HttpRequest, _SERVICE } from "../http-interface/canister_http_interface_types";
 import { idlFactory } from "../http-interface/canister_http_interface";
 import { streamContent } from "./streaming";
 
@@ -24,16 +24,14 @@ const hostnameCanisterIdMap: Record<string, [string, string]> = {
     localhost: ["tmxop-wyaaa-aaaaa-aaapa-cai", "localhost:8080"],
 };
 
-const shouldFetchRootKey: boolean = ["1", "true"].includes(process.env.FORCE_FETCH_ROOT_KEY);
-const swLocation = new URL(self.location.toString());
-const [, swDomains] = (() => {
-    const maybeSplit = splitHostnameForCanisterId(swLocation.hostname);
-    if (maybeSplit) {
-        return maybeSplit;
-    } else {
-        return [null, swLocation.hostname];
-    }
-})() as [Principal | null, string];
+const shouldFetchRootKey = Boolean(process.env.FORCE_FETCH_ROOT_KEY);
+
+function getServiceWorkerDomain(): string {
+    const swLocation = new URL(self.location.toString());
+
+    return splitHostnameForCanisterId(swLocation.hostname)?.[1] ?? swLocation.hostname;
+}
+const swDomains = getServiceWorkerDomain();
 
 /**
  * Split a hostname up-to the first valid canister ID from the right.
@@ -48,7 +46,7 @@ function splitHostnameForCanisterId(hostname: string): [Principal, string] | nul
     }
 
     const subdomains = hostname.split(".").reverse();
-    const topdomains = [];
+    const topdomains: string[] = [];
     for (const domain of subdomains) {
         try {
             const principal = Principal.fromText(domain);
@@ -79,18 +77,9 @@ function maybeResolveCanisterIdFromHostName(hostname: string): Principal | null 
 /**
  * Try to resolve the Canister ID to contact in the search params.
  * @param searchParams The URL Search params.
- * @param isLocal Whether to resolve headers as if we were running locally.
  * @returns A Canister ID or null if none were found.
  */
-function maybeResolveCanisterIdFromSearchParam(
-    searchParams: URLSearchParams,
-    isLocal: boolean
-): Principal | null {
-    // Skip this if we're not on localhost.
-    if (!isLocal) {
-        return null;
-    }
-
+function maybeResolveCanisterIdFromSearchParam(searchParams: URLSearchParams): Principal | null {
     const maybeCanisterId = searchParams.get("canisterId");
     if (maybeCanisterId) {
         try {
@@ -106,15 +95,14 @@ function maybeResolveCanisterIdFromSearchParam(
 /**
  * Try to resolve the Canister ID to contact from a URL string.
  * @param urlString The URL in string format (normally from the request).
- * @param isLocal Whether to resolve headers as if we were running locally.
  * @returns A Canister ID or null if none were found.
  */
-function resolveCanisterIdFromUrl(urlString: string, isLocal: boolean): Principal | null {
+function resolveCanisterIdFromUrl(urlString: string): Principal | null {
     try {
         const url = new URL(urlString);
         return (
             maybeResolveCanisterIdFromHostName(url.hostname) ||
-            maybeResolveCanisterIdFromSearchParam(url.searchParams, isLocal)
+            maybeResolveCanisterIdFromSearchParam(url.searchParams)
         );
     } catch (_) {
         return null;
@@ -124,10 +112,9 @@ function resolveCanisterIdFromUrl(urlString: string, isLocal: boolean): Principa
 /**
  * Try to resolve the Canister ID to contact from headers.
  * @param headers Headers from the HttpRequest.
- * @param isLocal Whether to resolve headers as if we were running locally.
  * @returns A Canister ID or null if none were found.
  */
-function maybeResolveCanisterIdFromHeaders(headers: Headers, isLocal: boolean): Principal | null {
+function maybeResolveCanisterIdFromHeaders(headers: Headers): Principal | null {
     const maybeHostHeader = headers.get("host");
     if (maybeHostHeader) {
         // Remove the port.
@@ -139,24 +126,12 @@ function maybeResolveCanisterIdFromHeaders(headers: Headers, isLocal: boolean): 
         }
     }
 
-    if (isLocal) {
-        const maybeRefererHeader = headers.get("referer");
-        if (maybeRefererHeader) {
-            const maybeCanisterId = resolveCanisterIdFromUrl(maybeRefererHeader, isLocal);
-            if (maybeCanisterId) {
-                return maybeCanisterId;
-            }
-        }
-    }
-
     return null;
 }
 
-function maybeResolveCanisterIdFromHttpRequest(request: Request, isLocal: boolean) {
+function maybeResolveCanisterIdFromHttpRequest(request: Request) {
     return (
-        (isLocal && resolveCanisterIdFromUrl(request.referrer, isLocal)) ||
-        maybeResolveCanisterIdFromHeaders(request.headers, isLocal) ||
-        resolveCanisterIdFromUrl(request.url, isLocal)
+        maybeResolveCanisterIdFromHeaders(request.headers) || resolveCanisterIdFromUrl(request.url)
     );
 }
 
@@ -197,6 +172,61 @@ async function createAgentAndActor(
 }
 
 /**
+ * Removes legacy sub domains from the URL of the request.
+ * Request objects cannot be mutated, so we have to clone them and
+ * object spread does not work so we have to manually deconstruct the request.
+ * If we create a new Request using the original one then the duplex property is not copied over, so we have to set it manually.
+ * The duplex property also does not exist in the Typescript definitions so we need to cast to unknown.
+ * Safari does not support creating a Request with a readable stream as a body, so we have to read the stream and set the body
+ * as the UIntArray that is read.
+ */
+async function removeLegacySubDomains(originalRequest: Request): Promise<Request> {
+    const url = new URL(originalRequest.url);
+    const urlWithoutLegacySubdomain = `${url.protocol}//${swDomains}${url.pathname}`;
+
+    if (url.href !== urlWithoutLegacySubdomain) {
+        console.warn(
+            `${url.hostname} refers to a legacy, deprecated sub domain. Please migrate to the latest version of @dfinity/agent-js and remove any subdomains from your 'host' configuration when creating the agent.`
+        );
+    }
+
+    const {
+        cache,
+        credentials,
+        headers,
+        integrity,
+        keepalive,
+        method,
+        mode,
+        redirect,
+        referrer,
+        referrerPolicy,
+        signal,
+    } = originalRequest;
+
+    const requestInit = {
+        cache,
+        credentials,
+        headers,
+        integrity,
+        keepalive,
+        method,
+        mode,
+        redirect,
+        referrer,
+        referrerPolicy,
+        signal,
+        duplex: "half",
+    };
+
+    if (!["HEAD", "GET"].includes(method)) {
+        requestInit["body"] = await originalRequest.arrayBuffer();
+    }
+
+    return new Request(urlWithoutLegacySubdomain, requestInit as unknown);
+}
+
+/**
  * Box a request, send it to the canister, and handle its response, creating a Response
  * object.
  * @param request The request received from the browser.
@@ -205,27 +235,6 @@ async function createAgentAndActor(
  */
 export async function handleRequest(request: Request): Promise<Response> {
     const url = new URL(request.url);
-
-    /**
-     * We forward all requests to /api/ to the replica, as is.
-     */
-
-    if (url.pathname === "/") {
-        console.log("root path");
-    }
-
-    if (url.pathname.startsWith("/api/")) {
-        const response = await fetch(request);
-        // force the content-type to be cbor as /api/ is exclusively used for canister calls
-        const sanitizedHeaders = new Headers(response.headers);
-        sanitizedHeaders.set("X-Content-Type-Options", "nosniff");
-        sanitizedHeaders.set("Content-Type", "application/cbor");
-        return new Response(response.body, {
-            status: response.status,
-            statusText: response.statusText,
-            headers: sanitizedHeaders,
-        });
-    }
 
     /**
      * We refuse any request to /_/*
@@ -237,8 +246,25 @@ export async function handleRequest(request: Request): Promise<Response> {
     /**
      * We try to do an HTTP Request query.
      */
-    const isLocal = swDomains === "localhost";
-    const maybeCanisterId = maybeResolveCanisterIdFromHttpRequest(request, isLocal);
+    const maybeCanisterId = maybeResolveCanisterIdFromHttpRequest(request);
+
+    /**
+     * We forward all requests to /api/ to the replica, as is.
+     */
+    if (url.pathname.startsWith("/api/") && (maybeCanisterId || url.hostname.endsWith(swDomains))) {
+        const cleanedRequest = await removeLegacySubDomains(request);
+        const response = await fetch(cleanedRequest);
+        // force the content-type to be cbor as /api/ is exclusively used for canister calls
+        const sanitizedHeaders = new Headers(response.headers);
+        sanitizedHeaders.set("X-Content-Type-Options", "nosniff");
+        sanitizedHeaders.set("Content-Type", "application/cbor");
+        return new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: sanitizedHeaders,
+        });
+    }
+
     if (maybeCanisterId) {
         try {
             const origin = splitHostnameForCanisterId(url.hostname);
@@ -247,7 +273,7 @@ export async function handleRequest(request: Request): Promise<Response> {
                 maybeCanisterId,
                 shouldFetchRootKey
             );
-            const requestHeaders: [string, string][] = [];
+            const requestHeaders: [string, string][] = [["Host", url.hostname]];
             request.headers.forEach((value, key) => {
                 if (key.toLowerCase() === "if-none-match") {
                     // Drop the if-none-match header because we do not want a "304 not modified" response back.
@@ -262,17 +288,15 @@ export async function handleRequest(request: Request): Promise<Response> {
                 requestHeaders.push(["Accept-Encoding", "gzip, deflate, identity"]);
             }
 
-            const httpRequest = {
+            const httpRequest: HttpRequest = {
                 method: request.method,
                 url: url.pathname + url.search,
                 headers: requestHeaders,
-                body: [...new Uint8Array(await request.arrayBuffer())],
+                body: new Uint8Array(await request.arrayBuffer()),
             };
 
             let upgradeCall = false;
-            let httpResponse: HttpResponse = (await actor.http_request(
-                httpRequest
-            )) as HttpResponse;
+            let httpResponse = await actor.http_request(httpRequest);
 
             // Redirects are blocked for query calls only: if this response has the upgrade to update call flag set,
             // the update call is allowed to redirect. This is safe because the response (including the headers) will go through consensus.
@@ -288,7 +312,7 @@ export async function handleRequest(request: Request): Promise<Response> {
 
             if (httpResponse.upgrade.length === 1 && httpResponse.upgrade[0]) {
                 // repeat the request as an update call
-                httpResponse = (await actor.http_request_update(httpRequest)) as HttpResponse;
+                httpResponse = await actor.http_request_update(httpRequest);
                 upgradeCall = true;
             }
 
@@ -325,9 +349,11 @@ export async function handleRequest(request: Request): Promise<Response> {
             }
 
             // if we do streaming, body contains the first chunk
-            let buffer = httpResponse.body;
+            let buffer = new ArrayBuffer(0);
+            buffer = concat(buffer, httpResponse.body);
             if (httpResponse.streaming_strategy.length !== 0) {
-                buffer = buffer.concat(
+                buffer = concat(
+                    buffer,
                     await streamContent(agent, maybeCanisterId, httpResponse.streaming_strategy[0])
                 );
             }
@@ -374,6 +400,7 @@ export async function handleRequest(request: Request): Promise<Response> {
             }
         } catch (e) {
             console.error("Failed to fetch response:", e);
+
             return new Response(`Failed to fetch response: ${String(e)}`, {
                 status: 500,
             });
