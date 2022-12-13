@@ -237,8 +237,12 @@ async function showNotification(notification: Notification): Promise<void> {
         title += notification.groupName;
         body = `${notification.senderName}: ${content.text}`;
         icon = content.image ?? icon;
-        path = `${notification.chatId}/${notification.message.event.messageIndex}`;
-        tag = notification.chatId;
+        path = notification.threadRootMessageIndex !== undefined
+            ? `${notification.chatId}/${notification.threadRootMessageIndex}?open=true`
+            : `${notification.chatId}/${notification.message.event.messageIndex}`;
+        tag = notification.threadRootMessageIndex !== undefined
+            ? path
+            : notification.chatId;
         timestamp = Number(notification.message.timestamp);
         closeExistingNotifications = true;
     } else if (notification.kind === "direct_reaction") {
@@ -258,7 +262,7 @@ async function showNotification(notification: Notification): Promise<void> {
         title += notification.groupName;
         body = `${notification.addedByUsername} added you to the group "${notification.groupName}"`;
         path = notification.chatId;
-        tag = notification.chatId;
+        tag = path;
         timestamp = Number(notification.timestamp);
     } else {
         throw new UnsupportedValueError("Unexpected notification type received", notification);
