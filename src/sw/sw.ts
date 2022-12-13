@@ -64,22 +64,23 @@ registerRoute(
     })
 );
 
-registerRoute(
-    (route) => {
-        return route.request.destination === "document";
-    },
-    new CustomNetworkFirst({
-        cacheName: "openchat_network_first",
-        plugins: [
-            new CacheableResponsePlugin({
-                statuses: [200],
-            }),
-            new ExpirationPlugin({
-                maxAgeSeconds: 30 * 24 * 60 * 60,
-            }),
-        ],
-    })
-);
+// Having the root doc cached in the service worker causes problems that are not worth the saving
+// registerRoute(
+//     (route) => {
+//         return route.request.destination === "document";
+//     },
+//     new CustomNetworkFirst({
+//         cacheName: "openchat_network_first",
+//         plugins: [
+//             new CacheableResponsePlugin({
+//                 statuses: [200],
+//             }),
+//             new ExpirationPlugin({
+//                 maxAgeSeconds: 30 * 24 * 60 * 60,
+//             }),
+//         ],
+//     })
+// );
 
 setDefaultHandler(({ request }) => {
     return defaultHandler(request);
