@@ -6,7 +6,7 @@ import type { Notification } from "../domain/notifications";
 import { handleRequest } from "./http_request";
 import { registerRoute, setCatchHandler, setDefaultHandler } from "workbox-routing";
 import { ExpirationPlugin } from "workbox-expiration";
-import { CustomCacheFirst, CustomNetworkFirst, CustomStaleWhileRevalidate } from "./strategies";
+import { CustomCacheFirst, CustomStaleWhileRevalidate } from "./strategies";
 import { UnsupportedValueError } from "../utils/error";
 import { CryptocurrencyContent, MessageContent } from "../domain/chat";
 import { User } from "../domain/user/user";
@@ -20,7 +20,7 @@ const DEBUG = false;
 //workbox config
 registerRoute(
     (route) => {
-        return [/assets\/.*png|jpg|svg/, /main-.*[css|js]$/, /worker.js/].some((re) =>
+        return [/assets\/.*png|jpg|svg|gif/, /main-.*[css|js]$/, /worker.js/].some((re) =>
             re.test(route.request.url)
         );
     },
@@ -63,24 +63,6 @@ registerRoute(
         ],
     })
 );
-
-// Having the root doc cached in the service worker causes problems that are not worth the saving
-// registerRoute(
-//     (route) => {
-//         return route.request.destination === "document";
-//     },
-//     new CustomNetworkFirst({
-//         cacheName: "openchat_network_first",
-//         plugins: [
-//             new CacheableResponsePlugin({
-//                 statuses: [200],
-//             }),
-//             new ExpirationPlugin({
-//                 maxAgeSeconds: 30 * 24 * 60 * 60,
-//             }),
-//         ],
-//     })
-// );
 
 setDefaultHandler(({ request }) => {
     return defaultHandler(request);
@@ -237,12 +219,11 @@ async function showNotification(notification: Notification): Promise<void> {
         title += notification.groupName;
         body = `${notification.senderName}: ${content.text}`;
         icon = content.image ?? icon;
-        path = notification.threadRootMessageIndex !== undefined
-            ? `${notification.chatId}/${notification.threadRootMessageIndex}?open=true`
-            : `${notification.chatId}/${notification.message.event.messageIndex}`;
-        tag = notification.threadRootMessageIndex !== undefined
-            ? path
-            : notification.chatId;
+        path =
+            notification.threadRootMessageIndex !== undefined
+                ? `${notification.chatId}/${notification.threadRootMessageIndex}?open=true`
+                : `${notification.chatId}/${notification.message.event.messageIndex}`;
+        tag = notification.threadRootMessageIndex !== undefined ? path : notification.chatId;
         timestamp = Number(notification.message.timestamp);
         closeExistingNotifications = true;
     } else if (notification.kind === "direct_reaction") {
