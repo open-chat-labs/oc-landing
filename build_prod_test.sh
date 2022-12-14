@@ -4,5 +4,4 @@ export II_DERIVATION_ORIGIN=https://pfs7b-iqaaa-aaaaf-abs7q-cai.ic0.app
 export II_ALTERNATIVE_ORIGINS=https://test.oc.app
 
 npm i
-npm run check
 npx rollup -c

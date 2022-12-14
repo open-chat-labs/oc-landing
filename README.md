@@ -1,24 +1,6 @@
-# This is the landing page for OpenChat
+# This is the custom service worker project for OpenChat
 
-This repo forms the landing page for OpenChat. It is comprised of two important parts.
-
-### The landing page
-
-This is just a fairly straightforward svelte app.
-
-To build run one of the following (depending on env):
-
-```
-npm run build
-npm run build:prod
-npm run build:prod-test
-```
-
-To run in dev mode run:
-
-```
-npm run dev
-```
+This repo holds the custom service worker implementation for OpenChat. This is principally required to add a caching layer and custom domain mapping to the default service worker.
 
 ### The service worker
 
@@ -27,26 +9,24 @@ This is a copy of the default ic service worker but it has a couple of modificat
 Firstly, we need to add the open chat domains (test.oc.app, oc.app) to the hostname canister id map so that we can use
 those "vanity" urls.
 
-Secondly, we modify the behaviour of the default service worker such that it only delegates to the
-relevant canister if the user is signed in. This means that we will show the landing page both if the user has not yet
-installed the service worker _and_ if the user is not signed in.
-
-Thirdly, we handle web push notifications.
+Secondly, we handle web push notifications.
 
 And finally, we integrate it with google workbox so that we can add easy control over the caching of assets to improve
 the performance of the app.
 
-To build the service worker run on of the following (depending on env):
+To build both the js entry point and the service worker run:
 
 ```
-npm run build:sw
-npm run build:sw-dev
+npm run build:prod
 ```
 
-### Why can't you build both the main site _and_ the service worker using rollup?
+or
 
-Good question. You probably can but I just couldn't get it to work. To save time I therefore just picked up the webpack
-config from the ic project to build the service worker and that seems to work fine.
+```
+npm run build:prod_test
+```
+
+depending on environment
 
 ## License
 

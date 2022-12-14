@@ -6,13 +6,7 @@ import type { Notification } from "../domain/notifications";
 import { handleRequest } from "./http_request";
 import { registerRoute, setCatchHandler, setDefaultHandler } from "workbox-routing";
 import { ExpirationPlugin } from "workbox-expiration";
-import {
-    CacheFirstIfSignedIn,
-    isAnonymous,
-    landingPageRoutes,
-    NetworkFirstIfSignedIn,
-    StaleWhileRevalidateIfSignedIn,
-} from "./strategies";
+import { CustomCacheFirst, CustomStaleWhileRevalidate } from "./strategies";
 import { UnsupportedValueError } from "../utils/error";
 import { CryptocurrencyContent, MessageContent } from "../domain/chat";
 import { User } from "../domain/user/user";
@@ -26,20 +20,11 @@ const DEBUG = false;
 //workbox config
 registerRoute(
     (route) => {
-        return [
-            /screenshots\//,
-            /architecture\//,
-            /brag_/,
-            /burst_/,
-            /share-oc-/,
-            /network12.*jpg/,
-            /matt|hamish|julian/,
-            /main-.*[css|js]$/,
-            /worker.js/,
-            /assets\/underwater/,
-        ].some((re) => re.test(route.request.url));
+        return [/assets\/.*png|jpg|svg|gif/, /main-.*[css|js]$/, /worker.js/].some((re) =>
+            re.test(route.request.url)
+        );
     },
-    new CacheFirstIfSignedIn({
+    new CustomCacheFirst({
         cacheName: "openchat_cache_first",
         plugins: [
             new CacheableResponsePlugin({
@@ -58,14 +43,11 @@ registerRoute(
 
 registerRoute(
     (route) => {
-        return [
-            /assets\/.*\.svg$/,
-            /openchat.webmanifest/,
-            /icon.png/,
-            /apple-touch-icon.png/,
-        ].some((re) => re.test(route.request.url));
+        return [/openchat.webmanifest/, /icon.png/, /apple-touch-icon.png/, /oc-logo2.svg/].some(
+            (re) => re.test(route.request.url)
+        );
     },
-    new StaleWhileRevalidateIfSignedIn({
+    new CustomStaleWhileRevalidate({
         cacheName: "openchat_stale_while_revalidate",
         plugins: [
             new CacheableResponsePlugin({
@@ -74,23 +56,6 @@ registerRoute(
                     "content-type": "text/html",
                     "Content-Type": "text/html",
                 },
-            }),
-            new ExpirationPlugin({
-                maxAgeSeconds: 30 * 24 * 60 * 60,
-            }),
-        ],
-    })
-);
-
-registerRoute(
-    (route) => {
-        return route.request.destination === "document";
-    },
-    new NetworkFirstIfSignedIn({
-        cacheName: "openchat_network_first",
-        plugins: [
-            new CacheableResponsePlugin({
-                statuses: [200],
             }),
             new ExpirationPlugin({
                 maxAgeSeconds: 30 * 24 * 60 * 60,
@@ -118,9 +83,9 @@ self.addEventListener("install", (ev) => {
     ev.waitUntil(self.skipWaiting().then(() => console.log("SW: skipWaiting promise resolved")));
 });
 
-self.addEventListener("activate", async () => {
+self.addEventListener("activate", (ev) => {
     // upon activation take control of all clients (tabs & windows)
-    await self.clients.claim();
+    ev.waitUntil(self.clients.claim());
     console.log("SW: actived");
 });
 
@@ -138,37 +103,28 @@ async function defaultHandler(request: Request): Promise<Response> {
         if (request.referrer) {
             referrer = new URL(request.referrer);
         }
-    } catch {}
-    const anon = await isAnonymous();
-    const passthrough = anon || landingPageRoutes.includes(referrer?.pathname);
+    } catch {
+        console.error("Invalid referrer: ", request.referrer);
+    }
 
     console.log("SW: version 66");
 
-    if (process.env.LANDING_PAGE_MODE && (anon || passthrough)) {
+    try {
         console.debug(
-            "SW: default handler - not signed in falling back to network: ",
+            "SW: default handler - signed in falling back to default ic service worker ",
             request.url,
             referrer?.pathname
         );
-        return fetch(request);
-    } else {
-        try {
-            console.debug(
-                "SW: default handler - signed in falling back to default ic service worker ",
-                request.url,
-                referrer?.pathname
-            );
-            return handleRequest(request);
-        } catch (e) {
-            const error_message = String(e);
-            console.error(error_message);
-            if (DEBUG) {
-                return new Response(error_message, {
-                    status: 501,
-                });
-            }
-            return new Response("Internal Error", { status: 502 });
+        return handleRequest(request);
+    } catch (e) {
+        const error_message = String(e);
+        console.error(error_message);
+        if (DEBUG) {
+            return new Response(error_message, {
+                status: 501,
+            });
         }
+        return new Response("Internal Error", { status: 502 });
     }
 }
 
@@ -263,12 +219,11 @@ async function showNotification(notification: Notification): Promise<void> {
         title += notification.groupName;
         body = `${notification.senderName}: ${content.text}`;
         icon = content.image ?? icon;
-        path = notification.threadRootMessageIndex !== undefined
-            ? `${notification.chatId}/${notification.threadRootMessageIndex}?open=true`
-            : `${notification.chatId}/${notification.message.event.messageIndex}`;
-        tag = notification.threadRootMessageIndex !== undefined
-            ? path
-            : notification.chatId;
+        path =
+            notification.threadRootMessageIndex !== undefined
+                ? `${notification.chatId}/${notification.threadRootMessageIndex}?open=true`
+                : `${notification.chatId}/${notification.message.event.messageIndex}`;
+        tag = notification.threadRootMessageIndex !== undefined ? path : notification.chatId;
         timestamp = Number(notification.message.timestamp);
         closeExistingNotifications = true;
     } else if (notification.kind === "direct_reaction") {
