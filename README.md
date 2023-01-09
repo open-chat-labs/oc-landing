@@ -1,3 +1,7 @@
+# This project is now archived
+
+This code has now been incorporated into [the main OpenChat repo](https://github.com/open-ic/open-chat)
+
 # This is the custom service worker project for OpenChat
 
 This repo holds the custom service worker implementation for OpenChat. This is principally required to add a caching layer and custom domain mapping to the default service worker.
